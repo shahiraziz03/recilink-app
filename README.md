@@ -37,8 +37,8 @@ recilink-app/
 │   │   └── main.py       # App entrypoint
 │   ├── .env              # Environment variables (NOT uploaded)
 │   └── requirements.txt
-├── frontend-web/         # React.js web app (coming soon)
-├── frontend-mobile/      # React Native mobile app (coming soon)
+├── frontend-web/         # React.js web app 
+├── frontend-mobile/      # React Native mobile app 
 └── README.md
 ```
 
@@ -47,12 +47,12 @@ recilink-app/
 ## 🚀 Getting Started (Backend)
 
 ### Prerequisites
-- Python 3.11+
+- Python 3.13+
 - PostgreSQL 15+
 
 ### 1. Clone the repo
 ```bash
-git clone https://github.com/<your-username>/recilink-app.git
+git clone https://github.com/shahiraziz03/recilink-app.git
 cd recilink-app/backend
 ```
 
@@ -80,22 +80,6 @@ uvicorn app.main:app --reload
 ```
 
 Visit **http://localhost:8000/docs** for the interactive API docs.
-
----
-
-## ✅ API Endpoints
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `POST` | `/api/v1/auth/register` | Register a new user |
-| `POST` | `/api/v1/auth/login` | Login and get JWT token |
-
----
-
-## 👥 Team
-
-- **Qamarul** — Backend & Database
-- **[Partner Name]** — Frontend
 
 ---
 
