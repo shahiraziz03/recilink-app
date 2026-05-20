@@ -1,0 +1,1 @@
+# ReciLink app schemas package
