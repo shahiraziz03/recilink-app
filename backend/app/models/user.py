@@ -29,6 +29,7 @@ class Profile(Base):
     
     # Store dietary preferences as JSON, e.g., ["halal", "vegetarian"] or {"halal": true}
     dietary_preferences = Column(JSON, nullable=True, default=list)
+    frequently_used_ingredients = Column(JSON, nullable=True, default=list)
     cooking_streak = Column(Integer, default=0)
     
     user = relationship("User", back_populates="profile")
