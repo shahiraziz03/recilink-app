@@ -48,17 +48,21 @@ async def register(user_data: UserRegister, db: AsyncSession = Depends(get_db)):
 @router.post("/login", response_model=TokenResponse)
 async def login(user_data: UserLogin, db: AsyncSession = Depends(get_db)):
     """
-    Login with email and password.
+    Login with username or email, and password.
     - Returns a JWT access token on success
     - Token can be used to access protected endpoints
     """
-    # Find user by email
-    result = await db.execute(select(User).where(User.email == user_data.email))
+    # Find user by username or email
+    result = await db.execute(select(User).where(User.email == user_data.identifier))
     user = result.scalar_one_or_none()
+
+    if not user:
+        result = await db.execute(select(User).where(User.username == user_data.identifier))
+        user = result.scalar_one_or_none()
 
     # Verify user exists and password is correct
     if not user or not verify_password(user_data.password, user.hashed_password):
-        raise HTTPException(status_code=401, detail="Invalid email or password")
+        raise HTTPException(status_code=401, detail="Invalid credentials")
 
     if not user.is_active:
         raise HTTPException(status_code=400, detail="Account is disabled")
@@ -68,5 +72,5 @@ async def login(user_data: UserLogin, db: AsyncSession = Depends(get_db)):
 
     return TokenResponse(
         access_token=access_token,
-        user=UserResponse(id=user.id, username=user.username, email=user.email)
+        user=UserResponse.model_validate(user)
     )

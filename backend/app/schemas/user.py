@@ -10,7 +10,7 @@ class UserRegister(BaseModel):
 
 class UserLogin(BaseModel):
     """Schema for user login request."""
-    email: EmailStr
+    identifier: str
     password: str
 
 # --- Response Schemas (what the API sends back) ---
