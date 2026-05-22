@@ -29,16 +29,19 @@ ReciLink is a full-stack web and mobile application that allows users to:
 ```
 recilink-app/
 ├── backend/              # FastAPI backend
+│   ├── alembic/          # Database migration files        
 │   ├── app/
 │   │   ├── core/         # Security (JWT, bcrypt)
-│   │   ├── models/       # Database models
+│   │   ├── db/           # Database session
+│   │   ├── models/       # SQLAlchemy models
 │   │   ├── routers/      # API route handlers
 │   │   ├── schemas/      # Pydantic request/response schemas
 │   │   └── main.py       # App entrypoint
 │   ├── .env              # Environment variables (NOT uploaded)
+│   ├── alembic.ini       # Alembic config
 │   └── requirements.txt
-├── frontend-web/         # React.js web app (coming soon)
-├── frontend-mobile/      # React Native mobile app (coming soon)
+├── frontend-web/         # React.js + Vite web app
+├── frontend-mobile/      # React Native + Expo mobile app
 └── README.md
 ```
 
@@ -49,14 +52,16 @@ recilink-app/
 ### Prerequisites
 - Python 3.11+
 - PostgreSQL 15+
+- Node.js 18+
+- Android Studio (optional, for Android emulator)
 
 ### 1. Clone the repo
 ```bash
-git clone https://github.com/<your-username>/recilink-app.git
-cd recilink-app/backend
+git clone https://github.com/shahiraziz03/recilink-app.git
+cd recilink-app
 ```
 
-### 2. Create virtual environment
+#### 2. Create and activate virtual environment
 ```bash
 python -m venv .venv
 .venv\Scripts\activate     # Windows
@@ -71,31 +76,87 @@ pip install -r requirements.txt
 ### 4. Configure environment
 Create a `.env` file in `backend/`:
 ```env
-DATABASE_URL=postgresql+asyncpg://postgres:<your_password>@localhost:5432/recilink
+PROJECT_NAME=ReciLink API
+POSTGRES_SERVER=localhost
+POSTGRES_PORT=5432
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=your_password
+POSTGRES_DB=recilink
 ```
 
-### 5. Run the server
+#### 5. Create the database
+
+Using terminal:
 ```bash
-uvicorn app.main:app --reload
+psql -U postgres
+CREATE DATABASE recilink;
+\q
+```
+Or use any PostgreSQL GUI (pgAdmin, DBeaver, TablePlus) to create a database named `recilink`.
+
+#### 6. Run database migrations
+```bash
+python -m alembic upgrade head
+```
+
+This creates all tables in your database automatically.
+
+#### 7. Start the server
+```bash
+uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
 Visit **http://localhost:8000/docs** for the interactive API docs.
 
 ---
 
-## ✅ API Endpoints
+### 🌐 Frontend Web
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `POST` | `/api/v1/auth/register` | Register a new user |
-| `POST` | `/api/v1/auth/login` | Login and get JWT token |
+```bash
+cd frontend-web
+npm install
+npm run dev
+```
+
+Visit **http://localhost:5173**
 
 ---
 
-## 👥 Team
+### 📱 Frontend Mobile
 
-- **Qamarul** — Backend & Database
-- **[Partner Name]** — Frontend
+```bash
+cd frontend-mobile
+npm install
+npm start          # Scan QR code with Expo Go on iPhone
+```
+
+Or for Android emulator (start emulator first):
+```bash
+# Run in a separate terminal
+emulator -avd Pixel_6_API_35
+
+# Then in another terminal
+npm run android
+```
+
+#### ⚠️ iOS Physical Device Configuration
+Before running on a physical iPhone, update `frontend-mobile/src/api/apiClient.ts`:
+- Find `IOS_URL` and replace with your machine's local WiFi IP
+- Windows: run `ipconfig` → IPv4 Address under Wi-Fi
+- Mac: run `ifconfig` → inet address under en0
+
+---
+
+## 🔄 Database Migrations
+
+Every time you change a model, run:
+```bash
+cd backend
+.venv\Scripts\activate      # Windows
+source .venv/bin/activate   # Mac/Linux
+python -m alembic revision --autogenerate -m "describe_your_change"
+python -m alembic upgrade head
+```
 
 ---
 
