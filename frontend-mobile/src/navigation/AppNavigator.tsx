@@ -15,28 +15,32 @@ export default function AppNavigator() {
   useEffect(() => {
     const checkToken = async () => {
       const token = await AsyncStorage.getItem('token');
-      if (token) {
-        setInitialRoute('Home');
-      } else {
-        setInitialRoute('Login');
-      }
+      setInitialRoute(token ? 'Home' : 'Login');
     };
     checkToken();
   }, []);
 
-  if (initialRoute === null) {
-    return (
-      <View className="flex-1 justify-center items-center bg-white">
-        <ActivityIndicator size="large" color="#2563eb" />
-      </View>
-    );
-  }
-
   return (
-    <Stack.Navigator initialRouteName={initialRoute} screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen name="Register" component={RegisterScreen} />
-      <Stack.Screen name="Home" component={HomeScreen} />
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      {initialRoute === null ? (
+        <Stack.Screen name="Loading" component={() => (
+          <View className="flex-1 justify-center items-center bg-white">
+            <ActivityIndicator size="large" color="#FE6B36" />
+          </View>
+        )} />
+      ) : initialRoute === 'Home' ? (
+        <>
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Register" component={RegisterScreen} />
+        </>
+      ) : (
+        <>
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Register" component={RegisterScreen} />
+          <Stack.Screen name="Home" component={HomeScreen} />
+        </>
+      )}
     </Stack.Navigator>
   );
 }
