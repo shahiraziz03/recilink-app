@@ -11,6 +11,7 @@ class Settings(BaseSettings):
     POSTGRES_USER: str = "postgres"
     POSTGRES_PASSWORD: str = ""
     POSTGRES_DB: str = "recilink"
+    SECRET_KEY: str
     
     @property
     def DATABASE_URL(self) -> str:
