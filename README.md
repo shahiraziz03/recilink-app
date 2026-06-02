@@ -82,7 +82,9 @@ POSTGRES_PORT=5432
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=your_password
 POSTGRES_DB=recilink
+SECRET_KEY=your_generated_random_secure_key
 ```
+*Note: Generate a secure `SECRET_KEY` using: `python -c "import secrets; print(secrets.token_hex(32))"`*
 
 #### 5. Create the database
 
