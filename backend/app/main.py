@@ -5,6 +5,8 @@ from app.core.config import settings
 from app.db.session import engine
 from app.models.user import Base
 from app.routers import auth
+from app.routers import recommendations, recipes, posts
+from app.db.neo4j import close_driver
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -48,3 +50,17 @@ async def root():
 
 # Register routers
 app.include_router(auth.router, prefix=settings.API_V1_STR)
+
+# Add router
+app.include_router(recommendations.router, prefix="/api/v1")
+
+# Close Neo4j on shutdown
+@app.on_event("shutdown")
+def shutdown():
+    close_driver()
+
+# Add recipes router
+app.include_router(recipes.router, prefix="/api/v1")
+
+# Add posts (Community Module) router
+app.include_router(posts.router, prefix="/api/v1")

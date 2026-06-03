@@ -1,10 +1,7 @@
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey, JSON
-from sqlalchemy.orm import relationship, DeclarativeBase
+from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
-
-class Base(DeclarativeBase):
-    """Base class for all database models."""
-    pass
+from app.db.session import Base  # use Base from session.py only
 
 class User(Base):
     __tablename__ = "users"
