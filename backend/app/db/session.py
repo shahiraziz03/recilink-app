@@ -1,10 +1,15 @@
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
+from sqlalchemy.orm import DeclarativeBase
 from app.core.config import settings
+
+# Base class for all SQLAlchemy models
+class Base(DeclarativeBase):
+    pass
 
 # Create asynchronous engine for PostgreSQL connection
 engine = create_async_engine(
     settings.DATABASE_URL,
-    echo=True,  # Prints SQL statements to standard output for debugging
+    echo=True,
     future=True
 )
 

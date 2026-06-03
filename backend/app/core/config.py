@@ -12,6 +12,11 @@ class Settings(BaseSettings):
     POSTGRES_PASSWORD: str = ""
     POSTGRES_DB: str = "recilink"
     SECRET_KEY: str
+
+    # Neo4j Configuration
+    NEO4J_URI: str = ""
+    NEO4J_USERNAME: str = "neo4j"
+    NEO4J_PASSWORD: str = ""
     
     @property
     def DATABASE_URL(self) -> str:

@@ -6,6 +6,8 @@ from alembic import context
 from app.core.config import settings
 # Import Base so Alembic knows about all our models/tables
 from app.models.user import Base
+from app.models.recipe import Recipe  
+from app.models.post import Post      
 
 # Alembic Config object — provides access to values in alembic.ini
 config = context.config
