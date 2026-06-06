@@ -3,16 +3,17 @@ import { useFocusEffect } from '@react-navigation/native';
 import {
   View, Text, TextInput, TouchableOpacity, SectionList, Modal,
   Alert, KeyboardAvoidingView, Platform, ScrollView, ActivityIndicator,
-  FlatList,
+  FlatList, Image,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import apiClient from '../api/apiClient';
 
-type ShoppingItem = { id: string; name: string; checked: boolean; category: string };
-type PantryItem   = { id: string; name: string };
-type Suggestion   = { id: number; title: string; image_url: string | null; missing_ingredients: string[]; missing_count: number };
+type ShoppingItem  = { id: string; name: string; checked: boolean; category: string };
+type PantryItem    = { id: string; name: string };
+type Suggestion    = { id: number; title: string; image_url: string | null; missing_ingredients: string[]; missing_count: number };
+type CanCookItem   = { id: number; title: string; image_url: string | null; ingredient_count: number };
 
 const SHOPPING_KEY = 'shopping_list';
 const PANTRY_KEY   = 'pantry_items';
@@ -44,8 +45,14 @@ export default function ShoppingListScreen() {
   const [searchQuery, setSearchQuery]         = useState('');
   const [searchResults, setSearchResults]     = useState<string[]>([]);
   const [searchLoading, setSearchLoading]     = useState(false);
-  const searchInputRef = useRef<TextInput>(null);
-  const debounceRef    = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const searchInputRef  = useRef<TextInput>(null);
+  const debounceRef     = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const refreshTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // ── Can Cook Now ───────────────────────────────────────────
+  const [canCook, setCanCook]               = useState<CanCookItem[]>([]);
+  const [canCookLoading, setCanCookLoading] = useState(false);
+  const [canCookExpanded, setCanCookExpanded] = useState(true);
 
   // ── Suggestions ────────────────────────────────────────────
   const [suggestions, setSuggestions]               = useState<Suggestion[]>([]);
@@ -68,6 +75,7 @@ export default function ShoppingListScreen() {
         const loadedPantry: PantryItem[]   = pantryRaw ? JSON.parse(pantryRaw) : [];
         setItems(loadedItems);
         setPantry(loadedPantry);
+        fetchCanCook(loadedPantry);
         fetchSuggestions(loadedPantry);
       });
     }, [])
@@ -117,10 +125,20 @@ export default function ShoppingListScreen() {
   };
 
   // ── Pantry helpers ─────────────────────────────────────────
-  const savePantry = (updated: PantryItem[]) => {
+  const refreshRecipeSections = (updated: PantryItem[]) => {
+    fetchCanCook(updated);
+    fetchSuggestions(updated);
+  };
+
+  const refreshRecipeSectionsDebounced = (updated: PantryItem[]) => {
+    if (refreshTimerRef.current) clearTimeout(refreshTimerRef.current);
+    refreshTimerRef.current = setTimeout(() => refreshRecipeSections(updated), 1500);
+  };
+
+  const savePantry = (updated: PantryItem[], debounce = false) => {
     setPantry(updated);
     AsyncStorage.setItem(PANTRY_KEY, JSON.stringify(updated));
-    fetchSuggestions(updated);
+    debounce ? refreshRecipeSectionsDebounced(updated) : refreshRecipeSections(updated);
   };
 
   const removeFromPantry = (id: string) => savePantry(pantry.filter(p => p.id !== id));
@@ -130,6 +148,19 @@ export default function ShoppingListScreen() {
       { text: 'Cancel', style: 'cancel' },
       { text: 'Clear', style: 'destructive', onPress: () => savePantry([]) },
     ]);
+
+  // ── Can Cook Now ───────────────────────────────────────────
+  const fetchCanCook = async (currentPantry: PantryItem[]) => {
+    if (currentPantry.length < 2) { setCanCook([]); return; }
+    setCanCookLoading(true);
+    try {
+      const res = await apiClient.post('/recipes/can-cook', {
+        ingredients: currentPantry.map(p => p.name),
+      });
+      setCanCook(res.data);
+    } catch { setCanCook([]); }
+    finally { setCanCookLoading(false); }
+  };
 
   // ── Suggestions ────────────────────────────────────────────
   const fetchSuggestions = async (currentPantry: PantryItem[]) => {
@@ -190,13 +221,27 @@ export default function ShoppingListScreen() {
     setNewItem('');
   };
 
-  const toggleItem  = (id: string) => saveList(items.map(i => i.id === id ? { ...i, checked: !i.checked } : i));
+  const toggleItem = (id: string) => {
+    const item = items.find(i => i.id === id);
+    if (!item) return;
+    const nowChecked = !item.checked;
+    saveList(items.map(i => i.id === id ? { ...i, checked: nowChecked } : i));
+    if (nowChecked && !pantry.some(p => p.name.toLowerCase() === item.name.toLowerCase())) {
+      savePantry([...pantry, { id: Date.now().toString(), name: item.name }], true);
+    }
+  };
   const removeItem  = (id: string) => saveList(items.filter(i => i.id !== id));
 
   const clearCompleted = () =>
     Alert.alert('Clear completed', 'Remove all checked items?', [
       { text: 'Cancel', style: 'cancel' },
       { text: 'Clear', style: 'destructive', onPress: () => saveList(items.filter(i => !i.checked)) },
+    ]);
+
+  const clearAll = () =>
+    Alert.alert('Clear all', 'Remove every item from your shopping list?', [
+      { text: 'Cancel', style: 'cancel' },
+      { text: 'Clear all', style: 'destructive', onPress: () => saveList([]) },
     ]);
 
   const remaining = items.filter(i => !i.checked).length;
@@ -284,6 +329,69 @@ export default function ShoppingListScreen() {
         )}
       </View>
 
+      {/* ── Ready to Cook Now ───────────────────────────────── */}
+      {(canCookLoading || canCook.length > 0) && (
+        <View style={{ marginHorizontal: 16, marginBottom: 14, borderRadius: 16, borderWidth: 1, borderColor: '#bbf7d0', backgroundColor: '#f0fdf4', overflow: 'hidden' }}>
+          <TouchableOpacity
+            onPress={() => setCanCookExpanded(e => !e)}
+            style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 14, paddingVertical: 12 }}
+          >
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+              <Text style={{ fontSize: 18 }}>✅</Text>
+              <View>
+                <Text style={{ fontSize: 14, fontWeight: '800', color: '#111827' }}>Ready to Cook Now</Text>
+                <Text style={{ fontSize: 11, color: '#9ca3af', marginTop: 1 }}>
+                  {canCookLoading
+                    ? 'Scanning your pantry…'
+                    : `${canCook.length} recipe${canCook.length !== 1 ? 's' : ''} — you have all the ingredients`}
+                </Text>
+              </View>
+            </View>
+            <Ionicons name={canCookExpanded ? 'chevron-up' : 'chevron-down'} size={18} color="#9ca3af" />
+          </TouchableOpacity>
+
+          {canCookExpanded && (
+            canCookLoading ? (
+              <View style={{ paddingVertical: 24, alignItems: 'center' }}>
+                <ActivityIndicator color="#22c55e" />
+              </View>
+            ) : (
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                decelerationRate="normal"
+                nestedScrollEnabled
+                contentContainerStyle={{ paddingHorizontal: 14, paddingBottom: 14, gap: 10 }}
+              >
+                {canCook.map(item => (
+                  <View
+                    key={item.id}
+                    style={{ width: 180, backgroundColor: '#fff', borderRadius: 12, overflow: 'hidden', borderWidth: 1, borderColor: '#bbf7d0' }}
+                  >
+                    <Image
+                      source={{ uri: item.image_url || 'https://placehold.co/300x200/22c55e/white?text=Recipe' }}
+                      style={{ width: '100%', height: 100 }}
+                      resizeMode="cover"
+                    />
+                    <View style={{ padding: 10 }}>
+                      <Text style={{ fontSize: 12, fontWeight: '700', color: '#111827', marginBottom: 6 }} numberOfLines={2}>
+                        {item.title}
+                      </Text>
+                      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                        <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: '#22c55e' }} />
+                        <Text style={{ fontSize: 10, color: '#16a34a', fontWeight: '600' }}>
+                          All {item.ingredient_count} ingredients ready
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                ))}
+              </ScrollView>
+            )
+          )}
+        </View>
+      )}
+
       {/* ── Almost Ready to Cook ────────────────────────────── */}
       {(suggestionsLoading || suggestions.length > 0) && (
         <View style={{ marginHorizontal: 16, marginBottom: 14, borderRadius: 16, borderWidth: 1, borderColor: '#fed7aa', backgroundColor: '#fff7ed', overflow: 'hidden' }}>
@@ -314,6 +422,8 @@ export default function ShoppingListScreen() {
               <ScrollView
                 horizontal
                 showsHorizontalScrollIndicator={false}
+                decelerationRate="normal"
+                nestedScrollEnabled
                 contentContainerStyle={{ paddingHorizontal: 14, paddingBottom: 14, gap: 10 }}
               >
                 {suggestions.map(s => (
@@ -372,7 +482,12 @@ export default function ShoppingListScreen() {
       {/* ── Shopping list divider ────────────────────────────── */}
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, marginBottom: 4 }}>
         <Text style={{ fontSize: 13, fontWeight: '700', color: '#9ca3af', letterSpacing: 1 }}>SHOPPING LIST</Text>
-        <Text style={{ fontSize: 12, color: '#9ca3af' }}>{remaining} item{remaining !== 1 ? 's' : ''} remaining</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+          <Text style={{ fontSize: 12, color: '#9ca3af' }}>{remaining} item{remaining !== 1 ? 's' : ''} remaining</Text>
+          <TouchableOpacity onPress={clearAll} disabled={items.length === 0}>
+            <Text style={{ fontSize: 12, fontWeight: '600', color: items.length === 0 ? '#d1d5db' : '#ef4444' }}>Clear all</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -400,12 +515,12 @@ export default function ShoppingListScreen() {
         {/* ── Title row ───────────────────────────────────────── */}
         <View style={{ flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', paddingHorizontal: 16, marginBottom: 16 }}>
           <View>
-            <Text style={{ fontSize: 26, fontWeight: '800', color: '#111827', lineHeight: 32 }}>My Shopping</Text>
-            <Text style={{ fontSize: 26, fontWeight: '800', color: '#111827' }}>List</Text>
+            <Text style={{ fontSize: 26, fontWeight: '800', color: '#111827', lineHeight: 32, margin: 5 }}>My Shopping List</Text>
+            {/* <Text style={{ fontSize: 26, fontWeight: '800', color: '#111827' }}>List</Text> */}
           </View>
-          <TouchableOpacity onPress={clearCompleted}>
+          {/* <TouchableOpacity onPress={clearCompleted}>
             <Text style={{ fontSize: 13, color: '#FE6B36', fontWeight: '600' }}>Clear completed</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
 
         {/* ── Main list ───────────────────────────────────────── */}

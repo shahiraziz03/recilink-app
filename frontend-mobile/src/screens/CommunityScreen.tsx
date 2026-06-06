@@ -105,7 +105,7 @@ export default function CommunityScreen({ navigation }: any) {
 
     try {
       const res = await apiClient.get('/recipes', { params: { page: currentPage, limit: 14, dataset_only: true } });
-      const data: Recipe[] = res.data;
+      const data: DatasetRecipe[] = res.data;
       const more = data.length === 14;
       datasetHasMoreRef.current = more;
       if (!reset) datasetPageRef.current = currentPage + 1;

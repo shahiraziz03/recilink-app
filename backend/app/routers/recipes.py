@@ -99,6 +99,12 @@ class MatchSuggestion(BaseModel):
     missing_ingredients: List[str]
     missing_count: int
 
+class CanCookSuggestion(BaseModel):
+    id: int
+    title: str
+    image_url: Optional[str]
+    ingredient_count: int
+
 # --- Endpoints ---
 
 @router.get("", response_model=List[RecipeResponse])
@@ -180,6 +186,45 @@ async def match_recipes(
 
     suggestions.sort(key=lambda x: x.missing_count)
     return suggestions[:12]
+
+
+@router.post("/can-cook", response_model=List[CanCookSuggestion])
+async def can_cook_recipes(
+    data: IngredientMatchRequest,
+    db: AsyncSession = Depends(get_db),
+):
+    """Find recipes the user can cook right now — every ingredient is covered by their pantry."""
+    user_ings = {i.lower().strip() for i in data.ingredients if i.strip()}
+    if not user_ings:
+        return []
+
+    result = await db.execute(select(Recipe))
+    recipes = result.scalars().all()
+
+    suggestions: List[CanCookSuggestion] = []
+    for recipe in recipes:
+        recipe_ings: List[str] = [str(i) for i in (recipe.ingredients or [])]
+        if not recipe_ings:
+            continue
+
+        missing = [
+            ing for ing in recipe_ings
+            if not any(
+                u in ing.lower() or ing.lower() in u
+                for u in user_ings
+            )
+        ]
+
+        if len(missing) == 0:
+            suggestions.append(CanCookSuggestion(
+                id=recipe.id,
+                title=recipe.title,
+                image_url=recipe.image_url,
+                ingredient_count=len(recipe_ings),
+            ))
+
+    suggestions.sort(key=lambda x: x.ingredient_count, reverse=True)
+    return suggestions[:10]
 
 
 @router.get("/{recipe_id}", response_model=RecipeResponse)
