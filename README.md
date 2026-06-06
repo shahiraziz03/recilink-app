@@ -16,8 +16,8 @@ ReciLink is a full-stack web and mobile application that allows users to:
 | Layer | Technology |
 |---|---|
 | Backend API | FastAPI (Python) |
-| Database | PostgreSQL |
-| ORM | SQLAlchemy (async) |
+| Relational Database | PostgreSQL + SQLAlchemy (async) |
+| Graph Database | Neo4j (for smart recommendations & concept linking) |
 | Auth | JWT + bcrypt |
 | Frontend Web | React.js + Vite |
 | Frontend Mobile | React Native + Expo |
@@ -76,13 +76,18 @@ pip install -r requirements.txt
 ### 4. Configure environment
 Create a `.env` file in `backend/`:
 ```env
-PROJECT_NAME=ReciLink API
+PROJECT_NAME="ReciLink API"
 POSTGRES_SERVER=localhost
 POSTGRES_PORT=5432
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=your_password
 POSTGRES_DB=recilink
 SECRET_KEY=your_generated_random_secure_key
+
+# Neo4j Graph Config
+NEO4J_URI=your_aura_db_uri
+NEO4J_USERNAME=neo4j
+NEO4J_PASSWORD=your_password
 ```
 *Note: Generate a secure `SECRET_KEY` using: `python -c "import secrets; print(secrets.token_hex(32))"`*
 
@@ -100,10 +105,22 @@ Or use any PostgreSQL GUI (pgAdmin, DBeaver, TablePlus) to create a database nam
 ```bash
 python -m alembic upgrade head
 ```
+This creates all SQL tables in your database automatically.
 
-This creates all tables in your database automatically.
+#### 7. Initialize & Seed Databases (PostgreSQL + Neo4j)
 
-#### 7. Start the server
+We utilize a dual-database setup (SQL + Graph). To ensure the records and graph nodes are in perfect sync:
+
+* **Easy Mode (Unified Reset - Recommended):**
+  Run this script once inside the `backend` folder to drop tables, recreate them, seed the baseline dataset, and automatically synchronize Neo4j:
+  ```bash
+  python reset_all.py
+  ```
+* **Manual Mode (Data Seeding & Graph Generation):**
+  * SQL Seeding: The backend runs `seed_recipes.py` on startup automatically to seed baseline data.
+  * Graph Seeding: Populate the Neo4j database from `dummy_recipes.json` by running the notebook located at `recilink-app/notebooks/recilinkdummy_graph.ipynb`.
+
+#### 8. Start the server
 ```bash
 uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 ```

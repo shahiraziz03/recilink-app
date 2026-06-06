@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @layer base {
@@ -10,21 +10,107 @@
 
   body {
     font-family: 'Inter', sans-serif;
-    background-color: #fafafa; /* Light off-white background from mockups */
-    color: #1a1a1a; /* Dark text */
+    background-color: #fff8f6;
+    color: #261814;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply w-full bg-[#FE6B36] hover:bg-[#e55928] text-white font-semibold py-2.5 px-6 rounded-lg transition-all duration-200 active:scale-95 text-center flex justify-center items-center text-sm sm:text-base;
+    @apply w-full bg-[#FF6B35] hover:bg-[#e55928] text-white font-semibold py-2.5 px-6 rounded-full transition-all duration-200 active:scale-95 text-center flex justify-center items-center text-sm cursor-pointer;
   }
 
   .btn-outline {
-    @apply w-full bg-white hover:bg-gray-50 text-gray-700 font-medium py-2.5 px-6 rounded-lg transition-all duration-200 border border-gray-200 flex justify-center items-center gap-2 text-sm sm:text-base;
+    @apply w-full bg-white hover:bg-gray-50 text-gray-700 font-medium py-2.5 px-6 rounded-full transition-all duration-200 border border-gray-200 flex justify-center items-center gap-2 text-sm cursor-pointer;
   }
 
   .input-field {
-    @apply w-full bg-white border border-gray-200 text-gray-900 placeholder-gray-400 rounded-lg px-4 py-2.5 focus:outline-none focus:border-[#FE6B36] focus:ring-1 focus:ring-[#FE6B36] transition-all duration-200 text-sm sm:text-base;
+    @apply w-full bg-white border border-gray-200 text-gray-900 placeholder-gray-400 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#FF6B35] focus:ring-2 focus:ring-[#FF6B35]/20 transition-all duration-200 text-sm;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 cursor-pointer;
+  }
+
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-[#594139] hover:bg-[#ffe9e3] hover:text-[#FF6B35] transition-all duration-200 cursor-pointer;
+  }
+
+  .sidebar-link.active {
+    @apply bg-[#FF6B35] text-white hover:bg-[#e55928] hover:text-white;
+  }
+
+  .filter-chip {
+    @apply px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 cursor-pointer whitespace-nowrap;
+  }
+
+  .filter-chip.active {
+    @apply bg-[#FF6B35] text-white border-[#FF6B35];
+  }
+
+  .filter-chip.inactive {
+    @apply bg-white text-[#594139] border-[#e1bfb5] hover:border-[#FF6B35] hover:text-[#FF6B35];
   }
 }
+
+/* ── Custom animations ─────────────────────────────────── */
+@keyframes slide-in {
+  from { opacity: 0; transform: translateX(16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes progress-bar {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+@keyframes bounce-once {
+  0%, 100% { transform: scale(1); }
+  40%       { transform: scale(1.15); }
+  60%       { transform: scale(0.95); }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out both;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out both;
+}
+
+.animate-progress {
+  animation: progress-bar 2.5s ease-out forwards;
+}
+
+.animate-bounce-once {
+  animation: bounce-once 0.6s ease-out 0.2s both;
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(24px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out both;
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+

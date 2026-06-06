@@ -6,7 +6,7 @@ from pydantic import BaseModel
 from datetime import datetime
 
 from app.db.session import get_db
-from app.db.neo4j import get_neo4j, driver
+from app.db.neo4j import get_neo4j, driver, run_neo4j, normalize_title
 from app.models.recipe import Recipe
 from app.models.user import User
 from app.core.security import create_access_token, get_current_user_dep
@@ -105,11 +105,12 @@ async def create_recipe(
 ):
     """
     User submits a new recipe.
-    Saves to PostgreSQL AND updates Neo4j graph.
+    Saves to PostgreSQL AND updates Neo4j graph with Concept-Versioning structure.
     """
     # 1. Save to PostgreSQL
+    normalized_title_val = normalize_title(data.title)
     new_recipe = Recipe(
-        title=data.title,
+        title=normalized_title_val,
         description=data.description,
         cuisine=data.cuisine,
         difficulty=data.difficulty,
@@ -121,38 +122,54 @@ async def create_recipe(
         tags=data.tags,
         image_url=data.image_url,
         source="user",
-        contributor_id=current_user.id,  # track who submitted this recipe
+        contributor_id=current_user.id,
     )
     db.add(new_recipe)
     await db.commit()
     await db.refresh(new_recipe)
 
-    # 2. Add to Neo4j graph
-    with driver.session() as neo4j:
-        # Add Recipe node
-        neo4j.run("""
-            MERGE (r:Recipe {name: $title})
-            SET r.difficulty = $difficulty,
-                r.cuisine = $cuisine
-        """, title=data.title, difficulty=data.difficulty, cuisine=data.cuisine)
+    # Normalize name for central Concept Node
+    concept_name = normalized_title_val
 
-        # Add Ingredient nodes + CONTAINS relationships
-        for ingredient in data.ingredients:
-            neo4j.run("""
+    # 2. Add to Neo4j graph using Concept-Versioning Architecture
+    # 2a. MERGE central DishConcept node
+    run_neo4j("""
+        MERGE (c:DishConcept {name: $concept_name})
+        SET c.difficulty = $difficulty,
+            c.cuisine = $cuisine
+    """, concept_name=concept_name, difficulty=data.difficulty, cuisine=data.cuisine)
+
+    # 2b. CREATE specific Recipe version node (linked to SQL id)
+    recipe_node_id = f"recipe_{new_recipe.id}"
+    run_neo4j("""
+        MERGE (r:Recipe {id: $recipe_node_id})
+        SET r.title = $title,
+            r.difficulty = $difficulty,
+            r.cuisine = $cuisine
+        WITH r
+        MATCH (c:DishConcept {name: $concept_name})
+        MERGE (r)-[:IS_VERSION_OF]->(c)
+    """, recipe_node_id=recipe_node_id, title=normalized_title_val, difficulty=data.difficulty, cuisine=data.cuisine, concept_name=concept_name)
+
+    # 2c. Add Ingredient nodes + CONTAINS relationships attached to central DishConcept node
+    for ingredient in data.ingredients:
+        ing_normalized = normalize_title(ingredient)
+        if ing_normalized:
+            run_neo4j("""
                 MERGE (i:Ingredient {name: $name})
                 WITH i
-                MATCH (r:Recipe {name: $title})
-                MERGE (r)-[:CONTAINS]->(i)
-            """, name=ingredient.lower().strip(), title=data.title)
+                MATCH (c:DishConcept {name: $concept_name})
+                MERGE (c)-[:CONTAINS]->(i)
+            """, name=ing_normalized, concept_name=concept_name)
 
-        # Update CO_OCCURS relationships
-        neo4j.run("""
-            MATCH (r:Recipe {name: $title})-[:CONTAINS]->(i1:Ingredient)
-            MATCH (r)-[:CONTAINS]->(i2:Ingredient)
-            WHERE i1 <> i2
-            MERGE (i1)-[c:CO_OCCURS]->(i2)
-            ON CREATE SET c.frequency = 1
-            ON MATCH SET c.frequency = c.frequency + 1
-        """, title=data.title)
+    # 2d. Update CO_OCCURS relationships between ingredients of the central concept
+    run_neo4j("""
+        MATCH (c:DishConcept {name: $concept_name})-[:CONTAINS]->(i1:Ingredient)
+        MATCH (c)-[:CONTAINS]->(i2:Ingredient)
+        WHERE i1 <> i2
+        MERGE (i1)-[co:CO_OCCURS]->(i2)
+        ON CREATE SET co.frequency = 1
+        ON MATCH SET co.frequency = co.frequency + 1
+    """, concept_name=concept_name)
 
     return new_recipe
