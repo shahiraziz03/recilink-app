@@ -5,7 +5,10 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
+from app.db.session import get_db
 from app.core.config import settings
+
+bearer_scheme = HTTPBearer()
 
 # Secret key for signing JWT tokens
 SECRET_KEY = settings.SECRET_KEY
@@ -28,79 +31,24 @@ def create_access_token(data: dict) -> str:
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
 
-# ── JWT bearer scheme ─────────────────────────────────────────────────────────
-bearer_scheme = HTTPBearer()
-
-
-async def get_current_user(
+async def get_current_user_dep(
     credentials: HTTPAuthorizationCredentials = Depends(bearer_scheme),
-    db: AsyncSession = None,   # injected below after import to avoid circular
+    db: AsyncSession = Depends(get_db),
 ):
-    """
-    FastAPI dependency — decodes the JWT from the Authorization header
-    and returns the matching User row from PostgreSQL.
-    Raises 401 if token is missing, expired, or user not found.
-    """
-    # Import here to avoid circular imports at module load time
-    from app.db.session import get_db
     from app.models.user import User
-
     token = credentials.credentials
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        user_id: str = payload.get("sub")
+        user_id: int = payload.get("sub")
         if user_id is None:
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid token: missing subject",
-            )
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")
     except jwt.ExpiredSignatureError:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Token has expired",
-        )
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Token expired")
     except jwt.PyJWTError:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Could not validate token",
-        )
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")
 
-    # We can't use Depends(get_db) directly here, so callers must pass db.
-    # This function is used via get_current_user_dep below.
-    return int(user_id)
-
-
-def make_current_user_dep():
-    """
-    Returns a FastAPI dependency that decodes the JWT AND queries the DB.
-    Usage in routers:  user: User = Depends(get_current_user_dep)
-    """
-    from app.db.session import get_db
-    from app.models.user import User
-
-    async def _dep(
-        credentials: HTTPAuthorizationCredentials = Depends(bearer_scheme),
-        db: AsyncSession = Depends(get_db),
-    ):
-        token = credentials.credentials
-        try:
-            payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-            user_id: str = payload.get("sub")
-            if not user_id:
-                raise HTTPException(status_code=401, detail="Invalid token")
-        except jwt.ExpiredSignatureError:
-            raise HTTPException(status_code=401, detail="Token has expired")
-        except jwt.PyJWTError:
-            raise HTTPException(status_code=401, detail="Could not validate token")
-
-        result = await db.execute(select(User).where(User.id == int(user_id)))
-        user = result.scalar_one_or_none()
-        if not user or not user.is_active:
-            raise HTTPException(status_code=401, detail="User not found or inactive")
-        return user
-
-    return _dep
-
-
-# Ready-to-use dependency for all protected routers
-get_current_user_dep = make_current_user_dep()
+    result = await db.execute(select(User).where(User.id == int(user_id)))
+    user = result.scalar_one_or_none()
+    if not user:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User not found")
+    return user

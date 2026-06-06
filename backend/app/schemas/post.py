@@ -6,17 +6,22 @@ from datetime import datetime
 # ── Nested schemas ────────────────────────────────────────────────────────────
 
 class RecipeInPost(BaseModel):
-    """Minimal recipe info embedded inside a PostResponse."""
+    """Recipe info embedded inside a PostResponse."""
     id: int
     title: str
-    cuisine: Optional[str]
-    difficulty: Optional[str]
-    prep_time: Optional[int]
-    cook_time: Optional[int]
-    image_url: Optional[str]
-    ingredients: list
-    steps: list
-    tags: Optional[list]
+    description: Optional[str] = None
+    cuisine: Optional[str] = None
+    difficulty: Optional[str] = None
+    prep_time: Optional[int] = None
+    cook_time: Optional[int] = None
+    image_url: Optional[str] = None
+    ingredients: list = []
+    steps: list = []
+    tags: Optional[list] = None
+    contributor_id: Optional[int] = None
+    contributor_username: Optional[str] = None
+    saves_count: int = 0
+    comments_count: int = 0
 
     model_config = {"from_attributes": True}
 
