@@ -2,10 +2,14 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
-from app.db.session import engine
-from app.models.user import Base
+from app.db.session import engine, Base
 from app.routers import auth
 from app.routers import recommendations, recipes, posts
+from app.db.neo4j import close_driver
+from app.routers import recommendations, recipes, profile, social
+import app.models.user    # noqa: F401 — registers User/Profile with Base
+import app.models.recipe  # noqa: F401 — registers Recipe with Base
+import app.models.social  # noqa: F401 — registers SavedRecipe/Comment/Follow with Base
 from app.db.neo4j import close_driver
 
 @asynccontextmanager
@@ -64,3 +68,20 @@ app.include_router(recipes.router, prefix="/api/v1")
 
 # Add posts (Community Module) router
 app.include_router(posts.router, prefix="/api/v1")
+
+# Add router
+app.include_router(recommendations.router, prefix="/api/v1")
+
+# Close Neo4j on shutdown
+@app.on_event("shutdown")
+def shutdown():
+    close_driver()
+
+# Add recipes router
+app.include_router(recipes.router, prefix="/api/v1")
+
+# Add profile (streak / check-in) router
+app.include_router(profile.router, prefix="/api/v1")
+
+# Add social router (saves, comments, follows, feed)
+app.include_router(social.router, prefix="/api/v1")

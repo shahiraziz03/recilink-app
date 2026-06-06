@@ -36,9 +36,10 @@ export default function LoginScreen({ navigation }: any) {
 
       const token = response.data.access_token;
       await AsyncStorage.setItem('token', token);
+      await AsyncStorage.setItem('user', JSON.stringify(response.data.user));
       
       Alert.alert('Success', 'Logged in successfully!');
-      navigation.replace('Home');
+      navigation.replace('Main');
     } catch (error: any) {
       const msg = error.response?.data?.detail || 'An error occurred';
       Alert.alert('Login Failed', msg);
