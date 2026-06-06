@@ -171,17 +171,17 @@ export default function CommunityScreen({ navigation }: any) {
       );
     }
 
-    if (filteredDataset.length > 0) {
-      items.push({ type: 'section_header', title: 'From Our Collection', key: 'dataset_header' });
-      for (let i = 0; i < filteredDataset.length; i += 2) {
-        items.push({
-          type: 'dataset_row',
-          left: filteredDataset[i],
-          right: filteredDataset[i + 1],
-          key: `dr_${filteredDataset[i].id}`,
-        });
-      }
-    }
+    // if (filteredDataset.length > 0) {
+    //   items.push({ type: 'section_header', title: 'From Our Collection', key: 'dataset_header' });
+    //   for (let i = 0; i < filteredDataset.length; i += 2) {
+    //     items.push({
+    //       type: 'dataset_row',
+    //       left: filteredDataset[i],
+    //       right: filteredDataset[i + 1],
+    //       key: `dr_${filteredDataset[i].id}`,
+    //     });
+    //   }
+    // }
 
     return items;
   }, [filteredCommunity, filteredDataset, communityLoading]);
@@ -283,35 +283,35 @@ export default function CommunityScreen({ navigation }: any) {
     );
   };
 
-  const renderDatasetCard = (recipe: DatasetRecipe, isLeft: boolean) => (
-    <TouchableOpacity
-      style={{ flex: 1, margin: 6, borderRadius: 14, overflow: 'hidden', backgroundColor: '#fff', borderWidth: 1, borderColor: '#e5e7eb', elevation: 2 }}
-      onPress={() => navigation.navigate('RecipeDetail', { recipeId: recipe.id })}
-      activeOpacity={0.9}
-    >
-      <View style={{ position: 'relative' }}>
-        <Image
-          source={{ uri: recipe.image_url || 'https://placehold.co/300x200/FE6B36/white?text=Recipe' }}
-          style={{ width: '100%', height: isLeft ? 130 : 110 }}
-          resizeMode="cover"
-        />
-        {/* Community badge for any user-posted recipe that slips into dataset results */}
-        {recipe.contributor_id ? (
-          <View style={{ position: 'absolute', top: 6, left: 6, backgroundColor: '#FE6B36', borderRadius: 5, paddingHorizontal: 6, paddingVertical: 2 }}>
-            <Text style={{ color: 'white', fontSize: 8, fontWeight: '800', letterSpacing: 0.5 }}>COMMUNITY</Text>
-          </View>
-        ) : null}
-      </View>
-      <View style={{ padding: 8 }}>
-        <Text style={{ fontWeight: '700', fontSize: 12, color: '#111827' }} numberOfLines={2}>{recipe.title}</Text>
-        <Text style={{ fontSize: 10, color: '#9ca3af', marginTop: 3 }}>
-          {(recipe.prep_time ?? 0) + (recipe.cook_time ?? 0) > 0
-            ? `${(recipe.prep_time ?? 0) + (recipe.cook_time ?? 0)} min`
-            : recipe.cuisine ?? 'Recipe'}
-        </Text>
-      </View>
-    </TouchableOpacity>
-  );
+  // const renderDatasetCard = (recipe: DatasetRecipe, isLeft: boolean) => (
+  //   <TouchableOpacity
+  //     style={{ flex: 1, margin: 6, borderRadius: 14, overflow: 'hidden', backgroundColor: '#fff', borderWidth: 1, borderColor: '#e5e7eb', elevation: 2 }}
+  //     onPress={() => navigation.navigate('RecipeDetail', { recipeId: recipe.id })}
+  //     activeOpacity={0.9}
+  //   >
+  //     <View style={{ position: 'relative' }}>
+  //       <Image
+  //         source={{ uri: recipe.image_url || 'https://placehold.co/300x200/FE6B36/white?text=Recipe' }}
+  //         style={{ width: '100%', height: isLeft ? 130 : 110 }}
+  //         resizeMode="cover"
+  //       />
+  //       {/* Community badge for any user-posted recipe that slips into dataset results */}
+  //       {recipe.contributor_id ? (
+  //         <View style={{ position: 'absolute', top: 6, left: 6, backgroundColor: '#FE6B36', borderRadius: 5, paddingHorizontal: 6, paddingVertical: 2 }}>
+  //           <Text style={{ color: 'white', fontSize: 8, fontWeight: '800', letterSpacing: 0.5 }}>COMMUNITY</Text>
+  //         </View>
+  //       ) : null}
+  //     </View>
+  //     <View style={{ padding: 8 }}>
+  //       <Text style={{ fontWeight: '700', fontSize: 12, color: '#111827' }} numberOfLines={2}>{recipe.title}</Text>
+  //       <Text style={{ fontSize: 10, color: '#9ca3af', marginTop: 3 }}>
+  //         {(recipe.prep_time ?? 0) + (recipe.cook_time ?? 0) > 0
+  //           ? `${(recipe.prep_time ?? 0) + (recipe.cook_time ?? 0)} min`
+  //           : recipe.cuisine ?? 'Recipe'}
+  //       </Text>
+  //     </View>
+  //   </TouchableOpacity>
+  // );
 
   const renderItem = ({ item }: { item: FeedItem }) => {
     switch (item.type) {
@@ -341,13 +341,13 @@ export default function CommunityScreen({ navigation }: any) {
             <View style={{ flex: 1, height: 1, backgroundColor: '#f3f4f6' }} />
           </View>
         );
-      case 'dataset_row':
-        return (
-          <View style={{ flexDirection: 'row', paddingHorizontal: 10 }}>
-            {renderDatasetCard(item.left, true)}
-            {item.right ? renderDatasetCard(item.right, false) : <View style={{ flex: 1, margin: 6 }} />}
-          </View>
-        );
+      // case 'dataset_row':
+      //   return (
+      //     <View style={{ flexDirection: 'row', paddingHorizontal: 10 }}>
+      //       {renderDatasetCard(item.left, true)}
+      //       {item.right ? renderDatasetCard(item.right, false) : <View style={{ flex: 1, margin: 6 }} />}
+      //     </View>
+      //   );
       default:
         return null;
     }

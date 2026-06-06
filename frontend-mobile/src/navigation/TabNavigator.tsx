@@ -15,8 +15,20 @@ import EditRecipeScreen from '../screens/EditRecipeScreen';
 import PublicProfileScreen from '../screens/PublicProfileScreen';
 
 const Tab = createBottomTabNavigator();
+const HomeStack = createNativeStackNavigator();
 const CommunityStack = createNativeStackNavigator();
 const ProfileStack = createNativeStackNavigator();
+
+function HomeStackScreen() {
+  return (
+    <HomeStack.Navigator screenOptions={{ headerShown: false }}>
+      <HomeStack.Screen name="HomeMain" component={HomeScreen} />
+      <HomeStack.Screen name="RecipeDetail" component={RecipeDetailScreen} />
+      <HomeStack.Screen name="SimilarRecipes" component={SimilarRecipesScreen} />
+      <HomeStack.Screen name="PublicProfile" component={PublicProfileScreen} />
+    </HomeStack.Navigator>
+  );
+}
 
 const TAB_BAR_HEIGHT = Platform.OS === 'ios' ? 85 : 72;
 
@@ -72,7 +84,7 @@ export default function TabNavigator() {
         },
       })}
     >
-      <Tab.Screen name="Home"      component={HomeScreen} />
+      <Tab.Screen name="Home"      component={HomeStackScreen} />
       <Tab.Screen name="Community" component={CommunityStackScreen} />
       <Tab.Screen name="Post"      component={PostScreen} />
       <Tab.Screen name="Match"     component={ShoppingListScreen} />

@@ -131,12 +131,12 @@ export default function HomeScreen({ navigation }: any) {
     try {
       let data: Recipe[];
       if (search) {
-        const res = await apiClient.get('/recipes/search', { params: { q: search, dataset_only: true } });
+        const res = await apiClient.get('/recipes/search', { params: { q: search, dataset_only: false } });
         data = res.data;
         hasMoreRef.current = false;
         setHasMore(false);
       } else {
-        const res = await apiClient.get('/recipes', { params: { page: currentPage, limit: 20, dataset_only: true } });
+        const res = await apiClient.get('/recipes', { params: { page: currentPage, limit: 20, dataset_only: false } });
         data = res.data;
         const more = data.length === 20;
         hasMoreRef.current = more;
@@ -197,7 +197,7 @@ export default function HomeScreen({ navigation }: any) {
           shadowColor: '#000', shadowOffset: { width: 0, height: 1 },
           shadowOpacity: 0.06, shadowRadius: 4, elevation: 2,
         }}
-        onPress={() => navigation.navigate('Community', { screen: 'RecipeDetail', params: { recipeId: item.id } })}
+        onPress={() => navigation.navigate('RecipeDetail', { recipeId: item.id })}
         activeOpacity={0.9}
       >
         <View style={{ position: 'relative' }}>
