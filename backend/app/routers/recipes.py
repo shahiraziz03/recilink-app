@@ -144,28 +144,12 @@ async def search_recipes(
     return await _enrich(result.scalars().all(), db)
 
 
-# Ingredients assumed to be in every household — excluded from missing count
-PANTRY_STAPLES = {
-    "salt", "sugar", "water", "black pepper", "pepper", "white pepper",
-    "oil", "olive oil", "vegetable oil", "cooking oil", "sunflower oil",
-    "butter", "flour", "all-purpose flour", "plain flour",
-    "baking powder", "baking soda", "bicarbonate of soda",
-    "vinegar", "soy sauce", "fish sauce",
-    "cornstarch", "cornflour", "starch",
-}
-
-def _is_staple(ingredient: str) -> bool:
-    """Return True if the ingredient is a common household staple."""
-    normalized = ingredient.lower().strip()
-    return any(staple in normalized or normalized in staple for staple in PANTRY_STAPLES)
-
-
 @router.post("/match", response_model=List[MatchSuggestion])
 async def match_recipes(
     data: IngredientMatchRequest,
     db: AsyncSession = Depends(get_db),
 ):
-    """Find recipes the user can almost cook — missing only 1–3 non-staple ingredients."""
+    """Find recipes the user can almost cook — missing only 1–3 ingredients."""
     user_ings = {i.lower().strip() for i in data.ingredients if i.strip()}
     if not user_ings:
         return []
@@ -179,8 +163,7 @@ async def match_recipes(
 
         missing = [
             ing for ing in recipe_ings
-            if not _is_staple(ing)
-            and not any(
+            if not any(
                 u in ing.lower() or ing.lower() in u
                 for u in user_ings
             )

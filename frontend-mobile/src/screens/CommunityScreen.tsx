@@ -8,9 +8,10 @@ import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import apiClient from '../api/apiClient';
 
-type Recipe = {
+type PostRecipe = {
   id: number;
   title: string;
+  description: string | null;
   cuisine: string | null;
   difficulty: string | null;
   prep_time: number | null;
@@ -20,13 +21,35 @@ type Recipe = {
   contributor_username: string | null;
   saves_count: number;
   comments_count: number;
+};
+
+type CommunityPost = {
+  id: number;
+  caption: string | null;
+  cover_photo_url: string | null;
+  created_at: string;
+  recipe: PostRecipe;
+  posted_by: { id: number; username: string };
+};
+
+type DatasetRecipe = {
+  id: number;
+  title: string;
+  cuisine: string | null;
+  difficulty: string | null;
+  prep_time: number | null;
+  cook_time: number | null;
+  image_url: string | null;
+  contributor_id: number | null;
+  saves_count: number;
+  comments_count: number;
   created_at: string;
 };
 
 type FeedItem =
-  | { type: 'community_post'; recipe: Recipe; key: string }
+  | { type: 'community_post'; post: CommunityPost; key: string }
   | { type: 'section_header'; title: string; key: string }
-  | { type: 'dataset_row'; left: Recipe; right?: Recipe; key: string }
+  | { type: 'dataset_row'; left: DatasetRecipe; right?: DatasetRecipe; key: string }
   | { type: 'no_community'; key: string };
 
 function timeAgo(dateStr: string): string {
@@ -39,14 +62,14 @@ function timeAgo(dateStr: string): string {
 }
 
 export default function CommunityScreen({ navigation }: any) {
-  const [communityRecipes, setCommunityRecipes] = useState<Recipe[]>([]);
-  const [datasetRecipes, setDatasetRecipes] = useState<Recipe[]>([]);
+  const [communityPosts, setCommunityPosts] = useState<CommunityPost[]>([]);
+  const [datasetRecipes, setDatasetRecipes] = useState<DatasetRecipe[]>([]);
   const [communityLoading, setCommunityLoading] = useState(true);
-  const [datasetLoading, setDatasetLoading] = useState(true);
+  const [datasetLoading, setDatasetLoading]     = useState(true);
   const [datasetLoadingMore, setDatasetLoadingMore] = useState(false);
-  const [search, setSearch] = useState('');
+  const [search, setSearch]     = useState('');
   const [refreshing, setRefreshing] = useState(false);
-  const [saved, setSaved] = useState<Set<number>>(new Set());
+  const [saved, setSaved]       = useState<Set<number>>(new Set());
 
   const datasetPageRef = useRef(1);
   const datasetHasMoreRef = useRef(true);
@@ -68,8 +91,8 @@ export default function CommunityScreen({ navigation }: any) {
   const loadCommunity = async () => {
     setCommunityLoading(true);
     try {
-      const res = await apiClient.get('/recipes', { params: { community_only: true, limit: 50, page: 1 } });
-      setCommunityRecipes(res.data);
+      const res = await apiClient.get('/posts');
+      setCommunityPosts(res.data);
     } catch { /* silent */ }
     finally { setCommunityLoading(false); }
   };
@@ -108,22 +131,28 @@ export default function CommunityScreen({ navigation }: any) {
     loadDataset(true);
   };
 
-  const toggleSave = async (id: number) => {
+  const toggleSave = async (recipeId: number) => {
     try {
-      const res = await apiClient.post(`/social/recipes/${id}/save`);
+      const res = await apiClient.post(`/social/recipes/${recipeId}/save`);
+      const { saved: isSaved, saves_count } = res.data;
       setSaved(prev => {
         const next = new Set(prev);
-        res.data.saved ? next.add(id) : next.delete(id);
+        isSaved ? next.add(recipeId) : next.delete(recipeId);
         return next;
       });
+      setCommunityPosts(prev => prev.map(p =>
+        p.recipe.id === recipeId
+          ? { ...p, recipe: { ...p.recipe, saves_count } }
+          : p
+      ));
     } catch { /* silent */ }
   };
 
   const filteredCommunity = useMemo(() => {
-    if (!search) return communityRecipes;
+    if (!search) return communityPosts;
     const q = search.toLowerCase();
-    return communityRecipes.filter(r => r.title.toLowerCase().includes(q));
-  }, [communityRecipes, search]);
+    return communityPosts.filter(p => p.recipe.title.toLowerCase().includes(q));
+  }, [communityPosts, search]);
 
   const filteredDataset = useMemo(() => {
     if (!search) return datasetRecipes;
@@ -137,8 +166,8 @@ export default function CommunityScreen({ navigation }: any) {
     if (filteredCommunity.length === 0 && !communityLoading) {
       items.push({ type: 'no_community', key: 'no_community' });
     } else {
-      filteredCommunity.forEach(r =>
-        items.push({ type: 'community_post', recipe: r, key: `cp_${r.id}` })
+      filteredCommunity.forEach(p =>
+        items.push({ type: 'community_post', post: p, key: `cp_${p.id}` })
       );
     }
 
@@ -157,96 +186,104 @@ export default function CommunityScreen({ navigation }: any) {
     return items;
   }, [filteredCommunity, filteredDataset, communityLoading]);
 
-  const renderCommunityPost = (recipe: Recipe) => (
-    <View style={{ backgroundColor: '#fff', marginHorizontal: 16, marginBottom: 20, borderRadius: 20, overflow: 'hidden', borderWidth: 1, borderColor: '#f3f4f6', elevation: 2, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.08, shadowRadius: 8 }}>
-      {/* Author row */}
-      <View style={{ flexDirection: 'row', alignItems: 'center', padding: 14, gap: 10 }}>
-        <TouchableOpacity
-          onPress={() => recipe.contributor_id && navigation.navigate('PublicProfile', { userId: recipe.contributor_id })}
-          style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: '#FE6B3620', alignItems: 'center', justifyContent: 'center' }}
-        >
-          <Text style={{ color: '#FE6B36', fontWeight: '800', fontSize: 16 }}>
-            {(recipe.contributor_username?.[0] ?? 'U').toUpperCase()}
-          </Text>
-        </TouchableOpacity>
-        <View style={{ flex: 1 }}>
-          <Text style={{ fontWeight: '700', fontSize: 14, color: '#111827' }}>
-            {recipe.contributor_username ?? 'Chef'}
-          </Text>
-          <Text style={{ fontSize: 11, color: '#9ca3af' }}>
-            {recipe.created_at ? timeAgo(recipe.created_at) : ''}
-          </Text>
-        </View>
-        {recipe.cuisine ? (
-          <View style={{ backgroundColor: '#FFF0EB', paddingHorizontal: 10, paddingVertical: 4, borderRadius: 12 }}>
-            <Text style={{ fontSize: 11, color: '#FE6B36', fontWeight: '600' }}>{recipe.cuisine}</Text>
-          </View>
-        ) : null}
-      </View>
-
-      {/* Image */}
-      <TouchableOpacity onPress={() => navigation.navigate('RecipeDetail', { recipeId: recipe.id })} activeOpacity={0.95}>
-        <View style={{ position: 'relative' }}>
-          <Image
-            source={{ uri: recipe.image_url || 'https://placehold.co/600x400/FE6B36/white?text=Recipe' }}
-            style={{ width: '100%', height: 240 }}
-            resizeMode="cover"
-          />
-          {/* Community badge on image */}
-          <View style={{ position: 'absolute', top: 10, left: 10, backgroundColor: '#FE6B36', borderRadius: 6, paddingHorizontal: 8, paddingVertical: 4 }}>
-            <Text style={{ color: 'white', fontSize: 10, fontWeight: '800', letterSpacing: 0.5 }}>COMMUNITY</Text>
-          </View>
-        </View>
-      </TouchableOpacity>
-
-      {/* Info */}
-      <View style={{ padding: 14 }}>
-        <TouchableOpacity onPress={() => navigation.navigate('RecipeDetail', { recipeId: recipe.id })}>
-          <Text style={{ fontSize: 17, fontWeight: '800', color: '#111827', marginBottom: 6 }} numberOfLines={2}>
-            {recipe.title}
-          </Text>
-        </TouchableOpacity>
-        {((recipe.prep_time ?? 0) + (recipe.cook_time ?? 0)) > 0 && (
-          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
-            <Ionicons name="time-outline" size={13} color="#9ca3af" />
-            <Text style={{ fontSize: 12, color: '#9ca3af', marginLeft: 4 }}>
-              {(recipe.prep_time ?? 0) + (recipe.cook_time ?? 0)} min
+  const renderCommunityPost = (post: CommunityPost) => {
+    const { recipe, posted_by, caption, created_at } = post;
+    const isSaved = saved.has(recipe.id);
+    return (
+      <View style={{ backgroundColor: '#fff', marginHorizontal: 16, marginBottom: 20, borderRadius: 20, overflow: 'hidden', borderWidth: 1, borderColor: '#f3f4f6', elevation: 2, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.08, shadowRadius: 8 }}>
+        {/* Author row */}
+        <View style={{ flexDirection: 'row', alignItems: 'center', padding: 14, gap: 10 }}>
+          <TouchableOpacity
+            onPress={() => recipe.contributor_id && navigation.navigate('PublicProfile', { userId: recipe.contributor_id })}
+            style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: '#FE6B3620', alignItems: 'center', justifyContent: 'center' }}
+          >
+            <Text style={{ color: '#FE6B36', fontWeight: '800', fontSize: 16 }}>
+              {(posted_by.username?.[0] ?? 'U').toUpperCase()}
             </Text>
-            {recipe.difficulty ? (
-              <>
-                <Text style={{ color: '#e5e7eb', marginHorizontal: 6 }}>•</Text>
-                <Text style={{ fontSize: 12, color: '#9ca3af' }}>{recipe.difficulty}</Text>
-              </>
-            ) : null}
+          </TouchableOpacity>
+          <View style={{ flex: 1 }}>
+            <Text style={{ fontWeight: '700', fontSize: 14, color: '#111827' }}>{posted_by.username}</Text>
+            <Text style={{ fontSize: 11, color: '#9ca3af' }}>{timeAgo(created_at)}</Text>
           </View>
-        )}
-        {/* Action row */}
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-          <View style={{ flexDirection: 'row', gap: 16 }}>
-            <TouchableOpacity onPress={() => toggleSave(recipe.id)} style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
-              <Ionicons name={saved.has(recipe.id) ? 'heart' : 'heart-outline'} size={20} color={saved.has(recipe.id) ? '#FE6B36' : '#6b7280'} />
-              <Text style={{ fontSize: 13, color: '#6b7280', fontWeight: '600' }}>{recipe.saves_count}</Text>
-            </TouchableOpacity>
+          {recipe.cuisine ? (
+            <View style={{ backgroundColor: '#FFF0EB', paddingHorizontal: 10, paddingVertical: 4, borderRadius: 12 }}>
+              <Text style={{ fontSize: 11, color: '#FE6B36', fontWeight: '600' }}>{recipe.cuisine}</Text>
+            </View>
+          ) : null}
+        </View>
+
+        {/* Image */}
+        <TouchableOpacity onPress={() => navigation.navigate('RecipeDetail', { recipeId: recipe.id })} activeOpacity={0.95}>
+          <View style={{ position: 'relative' }}>
+            <Image
+              source={{ uri: recipe.image_url || 'https://placehold.co/600x400/FE6B36/white?text=Recipe' }}
+              style={{ width: '100%', height: 240 }}
+              resizeMode="cover"
+            />
+            <View style={{ position: 'absolute', top: 10, left: 10, backgroundColor: '#FE6B36', borderRadius: 6, paddingHorizontal: 8, paddingVertical: 4 }}>
+              <Text style={{ color: 'white', fontSize: 10, fontWeight: '800', letterSpacing: 0.5 }}>COMMUNITY</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+
+        {/* Info */}
+        <View style={{ padding: 14 }}>
+          <TouchableOpacity onPress={() => navigation.navigate('RecipeDetail', { recipeId: recipe.id })}>
+            <Text style={{ fontSize: 17, fontWeight: '800', color: '#111827', marginBottom: caption ? 4 : 6 }} numberOfLines={2}>
+              {recipe.title}
+            </Text>
+          </TouchableOpacity>
+
+          {/* Caption */}
+          {caption ? (
+            <Text style={{ fontSize: 13, color: '#6b7280', marginBottom: 10, lineHeight: 18 }} numberOfLines={2}>
+              {caption}
+            </Text>
+          ) : null}
+
+          {((recipe.prep_time ?? 0) + (recipe.cook_time ?? 0)) > 0 && (
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+              <Ionicons name="time-outline" size={13} color="#9ca3af" />
+              <Text style={{ fontSize: 12, color: '#9ca3af', marginLeft: 4 }}>
+                {(recipe.prep_time ?? 0) + (recipe.cook_time ?? 0)} min
+              </Text>
+              {recipe.difficulty ? (
+                <>
+                  <Text style={{ color: '#e5e7eb', marginHorizontal: 6 }}>•</Text>
+                  <Text style={{ fontSize: 12, color: '#9ca3af' }}>{recipe.difficulty}</Text>
+                </>
+              ) : null}
+            </View>
+          )}
+
+          {/* Action row */}
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+            <View style={{ flexDirection: 'row', gap: 16 }}>
+              <TouchableOpacity onPress={() => toggleSave(recipe.id)} style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
+                <Ionicons name={isSaved ? 'heart' : 'heart-outline'} size={20} color={isSaved ? '#FE6B36' : '#6b7280'} />
+                <Text style={{ fontSize: 13, color: '#6b7280', fontWeight: '600' }}>{recipe.saves_count}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('RecipeDetail', { recipeId: recipe.id })}
+                style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}
+              >
+                <Ionicons name="chatbubble-outline" size={19} color="#6b7280" />
+                <Text style={{ fontSize: 13, color: '#6b7280', fontWeight: '600' }}>{recipe.comments_count}</Text>
+              </TouchableOpacity>
+            </View>
             <TouchableOpacity
               onPress={() => navigation.navigate('RecipeDetail', { recipeId: recipe.id })}
-              style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}
+              style={{ backgroundColor: '#FE6B36', paddingHorizontal: 16, paddingVertical: 8, borderRadius: 12 }}
             >
-              <Ionicons name="chatbubble-outline" size={19} color="#6b7280" />
-              <Text style={{ fontSize: 13, color: '#6b7280', fontWeight: '600' }}>{recipe.comments_count}</Text>
+              <Text style={{ color: 'white', fontWeight: '700', fontSize: 13 }}>View Recipe</Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('RecipeDetail', { recipeId: recipe.id })}
-            style={{ backgroundColor: '#FE6B36', paddingHorizontal: 16, paddingVertical: 8, borderRadius: 12 }}
-          >
-            <Text style={{ color: 'white', fontWeight: '700', fontSize: 13 }}>View Recipe</Text>
-          </TouchableOpacity>
         </View>
       </View>
-    </View>
-  );
+    );
+  };
 
-  const renderDatasetCard = (recipe: Recipe, isLeft: boolean) => (
+  const renderDatasetCard = (recipe: DatasetRecipe, isLeft: boolean) => (
     <TouchableOpacity
       style={{ flex: 1, margin: 6, borderRadius: 14, overflow: 'hidden', backgroundColor: '#fff', borderWidth: 1, borderColor: '#e5e7eb', elevation: 2 }}
       onPress={() => navigation.navigate('RecipeDetail', { recipeId: recipe.id })}
@@ -279,7 +316,7 @@ export default function CommunityScreen({ navigation }: any) {
   const renderItem = ({ item }: { item: FeedItem }) => {
     switch (item.type) {
       case 'community_post':
-        return renderCommunityPost(item.recipe);
+        return renderCommunityPost(item.post);
       case 'no_community':
         return (
           <View style={{ marginHorizontal: 16, marginBottom: 20, padding: 24, borderRadius: 20, backgroundColor: '#fff7ed', borderWidth: 1, borderColor: '#fed7aa', alignItems: 'center' }}>
@@ -324,15 +361,8 @@ export default function CommunityScreen({ navigation }: any) {
           <Text style={{ fontSize: 13, color: '#9ca3af' }}>Loading community posts...</Text>
         </View>
       )}
-      {/* {!communityLoading && (
-        <View style={{ paddingHorizontal: 16, paddingBottom: 12 }}>
-          <Text style={{ fontSize: 14, fontWeight: '700', color: '#374151' }}>
-            {filteredCommunity.length} {filteredCommunity.length === 1 ? 'post' : 'posts'}
-          </Text>
-        </View>
-      )} */}
     </View>
-  ), [communityLoading, filteredCommunity.length]);
+  ), [communityLoading]);
 
   return (
     <SafeAreaView edges={['top']} style={{ flex: 1, backgroundColor: '#fafafa' }}>

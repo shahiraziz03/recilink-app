@@ -205,6 +205,11 @@ export default function RecipeDetailScreen({ route, navigation }: any) {
             </TouchableOpacity>
           )}
 
+          {/* Description */}
+          {recipe.description ? (
+            <Text style={{ fontSize: 14, color: '#6b7280', lineHeight: 22, marginBottom: 14 }}>{recipe.description}</Text>
+          ) : null}
+
           {/* Social bar: save + comments */}
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 20, marginBottom: 16, paddingVertical: 12, paddingHorizontal: 16, backgroundColor: '#fff', borderRadius: 14, elevation: 1 }}>
             <TouchableOpacity onPress={handleToggleSave} disabled={saveLoading} style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
@@ -255,10 +260,6 @@ export default function RecipeDetailScreen({ route, navigation }: any) {
               </View>
             ) : null}
           </View>
-
-          {recipe.description ? (
-            <Text style={{ fontSize: 14, color: '#6b7280', lineHeight: 22, marginBottom: 20 }}>{recipe.description}</Text>
-          ) : null}
 
           {/* Ingredients */}
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
@@ -362,7 +363,7 @@ export default function RecipeDetailScreen({ route, navigation }: any) {
           <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined} keyboardVerticalOffset={0}>
             {/* Modal header */}
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 14, borderBottomWidth: 1, borderBottomColor: '#f3f4f6' }}>
-              <Text style={{ fontSize: 17, fontWeight: '800', color: '#111827' }}>Comments</Text>
+              <Text style={{ fontSize: 17, fontWeight: '800', color: '#111827', margin: 10 }}>Comments</Text>
               <TouchableOpacity onPress={() => setCommentsModal(false)}>
                 <Ionicons name="close" size={22} color="#374151" />
               </TouchableOpacity>

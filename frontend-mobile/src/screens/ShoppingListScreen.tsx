@@ -18,6 +18,16 @@ const SHOPPING_KEY = 'shopping_list';
 const PANTRY_KEY   = 'pantry_items';
 const DEFAULT_CATEGORIES = ['Produce', 'Dairy & Proteins', 'Pantry'];
 
+const toTitleCase = (s: string) => s.replace(/\b\w/g, c => c.toUpperCase());
+
+const QUICK_ADD_CATEGORIES = [
+  { label: 'Vegetables', emoji: '🥬', items: ['Carrot', 'Potato', 'Onion', 'Garlic', 'Tomato', 'Spinach', 'Cabbage', 'Broccoli', 'Cucumber', 'Capsicum', 'Celery', 'Mushroom', 'Corn', 'Pumpkin', 'Bean Sprouts'] },
+  { label: 'Proteins',   emoji: '🥩', items: ['Chicken', 'Beef', 'Pork', 'Lamb', 'Egg', 'Tofu', 'Tempeh', 'Tuna', 'Salmon', 'Shrimp', 'Sardine', 'Lentils', 'Chickpeas', 'Black Beans'] },
+  { label: 'Dairy',      emoji: '🥛', items: ['Milk', 'Butter', 'Cheese', 'Cheddar', 'Cream', 'Yoghurt', 'Sour Cream', 'Cream Cheese', 'Coconut Milk', 'Evaporated Milk'] },
+  { label: 'Grains',     emoji: '🌾', items: ['Rice', 'Pasta', 'Bread', 'Flour', 'Oats', 'Noodles', 'Couscous', 'Quinoa', 'Breadcrumbs', 'Cornstarch'] },
+  { label: 'Condiments', emoji: '🫙', items: ['Soy Sauce', 'Oyster Sauce', 'Fish Sauce', 'Chilli Sauce', 'Ketchup', 'Mayonnaise', 'Mustard', 'Vinegar', 'Sesame Oil', 'Honey', 'Sugar', 'Salt', 'Pepper', 'Cumin', 'Turmeric', 'Paprika'] },
+];
+
 export default function ShoppingListScreen() {
   // ── Shopping list ──────────────────────────────────────────
   const [items, setItems]             = useState<ShoppingItem[]>([]);
@@ -41,6 +51,11 @@ export default function ShoppingListScreen() {
   const [suggestions, setSuggestions]               = useState<Suggestion[]>([]);
   const [suggestionsLoading, setSuggestionsLoading] = useState(false);
   const [suggestionsExpanded, setSuggestionsExpanded] = useState(true);
+
+  // ── Quick Add ──────────────────────────────────────────────
+  const [quickAddModal, setQuickAddModal]       = useState(false);
+  const [quickAddCategory, setQuickAddCategory] = useState(QUICK_ADD_CATEGORIES[0]);
+  const [quickAddChecked, setQuickAddChecked]   = useState<Set<string>>(new Set());
 
   // ── Load on focus ──────────────────────────────────────────
   useFocusEffect(
@@ -129,6 +144,31 @@ export default function ShoppingListScreen() {
     finally { setSuggestionsLoading(false); }
   };
 
+  // ── Quick Add helpers ──────────────────────────────────────
+  const openQuickAdd = (cat: typeof QUICK_ADD_CATEGORIES[0]) => {
+    setQuickAddCategory(cat);
+    setQuickAddChecked(new Set());
+    setQuickAddModal(true);
+  };
+
+  const toggleQuickAddItem = (item: string) => {
+    setQuickAddChecked(prev => {
+      const next = new Set(prev);
+      next.has(item) ? next.delete(item) : next.add(item);
+      return next;
+    });
+  };
+
+  const confirmQuickAdd = () => {
+    const toAdd = [...quickAddChecked].filter(
+      item => !pantry.some(p => p.name.toLowerCase() === item.toLowerCase())
+    );
+    if (toAdd.length > 0) {
+      savePantry([...pantry, ...toAdd.map(name => ({ id: Date.now().toString() + name, name }))]);
+    }
+    setQuickAddModal(false);
+  };
+
   // ── Shopping list helpers ──────────────────────────────────
   const saveList = (updated: ShoppingItem[]) => {
     setItems(updated);
@@ -205,7 +245,7 @@ export default function ShoppingListScreen() {
                     key={p.id}
                     style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderWidth: 1, borderColor: '#d1d5db', borderRadius: 20, paddingLeft: 12, paddingRight: 6, paddingVertical: 6 }}
                   >
-                    <Text style={{ fontSize: 13, color: '#374151', fontWeight: '500', marginRight: 4 }}>{p.name}</Text>
+                    <Text style={{ fontSize: 13, color: '#374151', fontWeight: '500', marginRight: 4 }}>{toTitleCase(p.name)}</Text>
                     <TouchableOpacity onPress={() => removeFromPantry(p.id)} hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}>
                       <Ionicons name="close-circle" size={16} color="#9ca3af" />
                     </TouchableOpacity>
@@ -223,6 +263,23 @@ export default function ShoppingListScreen() {
               <Text style={{ fontSize: 13, color: '#9ca3af', flex: 1 }}>Search ingredient to add…</Text>
               <Ionicons name="chevron-forward" size={14} color="#d1d5db" />
             </TouchableOpacity>
+
+            {/* Quick Add category chips */}
+            <Text style={{ fontSize: 10, fontWeight: '700', color: '#9ca3af', letterSpacing: 0.5, marginTop: 12, marginBottom: 6 }}>QUICK ADD BY CATEGORY</Text>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginHorizontal: -2 }}>
+              <View style={{ flexDirection: 'row', gap: 8, paddingHorizontal: 2 }}>
+                {QUICK_ADD_CATEGORIES.map(cat => (
+                  <TouchableOpacity
+                    key={cat.label}
+                    onPress={() => openQuickAdd(cat)}
+                    style={{ flexDirection: 'row', alignItems: 'center', gap: 5, paddingHorizontal: 12, paddingVertical: 7, borderRadius: 20, backgroundColor: '#fff', borderWidth: 1, borderColor: '#e5e7eb' }}
+                  >
+                    <Text style={{ fontSize: 14 }}>{cat.emoji}</Text>
+                    <Text style={{ fontSize: 12, fontWeight: '600', color: '#374151' }}>{cat.label}</Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+            </ScrollView>
           </View>
         )}
       </View>
@@ -297,7 +354,7 @@ export default function ShoppingListScreen() {
                           disabled={done}
                           style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 6, borderTopWidth: 1, borderTopColor: '#f3f4f6' }}
                         >
-                          <Text style={{ fontSize: 12, color: done ? '#9ca3af' : '#374151', flex: 1 }} numberOfLines={1}>{ing}</Text>
+                          <Text style={{ fontSize: 12, color: done ? '#9ca3af' : '#374151', flex: 1 }} numberOfLines={1}>{toTitleCase(ing)}</Text>
                           <View style={{ width: 24, height: 24, borderRadius: 12, backgroundColor: done ? '#d1fae5' : '#FE6B36', alignItems: 'center', justifyContent: 'center', marginLeft: 6 }}>
                             <Ionicons name={done ? 'checkmark' : 'add'} size={14} color="white" />
                           </View>
@@ -383,7 +440,7 @@ export default function ShoppingListScreen() {
               }}>
                 {item.checked && <Ionicons name="checkmark" size={13} color="white" />}
               </View>
-              <Text style={{ flex: 1, fontSize: 15, color: item.checked ? '#9ca3af' : '#111827', textDecorationLine: item.checked ? 'line-through' : 'none' }}>
+              <Text style={{ flex: 1, fontSize: 15, color: item.checked ? '#9ca3af' : '#111827', textDecorationLine: item.checked ? 'line-through' : 'none',textTransform: 'capitalize' }}>
                 {item.name}
               </Text>
               <TouchableOpacity onPress={() => removeItem(item.id)} style={{ padding: 4 }}>
@@ -439,6 +496,90 @@ export default function ShoppingListScreen() {
 
       </KeyboardAvoidingView>
 
+      {/* ── Quick Add Modal ──────────────────────────────────── */}
+      <Modal
+        visible={quickAddModal}
+        animationType="slide"
+        presentationStyle="pageSheet"
+        onRequestClose={() => setQuickAddModal(false)}
+      >
+        <SafeAreaView edges={['top']} style={{ flex: 1, backgroundColor: '#fff' }}>
+          {/* Header */}
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 14, borderBottomWidth: 1, borderBottomColor: '#f3f4f6' }}>
+            <Text style={{ fontSize: 17, fontWeight: '800', color: '#111827' }}>{quickAddCategory.emoji} {quickAddCategory.label}</Text>
+            <TouchableOpacity onPress={() => setQuickAddModal(false)} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+              <Ionicons name="close" size={22} color="#374151" />
+            </TouchableOpacity>
+          </View>
+
+          <Text style={{ paddingHorizontal: 16, paddingTop: 14, paddingBottom: 8, fontSize: 13, color: '#9ca3af' }}>
+            Tick what you already have at home
+          </Text>
+
+          {/* Category tab row */}
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ maxHeight: 48 }} contentContainerStyle={{ paddingHorizontal: 16, gap: 8, alignItems: 'center' }}>
+            {QUICK_ADD_CATEGORIES.map(cat => (
+              <TouchableOpacity
+                key={cat.label}
+                onPress={() => { setQuickAddCategory(cat); setQuickAddChecked(new Set()); }}
+                style={{ paddingHorizontal: 12, paddingVertical: 6, borderRadius: 20, backgroundColor: quickAddCategory.label === cat.label ? '#FE6B36' : '#f3f4f6' }}
+              >
+                <Text style={{ fontSize: 12, fontWeight: '600', color: quickAddCategory.label === cat.label ? '#fff' : '#374151' }}>{cat.emoji} {cat.label}</Text>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+
+          {/* Ingredient checklist */}
+          <FlatList
+            data={quickAddCategory.items}
+            keyExtractor={item => item}
+            contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 100 }}
+            ItemSeparatorComponent={() => <View style={{ height: 1, backgroundColor: '#f3f4f6' }} />}
+            renderItem={({ item }) => {
+              const inPantry  = pantry.some(p => p.name.toLowerCase() === item.toLowerCase());
+              const isChecked = quickAddChecked.has(item);
+              return (
+                <TouchableOpacity
+                  onPress={() => !inPantry && toggleQuickAddItem(item)}
+                  disabled={inPantry}
+                  style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 14, justifyContent: 'space-between' }}
+                >
+                  <Text style={{ fontSize: 15, color: inPantry ? '#9ca3af' : '#111827', fontWeight: '500' }}>{item}</Text>
+                  {inPantry ? (
+                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                      <Ionicons name="checkmark-circle" size={20} color="#22c55e" />
+                      <Text style={{ fontSize: 12, color: '#22c55e', fontWeight: '600' }}>In pantry</Text>
+                    </View>
+                  ) : (
+                    <View style={{
+                      width: 24, height: 24, borderRadius: 6, borderWidth: 2,
+                      borderColor: isChecked ? '#FE6B36' : '#d1d5db',
+                      backgroundColor: isChecked ? '#FE6B36' : 'transparent',
+                      alignItems: 'center', justifyContent: 'center',
+                    }}>
+                      {isChecked && <Ionicons name="checkmark" size={14} color="white" />}
+                    </View>
+                  )}
+                </TouchableOpacity>
+              );
+            }}
+          />
+
+          {/* Add button */}
+          <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: 16, backgroundColor: '#fff', borderTopWidth: 1, borderTopColor: '#f3f4f6' }}>
+            <TouchableOpacity
+              onPress={confirmQuickAdd}
+              disabled={quickAddChecked.size === 0}
+              style={{ backgroundColor: quickAddChecked.size === 0 ? '#e5e7eb' : '#FE6B36', borderRadius: 14, paddingVertical: 15, alignItems: 'center' }}
+            >
+              <Text style={{ fontSize: 15, fontWeight: '700', color: quickAddChecked.size === 0 ? '#9ca3af' : '#fff' }}>
+                {quickAddChecked.size === 0 ? 'Select ingredients' : `Add ${quickAddChecked.size} to Pantry`}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </SafeAreaView>
+      </Modal>
+
       {/* ── Ingredient Search Modal ──────────────────────────── */}
       <Modal
         visible={searchModal}
@@ -449,7 +590,7 @@ export default function ShoppingListScreen() {
         <SafeAreaView edges={['top']} style={{ flex: 1, backgroundColor: '#fff' }}>
           {/* Modal header */}
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 14, borderBottomWidth: 1, borderBottomColor: '#f3f4f6' }}>
-            <Text style={{ fontSize: 17, fontWeight: '800', color: '#111827' }}>Add to Pantry</Text>
+            <Text style={{ fontSize: 17, fontWeight: '800', color: '#111827', margin:10}}>Add to Pantry</Text>
             <TouchableOpacity onPress={closeSearchModal} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
               <Ionicons name="close" size={22} color="#374151" />
             </TouchableOpacity>

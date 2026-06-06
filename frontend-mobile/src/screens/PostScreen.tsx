@@ -55,10 +55,13 @@ function Dropdown({ label, value, options, onSelect }: DropdownProps) {
 export default function PostScreen({ navigation }: any) {
   const [imageUri, setImageUri] = useState<string | null>(null);
   const [title, setTitle] = useState('');
+  const [caption, setCaption] = useState('');
+  const [description, setDescription] = useState('');
   const [cuisine, setCuisine] = useState('');
   const [difficulty, setDifficulty] = useState('');
   const [prepTime, setPrepTime] = useState('');
   const [cookTime, setCookTime] = useState('');
+  const [servings, setServings] = useState('');
   const [ingredients, setIngredients] = useState<string[]>(['', '']);
   const [steps, setSteps] = useState<string[]>(['']);
   const [tagInput, setTagInput] = useState('');
@@ -101,28 +104,42 @@ export default function PostScreen({ navigation }: any) {
 
     setLoading(true);
     try {
-      await apiClient.post('/recipes', {
+      // Step 1 — create the recipe record
+      const recipeRes = await apiClient.post('/recipes', {
         title: title.trim(),
+        description: description.trim() || null,
         cuisine: cuisine || null,
         difficulty: difficulty || null,
         prep_time: prepTime ? parseInt(prepTime) : null,
         cook_time: cookTime ? parseInt(cookTime) : null,
+        servings: servings ? parseInt(servings) : 4,
         ingredients: cleanIngredients,
         steps: cleanSteps,
         tags,
         image_url: imageUri || null,
       });
+
+      // Step 2 — create the community post linked to that recipe
+      await apiClient.post('/posts', {
+        recipe_id: recipeRes.data.id,
+        caption: caption.trim() || null,
+        cover_photo_url: imageUri || null,
+      });
+
       setImageUri(null);
       setTitle('');
+      setCaption('');
+      setDescription('');
       setCuisine('');
       setDifficulty('');
       setPrepTime('');
       setCookTime('');
+      setServings('');
       setIngredients(['', '']);
       setSteps(['']);
       setTagInput('');
       setTags([]);
-      Alert.alert('Posted!', 'Your recipe has been shared.', [
+      Alert.alert('Posted!', 'Your recipe has been shared with the community.', [
         { text: 'OK', onPress: () => navigation.navigate('Community') }
       ]);
     } catch (e: any) {
@@ -181,6 +198,29 @@ export default function PostScreen({ navigation }: any) {
             style={{ borderWidth: 1, borderColor: '#e5e7eb', borderRadius: 10, paddingHorizontal: 12, paddingVertical: 12, fontSize: 14, color: '#111827', marginBottom: 16 }}
           />
 
+          {/* Caption */}
+          <Text style={{ fontSize: 13, fontWeight: '600', color: '#374151', marginBottom: 4 }}>Caption</Text>
+          <Text style={{ fontSize: 11, color: '#9ca3af', marginBottom: 6 }}>Short tagline shown under the title in the community feed</Text>
+          <TextInput
+            value={caption}
+            onChangeText={setCaption}
+            placeholder="e.g. The creamiest carbonara you'll ever make 🍝"
+            placeholderTextColor="#9ca3af"
+            style={{ borderWidth: 1, borderColor: '#e5e7eb', borderRadius: 10, paddingHorizontal: 12, paddingVertical: 12, fontSize: 14, color: '#111827', marginBottom: 16 }}
+          />
+
+          {/* Description */}
+          <Text style={{ fontSize: 13, fontWeight: '600', color: '#374151', marginBottom: 4 }}>Description</Text>
+          <Text style={{ fontSize: 11, color: '#9ca3af', marginBottom: 6 }}>Longer story or background shown in the recipe detail page</Text>
+          <TextInput
+            value={description}
+            onChangeText={setDescription}
+            placeholder="Tell us about this dish — where it's from, why you love it, any tips..."
+            placeholderTextColor="#9ca3af"
+            multiline
+            style={{ borderWidth: 1, borderColor: '#e5e7eb', borderRadius: 10, paddingHorizontal: 12, paddingVertical: 12, fontSize: 14, color: '#111827', marginBottom: 16, minHeight: 80 }}
+          />
+
           {/* Cuisine + Difficulty */}
           <View style={{ flexDirection: 'row', gap: 12, marginBottom: 16 }}>
             <View style={{ flex: 1 }}>
@@ -193,20 +233,27 @@ export default function PostScreen({ navigation }: any) {
             </View>
           </View>
 
-          {/* Prep + Cook Time */}
-          <View style={{ flexDirection: 'row', gap: 12, marginBottom: 20 }}>
+          {/* Prep + Cook Time + Servings */}
+          <View style={{ flexDirection: 'row', gap: 10, marginBottom: 20 }}>
             <View style={{ flex: 1 }}>
-              <Text style={{ fontSize: 13, fontWeight: '600', color: '#374151', marginBottom: 6 }}>Prep Time (min)</Text>
-              <View style={{ flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderColor: '#e5e7eb', borderRadius: 10, paddingHorizontal: 12, paddingVertical: 12 }}>
-                <Ionicons name="time-outline" size={16} color="#9ca3af" style={{ marginRight: 6 }} />
+              <Text style={{ fontSize: 12, fontWeight: '600', color: '#374151', marginBottom: 6 }}>Prep (min)</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderColor: '#e5e7eb', borderRadius: 10, paddingHorizontal: 10, paddingVertical: 12 }}>
+                <Ionicons name="time-outline" size={15} color="#9ca3af" style={{ marginRight: 5 }} />
                 <TextInput value={prepTime} onChangeText={setPrepTime} placeholder="15" placeholderTextColor="#9ca3af" keyboardType="number-pad" style={{ flex: 1, fontSize: 14, color: '#111827' }} />
               </View>
             </View>
             <View style={{ flex: 1 }}>
-              <Text style={{ fontSize: 13, fontWeight: '600', color: '#374151', marginBottom: 6 }}>Cook Time (min)</Text>
-              <View style={{ flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderColor: '#e5e7eb', borderRadius: 10, paddingHorizontal: 12, paddingVertical: 12 }}>
-                <Ionicons name="flame-outline" size={16} color="#9ca3af" style={{ marginRight: 6 }} />
+              <Text style={{ fontSize: 12, fontWeight: '600', color: '#374151', marginBottom: 6 }}>Cook (min)</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderColor: '#e5e7eb', borderRadius: 10, paddingHorizontal: 10, paddingVertical: 12 }}>
+                <Ionicons name="flame-outline" size={15} color="#9ca3af" style={{ marginRight: 5 }} />
                 <TextInput value={cookTime} onChangeText={setCookTime} placeholder="30" placeholderTextColor="#9ca3af" keyboardType="number-pad" style={{ flex: 1, fontSize: 14, color: '#111827' }} />
+              </View>
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={{ fontSize: 12, fontWeight: '600', color: '#374151', marginBottom: 6 }}>Servings</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderColor: '#e5e7eb', borderRadius: 10, paddingHorizontal: 10, paddingVertical: 12 }}>
+                <Ionicons name="people-outline" size={15} color="#9ca3af" style={{ marginRight: 5 }} />
+                <TextInput value={servings} onChangeText={setServings} placeholder="4" placeholderTextColor="#9ca3af" keyboardType="number-pad" style={{ flex: 1, fontSize: 14, color: '#111827' }} />
               </View>
             </View>
           </View>
