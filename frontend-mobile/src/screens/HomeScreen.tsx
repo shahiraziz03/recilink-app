@@ -32,8 +32,7 @@ const StreakSection = React.memo(function StreakSection({
   streakLoading: boolean;
   onCheckin: () => void;
 }) {
-  const STREAK_DAYS = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
-  const active = Math.min(streak, 7);
+  const windowStart = Math.floor(Math.max(streak - 1, 0) / 5) * 5 + 1;
   return (
     <View>
       <View style={{ marginHorizontal: 16, backgroundColor: checkedInToday ? '#fff7ed' : '#fff', borderRadius: 20, padding: 16, marginBottom: 20, borderWidth: 1, borderColor: checkedInToday ? '#fed7aa' : '#f3f4f6', elevation: 1 }}>
@@ -55,11 +54,15 @@ const StreakSection = React.memo(function StreakSection({
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
           <View style={{ flexDirection: 'row', gap: 8 }}>
-            {STREAK_DAYS.slice(0, 5).map((day, i) => (
-              <View key={i} style={{ width: 34, height: 34, borderRadius: 17, alignItems: 'center', justifyContent: 'center', backgroundColor: i < active ? '#FE6B36' : '#f3f4f6' }}>
-                <Text style={{ fontSize: 12, fontWeight: '700', color: i < active ? 'white' : '#9ca3af' }}>{day}</Text>
-              </View>
-            ))}
+            {[0, 1, 2, 3, 4].map((i) => {
+              const dayNum = windowStart + i;
+              const filled = dayNum <= streak;
+              return (
+                <View key={i} style={{ width: 34, height: 34, borderRadius: 17, alignItems: 'center', justifyContent: 'center', backgroundColor: filled ? '#FE6B36' : '#f3f4f6' }}>
+                  <Text style={{ fontSize: 11, fontWeight: '700', color: filled ? 'white' : '#9ca3af' }}>{dayNum}</Text>
+                </View>
+              );
+            })}
           </View>
           <View style={{ alignItems: 'flex-end' }}>
             <Text style={{ fontSize: 20, fontWeight: '800', color: '#FE6B36' }}>{streak} {streak === 1 ? 'Day' : 'Days'}</Text>
