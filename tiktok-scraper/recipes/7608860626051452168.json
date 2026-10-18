@@ -1,0 +1,124 @@
+{
+  "video_id": "7608860626051452168",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "mantou quantity not stated; chicken stock cube quantity vague ('sikit jangan banyak'); cheese slices quantity stated as '2 keping'",
+  "title": "Fried Mantou with Buttermilk Sauce",
+  "title_ms": "Roti Mantou Goreng dengan Sos Buttermilk",
+  "description": "Crispy fried mini mantou buns served with a creamy, garlicky buttermilk sauce made with curry leaf, cheese and evaporated milk.",
+  "description_ms": "Roti mantou mini yang digoreng garing dicicah dengan sos buttermilk yang creamy, berkari daun dan berkeju.",
+  "cuisine": "Fusion",
+  "difficulty": "Easy",
+  "prep_time": 10,
+  "cook_time": 15,
+  "servings": 3,
+  "ingredients": [
+    "frozen mantou",
+    "garlic",
+    "bird's eye chilli",
+    "butter",
+    "curry leaf",
+    "evaporated milk",
+    "chicken stock cube",
+    "sweetened condensed milk",
+    "processed cheese",
+    "cooking oil"
+  ],
+  "steps": [
+    "Chop 4 garlic cloves and 3 bird's eye chillies.",
+    "Sauté in 1 tbsp butter until slightly soft; add 2 stalks curry leaf and stir briefly.",
+    "Pour in 0.5 can evaporated milk; add a small amount of chicken stock cube (not too much — it will be salty).",
+    "Add 0.5 tbsp sweetened condensed milk and 2 slices processed cheese; stir until the cheese melts into a creamy sauce.",
+    "Meanwhile, fry the frozen mini mantou buns in hot oil until golden brown on all sides.",
+    "Serve the mantou hot with the buttermilk sauce for dipping."
+  ],
+  "steps_ms": [
+    "Chop 4 ulas bawang putih dan 3 biji cili padi.",
+    "Tumis dalam 1 sudu besar butter sehingga layu sikit; masukkan 2 tangkai daun kari dan kacau sebentar.",
+    "Tuang setengah tin susu cair; masukkan sedikit kiub pati ayam (jangan banyak — nanti masin).",
+    "Masukkan setengah sudu besar susu pekat manis dan 2 keping cheese; kacau sehingga cheese cair menjadi sos yang creamy.",
+    "Sementara itu, goreng roti mantou mini beku dalam minyak panas sehingga golden brown semua sisi.",
+    "Hidang mantou panas-panas bersama sos buttermilk untuk dicicah."
+  ],
+  "tags": [
+    "halal",
+    "snack",
+    "buttermilk",
+    "mantou",
+    "cheese",
+    "malaysian",
+    "raya"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "frozen mantou",
+      "name_ms": "mantou",
+      "quantity": null,
+      "unit": null,
+      "note": "mini mantou buns from frozen section; quantity not stated"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 4,
+      "unit": "clove",
+      "note": "chopped"
+    },
+    {
+      "name": "bird's eye chilli",
+      "name_ms": "cili padi",
+      "quantity": 3,
+      "unit": null,
+      "note": "chopped"
+    },
+    {
+      "name": "butter",
+      "name_ms": "butter",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": "for sautéing"
+    },
+    {
+      "name": "curry leaf",
+      "name_ms": "daun kari",
+      "quantity": 2,
+      "unit": null,
+      "note": "2 stalks"
+    },
+    {
+      "name": "evaporated milk",
+      "name_ms": "susu cair",
+      "quantity": 0.5,
+      "unit": "can",
+      "note": "approx. 187 ml"
+    },
+    {
+      "name": "chicken stock cube",
+      "name_ms": "kiub pati ayam",
+      "quantity": null,
+      "unit": null,
+      "note": "a small amount; be careful not to oversalt"
+    },
+    {
+      "name": "sweetened condensed milk",
+      "name_ms": "krimer manis",
+      "quantity": 0.5,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "processed cheese",
+      "name_ms": "cheese",
+      "quantity": 2,
+      "unit": "slice",
+      "note": "melted into sauce"
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": "for frying mantou"
+    }
+  ]
+}

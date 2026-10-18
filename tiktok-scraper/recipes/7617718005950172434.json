@@ -1,0 +1,167 @@
+{
+  "video_id": "7617718005950172434",
+  "is_recipe": true,
+  "needs_review": false,
+  "review_notes": "cook time for peanuts approx. 15-20 min; total cook time for sauce approx. 20 min; servings estimated",
+  "title": "Peanut Sauce for Satay (Kuah Kacang)",
+  "title_ms": "Kuah Kacang",
+  "description": "A rich, glossy peanut sauce for satay or nasi impit — made from scratch by dry-roasting half a kilo of peanuts then cooking them down in a spiced blended paste.",
+  "description_ms": "Kuah kacang yang berkilat dan kaya rasa untuk satay atau nasi impit — dibuat dari awal dengan memanggang setengah kilo kacang tanah dan memasaknya dalam pes rempah.",
+  "cuisine": "Malaysian",
+  "difficulty": "Medium",
+  "prep_time": 30,
+  "cook_time": 40,
+  "servings": 10,
+  "ingredients": [
+    "peanuts",
+    "cooking oil",
+    "shallot",
+    "lemongrass",
+    "galangal",
+    "ginger",
+    "candlenut",
+    "garlic",
+    "dried shrimp",
+    "blended chilli",
+    "water",
+    "palm sugar",
+    "salt",
+    "seasoning powder",
+    "tamarind paste"
+  ],
+  "steps": [
+    "Dry-roast 500 g peanuts in a pan over low heat for 15–20 minutes until the skins loosen; cool and rub off skins.",
+    "Blend 70% of the peanuts finely; blend the remaining 30% coarsely.",
+    "Blend 4 onions, 3 lemongrass stalks, a knob each of galangal and ginger, 3 candlenuts, 6 garlic cloves and 1 tbsp dried shrimp together.",
+    "Heat a generous amount of oil; fry the blend with 5 tbsp blended chilli until the oil separates.",
+    "Add the blended peanuts; the mixture will look dry — add water and continue cooking.",
+    "Alternate between adding water and cooking down (repeat several times over about 20 minutes) until the peanuts are soft.",
+    "Season with 3 small blocks palm sugar, salt, seasoning powder and 0.5 tbsp tamarind paste.",
+    "Continue cooking until the sauce is glossy and the oil floats on top. Serve with ketupat or satay."
+  ],
+  "steps_ms": [
+    "Panggang 500g kacang tanah dalam kuali tanpa minyak atas api perlahan selama 15-20 minit sehingga kulit mudah tertanggal; sejukkan dan gosok kulit keluar.",
+    "Blend 70% kacang secara halus; blend baki 30% secara kasar.",
+    "Blend 4 biji bawang merah, 3 batang serai, seketul masing-masing lengkuas dan halia, 3 biji buah keras, 6 ulas bawang putih dan 1 sudu udang kering bersama.",
+    "Panaskan banyak minyak masak; goreng blend bersama 5 sudu cili kisar sehingga pecah minyak.",
+    "Masukkan kacang yang dah di-blend; akan nampak kering — masukkan air dan sambung masak.",
+    "Bergilir-gilir antara tambah air dan masak sehingga kering (ulang beberapa kali lebih kurang 20 minit) sehingga kacang lembut.",
+    "Tambah 3 ketul kecil gula Melaka, garam, serbuk perasa dan setengah sudu pes asam jawa.",
+    "Sambung masak sehingga kuah berkilat dan minyak timbul di atas. Hidang dengan ketupat atau satay."
+  ],
+  "tags": [
+    "halal",
+    "peanut sauce",
+    "satay",
+    "raya",
+    "malaysian",
+    "side dish"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "peanuts",
+      "name_ms": "kacang tanah",
+      "quantity": 500,
+      "unit": "g",
+      "note": "dry-roasted; 70% blended fine, 30% coarse"
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": "generous amount"
+    },
+    {
+      "name": "shallot",
+      "name_ms": "bawang merah",
+      "quantity": 4,
+      "unit": null,
+      "note": "blended"
+    },
+    {
+      "name": "lemongrass",
+      "name_ms": "serai",
+      "quantity": 3,
+      "unit": null,
+      "note": "stalks; blended"
+    },
+    {
+      "name": "galangal",
+      "name_ms": "lengkuas",
+      "quantity": null,
+      "unit": null,
+      "note": "1 knob; blended"
+    },
+    {
+      "name": "ginger",
+      "name_ms": "halia",
+      "quantity": null,
+      "unit": null,
+      "note": "1 knob; blended"
+    },
+    {
+      "name": "candlenut",
+      "name_ms": "buah keras",
+      "quantity": 3,
+      "unit": null,
+      "note": "blended"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 6,
+      "unit": "clove",
+      "note": "blended"
+    },
+    {
+      "name": "dried shrimp",
+      "name_ms": "udang kering",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": "blended with aromatics"
+    },
+    {
+      "name": "blended chilli",
+      "name_ms": "cili kisar",
+      "quantity": 5,
+      "unit": "tbsp",
+      "note": "not spicy type"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": null,
+      "unit": null,
+      "note": "added gradually during cooking"
+    },
+    {
+      "name": "palm sugar",
+      "name_ms": "gula melaka",
+      "quantity": 3,
+      "unit": null,
+      "note": "3 small blocks"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "seasoning powder",
+      "name_ms": "serbuk perasa",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "tamarind paste",
+      "name_ms": "pes asam jawa",
+      "quantity": 0.5,
+      "unit": "tbsp",
+      "note": ""
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+{
+  "video_id": "7608800441157061896",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "seafood (prawn/squid) quantity not stated; yee mee/yimi quantity not stated; cook/prep times estimated",
+  "title": "Cantonese Yee Mee (Hong Kong Egg Noodles in Thick Sauce)",
+  "title_ms": "Yimi Goreng Basah (Cantonese Yee Mee)",
+  "description": "Silky Hong Kong egg noodles in a cornstarch-thickened savory sauce with mixed seafood — a Cantonese restaurant classic made at home.",
+  "description_ms": "Mi yimi Hong Kong dalam kuah pekat berasaskan kanji dengan seafood campuran — masakan restoran Cantonese yang dibuat di rumah.",
+  "cuisine": "Chinese",
+  "difficulty": "Medium",
+  "prep_time": 15,
+  "cook_time": 20,
+  "servings": 3,
+  "ingredients": [
+    "Hong Kong egg noodles (yee mee)",
+    "cooking oil",
+    "garlic",
+    "oyster sauce",
+    "soy sauce",
+    "dark soy sauce",
+    "white pepper",
+    "chicken stock cube",
+    "water",
+    "cornstarch",
+    "prawn",
+    "squid",
+    "egg",
+    "spring onion",
+    "sesame oil"
+  ],
+  "steps": [
+    "Blanch yee mee noodles in boiling water for 30 seconds; drain and set aside.",
+    "Sauté 4 garlic cloves in hot oil until golden.",
+    "Add 2 tbsp oyster sauce, 1 tbsp soy sauce and 0.5 tbsp dark soy sauce; stir.",
+    "Add white pepper, 1 chicken stock cube and 1.5 cup water; bring to a simmer.",
+    "Add prawns and squid; cook until just done.",
+    "Thicken with a cornstarch slurry (2 tbsp cornstarch + water) until the sauce is glossy and coats a spoon.",
+    "Push the noodles to one side; crack in 1 egg and fold into the sauce.",
+    "Add a drop of sesame oil; garnish with spring onion. Serve immediately."
+  ],
+  "steps_ms": [
+    "Celur yimi dalam air mendidih 30 saat; toskan dan ketepikan.",
+    "Tumis 4 ulas bawang putih dalam minyak panas sehingga keemasan.",
+    "Masukkan 2 sudu sos tiram, 1 sudu kicap dan setengah sudu kicap hitam; kacau.",
+    "Masukkan white pepper, 1 kiub pati ayam dan 1 cawan setengah air; biarkan menggelegak.",
+    "Masukkan udang dan sotong; masak sehingga baru masak.",
+    "Pekatkan dengan bancuhan tepung jagung (2 sudu tepung jagung + air) sehingga kuah berkilat.",
+    "Tolak mi ke tepi; pecahkan 1 telur dan lipat ke dalam kuah.",
+    "Masukkan titisan minyak bijan; hiaskan dengan daun bawang. Hidang dengan segera."
+  ],
+  "tags": [
+    "halal",
+    "noodles",
+    "cantonese",
+    "seafood",
+    "chinese",
+    "yee mee",
+    "malaysian",
+    "raya"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "Hong Kong egg noodles (yee mee)",
+      "name_ms": "yimi",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated"
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": "for sautéing"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 4,
+      "unit": "clove",
+      "note": ""
+    },
+    {
+      "name": "oyster sauce",
+      "name_ms": "sos tiram",
+      "quantity": 2,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "soy sauce",
+      "name_ms": "kicap",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "dark soy sauce",
+      "name_ms": "kicap pekat",
+      "quantity": 0.5,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "white pepper",
+      "name_ms": "white pepper",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "chicken stock cube",
+      "name_ms": "kiub pati ayam",
+      "quantity": 1,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": 1.5,
+      "unit": "cup",
+      "note": "for sauce"
+    },
+    {
+      "name": "cornstarch",
+      "name_ms": "tepung jagung",
+      "quantity": 2,
+      "unit": "tbsp",
+      "note": "for slurry"
+    },
+    {
+      "name": "prawn",
+      "name_ms": "udang",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated"
+    },
+    {
+      "name": "squid",
+      "name_ms": "sotong",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated"
+    },
+    {
+      "name": "egg",
+      "name_ms": "telur",
+      "quantity": 1,
+      "unit": null,
+      "note": "folded into sauce"
+    },
+    {
+      "name": "spring onion",
+      "name_ms": "daun bawang",
+      "quantity": null,
+      "unit": null,
+      "note": "for garnish"
+    },
+    {
+      "name": "sesame oil",
+      "name_ms": "minyak bijan",
+      "quantity": null,
+      "unit": null,
+      "note": "a drop for fragrance"
+    }
+  ]
+}

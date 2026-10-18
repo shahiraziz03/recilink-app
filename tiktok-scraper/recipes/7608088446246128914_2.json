@@ -1,0 +1,116 @@
+{
+  "video_id": "7608088446246128914",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "cooked rice quantity not stated; day-old rice preferred",
+  "title": "Coconut Oil Fried Rice with Dried Chilli (Nasi Goreng Cili Kering)",
+  "title_ms": "Nasi Goreng Cili Kering",
+  "description": "Smoky, fragrant fried rice cooked in coconut oil with a blended dried chilli paste — a distinctive and aromatic alternative to regular fried rice.",
+  "description_ms": "Nasi goreng yang berasap dan wangi dimasak dalam minyak kelapa dengan pes cili kering — alternatif yang berbeza dan aromatik daripada nasi goreng biasa.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 10,
+  "cook_time": 10,
+  "servings": 2,
+  "ingredients": [
+    "cooked white rice",
+    "dried chilli",
+    "shallot",
+    "garlic",
+    "coconut oil",
+    "soy sauce",
+    "oyster sauce",
+    "egg",
+    "spring onion"
+  ],
+  "steps": [
+    "Soak 10 dried chillies in hot water for 10 minutes; blend with 1 shallot and 5 garlic cloves until smooth.",
+    "Heat 2 tbsp coconut oil in a wok; fry the paste until fragrant and the oil separates.",
+    "Add cooked rice; toss well to combine with the paste.",
+    "Season with soy sauce and oyster sauce to taste.",
+    "Push rice to the side; crack in 2 eggs and scramble, then fold into the rice.",
+    "Garnish with spring onion and serve."
+  ],
+  "steps_ms": [
+    "Rendam 10 biji cili kering dalam air panas 10 minit; blend bersama 1 bawang merah dan 5 ulas bawang putih sehingga lumat.",
+    "Panaskan 2 sudu minyak kelapa dalam kuali; goreng pes sehingga wangi dan pecah minyak.",
+    "Masukkan nasi masak; gaul rata bersama pes.",
+    "Tambah kicap dan sos tiram secukup rasa.",
+    "Tolak nasi ke tepi; pecahkan 2 biji telur dan scramble, kemudian gaul bersama nasi.",
+    "Hiaskan dengan daun bawang dan hidang."
+  ],
+  "tags": [
+    "halal",
+    "fried rice",
+    "coconut oil",
+    "spicy",
+    "malaysian",
+    "ramadan",
+    "sahur"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "cooked white rice",
+      "name_ms": "nasi putih",
+      "quantity": null,
+      "unit": null,
+      "note": "day-old rice preferred; quantity not stated"
+    },
+    {
+      "name": "dried chilli",
+      "name_ms": "cili kering",
+      "quantity": 10,
+      "unit": null,
+      "note": "soaked and blended"
+    },
+    {
+      "name": "shallot",
+      "name_ms": "bawang merah",
+      "quantity": 1,
+      "unit": null,
+      "note": "blended with chilli"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 5,
+      "unit": "clove",
+      "note": "blended with chilli"
+    },
+    {
+      "name": "coconut oil",
+      "name_ms": "minyak kelapa",
+      "quantity": 2,
+      "unit": "tbsp",
+      "note": "gives distinctive flavour"
+    },
+    {
+      "name": "soy sauce",
+      "name_ms": "kicap",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "oyster sauce",
+      "name_ms": "sos tiram",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "egg",
+      "name_ms": "telur",
+      "quantity": 2,
+      "unit": null,
+      "note": "scrambled in"
+    },
+    {
+      "name": "spring onion",
+      "name_ms": "daun bawang",
+      "quantity": null,
+      "unit": null,
+      "note": "garnish"
+    }
+  ]
+}

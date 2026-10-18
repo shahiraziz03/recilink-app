@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "index.ts",
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "start": "bash set-ip.sh && expo start",
+    "android": "bash set-ip.sh && expo start --android",
+    "ios": "bash set-ip.sh && expo start --ios",
     "web": "expo start --web"
   },
   "dependencies": {

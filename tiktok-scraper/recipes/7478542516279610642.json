@@ -1,0 +1,112 @@
+{
+  "video_id": "7478542516279610642",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "egg count stated as '3 biji' but transcript mentions adding an extra — ambiguous whether 3 or 4 eggs total; bake time 55-65 min; cream cheese block size stated as 1 block",
+  "title": "Pandan Burnt Cheesecake (Basque Cheesecake)",
+  "title_ms": "Pandan Burnt Cheesecake",
+  "description": "A crustless Basque-style cheesecake with pandan flavour — creamy inside with a deliberately charred top.",
+  "description_ms": "Cheesecake Basque tanpa kerak dengan perisa pandan — lembut berkrim di dalam, dengan permukaan yang sengaja dihanguskan.",
+  "cuisine": "Fusion",
+  "difficulty": "Easy",
+  "prep_time": 20,
+  "cook_time": 60,
+  "servings": 8,
+  "ingredients": [
+    "cream cheese",
+    "sugar",
+    "egg",
+    "all-purpose flour",
+    "whipping cream",
+    "pandan extract",
+    "vanilla essence",
+    "salt"
+  ],
+  "steps": [
+    "Let 1 block cream cheese come to room temperature; beat until smooth.",
+    "Add 0.5 cup sugar; beat well.",
+    "Add 3 eggs one at a time, mixing after each.",
+    "Sift in 2 tbsp all-purpose flour; fold in.",
+    "Add 1 cup whipping cream, a few drops of pandan extract, 1 tsp vanilla essence and a pinch of salt; mix until smooth.",
+    "Line a springform tin with baking paper; pour in the batter.",
+    "Bake at 220°C (fan) for 55–65 minutes — the top should be deep brown/charred while the centre remains slightly jiggly.",
+    "Cool completely at room temperature before slicing."
+  ],
+  "steps_ms": [
+    "Biarkan 1 blok krim cheese ke suhu bilik; pukul sehingga licin.",
+    "Masukkan setengah cawan gula; pukul sebati.",
+    "Masukkan 3 biji telur satu persatu, gaul setiap kali.",
+    "Ayak masuk 2 sudu tepung gandum; lipat masuk.",
+    "Masukkan 1 cawan whipping cream, beberapa titik pewarna/ekstrak pandan, 1 sudu kecil esen vanila dan secubit garam; gaul sehingga licin.",
+    "Alaskan loyang springform dengan kertas pembakar; tuang adunan.",
+    "Bakar pada suhu 220°C (kipas) selama 55-65 minit — bahagian atas sepatutnya perang gelap/hangus manakala tengah masih sedikit bergetar.",
+    "Sejukkan sepenuhnya di suhu bilik sebelum dipotong."
+  ],
+  "tags": [
+    "halal",
+    "dessert",
+    "cheesecake",
+    "pandan",
+    "baked",
+    "western",
+    "ramadan"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "cream cheese",
+      "name_ms": "krim cheese",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 block (approx. 250 g); at room temperature"
+    },
+    {
+      "name": "sugar",
+      "name_ms": "gula",
+      "quantity": 0.5,
+      "unit": "cup",
+      "note": ""
+    },
+    {
+      "name": "egg",
+      "name_ms": "telur",
+      "quantity": 3,
+      "unit": null,
+      "note": "transcript says 3; possibly 4 — needs_review"
+    },
+    {
+      "name": "all-purpose flour",
+      "name_ms": "tepung gandum",
+      "quantity": 2,
+      "unit": "tbsp",
+      "note": "sifted"
+    },
+    {
+      "name": "whipping cream",
+      "name_ms": "whipping cream",
+      "quantity": 1,
+      "unit": "cup",
+      "note": ""
+    },
+    {
+      "name": "pandan extract",
+      "name_ms": "ekstrak pandan",
+      "quantity": null,
+      "unit": null,
+      "note": "a few drops; or pandan paste"
+    },
+    {
+      "name": "vanilla essence",
+      "name_ms": "esen vanila",
+      "quantity": 1,
+      "unit": "tsp",
+      "note": ""
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "a pinch"
+    }
+  ]
+}

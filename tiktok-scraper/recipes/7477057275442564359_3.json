@@ -1,0 +1,71 @@
+{
+  "video_id": "7477057275442564359",
+  "is_recipe": true,
+  "needs_review": false,
+  "review_notes": "quantities are by feel; Vitagen = probiotic drink",
+  "title": "Vitagen Longan Drink",
+  "title_ms": "Vitagen Longan",
+  "description": "A simple and refreshing iced drink: canned longan with syrup, diced watermelon and a probiotic Vitagen drink.",
+  "description_ms": "Minuman ais yang mudah dan menyegarkan: longan tin bersama airnya, kiub tembikai dan minuman probiotik Vitagen.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 5,
+  "cook_time": 0,
+  "servings": 1,
+  "ingredients": [
+    "probiotic drink",
+    "longan",
+    "watermelon",
+    "ice"
+  ],
+  "steps": [
+    "Fill a glass with ice.",
+    "Add canned longan with its syrup.",
+    "Add diced watermelon.",
+    "Pour in 1 bottle of Vitagen (or any probiotic/vitamin drink); stir and serve."
+  ],
+  "steps_ms": [
+    "Isi gelas dengan ais.",
+    "Masukkan longan tin bersama air longan.",
+    "Masukkan kiub tembikai.",
+    "Tuang 1 botol Vitagen (atau mana-mana minuman probiotik/vitamin); kacau dan hidang."
+  ],
+  "tags": [
+    "halal",
+    "drink",
+    "cold",
+    "ramadan",
+    "iftar",
+    "easy"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "probiotic drink",
+      "name_ms": "vitagen",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 bottle Vitagen or similar"
+    },
+    {
+      "name": "longan",
+      "name_ms": "buah longan",
+      "quantity": 1,
+      "unit": "can",
+      "note": "with syrup"
+    },
+    {
+      "name": "watermelon",
+      "name_ms": "tembikai",
+      "quantity": null,
+      "unit": null,
+      "note": "diced"
+    },
+    {
+      "name": "ice",
+      "name_ms": "ais",
+      "quantity": null,
+      "unit": null,
+      "note": "to fill glass"
+    }
+  ]
+}

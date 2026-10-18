@@ -1,0 +1,138 @@
+{
+  "video_id": "7481141489939123463",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "chicken quantity not stated; bunga kantan (torch ginger bud) quantity not stated; cook/prep times estimated",
+  "title": "Fried Chicken with Torch Ginger Bud Sambal (Ayam Goreng Sambal Kantan)",
+  "title_ms": "Ayam Goreng Sambal Kantan",
+  "description": "Marinated fried chicken served with a fragrant fresh sambal made from blended torch ginger bud — aromatic and uniquely Malay.",
+  "description_ms": "Ayam goreng berempah dihidang dengan sambal bunga kantan yang segar dan wangi — aroma khas Melayu.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 30,
+  "cook_time": 25,
+  "servings": 4,
+  "ingredients": [
+    "chicken",
+    "turmeric powder",
+    "salt",
+    "seasoning powder",
+    "garlic",
+    "cooking oil",
+    "torch ginger bud",
+    "bird's eye chilli",
+    "shallot",
+    "shrimp paste",
+    "calamansi lime",
+    "sugar"
+  ],
+  "steps": [
+    "Marinate chicken with 1 tsp turmeric powder, 1 tsp salt, seasoning powder and 3 crushed garlic cloves; rest 20 minutes.",
+    "Deep-fry until golden and cooked. Set aside.",
+    "[Sambal Kantan] Blend torch ginger buds, 10 bird's eye chillies, 1 onion and 1 small roasted shrimp paste block until coarse.",
+    "Squeeze in juice of 5 calamansi limes; add 1 tsp sugar and salt to taste.",
+    "Serve the fried chicken topped with the sambal kantan."
+  ],
+  "steps_ms": [
+    "Perap ayam dengan 1 sudu kecil serbuk kunyit, 1 sudu kecil garam, serbuk perasa dan 3 ulas bawang putih yang dihancurkan; rehat 20 minit.",
+    "Goreng dalam minyak panas sehingga golden dan masak. Ketepikan.",
+    "[Sambal Kantan] Blend bunga kantan, 10 biji cili padi, 1 biji bawang dan 1 ketul kecil belacan bakar sehingga kasar.",
+    "Perah jus 5 biji limau kasturi; tambah 1 sudu kecil gula dan garam secukupnya.",
+    "Hidang ayam goreng dengan sambal kantan di atas."
+  ],
+  "tags": [
+    "halal",
+    "chicken",
+    "fried",
+    "sambal",
+    "torch ginger",
+    "malaysian",
+    "ramadan"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "chicken",
+      "name_ms": "ayam",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated"
+    },
+    {
+      "name": "turmeric powder",
+      "name_ms": "serbuk kunyit",
+      "quantity": 1,
+      "unit": "tsp",
+      "note": "for marinade"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": 1,
+      "unit": "tsp",
+      "note": "for marinade; more to taste"
+    },
+    {
+      "name": "seasoning powder",
+      "name_ms": "serbuk perasa",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste; for marinade"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 3,
+      "unit": "clove",
+      "note": "crushed; for marinade"
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": "for frying"
+    },
+    {
+      "name": "torch ginger bud",
+      "name_ms": "bunga kantan",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated; blended into sambal"
+    },
+    {
+      "name": "bird's eye chilli",
+      "name_ms": "cili padi",
+      "quantity": 10,
+      "unit": null,
+      "note": "blended into sambal"
+    },
+    {
+      "name": "shallot",
+      "name_ms": "bawang merah",
+      "quantity": 1,
+      "unit": null,
+      "note": "blended into sambal"
+    },
+    {
+      "name": "shrimp paste",
+      "name_ms": "belacan",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 small block; roasted; blended into sambal"
+    },
+    {
+      "name": "calamansi lime",
+      "name_ms": "limau kasturi",
+      "quantity": 5,
+      "unit": null,
+      "note": "juiced"
+    },
+    {
+      "name": "sugar",
+      "name_ms": "gula",
+      "quantity": 1,
+      "unit": "tsp",
+      "note": "for sambal"
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "video_id": "7615766087359089927",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "vanilla measured by 'penutup' (bottle cap) — quantity converted to approx. 1 tsp; butter stated as '1 blok, lebih kurang 200g'",
+  "title": "Salted Caramel Cornflakes",
+  "title_ms": "Salted Caramel Cornflakes",
+  "description": "Crunchy cornflakes coated in a homemade salted caramel and baked until crisp — a modern Raya biscuit that is very easy to make.",
+  "description_ms": "Cornflakes yang disalut dengan karamel bergaram buatan sendiri dan dibakar sehingga rangup — kuih raya moden yang sangat mudah dibuat.",
+  "cuisine": "Western",
+  "difficulty": "Easy",
+  "prep_time": 10,
+  "cook_time": 20,
+  "servings": 20,
+  "ingredients": [
+    "sugar",
+    "whipping cream",
+    "butter",
+    "vanilla essence",
+    "salt",
+    "cornflakes"
+  ],
+  "steps": [
+    "Place 2 cup sugar in a dry pan over medium heat; swirl (do not stir with a spoon) until it melts and turns golden caramel.",
+    "Once the centre begins to melt, use a spatula to stir gently.",
+    "Remove from heat and carefully pour in 1 cup whipping cream (room temperature); stir quickly — it will bubble vigorously.",
+    "Add 1 block (approx. 200 g) unsalted butter and stir until melted.",
+    "Add approx. 1 tsp vanilla essence and 1.5 tsp salt; stir to combine.",
+    "Add a 500 g packet of cornflakes and fold until evenly coated.",
+    "Spread on a baking tray and bake at 170°C for 5 minutes to crisp further.",
+    "Leave to cool completely before storing — they must be fully cool to become crunchy."
+  ],
+  "steps_ms": [
+    "Masukkan 2 cawan gula dalam kuali kering atas api sederhana; pusingkan (jangan kacau dengan sudu) sehingga gula cair dan jadi karamel keemasan.",
+    "Bila tengah dah mula cair, boleh kacau dengan senduk.",
+    "Angkat dari api dan tuangkan 1 cawan whipping cream (suhu bilik) dengan berhati-hati; kacau cepat-cepat — ia akan berbuih kuat.",
+    "Masukkan 1 blok (lebih kurang 200g) unsalted butter dan kacau sehingga cair.",
+    "Tambah lebih kurang 1 sudu kecil esen vanila dan 1 sudu kecil setengah garam; gaul sebati.",
+    "Masukkan sepaket 500g cornflakes dan gaul sehingga rata.",
+    "Ratakan atas tray dan bakar pada suhu 170°C selama 5 minit untuk lebih rangup.",
+    "Biarkan sejuk sepenuhnya sebelum disimpan — mesti betul-betul sejuk baru jadi rangup."
+  ],
+  "tags": [
+    "halal",
+    "dessert",
+    "snack",
+    "caramel",
+    "cornflakes",
+    "raya",
+    "no-bake"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "sugar",
+      "name_ms": "gula",
+      "quantity": 2,
+      "unit": "cup",
+      "note": "for caramel"
+    },
+    {
+      "name": "whipping cream",
+      "name_ms": "whipping cream",
+      "quantity": 1,
+      "unit": "cup",
+      "note": "must be at room temperature"
+    },
+    {
+      "name": "butter",
+      "name_ms": "butter",
+      "quantity": 200,
+      "unit": "g",
+      "note": "1 block unsalted butter, approx. 200g"
+    },
+    {
+      "name": "vanilla essence",
+      "name_ms": "esen vanila",
+      "quantity": 1,
+      "unit": "tsp",
+      "note": "stated as '1 penutup (bottle cap)'; approx. 1 tsp"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": 1.5,
+      "unit": "tsp",
+      "note": "reduce if using salted butter"
+    },
+    {
+      "name": "cornflakes",
+      "name_ms": "cornflakes",
+      "quantity": 500,
+      "unit": "g",
+      "note": "1 packet; thin variety used"
+    }
+  ]
+}

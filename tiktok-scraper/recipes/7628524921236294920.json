@@ -1,0 +1,158 @@
+{
+  "video_id": "7628524921236294920",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "video contains product promotion for 'Sambal Nyet' brand — no generic substitute shown; onion and garlic quantities vague ('tumis bawang merah dengan bawang putih'); seafood quantity optional/not stated",
+  "title": "Spicy Instant Noodle Soup (Mee Goreng Basah)",
+  "title_ms": "Mee Goreng Basah Pedas dengan Sambal",
+  "description": "A quick spicy wet instant noodle dish with fish balls, fish cake, seafood and egg in a bold, savoury sambal broth.",
+  "description_ms": "Mi segera goreng basah yang cepat dan pedas dengan fishball, fishcake, seafood dan telur dalam kuah sambal yang kaya rasa.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 5,
+  "cook_time": 10,
+  "servings": 2,
+  "ingredients": [
+    "shallot",
+    "garlic",
+    "cooking oil",
+    "fish ball",
+    "fish cake",
+    "water",
+    "blended chilli",
+    "sweet soy sauce",
+    "tomato sauce",
+    "chilli sauce",
+    "instant noodles",
+    "prawn",
+    "egg",
+    "lime"
+  ],
+  "steps": [
+    "Sauté onion and garlic in a little oil until fragrant.",
+    "Add fish balls and fish cake; fry briefly until lightly browned.",
+    "Add water and bring to a simmer.",
+    "Add 1 tbsp blended chilli (or sambal), 1 tbsp sweet soy sauce, 1 tbsp tomato sauce and 1 tbsp chilli sauce.",
+    "Add 2 packets of instant noodles with only 1 seasoning packet (2 packets is too salty); let the noodles soften.",
+    "Add prawn, egg and a little vegetable; stir until the noodles have absorbed the sauce.",
+    "Serve with a fried egg on top and a squeeze of lime."
+  ],
+  "steps_ms": [
+    "Tumis bawang merah dan bawang putih dalam sedikit minyak sehingga wangi.",
+    "Masukkan fishball dan fishcake; goreng sebentar sehingga kekuningan.",
+    "Masukkan air dan biarkan mendidih.",
+    "Masukkan 1 sudu cili kisar (atau sambal), 1 sudu kicap manis, 1 sudu sos tomato dan 1 sudu sos cili.",
+    "Masukkan 2 paket mi segera dengan hanya 1 paket perencah (2 paket terlalu masin); biarkan mi kembang.",
+    "Masukkan udang, telur dan sedikit sayur; kacau sehingga mi menyerap kuah.",
+    "Hidang dengan telur mata goyang di atas dan perahan limau."
+  ],
+  "tags": [
+    "halal",
+    "noodles",
+    "spicy",
+    "quick",
+    "seafood",
+    "malaysian",
+    "ramadan"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "shallot",
+      "name_ms": "bawang merah",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated"
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": "a little"
+    },
+    {
+      "name": "fish ball",
+      "name_ms": "fishball",
+      "quantity": null,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "fish cake",
+      "name_ms": "fishcake",
+      "quantity": null,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": null,
+      "unit": null,
+      "note": "enough to create broth"
+    },
+    {
+      "name": "blended chilli",
+      "name_ms": "cili kisar",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": "or use a branded sambal; video uses 'Sambal Nyet' 1 tbsp"
+    },
+    {
+      "name": "sweet soy sauce",
+      "name_ms": "kicap manis",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "tomato sauce",
+      "name_ms": "sos tomato",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "chilli sauce",
+      "name_ms": "sos cili",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "instant noodles",
+      "name_ms": "mi segera",
+      "quantity": 2,
+      "unit": null,
+      "note": "2 packets; use only 1 seasoning packet"
+    },
+    {
+      "name": "prawn",
+      "name_ms": "udang",
+      "quantity": null,
+      "unit": null,
+      "note": "optional; to taste"
+    },
+    {
+      "name": "egg",
+      "name_ms": "telur",
+      "quantity": 1,
+      "unit": null,
+      "note": "stirred in during cooking; 1 more fried as topping"
+    },
+    {
+      "name": "lime",
+      "name_ms": "limau nipis",
+      "quantity": null,
+      "unit": null,
+      "note": "squeeze over to serve"
+    }
+  ]
+}

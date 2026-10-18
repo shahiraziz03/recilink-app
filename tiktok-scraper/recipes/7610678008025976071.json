@@ -1,0 +1,116 @@
+{
+  "video_id": "7610678008025976071",
+  "is_recipe": true,
+  "needs_review": false,
+  "review_notes": "fry 2-3 min at high heat; makes approx 20-25 balls; prep includes 1 hr rest",
+  "title": "Fried Doughnut Balls (Cekodok Donat)",
+  "title_ms": "Bebola Donat Goreng (Cekodok Donat)",
+  "description": "Soft, fluffy yeast-risen doughnut balls rolled in sugar — crispy outside, airy inside.",
+  "description_ms": "Bebola donat yang lembut dan gebu menggunakan yis — garing kat luar, gebu kat dalam, digulingkan dalam gula.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 80,
+  "cook_time": 15,
+  "servings": 20,
+  "ingredients": [
+    "all-purpose flour",
+    "sugar",
+    "salt",
+    "yeast",
+    "water",
+    "egg",
+    "butter",
+    "cooking oil",
+    "icing sugar"
+  ],
+  "steps": [
+    "Mix 2.5 cup all-purpose flour, 3 tbsp sugar, 0.5 tsp salt and 1 packet yeast.",
+    "Add 0.75 cup warm water, 1 egg and 2 tbsp melted butter; mix until a rough dough forms.",
+    "Knead until smooth and non-sticky. Cover and rest 1 hour until doubled.",
+    "Knock back; roll into small balls (golf-ball size).",
+    "Deep-fry in hot oil over high heat for 2–3 minutes, turning, until evenly golden.",
+    "Drain; while still warm, toss or dust with icing sugar."
+  ],
+  "steps_ms": [
+    "Gaul 2 cawan setengah tepung gandum, 3 sudu gula, setengah sudu kecil garam dan 1 paket yis.",
+    "Masukkan 3/4 cawan air suam, 1 biji telur dan 2 sudu butter cair; gaul sehingga jadi adunan kasar.",
+    "Uli sehingga licin dan tidak melekat. Tutup dan rehat 1 jam sehingga dua kali ganda.",
+    "Hembus keluar udara; gulung menjadi bola-bola kecil (saiz bola golf).",
+    "Goreng dalam minyak panas atas api besar 2-3 minit, pusingkan, sehingga golden rata.",
+    "Toskan; selagi panas, guling atau tabur dengan gula serbuk."
+  ],
+  "tags": [
+    "halal",
+    "dessert",
+    "doughnut",
+    "fried",
+    "sweet",
+    "ramadan",
+    "easy"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "all-purpose flour",
+      "name_ms": "tepung gandum",
+      "quantity": 2.5,
+      "unit": "cup",
+      "note": ""
+    },
+    {
+      "name": "sugar",
+      "name_ms": "gula",
+      "quantity": 3,
+      "unit": "tbsp",
+      "note": "in dough"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": 0.5,
+      "unit": "tsp",
+      "note": ""
+    },
+    {
+      "name": "yeast",
+      "name_ms": "yis",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 packet instant yeast"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": null,
+      "unit": null,
+      "note": "3/4 cup warm (not hot)"
+    },
+    {
+      "name": "egg",
+      "name_ms": "telur",
+      "quantity": 1,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "butter",
+      "name_ms": "butter",
+      "quantity": 2,
+      "unit": "tbsp",
+      "note": "melted"
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": "for deep frying"
+    },
+    {
+      "name": "icing sugar",
+      "name_ms": "gula serbuk",
+      "quantity": null,
+      "unit": null,
+      "note": "for dusting; amount to preference"
+    }
+  ]
+}

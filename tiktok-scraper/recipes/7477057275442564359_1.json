@@ -1,0 +1,79 @@
+{
+  "video_id": "7477057275442564359",
+  "is_recipe": true,
+  "needs_review": false,
+  "review_notes": "quantities are by feel; serve 1 tall glass",
+  "title": "Vanilla Sarsi Float",
+  "title_ms": "Vanilla Sarsi Float",
+  "description": "A creamy Malaysian-style cream soda float with vanilla ice cream, evaporated milk and a drop of vanilla essence.",
+  "description_ms": "Float sarsi gaya Malaysia berkrim dengan aiskrim vanila, susu cair dan esen vanila.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 5,
+  "cook_time": 0,
+  "servings": 1,
+  "ingredients": [
+    "sarsi (cream soda)",
+    "vanilla ice cream",
+    "evaporated milk",
+    "vanilla essence",
+    "ice"
+  ],
+  "steps": [
+    "Fill a glass with ice.",
+    "Add a few drops of vanilla essence and a splash of evaporated milk.",
+    "Pour sarsi (cream soda) over the ice.",
+    "Top with 1 scoop of vanilla ice cream and serve immediately."
+  ],
+  "steps_ms": [
+    "Isi gelas dengan ais.",
+    "Masukkan beberapa titik esen vanila dan sedikit susu cair.",
+    "Tuang sarsi di atas ais.",
+    "Letak 1 skop aiskrim vanila dan hidang dengan segera."
+  ],
+  "tags": [
+    "halal",
+    "drink",
+    "cold",
+    "ramadan",
+    "iftar",
+    "easy"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "sarsi (cream soda)",
+      "name_ms": "sarsi",
+      "quantity": null,
+      "unit": null,
+      "note": "any brand; fill glass"
+    },
+    {
+      "name": "vanilla ice cream",
+      "name_ms": "aiskrim vanila",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 scoop"
+    },
+    {
+      "name": "evaporated milk",
+      "name_ms": "susu cair",
+      "quantity": null,
+      "unit": null,
+      "note": "a splash"
+    },
+    {
+      "name": "vanilla essence",
+      "name_ms": "esen vanila",
+      "quantity": null,
+      "unit": null,
+      "note": "a few drops"
+    },
+    {
+      "name": "ice",
+      "name_ms": "ais",
+      "quantity": null,
+      "unit": null,
+      "note": "to fill glass"
+    }
+  ]
+}

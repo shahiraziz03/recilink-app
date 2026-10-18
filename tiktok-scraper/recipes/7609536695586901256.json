@@ -1,0 +1,293 @@
+{
+  "video_id": "7609536695586901256",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "multi-component recipe with 4 departments (ayam berempah, nasi kukus, gulai, sambal belacan); chicken qty not stated; basmati rice water ratio not stated exactly; some spice powder quantities assumed 1 tsp each based on context",
+  "title": "Steamed Rice with Spiced Fried Chicken, Curry Gravy and Sambal Belacan",
+  "title_ms": "Nasi Kukus Ayam Berempah dengan Kuah Gulai dan Sambal Belacan",
+  "description": "A complete nasi kukus set: fragrant spiced fried chicken, steamed basmati rice, a rich curry-style gravy with eggplant and long beans, and a spicy-sour sambal belacan.",
+  "description_ms": "Set nasi kukus lengkap: ayam goreng berempah yang wangi, nasi basmati kukus, kuah gulai yang kaya rasa dengan terung dan kacang panjang, serta sambal belacan pedas-masam.",
+  "cuisine": "Malaysian",
+  "difficulty": "Medium",
+  "prep_time": 40,
+  "cook_time": 40,
+  "servings": 4,
+  "ingredients": [
+    "lemongrass",
+    "galangal",
+    "curry powder",
+    "chilli powder",
+    "coriander powder",
+    "fennel seeds",
+    "cumin",
+    "turmeric powder",
+    "salt",
+    "curry leaf",
+    "water",
+    "chicken",
+    "basmati rice",
+    "onion",
+    "ginger",
+    "garlic",
+    "whole spices (cinnamon, cloves, star anise, cardamom)",
+    "blended chilli",
+    "beef curry spice mix",
+    "korma spice mix",
+    "coconut milk",
+    "palm sugar",
+    "seasoning powder",
+    "eggplant",
+    "long beans",
+    "bell pepper",
+    "bird's eye chilli",
+    "shrimp paste",
+    "calamansi lime",
+    "sugar"
+  ],
+  "steps": [
+    "[Ayam Berempah] Blend 4 lemongrass stalks and a knob of galangal; strain and keep only the pulp (discard liquid). Mix pulp with 1 tsp each: curry powder, chilli powder, coriander powder, fennel seeds, cumin, turmeric powder; 0.5 tsp salt; 2 stalks curry leaf; a little water. Marinate chicken for 20 minutes.",
+    "Fry the marinated chicken (the pulp goes in too for crunch) until golden and crispy.",
+    "[Nasi Kukus] Rinse basmati rice; add water and steam for 20–25 minutes until fluffy.",
+    "[Kuah Gulai] Blend 1 sweet onion, a knob of ginger and 5 garlic cloves. Sauté with whole spices.",
+    "Add 3 tbsp blended chilli (mild), 3 tbsp beef curry spice mix and 2 tbsp korma spice mix; cook until oil separates.",
+    "Add chicken innards or offcuts if available; add water and 1 small box coconut milk.",
+    "Season with half a small palm sugar block, salt and seasoning powder.",
+    "Add eggplant and long beans; cook until tender.",
+    "[Sambal Belacan] Blend 2 bell peppers, 10 bird's eye chillies and a small amount of roasted shrimp paste. Squeeze in juice of 4 calamansi limes (remove seeds). Blend 2 more calamansi limes whole (seeds removed). Add 2 tbsp sugar, a little seasoning powder, salt and a little water. Blend until smooth.",
+    "Plate rice with chicken, ladle gravy over and top with sambal belacan."
+  ],
+  "steps_ms": [
+    "[Ayam Berempah] Blend 4 batang serai dan seketul lengkuas; tapis, ambil serdak sahaja (buang air). Gaul serdak dengan 1 sudu kecil setiap satu: serbuk kari, serbuk cili, serbuk ketumbar, jintan manis, jintan putih, serbuk kunyit; setengah sudu kecil garam; 2 tangkai daun kari; sedikit air. Perap ayam 20 minit.",
+    "Goreng ayam berempah (serdak ikut sekali untuk bunyi krup) sehingga golden crispy.",
+    "[Nasi Kukus] Basuh beras basmati; masukkan air dan kukus 20-25 minit sehingga gebu.",
+    "[Kuah Gulai] Blend 1 bawang Holland, seketul halia dan 5 ulas bawang putih. Tumis dengan rempah 4 sekawan.",
+    "Masukkan 3 sudu cili kisar (tak pedas), 3 sudu rempah kari daging dan 2 sudu rempah kurma daging; masak sehingga pecah minyak.",
+    "Masukkan hati/dalaman ayam jika ada; tambah air dan 1 kotak kecil santan.",
+    "Tambah separuh ketul kecil gula Melaka, garam dan serbuk perasa.",
+    "Masukkan terung dan kacang panjang; masak sehingga lembut.",
+    "[Sambal Belacan] Blend 2 lada besar, 10 cili padi dan sedikit belacan yang dah dibakar. Perah jus 4 biji limau kasturi (buang biji). Blend 2 biji limau kasturi lagi (buang biji) bersama kulit. Tambah 2 sudu gula, sedikit serbuk perasa, garam dan sedikit air. Blend sehingga lumat.",
+    "Susun nasi bersama ayam, tuang kuah gulai dan letak sambal belacan di atas."
+  ],
+  "tags": [
+    "halal",
+    "chicken",
+    "rice",
+    "coconut milk",
+    "curry",
+    "sambal",
+    "malaysian",
+    "raya"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "lemongrass",
+      "name_ms": "serai",
+      "quantity": 4,
+      "unit": null,
+      "note": "stalks; blended for ayam marinade"
+    },
+    {
+      "name": "galangal",
+      "name_ms": "lengkuas",
+      "quantity": null,
+      "unit": null,
+      "note": "1 knob; blended for ayam marinade"
+    },
+    {
+      "name": "curry powder",
+      "name_ms": "serbuk kari",
+      "quantity": 1,
+      "unit": "tsp",
+      "note": "for ayam marinade"
+    },
+    {
+      "name": "chilli powder",
+      "name_ms": "serbuk cili",
+      "quantity": 1,
+      "unit": "tsp",
+      "note": "for ayam marinade"
+    },
+    {
+      "name": "coriander powder",
+      "name_ms": "serbuk ketumbar",
+      "quantity": 1,
+      "unit": "tsp",
+      "note": "for ayam marinade"
+    },
+    {
+      "name": "fennel seeds",
+      "name_ms": "jintan manis",
+      "quantity": 1,
+      "unit": "tsp",
+      "note": "for ayam marinade"
+    },
+    {
+      "name": "cumin",
+      "name_ms": "jintan putih",
+      "quantity": 1,
+      "unit": "tsp",
+      "note": "for ayam marinade"
+    },
+    {
+      "name": "turmeric powder",
+      "name_ms": "serbuk kunyit",
+      "quantity": 1,
+      "unit": "tsp",
+      "note": "for ayam marinade"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "0.5 tsp for marinade; to taste for gulai and sambal"
+    },
+    {
+      "name": "curry leaf",
+      "name_ms": "daun kari",
+      "quantity": 2,
+      "unit": null,
+      "note": "2 stalks; for ayam marinade"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": null,
+      "unit": null,
+      "note": "for marinade and gulai"
+    },
+    {
+      "name": "chicken",
+      "name_ms": "ayam",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated"
+    },
+    {
+      "name": "basmati rice",
+      "name_ms": "beras basmati",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated; steamed"
+    },
+    {
+      "name": "onion",
+      "name_ms": "bawang holland",
+      "quantity": 1,
+      "unit": null,
+      "note": "blended for gulai"
+    },
+    {
+      "name": "ginger",
+      "name_ms": "halia",
+      "quantity": null,
+      "unit": null,
+      "note": "1 knob; blended for gulai"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 5,
+      "unit": "clove",
+      "note": "blended for gulai"
+    },
+    {
+      "name": "whole spices (cinnamon, cloves, star anise, cardamom)",
+      "name_ms": "rempah 4 sekawan",
+      "quantity": null,
+      "unit": null,
+      "note": "for gulai"
+    },
+    {
+      "name": "blended chilli",
+      "name_ms": "cili kisar",
+      "quantity": 3,
+      "unit": "tbsp",
+      "note": "mild type; for gulai"
+    },
+    {
+      "name": "beef curry spice mix",
+      "name_ms": "rempah kari daging",
+      "quantity": 3,
+      "unit": "tbsp",
+      "note": "for gulai"
+    },
+    {
+      "name": "korma spice mix",
+      "name_ms": "rempah kurma daging",
+      "quantity": 2,
+      "unit": "tbsp",
+      "note": "for gulai"
+    },
+    {
+      "name": "coconut milk",
+      "name_ms": "santan",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 small box; for gulai"
+    },
+    {
+      "name": "palm sugar",
+      "name_ms": "gula melaka",
+      "quantity": null,
+      "unit": null,
+      "note": "half a small block; for gulai"
+    },
+    {
+      "name": "seasoning powder",
+      "name_ms": "serbuk perasa",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "eggplant",
+      "name_ms": "terung",
+      "quantity": null,
+      "unit": null,
+      "note": "for gulai"
+    },
+    {
+      "name": "long beans",
+      "name_ms": "kacang panjang",
+      "quantity": null,
+      "unit": null,
+      "note": "for gulai"
+    },
+    {
+      "name": "bell pepper",
+      "name_ms": "lada benggala",
+      "quantity": 2,
+      "unit": null,
+      "note": "for sambal belacan"
+    },
+    {
+      "name": "bird's eye chilli",
+      "name_ms": "cili padi",
+      "quantity": 10,
+      "unit": null,
+      "note": "for sambal belacan"
+    },
+    {
+      "name": "shrimp paste",
+      "name_ms": "belacan",
+      "quantity": null,
+      "unit": null,
+      "note": "small amount; roasted; for sambal belacan"
+    },
+    {
+      "name": "calamansi lime",
+      "name_ms": "limau kasturi",
+      "quantity": 6,
+      "unit": null,
+      "note": "4 squeezed; 2 blended whole (seeds removed); for sambal belacan"
+    },
+    {
+      "name": "sugar",
+      "name_ms": "gula",
+      "quantity": 2,
+      "unit": "tbsp",
+      "note": "for sambal belacan"
+    }
+  ]
+}

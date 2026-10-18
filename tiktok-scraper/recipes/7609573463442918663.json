@@ -1,0 +1,65 @@
+{
+  "video_id": "7609573463442918663",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "marshmallow and chocolate bar quantities not stated; biscuit type stated as Hobnobs but any will work",
+  "title": "S'mores Dip",
+  "title_ms": "S'mores Dip",
+  "description": "A simple three-ingredient s'mores dip — toasted marshmallow topped with melted chocolate, served with biscuits for dipping.",
+  "description_ms": "Dip s'mores tiga bahan yang mudah — marshmallow yang dibakar dengan coklat cair di atas, dicicah dengan biskut yang rangup.",
+  "cuisine": "Western",
+  "difficulty": "Easy",
+  "prep_time": 5,
+  "cook_time": 5,
+  "servings": 4,
+  "ingredients": [
+    "marshmallow",
+    "chocolate bar",
+    "biscuit"
+  ],
+  "steps": [
+    "Use an oven-safe aluminium container (not plastic).",
+    "Fill the container with marshmallows (do not overfill — they will expand); bake in an air fryer at 200°C for 3 minutes until toasted.",
+    "Break the chocolate bar into pieces and place on top of the toasted marshmallow; bake at 140°C for 1–2 minutes until just melted.",
+    "Serve immediately with biscuits for dipping — or press two biscuits around a spoonful to make a sandwich."
+  ],
+  "steps_ms": [
+    "Guna bekas aluminium yang sesuai untuk air fryer (jangan plastik — ia akan cair).",
+    "Isi bekas dengan marshmallow (jangan penuh sangat — ia akan kembang); bakar dalam air fryer pada suhu 200°C selama 3 minit.",
+    "Pecah-pecahkan bar coklat dan letak di atas marshmallow yang dah dibakar; bakar pada 140°C selama 1-2 minit sehingga cair sikit sahaja.",
+    "Hidang segera dengan biskut untuk cicah — atau kapit di antara dua biskut jadi sandwich."
+  ],
+  "tags": [
+    "halal",
+    "dessert",
+    "snack",
+    "chocolate",
+    "marshmallow",
+    "western",
+    "raya",
+    "easy"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "marshmallow",
+      "name_ms": "marshmallow",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated; fill the container"
+    },
+    {
+      "name": "chocolate bar",
+      "name_ms": "coklat bar",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated; semi-sweet or dark recommended for balance"
+    },
+    {
+      "name": "biscuit",
+      "name_ms": "biskut",
+      "quantity": null,
+      "unit": null,
+      "note": "Hobnobs preferred per transcript; any sturdy biscuit works"
+    }
+  ]
+}

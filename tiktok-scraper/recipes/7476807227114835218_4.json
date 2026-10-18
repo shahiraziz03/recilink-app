@@ -1,0 +1,108 @@
+{
+  "video_id": "7476807227114835218",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "prawn quantity not stated; cooked rice quantity not stated",
+  "title": "Butter Fried Rice (Nasi Goreng Butter)",
+  "title_ms": "Nasi Goreng Butter",
+  "description": "Simple and quick butter fried rice with prawn, egg and garlic — flavoured with a packet of instant fried rice seasoning.",
+  "description_ms": "Nasi goreng butter yang mudah dan cepat dengan udang, telur dan bawang putih — dibumbui dengan satu paket perencah nasi goreng.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 5,
+  "cook_time": 10,
+  "servings": 2,
+  "ingredients": [
+    "butter",
+    "egg",
+    "prawn",
+    "garlic",
+    "cooked white rice",
+    "instant fried rice seasoning",
+    "bird's eye chilli",
+    "spring onion"
+  ],
+  "steps": [
+    "Melt 2 tbsp butter in a hot wok.",
+    "Add 1 egg (broken) and prawn; stir until egg is just set and prawn turns pink.",
+    "Add 3 minced garlic cloves; sauté briefly.",
+    "Add leftover cooked rice; break up any clumps and toss well.",
+    "Season with 1 packet instant fried rice seasoning; toss to combine.",
+    "Add bird's eye chilli and spring onion; serve."
+  ],
+  "steps_ms": [
+    "Cairkan 2 sudu besar butter dalam kuali panas.",
+    "Masukkan 1 biji telur (pecahkan) dan udang; kacau sehingga telur baru masak dan udang bertukar merah jambu.",
+    "Masukkan 3 ulas bawang putih yang dihacam; tumis sebentar.",
+    "Masukkan nasi masak sejuk; hancurkan ketulan dan gaul rata.",
+    "Tambah 1 paket perencah nasi goreng; gaul sebati.",
+    "Masukkan cili padi dan daun bawang; hidang."
+  ],
+  "tags": [
+    "halal",
+    "fried rice",
+    "butter",
+    "prawn",
+    "malaysian",
+    "ramadan",
+    "sahur"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "butter",
+      "name_ms": "butter",
+      "quantity": 2,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "egg",
+      "name_ms": "telur",
+      "quantity": 1,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "prawn",
+      "name_ms": "udang",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 3,
+      "unit": "clove",
+      "note": "minced"
+    },
+    {
+      "name": "cooked white rice",
+      "name_ms": "nasi putih",
+      "quantity": null,
+      "unit": null,
+      "note": "day-old rice preferred; quantity not stated"
+    },
+    {
+      "name": "instant fried rice seasoning",
+      "name_ms": "perencah nasi goreng",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 packet"
+    },
+    {
+      "name": "bird's eye chilli",
+      "name_ms": "cili padi",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "spring onion",
+      "name_ms": "daun bawang",
+      "quantity": null,
+      "unit": null,
+      "note": "garnish"
+    }
+  ]
+}

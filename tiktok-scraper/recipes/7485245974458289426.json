@@ -1,0 +1,192 @@
+{
+  "video_id": "7485245974458289426",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "tamarind paste quantity not stated ('letakkan pes asam jawa'); servings estimated for 1 whole chicken",
+  "title": "Whole Chicken Rendang",
+  "title_ms": "Rendang Satu Ekor Ayam",
+  "description": "A classic Malay dry rendang made with a whole chicken, slow-cooked in spiced coconut milk with lemongrass and galangal until the sauce reduces and the chicken is tender.",
+  "description_ms": "Rendang ayam tradisional Melayu menggunakan satu ekor ayam yang dimasak perlahan dalam santan berempah sehingga kuah menjadi pekat dan kering.",
+  "cuisine": "Malaysian",
+  "difficulty": "Medium",
+  "prep_time": 20,
+  "cook_time": 60,
+  "servings": 6,
+  "ingredients": [
+    "shallot",
+    "lemongrass",
+    "garlic",
+    "ginger",
+    "galangal",
+    "fresh turmeric",
+    "water",
+    "cooking oil",
+    "blended chilli",
+    "chicken",
+    "coconut milk",
+    "kaffir lime leaf",
+    "turmeric leaf",
+    "toasted desiccated coconut",
+    "palm sugar",
+    "tamarind paste",
+    "salt",
+    "seasoning powder"
+  ],
+  "steps": [
+    "Blend 4 onions, 4 lemongrass stalks, 4 garlic cloves, a knob each of ginger and galangal, and a small knob of fresh turmeric with a little water until smooth.",
+    "Heat oil in a wok; sauté the blended paste until fragrant.",
+    "Add 2–3 tbsp blended chilli; cook until the oil separates.",
+    "Add 1 whole chicken (cut into pieces) and stir to coat.",
+    "Add 2 small boxes of coconut milk, 4 kaffir lime leaves and 1 large turmeric leaf; cook until the chicken is tender.",
+    "Add 2 tbsp toasted desiccated coconut, 1 small block of palm sugar, tamarind paste (to taste), salt and seasoning powder.",
+    "Continue cooking, stirring occasionally, until the gravy is very thick and almost dry.",
+    "Finish with sliced turmeric leaf before serving."
+  ],
+  "steps_ms": [
+    "Blend 4 biji bawang merah, 4 batang serai, 4 ulas bawang putih, seketul halia dan lengkuas, serta seketul kecil kunyit hidup dengan sedikit air sehingga lumat.",
+    "Panaskan minyak dalam kuali; tumis blend sehingga wangi.",
+    "Masukkan 2-3 sudu cili kisar; masak sehingga pecah minyak.",
+    "Masukkan 1 ekor ayam (potong) dan kacau sehingga rata.",
+    "Masukkan 2 kotak kecil santan, 4 helai daun limau purut dan 1 helai besar daun kunyit; masak sehingga ayam empuk.",
+    "Masukkan 2 sudu kerisik, 1 ketul kecil gula Melaka, pes asam jawa secukupnya, garam dan serbuk perasa.",
+    "Sambung masak sambil dikacau sesekali sehingga kuah sangat pekat dan hampir kering.",
+    "Hias dengan hirisan daun kunyit sebelum dihidang."
+  ],
+  "tags": [
+    "halal",
+    "chicken",
+    "rendang",
+    "coconut milk",
+    "malaysian",
+    "hari raya",
+    "raya"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "shallot",
+      "name_ms": "bawang merah",
+      "quantity": 4,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "lemongrass",
+      "name_ms": "serai",
+      "quantity": 4,
+      "unit": null,
+      "note": "stalks; blended"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 4,
+      "unit": "clove",
+      "note": "blended"
+    },
+    {
+      "name": "ginger",
+      "name_ms": "halia",
+      "quantity": null,
+      "unit": null,
+      "note": "1 thumb-sized knob; blended"
+    },
+    {
+      "name": "galangal",
+      "name_ms": "lengkuas",
+      "quantity": null,
+      "unit": null,
+      "note": "1 thumb-sized knob; blended"
+    },
+    {
+      "name": "fresh turmeric",
+      "name_ms": "kunyit hidup",
+      "quantity": null,
+      "unit": null,
+      "note": "1 small knob; blended"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": null,
+      "unit": null,
+      "note": "for blending"
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": "for sautéing"
+    },
+    {
+      "name": "blended chilli",
+      "name_ms": "cili kisar",
+      "quantity": 2.5,
+      "unit": "tbsp",
+      "note": "2–3 tbsp; increase for more heat"
+    },
+    {
+      "name": "chicken",
+      "name_ms": "ayam",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 whole chicken, cut into pieces"
+    },
+    {
+      "name": "coconut milk",
+      "name_ms": "santan",
+      "quantity": 2,
+      "unit": null,
+      "note": "2 small boxes"
+    },
+    {
+      "name": "kaffir lime leaf",
+      "name_ms": "daun limau purut",
+      "quantity": 4,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "turmeric leaf",
+      "name_ms": "daun kunyit",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 large leaf; plus more sliced for garnish"
+    },
+    {
+      "name": "toasted desiccated coconut",
+      "name_ms": "kerisik",
+      "quantity": 2,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "palm sugar",
+      "name_ms": "gula melaka",
+      "quantity": null,
+      "unit": null,
+      "note": "1 small block"
+    },
+    {
+      "name": "tamarind paste",
+      "name_ms": "pes asam jawa",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste; quantity not stated"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste; be careful not to over-salt"
+    },
+    {
+      "name": "seasoning powder",
+      "name_ms": "serbuk perasa",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    }
+  ]
+}

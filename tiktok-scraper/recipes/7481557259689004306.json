@@ -1,0 +1,127 @@
+{
+  "video_id": "7481557259689004306",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "number of frozen paratha sheets not stated; potato quantity implied by filling yield",
+  "title": "Crispy Samosa (from Frozen Paratha)",
+  "title_ms": "Samosa Crispy dari Paratha",
+  "description": "Easy crispy samosas made using frozen paratha sheets filled with spiced potato and mixed vegetable filling — no pastry-making needed.",
+  "description_ms": "Samosa crispy yang mudah menggunakan paratha beku diisi dengan inti kentang dan sayur berbumbu — tiada perlu buat pastri.",
+  "cuisine": "Fusion",
+  "difficulty": "Easy",
+  "prep_time": 20,
+  "cook_time": 20,
+  "servings": 10,
+  "ingredients": [
+    "frozen paratha",
+    "potato",
+    "carrot",
+    "pea",
+    "shallot",
+    "garlic",
+    "curry powder",
+    "salt",
+    "seasoning powder",
+    "cooking oil"
+  ],
+  "steps": [
+    "Boil 3 potatoes until soft; dice. Dice 1 carrot (parboil if needed).",
+    "Sauté diced onion and 3 garlic cloves; add 1 tbsp curry powder.",
+    "Add diced potato and carrot; season with salt and seasoning powder. Add frozen peas; mix well. Cool completely.",
+    "Thaw frozen paratha sheets; cut each sheet into 3 strips.",
+    "Place a spoonful of filling on one end of a strip; fold diagonally into a triangle, sealing with water as you go.",
+    "Deep-fry in hot oil until golden and crispy on both sides.",
+    "Drain and serve with chilli or mint sauce."
+  ],
+  "steps_ms": [
+    "Rebus 3 biji kentang sehingga empuk; potong kiub. Potong 1 carrot kiub (rebus sebentar jika perlu).",
+    "Tumis bawang kiub dan 3 ulas bawang putih; masukkan 1 sudu serbuk kari.",
+    "Masukkan kentang dan carrot; tambah garam dan serbuk perasa. Masukkan kacang pis beku; gaul rata. Biarkan sejuk sepenuhnya.",
+    "Cairkan lembaran paratha beku; potong setiap keping menjadi 3 jalur.",
+    "Letakkan sesenduk inti di hujung satu jalur; lipat serong menjadi segitiga, lekatkan dengan air sepanjang jalan.",
+    "Goreng dalam minyak panas sehingga golden crispy di kedua-dua belah.",
+    "Toskan dan hidang dengan sos cili atau sos pudina."
+  ],
+  "tags": [
+    "halal",
+    "vegetarian",
+    "snack",
+    "samosa",
+    "potato",
+    "malaysian",
+    "raya",
+    "ramadan"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "frozen paratha",
+      "name_ms": "roti paratha",
+      "quantity": null,
+      "unit": null,
+      "note": "number of sheets not stated"
+    },
+    {
+      "name": "potato",
+      "name_ms": "kentang",
+      "quantity": 3,
+      "unit": null,
+      "note": "boiled and diced"
+    },
+    {
+      "name": "carrot",
+      "name_ms": "carrot",
+      "quantity": 1,
+      "unit": null,
+      "note": "diced"
+    },
+    {
+      "name": "pea",
+      "name_ms": "kacang pis",
+      "quantity": null,
+      "unit": null,
+      "note": "frozen peas"
+    },
+    {
+      "name": "shallot",
+      "name_ms": "bawang merah",
+      "quantity": 1,
+      "unit": null,
+      "note": "diced"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 3,
+      "unit": "clove",
+      "note": ""
+    },
+    {
+      "name": "curry powder",
+      "name_ms": "serbuk kari",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "seasoning powder",
+      "name_ms": "serbuk perasa",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": "for frying"
+    }
+  ]
+}

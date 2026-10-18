@@ -1,0 +1,68 @@
+{
+  "video_id": "7612905423682784520",
+  "is_recipe": true,
+  "needs_review": false,
+  "review_notes": "video contains extensive motivational speech (majority of runtime); actual recipe is short but complete with all quantities stated; prep_time and servings estimated",
+  "title": "Instant Chocolate Mousse (3 Ingredients)",
+  "title_ms": "Coklat Mousse Instant (3 Bahan)",
+  "description": "A quick, rich chocolate mousse made by dissolving chocolate chips in warm cream, then folding in whipped cream — ready in minutes.",
+  "description_ms": "Coklat mousse yang cepat dan kaya rasa, dibuat dengan mencairkan coklat chip dalam krim panas kemudian dilipat bersama whipping cream yang dikocok.",
+  "cuisine": "Western",
+  "difficulty": "Easy",
+  "prep_time": 15,
+  "cook_time": 5,
+  "servings": 4,
+  "ingredients": [
+    "cooking cream",
+    "chocolate chips",
+    "whipping cream"
+  ],
+  "steps": [
+    "Gently heat 0.5 cup cooking cream until just warm (do not boil); remove from heat.",
+    "Stir in 2 cup chocolate chips; the warm cream will melt the chocolate. (Alternatively use a double boiler.)",
+    "Let the chocolate mixture cool to room temperature.",
+    "Whisk 1 small cold box of whipping cream until stiff peaks form.",
+    "Gently fold the cooled chocolate into the whipped cream until combined.",
+    "Pour into cups or moulds; refrigerate for a few hours before serving."
+  ],
+  "steps_ms": [
+    "Panaskan perlahan-lahan setengah cawan cooking cream sehingga panas sahaja (jangan mendidih); padamkan api.",
+    "Masukkan 2 cawan coklat chip; krim yang panas akan cairkan coklat. (Boleh juga guna cara double boil.)",
+    "Biarkan adunan coklat sejuk ke suhu bilik.",
+    "Kocok 1 kotak kecil whipping cream yang sejuk sehingga kaku.",
+    "Lipat perlahan adunan coklat ke dalam whipping cream sehingga sebati.",
+    "Tuang ke dalam cawan atau bekas; simpan dalam peti sejuk beberapa jam sebelum dihidang."
+  ],
+  "tags": [
+    "halal",
+    "dessert",
+    "chocolate",
+    "mousse",
+    "western",
+    "easy",
+    "ramadan"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "cooking cream",
+      "name_ms": "cooking cream",
+      "quantity": 0.5,
+      "unit": "cup",
+      "note": ""
+    },
+    {
+      "name": "chocolate chips",
+      "name_ms": "coklat chip",
+      "quantity": 2,
+      "unit": "cup",
+      "note": "semi-sweet or dark recommended"
+    },
+    {
+      "name": "whipping cream",
+      "name_ms": "whipping cream",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 small box; must be cold before whipping"
+    }
+  ]
+}

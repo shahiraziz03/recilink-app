@@ -1,0 +1,158 @@
+{
+  "video_id": "7478912764619115783",
+  "is_recipe": true,
+  "needs_review": false,
+  "review_notes": "recipe for 2 pieces chicken thigh; steaming time 25 min; prep/cook times estimated",
+  "title": "Steamed Chicken with Indonesian Sambal (Ayam Kukus Sambal Embe)",
+  "title_ms": "Ayam Kukus Sambal Embe",
+  "description": "Tender steamed chicken thighs, shredded and topped with a hot sambal made from pouring sizzling oil over pounded chillies and shrimp paste — Indonesian Embe style.",
+  "description_ms": "Peha ayam yang dikukus hingga lembut kemudian disuwir dan ditutup dengan sambal yang dimasak dengan cara menuang minyak panas ke atas cili tumbuk — cara Embe dari Indonesia.",
+  "cuisine": "Indonesian",
+  "difficulty": "Easy",
+  "prep_time": 10,
+  "cook_time": 30,
+  "servings": 2,
+  "ingredients": [
+    "chicken",
+    "oyster sauce",
+    "sesame oil",
+    "tapioca flour",
+    "white pepper",
+    "salt",
+    "shallot",
+    "garlic",
+    "green bird's eye chilli",
+    "bird's eye chilli",
+    "shrimp paste",
+    "cooking oil",
+    "calamansi lime",
+    "soy sauce"
+  ],
+  "steps": [
+    "Mix 2 chicken thigh pieces with 1 tbsp oyster sauce, 0.5 tbsp sesame oil, 0.5 tbsp tapioca flour, white pepper and salt.",
+    "Add spring onion on top and steam for 25 minutes until cooked through.",
+    "Let cool; shred the chicken. Mix a little of the steaming liquid back in to keep it moist.",
+    "[Sambal] Fry 5 small red shallots, 5 garlic cloves, 4 green bird's eye chillies, 4 red bird's eye chillies and 1 roasted shrimp paste block until wilted.",
+    "Pound the fried ingredients until coarsely ground.",
+    "Heat cooking oil until very hot; pour directly over the pounded sambal — this cooks it in seconds.",
+    "Spoon the sambal over the shredded chicken; squeeze calamansi lime over and drizzle with soy sauce to serve."
+  ],
+  "steps_ms": [
+    "Gaul 2 ketul peha ayam dengan 1 sudu sos tiram, setengah sudu minyak bijan, setengah sudu tepung ubi kayu, white pepper dan garam.",
+    "Letakkan daun bawang di atas dan kukus selama 25 minit sehingga masak sepenuhnya.",
+    "Biarkan sejuk; carik-carikkan ayam. Gaul sedikit air kukus kembali untuk kekalkan moist.",
+    "[Sambal] Goreng 5 biji bawang Ros, 5 ulas bawang putih, 4 biji cili padi hijau, 4 biji cili padi merah dan 1 ketul belacan yang sudah dibakar sehingga layu.",
+    "Tumbuk semua bahan yang dah digoreng sehingga lumat kasar.",
+    "Panaskan minyak masak sehingga betul-betul panas; tuang terus ke atas sambal yang dah ditumbuk — ini memasaknya dalam masa singkat.",
+    "Senduk sambal di atas ayam suwir; perah limau kasturi dan tuang kicap untuk dihidang."
+  ],
+  "tags": [
+    "halal",
+    "chicken",
+    "steamed",
+    "sambal",
+    "indonesian",
+    "easy",
+    "ramadan"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "chicken",
+      "name_ms": "ayam",
+      "quantity": 2,
+      "unit": null,
+      "note": "thigh pieces"
+    },
+    {
+      "name": "oyster sauce",
+      "name_ms": "sos tiram",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": "for marinade"
+    },
+    {
+      "name": "sesame oil",
+      "name_ms": "minyak bijan",
+      "quantity": 0.5,
+      "unit": "tbsp",
+      "note": "for marinade"
+    },
+    {
+      "name": "tapioca flour",
+      "name_ms": "tepung ubi kayu",
+      "quantity": 0.5,
+      "unit": "tbsp",
+      "note": "for marinade"
+    },
+    {
+      "name": "white pepper",
+      "name_ms": "white pepper",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste; for marinade"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste; for marinade"
+    },
+    {
+      "name": "shallot",
+      "name_ms": "bawang ros",
+      "quantity": 5,
+      "unit": null,
+      "note": "for sambal"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 5,
+      "unit": "clove",
+      "note": "for sambal"
+    },
+    {
+      "name": "green bird's eye chilli",
+      "name_ms": "cili padi hijau",
+      "quantity": 4,
+      "unit": null,
+      "note": "for sambal"
+    },
+    {
+      "name": "bird's eye chilli",
+      "name_ms": "cili padi",
+      "quantity": 4,
+      "unit": null,
+      "note": "red; for sambal"
+    },
+    {
+      "name": "shrimp paste",
+      "name_ms": "belacan",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 block; roasted and pounded"
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": "must be very hot when poured over sambal"
+    },
+    {
+      "name": "calamansi lime",
+      "name_ms": "limau kasturi",
+      "quantity": null,
+      "unit": null,
+      "note": "squeezed over to serve"
+    },
+    {
+      "name": "soy sauce",
+      "name_ms": "kicap",
+      "quantity": null,
+      "unit": null,
+      "note": "drizzled over to serve"
+    }
+  ]
+}

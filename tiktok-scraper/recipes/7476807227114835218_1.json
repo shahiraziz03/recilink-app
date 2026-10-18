@@ -1,0 +1,137 @@
+{
+  "video_id": "7476807227114835218",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "mackerel quantity not stated; sugar quantity to taste",
+  "title": "Fried Mackerel with Chilli Padi (Ikan Kembung Goreng Cili Padi)",
+  "title_ms": "Ikan Kembung Goreng Cili Padi",
+  "description": "Crispy fried mackerel tossed with fried shallots, lemongrass, garlic and bird's eye chilli in a quick savory sauce.",
+  "description_ms": "Ikan kembung yang digoreng garing dicampurkan dengan tumisan bawang merah, serai, bawang putih dan cili padi.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 10,
+  "cook_time": 15,
+  "servings": 2,
+  "ingredients": [
+    "Indian mackerel",
+    "salt",
+    "turmeric powder",
+    "cooking oil",
+    "shallot",
+    "bird's eye chilli",
+    "garlic",
+    "lemongrass",
+    "oyster sauce",
+    "fish sauce",
+    "lime",
+    "sugar"
+  ],
+  "steps": [
+    "Score the mackerel deeply; coat with salt and a pinch of turmeric powder.",
+    "Fry in hot oil until golden and crispy on both sides. Drain and set aside.",
+    "In the same pan, sauté 1 shallot (chopped), some bird's eye chilli, 1 garlic clove and 1 lemongrass stalk (sliced) until softened.",
+    "Add 1 tbsp oyster sauce, a dash of fish sauce, salt and sugar to taste.",
+    "Add the fried mackerel back; toss to coat. Squeeze over lime juice and serve."
+  ],
+  "steps_ms": [
+    "Kelar ikan kembung dalam-dalam; salit dengan garam dan sedikit serbuk kunyit.",
+    "Goreng dalam minyak panas sehingga golden garing di kedua-dua belah. Toskan dan ketepikan.",
+    "Dalam kuali yang sama, tumis 1 bawang merah (dicincang), cili padi, 1 ulas bawang putih dan 1 batang serai (dihiris) sehingga layu.",
+    "Masukkan 1 sudu sos tiram, sedikit sos ikan, garam dan gula secukup rasa.",
+    "Masukkan balik ikan goreng; gaul rata. Perah jus limau dan hidang."
+  ],
+  "tags": [
+    "halal",
+    "fish",
+    "fried",
+    "malaysian",
+    "ramadan",
+    "sahur"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "Indian mackerel",
+      "name_ms": "ikan kembung",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated; scored"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "turmeric powder",
+      "name_ms": "serbuk kunyit",
+      "quantity": null,
+      "unit": null,
+      "note": "pinch for coating"
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": "for frying"
+    },
+    {
+      "name": "shallot",
+      "name_ms": "bawang merah",
+      "quantity": 1,
+      "unit": null,
+      "note": "chopped"
+    },
+    {
+      "name": "bird's eye chilli",
+      "name_ms": "cili padi",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 1,
+      "unit": "clove",
+      "note": ""
+    },
+    {
+      "name": "lemongrass",
+      "name_ms": "serai",
+      "quantity": 1,
+      "unit": null,
+      "note": "sliced"
+    },
+    {
+      "name": "oyster sauce",
+      "name_ms": "sos tiram",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "fish sauce",
+      "name_ms": "sos ikan",
+      "quantity": null,
+      "unit": null,
+      "note": "a dash"
+    },
+    {
+      "name": "lime",
+      "name_ms": "limau nipis",
+      "quantity": null,
+      "unit": null,
+      "note": "squeezed over at end"
+    },
+    {
+      "name": "sugar",
+      "name_ms": "gula",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    }
+  ]
+}

@@ -1,0 +1,184 @@
+{
+  "video_id": "7610273174038662418",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "chicken quantity not stated; BBQ sauce quantity from bottle not stated; white sauce same as V2 (Hot Chicken Tenders)",
+  "title": "Honey BBQ Chicken Tenders with White Sauce",
+  "title_ms": "Honey BBQ Chicken Tenders dengan Sos Putih",
+  "description": "Crispy chicken tenders tossed in a smoky honey BBQ glaze, served with a cool yogurt-mayo white sauce — an upgrade on the classic hot chicken tenders.",
+  "description_ms": "Chicken tenders yang crispy digaulkan dalam saduran madu BBQ yang smoky, dihidang dengan sos putih yogurt-mayo yang segar.",
+  "cuisine": "Western",
+  "difficulty": "Easy",
+  "prep_time": 15,
+  "cook_time": 20,
+  "servings": 4,
+  "ingredients": [
+    "chicken fillet",
+    "chicken fried flour",
+    "water",
+    "cooking oil",
+    "paprika powder",
+    "cayenne pepper",
+    "chilli flakes",
+    "garlic powder",
+    "brown sugar",
+    "BBQ sauce",
+    "honey",
+    "plain yogurt",
+    "mayonnaise",
+    "lemon",
+    "black pepper",
+    "garlic",
+    "salt"
+  ],
+  "steps": [
+    "Moisten 1 cup chicken fried flour with a little water to make a wet dip; keep the rest dry.",
+    "Dip chicken tenders in the wet flour, then coat in the dry flour.",
+    "Deep-fry in hot oil until golden and crispy; drain.",
+    "Mix 1 tbsp paprika powder, 1 tbsp cayenne pepper, 0.5 tbsp chilli flakes, 0.5 tbsp garlic powder and 1 tbsp brown sugar in a bowl.",
+    "Ladle hot frying oil over the spice mix to bloom the spices.",
+    "Add BBQ sauce (to taste) and 0.5 tbsp honey; stir until a thick, glossy glaze forms.",
+    "Toss the fried chicken in the glaze until evenly coated.",
+    "[White sauce] Mix 3 tbsp plain yogurt, 3 tbsp mayonnaise, a squeeze of lemon, black pepper, 2 crushed garlic cloves and a pinch of salt."
+  ],
+  "steps_ms": [
+    "Basahkan 1 cawan tepung goreng ayam dengan sedikit air untuk jadi celupan basah; baki kekalkan kering.",
+    "Celup chicken tenders dalam tepung basah, kemudian salut dengan tepung kering.",
+    "Goreng dalam minyak panas sehingga golden crispy; toskan.",
+    "Gaul 1 sudu serbuk paprika, 1 sudu cayenne pepper, setengah sudu cili flakes, setengah sudu garlic powder dan 1 sudu brown sugar dalam mangkuk.",
+    "Tuang minyak goreng yang betul-betul panas ke atas campuran rempah untuk bloom.",
+    "Masukkan sos barbeque (secukupnya) dan setengah sudu madu; gaul sehingga jadi saduran pekat berkilat.",
+    "Toss ayam goreng dalam saduran sehingga rata.",
+    "[Sos putih] Gaul 3 sudu yogurt original, 3 sudu mayo, perahan lemon, black pepper, 2 ulas bawang putih yang dihancurkan dan sedikit garam."
+  ],
+  "tags": [
+    "halal",
+    "chicken",
+    "fried",
+    "bbq",
+    "honey",
+    "western",
+    "ramadan"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "chicken fillet",
+      "name_ms": "isi ayam",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated"
+    },
+    {
+      "name": "chicken fried flour",
+      "name_ms": "tepung goreng ayam",
+      "quantity": 1,
+      "unit": "cup",
+      "note": "brand Bestari; split into wet and dry portions"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": null,
+      "unit": null,
+      "note": "to wet the batter"
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": "for frying; a portion used for spice bloom"
+    },
+    {
+      "name": "paprika powder",
+      "name_ms": "serbuk paprika",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": "for spice mix"
+    },
+    {
+      "name": "cayenne pepper",
+      "name_ms": "cayenne pepper",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": "for spice mix"
+    },
+    {
+      "name": "chilli flakes",
+      "name_ms": "cili flakes",
+      "quantity": 0.5,
+      "unit": "tbsp",
+      "note": "for spice mix"
+    },
+    {
+      "name": "garlic powder",
+      "name_ms": "garlic powder",
+      "quantity": 0.5,
+      "unit": "tbsp",
+      "note": "for spice mix"
+    },
+    {
+      "name": "brown sugar",
+      "name_ms": "brown sugar",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": "for spice mix"
+    },
+    {
+      "name": "BBQ sauce",
+      "name_ms": "sos barbeque",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste; near plum sauce in supermarket"
+    },
+    {
+      "name": "honey",
+      "name_ms": "madu",
+      "quantity": 0.5,
+      "unit": "tbsp",
+      "note": "added to glaze"
+    },
+    {
+      "name": "plain yogurt",
+      "name_ms": "yogurt original",
+      "quantity": 3,
+      "unit": "tbsp",
+      "note": "for white sauce"
+    },
+    {
+      "name": "mayonnaise",
+      "name_ms": "mayonis",
+      "quantity": 3,
+      "unit": "tbsp",
+      "note": "for white sauce"
+    },
+    {
+      "name": "lemon",
+      "name_ms": "lemon",
+      "quantity": null,
+      "unit": null,
+      "note": "squeeze to taste; for white sauce"
+    },
+    {
+      "name": "black pepper",
+      "name_ms": "black pepper",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste; for white sauce"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 2,
+      "unit": "clove",
+      "note": "crushed; for white sauce"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "pinch; for white sauce"
+    }
+  ]
+}

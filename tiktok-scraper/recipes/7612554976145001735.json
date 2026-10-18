@@ -1,0 +1,138 @@
+{
+  "video_id": "7612554976145001735",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "fish quantity not stated; tomato quantity for garnish flexible; cook/prep times estimated",
+  "title": "Red Snapper Soup (Sup Ikan Merah)",
+  "title_ms": "Sup Ikan Merah",
+  "description": "A clear, aromatic red snapper soup fragrant with ginger, lemongrass, tomato and fresh herbs — light and nourishing.",
+  "description_ms": "Sup ikan merah jernih yang wangi dengan halia, serai, tomato dan herba segar — ringan dan berkhasiat.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 15,
+  "cook_time": 25,
+  "servings": 4,
+  "ingredients": [
+    "red snapper",
+    "water",
+    "ginger",
+    "lemongrass",
+    "tomato",
+    "shallot",
+    "salt",
+    "seasoning powder",
+    "sugar",
+    "spring onion",
+    "coriander leaves",
+    "lime"
+  ],
+  "steps": [
+    "Clean and score the fish; rub with a little salt.",
+    "Bring water to a boil with bruised ginger, 2 lemongrass stalks and sliced onion.",
+    "Add the fish; simmer until cooked through (10–15 minutes).",
+    "Add tomatoes (halved); season with salt, seasoning powder and a little sugar.",
+    "Garnish with spring onion and coriander; serve with a wedge of lime."
+  ],
+  "steps_ms": [
+    "Bersihkan dan calit ikan; lumur dengan sedikit garam.",
+    "Didihkan air bersama halia diketuk, 2 batang serai dan bawang merah yang dihiris.",
+    "Masukkan ikan; reneh sehingga masak (10-15 minit).",
+    "Masukkan tomato (dibelah); tambah garam, serbuk perasa dan sedikit gula.",
+    "Hiaskan dengan daun bawang dan daun ketumbar; hidang dengan hirisan limau."
+  ],
+  "tags": [
+    "halal",
+    "fish",
+    "soup",
+    "clear soup",
+    "malaysian",
+    "ramadan",
+    "easy"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "red snapper",
+      "name_ms": "ikan merah",
+      "quantity": null,
+      "unit": null,
+      "note": "whole or pieces; quantity not stated"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": null,
+      "unit": null,
+      "note": "enough to cover fish"
+    },
+    {
+      "name": "ginger",
+      "name_ms": "halia",
+      "quantity": null,
+      "unit": null,
+      "note": "1 knob; bruised"
+    },
+    {
+      "name": "lemongrass",
+      "name_ms": "serai",
+      "quantity": 2,
+      "unit": null,
+      "note": "bruised"
+    },
+    {
+      "name": "tomato",
+      "name_ms": "tomato",
+      "quantity": 2,
+      "unit": null,
+      "note": "halved"
+    },
+    {
+      "name": "shallot",
+      "name_ms": "bawang merah",
+      "quantity": 1,
+      "unit": null,
+      "note": "sliced"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "seasoning powder",
+      "name_ms": "serbuk perasa",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "sugar",
+      "name_ms": "gula",
+      "quantity": null,
+      "unit": null,
+      "note": "a little"
+    },
+    {
+      "name": "spring onion",
+      "name_ms": "daun bawang",
+      "quantity": null,
+      "unit": null,
+      "note": "for garnish"
+    },
+    {
+      "name": "coriander leaves",
+      "name_ms": "daun ketumbar",
+      "quantity": null,
+      "unit": null,
+      "note": "for garnish"
+    },
+    {
+      "name": "lime",
+      "name_ms": "limau nipis",
+      "quantity": null,
+      "unit": null,
+      "note": "wedges for serving"
+    }
+  ]
+}

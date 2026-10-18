@@ -1,0 +1,130 @@
+{
+  "video_id": "7608088446246128914",
+  "is_recipe": true,
+  "needs_review": false,
+  "review_notes": "recipe for 1 can sardine; cook/prep times estimated; serves 3",
+  "title": "Creamy Sardine in Coconut Milk (Sardin Bersantan)",
+  "title_ms": "Sardin Bersantan",
+  "description": "Canned sardine gently simmered in coconut milk with aromatics — a simple, comforting side dish for sahur or lunch.",
+  "description_ms": "Sardin tin direneh perlahan dalam santan bersama rempah — lauk yang mudah dan menyelerakan untuk sahur atau makan tengah hari.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 10,
+  "cook_time": 15,
+  "servings": 3,
+  "ingredients": [
+    "canned sardine",
+    "cooking oil",
+    "shallot",
+    "garlic",
+    "ginger",
+    "lemongrass",
+    "tomato",
+    "coconut milk",
+    "salt",
+    "seasoning powder",
+    "sugar"
+  ],
+  "steps": [
+    "Sauté 1 shallot, 5 garlic cloves, a knob of ginger and 2 bruised lemongrass stalks until fragrant.",
+    "Add 1 tomato (chopped); cook until softened.",
+    "Add 1 can sardines with their sauce; stir gently to avoid breaking the fish.",
+    "Pour in 0.5 small box coconut milk; season with salt, seasoning powder and a little sugar.",
+    "Simmer until the gravy thickens. Do not over-stir. Serve with rice."
+  ],
+  "steps_ms": [
+    "Tumis 1 bawang merah, 5 ulas bawang putih, seketul halia dan 2 batang serai diketuk sehingga wangi.",
+    "Masukkan 1 biji tomato (dicincang); masak sehingga lembut.",
+    "Masukkan 1 tin sardin bersama sosnya; gaul perlahan supaya ikan tidak hancur.",
+    "Tuang setengah kotak kecil santan; tambah garam, serbuk perasa dan sedikit gula.",
+    "Reneh sehingga kuah pekat. Jangan kacau terlalu kerap. Hidang bersama nasi."
+  ],
+  "tags": [
+    "halal",
+    "fish",
+    "sardine",
+    "coconut milk",
+    "malaysian",
+    "ramadan",
+    "sahur"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "canned sardine",
+      "name_ms": "sardin tin",
+      "quantity": 1,
+      "unit": "can",
+      "note": "with sauce; stir gently"
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": "for sautéing"
+    },
+    {
+      "name": "shallot",
+      "name_ms": "bawang merah",
+      "quantity": 1,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 5,
+      "unit": "clove",
+      "note": ""
+    },
+    {
+      "name": "ginger",
+      "name_ms": "halia",
+      "quantity": null,
+      "unit": null,
+      "note": "1 knob"
+    },
+    {
+      "name": "lemongrass",
+      "name_ms": "serai",
+      "quantity": 2,
+      "unit": null,
+      "note": "bruised"
+    },
+    {
+      "name": "tomato",
+      "name_ms": "tomato",
+      "quantity": 1,
+      "unit": null,
+      "note": "chopped"
+    },
+    {
+      "name": "coconut milk",
+      "name_ms": "santan",
+      "quantity": 0.5,
+      "unit": null,
+      "note": "0.5 small box"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "seasoning powder",
+      "name_ms": "serbuk perasa",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "sugar",
+      "name_ms": "gula",
+      "quantity": null,
+      "unit": null,
+      "note": "a little"
+    }
+  ]
+}

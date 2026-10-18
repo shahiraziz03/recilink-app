@@ -1,0 +1,72 @@
+{
+  "video_id": "7608279986633510162",
+  "is_recipe": true,
+  "needs_review": false,
+  "review_notes": "quantities flexible; 1 ripe avocado per 2 glasses",
+  "title": "Avocado Milkshake",
+  "title_ms": "Avocado Milkshake",
+  "description": "A smooth and creamy avocado milkshake blended with fresh milk and sweetened condensed milk — popular at Malaysian iftar stalls.",
+  "description_ms": "Milkshake avokado yang licin dan berkrim diblend dengan susu segar dan susu pekat manis — popular di gerai berbuka Malaysia.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 5,
+  "cook_time": 0,
+  "servings": 2,
+  "ingredients": [
+    "avocado",
+    "fresh milk",
+    "sweetened condensed milk",
+    "ice"
+  ],
+  "steps": [
+    "Scoop 1 ripe avocado into a blender.",
+    "Add fresh milk, sweetened condensed milk to taste and a handful of ice.",
+    "Blend until smooth and creamy; pour and serve immediately."
+  ],
+  "steps_ms": [
+    "Masukkan isi 1 biji avokado masak ke dalam blender.",
+    "Masukkan susu segar, susu pekat manis secukup rasa dan segenggam ais.",
+    "Blend sehingga licin dan berkrim; tuang dan hidang dengan segera."
+  ],
+  "tags": [
+    "halal",
+    "drink",
+    "milkshake",
+    "cold",
+    "avocado",
+    "malaysian",
+    "ramadan",
+    "iftar",
+    "easy"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "avocado",
+      "name_ms": "avokado",
+      "quantity": 1,
+      "unit": null,
+      "note": "ripe"
+    },
+    {
+      "name": "fresh milk",
+      "name_ms": "fresh milk",
+      "quantity": null,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "sweetened condensed milk",
+      "name_ms": "krimer manis",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "ice",
+      "name_ms": "ais",
+      "quantity": null,
+      "unit": null,
+      "note": "handful"
+    }
+  ]
+}

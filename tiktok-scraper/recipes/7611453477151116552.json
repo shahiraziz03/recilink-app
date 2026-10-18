@@ -1,0 +1,79 @@
+{
+  "video_id": "7611453477151116552",
+  "is_recipe": true,
+  "needs_review": false,
+  "review_notes": "refrigerate overnight for best results; mango is optional topping; prep includes overnight soak",
+  "title": "Overnight Chia Pudding",
+  "title_ms": "Chia Pudding Overnight",
+  "description": "A healthy, creamy overnight chia pudding with only 3 ingredients — perfect for a quick and nutritious sahur.",
+  "description_ms": "Puding chia semalaman yang sihat dan berkrim dengan hanya 3 bahan — sesuai untuk sahur yang mudah dan berkhasiat.",
+  "cuisine": "Western",
+  "difficulty": "Easy",
+  "prep_time": 5,
+  "cook_time": 0,
+  "servings": 2,
+  "ingredients": [
+    "chia seeds",
+    "sweetened condensed milk",
+    "fresh milk",
+    "mango",
+    "honey"
+  ],
+  "steps": [
+    "Combine 4 tbsp chia seeds, 2 tbsp sweetened condensed milk and 1 cup fresh milk in a jar; stir well.",
+    "Refrigerate overnight (or at least 4 hours) until the chia seeds absorb the liquid and puff up into a pudding.",
+    "Before serving, stir; top with diced mango and a drizzle of honey."
+  ],
+  "steps_ms": [
+    "Gaul 4 sudu chia seed, 2 sudu krimer manis dan 1 cawan susu segar dalam balang; kacau rata.",
+    "Simpan dalam peti sejuk semalaman (atau sekurang-kurangnya 4 jam) sehingga chia seed menyerap cecair dan kembang jadi puding.",
+    "Sebelum dihidang, kacau; hiaskan dengan kiub mangga dan titisan madu."
+  ],
+  "tags": [
+    "halal",
+    "healthy",
+    "chia",
+    "no-cook",
+    "sahur",
+    "breakfast",
+    "easy",
+    "ramadan"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "chia seeds",
+      "name_ms": "chia seed",
+      "quantity": 4,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "sweetened condensed milk",
+      "name_ms": "krimer manis",
+      "quantity": 2,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "fresh milk",
+      "name_ms": "fresh milk",
+      "quantity": 1,
+      "unit": "cup",
+      "note": ""
+    },
+    {
+      "name": "mango",
+      "name_ms": "mangga",
+      "quantity": null,
+      "unit": null,
+      "note": "optional topping; diced"
+    },
+    {
+      "name": "honey",
+      "name_ms": "madu",
+      "quantity": null,
+      "unit": null,
+      "note": "optional topping; drizzle to taste"
+    }
+  ]
+}

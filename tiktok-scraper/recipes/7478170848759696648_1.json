@@ -1,0 +1,152 @@
+{
+  "video_id": "7478170848759696648",
+  "is_recipe": true,
+  "needs_review": false,
+  "review_notes": "1 whole chicken used; total cook time approx. 30 min",
+  "title": "Siamese Chicken Soup (Sup Ayam Siam)",
+  "title_ms": "Sup Ayam Siam",
+  "description": "A peppery, sour and spicy Thai-style chicken soup with coriander roots, dried chilli and a generous finish of fish sauce and lime.",
+  "description_ms": "Sup ayam gaya Thai yang pedas, masam dan berempah dengan akar ketumbar, cili kering dan perahan limau serta sos ikan yang banyak.",
+  "cuisine": "Fusion",
+  "difficulty": "Easy",
+  "prep_time": 10,
+  "cook_time": 30,
+  "servings": 4,
+  "ingredients": [
+    "chicken",
+    "shallot",
+    "garlic",
+    "coriander roots",
+    "dried chilli",
+    "salt",
+    "water",
+    "soup powder",
+    "tomato",
+    "bird's eye chilli",
+    "fish sauce",
+    "lime",
+    "coriander leaves"
+  ],
+  "steps": [
+    "Sauté 2 shallots and 5 garlic cloves briefly in a pot.",
+    "Add 5 coriander roots and 5 dried chillies.",
+    "Add 1 whole chicken; season with salt and cover with water.",
+    "Add 3 tbsp Siamese chicken soup powder (1 packet); simmer until the chicken is tender and the broth has thickened, about 25–30 minutes.",
+    "Add 1 tomato and generous bird's eye chilli.",
+    "Remove from heat; stir in 3 tbsp fish sauce and juice of 1–2 limes.",
+    "Garnish with fresh coriander leaves and serve."
+  ],
+  "steps_ms": [
+    "Tumis 2 bawang merah dan 5 ulas bawang putih sebentar dalam periuk.",
+    "Masukkan 5 akar ketumbar dan 5 biji cili kering.",
+    "Masukkan 1 ekor ayam; tambah garam dan tutup dengan air.",
+    "Masukkan 3 sudu serbuk sup Siam ayam (1 paket); reneh sehingga ayam empuk dan kuah pekat, lebih kurang 25-30 minit.",
+    "Masukkan 1 biji tomato dan banyak cili padi.",
+    "Padamkan api; masukkan 3 sudu sos ikan dan jus 1-2 biji limau nipis.",
+    "Tabur daun ketumbar segar dan hidang."
+  ],
+  "tags": [
+    "halal",
+    "chicken",
+    "soup",
+    "thai",
+    "sour",
+    "spicy",
+    "fusion",
+    "malaysian",
+    "ramadan"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "chicken",
+      "name_ms": "ayam",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 whole chicken"
+    },
+    {
+      "name": "shallot",
+      "name_ms": "bawang merah",
+      "quantity": 2,
+      "unit": null,
+      "note": "per pot"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 5,
+      "unit": "clove",
+      "note": ""
+    },
+    {
+      "name": "coriander roots",
+      "name_ms": "akar ketumbar",
+      "quantity": 5,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "dried chilli",
+      "name_ms": "cili kering",
+      "quantity": 5,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": null,
+      "unit": null,
+      "note": "enough to cover chicken"
+    },
+    {
+      "name": "soup powder",
+      "name_ms": "perencah sup",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 packet Siamese chicken flavour"
+    },
+    {
+      "name": "tomato",
+      "name_ms": "tomato",
+      "quantity": 1,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "bird's eye chilli",
+      "name_ms": "cili padi",
+      "quantity": null,
+      "unit": null,
+      "note": "generously"
+    },
+    {
+      "name": "fish sauce",
+      "name_ms": "sos ikan",
+      "quantity": 3,
+      "unit": "tbsp",
+      "note": "added off heat"
+    },
+    {
+      "name": "lime",
+      "name_ms": "limau nipis",
+      "quantity": null,
+      "unit": null,
+      "note": "1-2 limes; added off heat"
+    },
+    {
+      "name": "coriander leaves",
+      "name_ms": "daun ketumbar",
+      "quantity": null,
+      "unit": null,
+      "note": "garnish"
+    }
+  ]
+}

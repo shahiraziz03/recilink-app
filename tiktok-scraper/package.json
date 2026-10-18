@@ -1,0 +1,16 @@
+{
+  "name": "tiktok-scraper",
+  "version": "1.0.0",
+  "description": "TikTok profile scraper – @khairulaming video posts with ≥100K saves",
+  "main": "scraper.js",
+  "scripts": {
+    "scrape": "node scraper.js",
+    "from-raw": "node scraper.js --from-raw"
+  },
+  "dependencies": {
+    "playwright": "^1.47.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "video_id": "7611431627465526536",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "chicken quantity not stated; blended gravy step is optional but described; cook/prep times estimated",
+  "title": "Padang-Style Chicken Curry (Gulai Ayam Padang)",
+  "title_ms": "Gulai Ayam Padang",
+  "description": "A rich, aromatic Padang-style chicken curry with whole spices, candlenuts, and blended coconut milk gravy — a classic nasi Padang restaurant dish.",
+  "description_ms": "Gulai ayam Padang yang kaya rempah, buah keras dan kuah santan yang diblend untuk tekstur berkilat — hidangan klasik restoran nasi Padang.",
+  "cuisine": "Indonesian",
+  "difficulty": "Medium",
+  "prep_time": 20,
+  "cook_time": 35,
+  "servings": 4,
+  "ingredients": [
+    "garlic",
+    "ginger",
+    "galangal",
+    "fresh turmeric",
+    "coriander seeds",
+    "cumin",
+    "candlenut",
+    "water",
+    "star anise",
+    "cardamom",
+    "lemongrass",
+    "bay leaf",
+    "turmeric leaf",
+    "onion",
+    "blended chilli",
+    "chicken",
+    "coconut milk",
+    "kaffir lime leaf",
+    "sugar",
+    "salt",
+    "seasoning powder",
+    "cooking oil"
+  ],
+  "steps": [
+    "Blend 5 garlic cloves, a knob each of ginger and galangal, a knob of fresh turmeric, 1 tsp coriander seeds, 1 tsp cumin and 2 candlenuts with water.",
+    "Heat oil; sauté the blend with 2 star anise and 2 cardamom pods until fragrant.",
+    "Add 2 bruised lemongrass stalks, 2 bay leaves, 1 turmeric leaf and sliced sweet onion; continue sautéing.",
+    "Add 1–2 tbsp blended chilli (for colour); cook until oil separates.",
+    "Add chicken; stir to coat. Add 1 small box coconut milk, water, 3–4 kaffir lime leaves; season with sugar, salt and seasoning powder.",
+    "When the chicken is cooked, optionally remove all the whole spices and lemongrass, then blend the gravy for a smooth, glossy finish.",
+    "Pour the blended gravy back over the chicken and serve."
+  ],
+  "steps_ms": [
+    "Blend 5 ulas bawang putih, seketul masing-masing halia dan lengkuas, seketul kunyit hidup, 1 sudu kecil biji ketumbar, 1 sudu kecil jintan putih dan 2 biji buah keras dengan air.",
+    "Panaskan minyak; tumis blend bersama 2 biji bunga lawang dan 2 biji buah pelaga sehingga wangi.",
+    "Masukkan 2 batang serai diketuk, 2 helai daun salam, 1 helai daun kunyit dan hirisan bawang besar; sambung tumis.",
+    "Masukkan 1-2 sudu cili kisar (untuk warna); masak sehingga pecah minyak.",
+    "Masukkan ayam; gaul sebati. Masukkan 1 kotak kecil santan, air, 3-4 helai daun limau purut; tambah gula, garam dan serbuk perasa.",
+    "Bila ayam dah masak, boleh angkat semua rempah kasar dan serai, kemudian blend kuah untuk tekstur berkilat licin.",
+    "Tuang balik kuah yang dah diblend ke atas ayam dan hidang."
+  ],
+  "tags": [
+    "halal",
+    "chicken",
+    "curry",
+    "padang",
+    "indonesian",
+    "coconut milk",
+    "malaysian",
+    "raya"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 5,
+      "unit": "clove",
+      "note": "blended"
+    },
+    {
+      "name": "ginger",
+      "name_ms": "halia",
+      "quantity": null,
+      "unit": null,
+      "note": "1 knob; blended"
+    },
+    {
+      "name": "galangal",
+      "name_ms": "lengkuas",
+      "quantity": null,
+      "unit": null,
+      "note": "1 knob; blended"
+    },
+    {
+      "name": "fresh turmeric",
+      "name_ms": "kunyit hidup",
+      "quantity": null,
+      "unit": null,
+      "note": "1 knob; blended"
+    },
+    {
+      "name": "coriander seeds",
+      "name_ms": "biji ketumbar",
+      "quantity": 1,
+      "unit": "tsp",
+      "note": "blended"
+    },
+    {
+      "name": "cumin",
+      "name_ms": "jintan putih",
+      "quantity": 1,
+      "unit": "tsp",
+      "note": "blended"
+    },
+    {
+      "name": "candlenut",
+      "name_ms": "buah keras",
+      "quantity": 2,
+      "unit": null,
+      "note": "blended"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": null,
+      "unit": null,
+      "note": "for blending and cooking"
+    },
+    {
+      "name": "star anise",
+      "name_ms": "bunga lawang",
+      "quantity": 2,
+      "unit": null,
+      "note": "whole; for sautéing"
+    },
+    {
+      "name": "cardamom",
+      "name_ms": "buah pelaga",
+      "quantity": 2,
+      "unit": null,
+      "note": "whole; for sautéing"
+    },
+    {
+      "name": "lemongrass",
+      "name_ms": "serai",
+      "quantity": 2,
+      "unit": null,
+      "note": "bruised; for sautéing"
+    },
+    {
+      "name": "bay leaf",
+      "name_ms": "daun salam",
+      "quantity": 2,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "turmeric leaf",
+      "name_ms": "daun kunyit",
+      "quantity": 1,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "onion",
+      "name_ms": "bawang holland",
+      "quantity": null,
+      "unit": null,
+      "note": "sliced; for sautéing"
+    },
+    {
+      "name": "blended chilli",
+      "name_ms": "cili kisar",
+      "quantity": 1.5,
+      "unit": "tbsp",
+      "note": "1–2 tbsp for colour; 1 more added later if needed"
+    },
+    {
+      "name": "chicken",
+      "name_ms": "ayam",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated"
+    },
+    {
+      "name": "coconut milk",
+      "name_ms": "santan",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 small box"
+    },
+    {
+      "name": "kaffir lime leaf",
+      "name_ms": "daun limau purut",
+      "quantity": 3,
+      "unit": null,
+      "note": "3–4 leaves"
+    },
+    {
+      "name": "sugar",
+      "name_ms": "gula",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "seasoning powder",
+      "name_ms": "serbuk perasa",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": "for sautéing"
+    }
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "video_id": "7477428153808325906",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "multi-component recipe (nasi lemak + sambal + ayam goreng berempah); some ratios are 'one bowl each' without exact weights; chicken quantity not stated; fried anchovies and peanuts method not shown",
+  "title": "Basmati Nasi Lemak with Spiced Fried Chicken and Sambal",
+  "title_ms": "Nasi Lemak Basmati dengan Ayam Goreng Berempah dan Sambal",
+  "description": "A complete nasi lemak set with fluffy basmati coconut rice, rich spiced fried chicken marinated in lemongrass paste and curry powder, and a deep dark sambal made with two types of dried chilli.",
+  "description_ms": "Hidangan nasi lemak lengkap dengan nasi lemak basmati yang gebu, ayam goreng berempah yang juicy, dan sambal nasi lemak yang hitam pekat daripada dua jenis cili kering.",
+  "cuisine": "Malaysian",
+  "difficulty": "Medium",
+  "prep_time": 50,
+  "cook_time": 40,
+  "servings": 6,
+  "ingredients": [
+    "dried chilli",
+    "shallot",
+    "garlic",
+    "dried anchovies",
+    "shrimp paste",
+    "cooking oil",
+    "palm sugar",
+    "tamarind paste",
+    "salt",
+    "seasoning powder",
+    "lemongrass",
+    "galangal",
+    "curry powder",
+    "chilli powder",
+    "coriander powder",
+    "fennel seeds",
+    "cumin",
+    "turmeric powder",
+    "curry leaf",
+    "water",
+    "chicken",
+    "basmati rice",
+    "ginger",
+    "pandan leaf",
+    "coconut milk"
+  ],
+  "steps": [
+    "[Sambal] Boil the fat dried chillies separately from the thin dried chillies; blend each type separately. Blend 2 large onions, 6 garlic cloves, a small handful of dried anchovies and 1 roasted shrimp paste block together.",
+    "Use equal proportions of the fat chilli paste and the blended aromatics (ratio 1:1). Heat plenty of oil; fry until the oil separates. Add 2 small blocks palm sugar, 0.5 tbsp tamarind paste, salt and seasoning powder.",
+    "[Ayam Goreng Berempah] Blend 4 lemongrass stalks and a knob of galangal to a dry paste (press out excess water). Mix the paste with 1 tsp each: curry powder, chilli powder, coriander powder, fennel seeds, cumin, turmeric powder; 0.5 tsp salt; 2 stalks curry leaf; a little water. Marinate the chicken for 20 minutes.",
+    "Fry the marinated chicken in medium-heat oil (not too hot or the spices will burn) until golden and cooked through.",
+    "[Nasi Lemak Basmati] Rinse 4 cup basmati rice; add 5 garlic cloves, 1 onion, a knob of ginger, 2 pandan leaves, 2 lemongrass stalks, 1 small box coconut milk, 6 cup water, 2 tbsp cooking oil and 1 tsp salt; cook as normal."
+  ],
+  "steps_ms": [
+    "[Sambal] Rebus cili kering gemuk dan cili kering kurus secara berasingan; blend berasingan. Blend 2 biji bawang merah besar, 6 ulas bawang putih, segenggam kecil ikan bilis dan 1 ketul belacan bakar bersama.",
+    "Guna nisbah 1:1 cili gemuk dengan blend bawang. Panaskan banyak minyak; goreng sehingga pecah minyak. Masukkan 2 ketul kecil gula Melaka, setengah sudu pes asam jawa, garam dan serbuk perasa.",
+    "[Ayam Goreng Berempah] Blend 4 batang serai dan seketul lengkuas jadi pes kering (buang air berlebihan). Gaul pes dengan 1 sudu kecil setiap satu: serbuk kari, serbuk cili, serbuk ketumbar, jintan manis, jintan putih, serbuk kunyit; setengah sudu kecil garam; 2 tangkai daun kari; sedikit air. Perap ayam selama 20 minit.",
+    "Goreng ayam dalam minyak api sederhana (jangan terlalu panas atau rempah akan hangus) sehingga golden dan masak.",
+    "[Nasi Lemak Basmati] Basuh 4 cawan beras basmati; masukkan 5 ulas bawang putih, 1 biji bawang merah, seketul halia, 2 helai daun pandan, 2 batang serai, 1 kotak kecil santan, 6 cawan air, 2 sudu minyak masak dan 1 sudu kecil garam; masak seperti biasa."
+  ],
+  "tags": [
+    "halal",
+    "chicken",
+    "rice",
+    "coconut milk",
+    "nasi lemak",
+    "sambal",
+    "malaysian",
+    "ramadan"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "dried chilli",
+      "name_ms": "cili kering",
+      "quantity": null,
+      "unit": null,
+      "note": "2 types: fat (not spicy) and thin (spicy); equal bowls of each"
+    },
+    {
+      "name": "shallot",
+      "name_ms": "bawang merah",
+      "quantity": null,
+      "unit": null,
+      "note": "2 large for sambal; 1 for nasi"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": null,
+      "unit": null,
+      "note": "6 cloves for sambal; 5 cloves for nasi"
+    },
+    {
+      "name": "dried anchovies",
+      "name_ms": "ikan bilis",
+      "quantity": null,
+      "unit": null,
+      "note": "a small handful for sambal; fried separately for topping (not shown)"
+    },
+    {
+      "name": "shrimp paste",
+      "name_ms": "belacan",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 block; roasted before blending"
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": "generous amount for sambal; also for nasi"
+    },
+    {
+      "name": "palm sugar",
+      "name_ms": "gula melaka",
+      "quantity": 2,
+      "unit": null,
+      "note": "2 small blocks; for sambal"
+    },
+    {
+      "name": "tamarind paste",
+      "name_ms": "pes asam jawa",
+      "quantity": 0.5,
+      "unit": "tbsp",
+      "note": "for sambal"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste (sambal + nasi)"
+    },
+    {
+      "name": "seasoning powder",
+      "name_ms": "serbuk perasa",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "lemongrass",
+      "name_ms": "serai",
+      "quantity": 6,
+      "unit": null,
+      "note": "4 stalks blended for ayam marinade; 2 stalks for nasi"
+    },
+    {
+      "name": "galangal",
+      "name_ms": "lengkuas",
+      "quantity": null,
+      "unit": null,
+      "note": "1 knob; blended for ayam marinade"
+    },
+    {
+      "name": "curry powder",
+      "name_ms": "serbuk kari",
+      "quantity": 1,
+      "unit": "tsp",
+      "note": "for ayam marinade"
+    },
+    {
+      "name": "chilli powder",
+      "name_ms": "serbuk cili",
+      "quantity": 1,
+      "unit": "tsp",
+      "note": "for ayam marinade"
+    },
+    {
+      "name": "coriander powder",
+      "name_ms": "serbuk ketumbar",
+      "quantity": 1,
+      "unit": "tsp",
+      "note": "for ayam marinade"
+    },
+    {
+      "name": "fennel seeds",
+      "name_ms": "jintan manis",
+      "quantity": 1,
+      "unit": "tsp",
+      "note": "for ayam marinade"
+    },
+    {
+      "name": "cumin",
+      "name_ms": "jintan putih",
+      "quantity": 1,
+      "unit": "tsp",
+      "note": "for ayam marinade"
+    },
+    {
+      "name": "turmeric powder",
+      "name_ms": "serbuk kunyit",
+      "quantity": 1,
+      "unit": "tsp",
+      "note": "for ayam marinade"
+    },
+    {
+      "name": "curry leaf",
+      "name_ms": "daun kari",
+      "quantity": 2,
+      "unit": null,
+      "note": "2 stalks; for ayam marinade"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": null,
+      "unit": null,
+      "note": "a little for marinade; 6 cups for nasi"
+    },
+    {
+      "name": "chicken",
+      "name_ms": "ayam",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated"
+    },
+    {
+      "name": "basmati rice",
+      "name_ms": "beras basmati",
+      "quantity": 4,
+      "unit": "cup",
+      "note": "rinsed; for nasi lemak"
+    },
+    {
+      "name": "ginger",
+      "name_ms": "halia",
+      "quantity": null,
+      "unit": null,
+      "note": "1 knob; for nasi"
+    },
+    {
+      "name": "pandan leaf",
+      "name_ms": "daun pandan",
+      "quantity": 2,
+      "unit": null,
+      "note": "for nasi"
+    },
+    {
+      "name": "coconut milk",
+      "name_ms": "santan",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 small box; for nasi"
+    }
+  ]
+}

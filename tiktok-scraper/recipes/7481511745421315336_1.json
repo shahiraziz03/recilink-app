@@ -1,0 +1,92 @@
+{
+  "video_id": "7481511745421315336",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "roselle syrup quantity not stated; evaporated milk and sweetened condensed milk quantities not stated",
+  "title": "Roselle Lychee Jelly (Jeli Ros Laici)",
+  "title_ms": "Jeli Ros Laici",
+  "description": "A wobbly roselle-flavoured jelly mixed with canned lychee and served cold in a creamy evaporated milk sauce.",
+  "description_ms": "Jeli bunga ros yang gebu-gebu dicampur laici tin dan dihidang sejuk dalam sos susu cair yang berkrim.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 10,
+  "cook_time": 10,
+  "servings": 4,
+  "ingredients": [
+    "jelly powder",
+    "roselle syrup",
+    "water",
+    "lychee",
+    "evaporated milk",
+    "sweetened condensed milk"
+  ],
+  "steps": [
+    "Mix 1 packet jelly powder with water per packet instructions; add roselle syrup for colour and flavour.",
+    "Bring to a boil stirring until fully dissolved; pour into moulds and set for 2 hours at room temperature.",
+    "Once set, cut into cubes.",
+    "Mix evaporated milk and sweetened condensed milk in a bowl; stir in canned lychee with its syrup.",
+    "Add jelly cubes; chill in the fridge and serve cold."
+  ],
+  "steps_ms": [
+    "Gaul 1 paket serbuk jeli dengan air ikut arahan pakej; masukkan sirap ros untuk warna dan rasa.",
+    "Didihkan sambil kacau sehingga larut sepenuhnya; tuang ke dalam acuan dan biarkan set 2 jam di suhu bilik.",
+    "Bila dah set, potong jadi kiub.",
+    "Gaul susu cair dan susu pekat manis dalam mangkuk; masukkan laici tin bersama airnya.",
+    "Masukkan kiub jeli; sejukkan dalam peti dan hidang dingin."
+  ],
+  "tags": [
+    "halal",
+    "dessert",
+    "jelly",
+    "roselle",
+    "lychee",
+    "cold",
+    "malaysian",
+    "ramadan",
+    "iftar"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "jelly powder",
+      "name_ms": "serbuk jeli",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 packet"
+    },
+    {
+      "name": "roselle syrup",
+      "name_ms": "sirap ros",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated; for colour and flavour"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": null,
+      "unit": null,
+      "note": "per packet instructions"
+    },
+    {
+      "name": "lychee",
+      "name_ms": "laici",
+      "quantity": 1,
+      "unit": "can",
+      "note": "with syrup"
+    },
+    {
+      "name": "evaporated milk",
+      "name_ms": "susu cair",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated"
+    },
+    {
+      "name": "sweetened condensed milk",
+      "name_ms": "krimer manis",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated"
+    }
+  ]
+}

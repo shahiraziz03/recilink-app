@@ -1,0 +1,184 @@
+{
+  "video_id": "7614748072328875282",
+  "is_recipe": true,
+  "needs_review": false,
+  "review_notes": "cook/prep times and servings estimated; recipe designed for 1 family",
+  "title": "Macaroni Goreng (Stir-Fried Macaroni)",
+  "title_ms": "Makaroni Goreng",
+  "description": "Hearty stir-fried macaroni with minced beef and a rich, savoury sauce — a crowd-pleasing open-house dish for Raya.",
+  "description_ms": "Makaroni goreng berkuah pekat dengan daging cincang dan sos yang sedap — hidangan sempurna untuk open house raya.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 15,
+  "cook_time": 25,
+  "servings": 6,
+  "ingredients": [
+    "frozen beef",
+    "shallot",
+    "garlic",
+    "blended chilli",
+    "water",
+    "oyster sauce",
+    "tomato sauce",
+    "chilli sauce",
+    "sweet soy sauce",
+    "chicken stock cube",
+    "macaroni",
+    "salt",
+    "seasoning powder",
+    "bell pepper",
+    "Chinese celery",
+    "crispy fried shallots",
+    "lime"
+  ],
+  "steps": [
+    "Fry 400 g frozen beef (no oil needed) until its fat renders and it browns slightly; drain and set aside.",
+    "In the same wok, sauté 3 onions and 6 garlic cloves (chopped); add 1–2 tbsp blended chilli.",
+    "Deglaze the browned bits on the wok with a little water — this is all flavour.",
+    "Return the beef; add 2 tbsp oyster sauce, 2 tbsp tomato sauce, 2 tbsp chilli sauce, 3 tbsp sweet soy sauce and 1 chicken stock cube. Mix well.",
+    "Boil 400 g macaroni in salted water until al dente; drain.",
+    "Add the macaroni to the beef mixture and toss until the sauce coats evenly.",
+    "Stir in sliced bell pepper (any colour); adjust seasoning with salt and seasoning powder.",
+    "Serve topped with Chinese celery, crispy fried shallots and a squeeze of lime."
+  ],
+  "steps_ms": [
+    "Goreng 400g daging beku (tanpa minyak) sehingga lemaknya cair dan daging garing sikit; ketepikan.",
+    "Dalam kuali yang sama, tumis 3 biji bawang merah dan 6 ulas bawang putih (dihacam); masukkan 1-2 sudu cili kisar.",
+    "Deglaze kerak daging di tepi kuali dengan sedikit air — itu semua flavour.",
+    "Masukkan balik daging; tambah 2 sudu sos tiram, 2 sudu sos tomato, 2 sudu sos cili, 3 sudu kicap manis dan 1 kiub pati ayam. Kacau sebati.",
+    "Rebus 400g makaroni dalam air bergaram sehingga masak; toskan.",
+    "Masukkan makaroni ke dalam tumisan daging dan gaul sehingga sos melekat rata.",
+    "Masukkan hirisan lada benggala (warna apa pun); laraskan perasa dengan garam dan serbuk perasa.",
+    "Hidang ditaburi daun sup, bawang goreng dan perahan limau nipis."
+  ],
+  "tags": [
+    "halal",
+    "pasta",
+    "beef",
+    "stir-fry",
+    "malaysian",
+    "raya",
+    "open house"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "frozen beef",
+      "name_ms": "daging beku",
+      "quantity": 400,
+      "unit": "g",
+      "note": "any brand; no oil needed"
+    },
+    {
+      "name": "shallot",
+      "name_ms": "bawang merah",
+      "quantity": 3,
+      "unit": null,
+      "note": "chopped"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 6,
+      "unit": "clove",
+      "note": "chopped"
+    },
+    {
+      "name": "blended chilli",
+      "name_ms": "cili kisar",
+      "quantity": 1.5,
+      "unit": "tbsp",
+      "note": "1–2 tbsp; adjust to taste"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": null,
+      "unit": null,
+      "note": "to deglaze wok"
+    },
+    {
+      "name": "oyster sauce",
+      "name_ms": "sos tiram",
+      "quantity": 2,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "tomato sauce",
+      "name_ms": "sos tomato",
+      "quantity": 2,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "chilli sauce",
+      "name_ms": "sos cili",
+      "quantity": 2,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "sweet soy sauce",
+      "name_ms": "kicap manis",
+      "quantity": 3,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "chicken stock cube",
+      "name_ms": "kiub pati ayam",
+      "quantity": 1,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "macaroni",
+      "name_ms": "makaroni",
+      "quantity": 400,
+      "unit": "g",
+      "note": "1 packet; boiled in salted water"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "seasoning powder",
+      "name_ms": "serbuk perasa",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "bell pepper",
+      "name_ms": "lada benggala",
+      "quantity": null,
+      "unit": null,
+      "note": "any colour; sliced"
+    },
+    {
+      "name": "Chinese celery",
+      "name_ms": "daun sup",
+      "quantity": null,
+      "unit": null,
+      "note": "garnish"
+    },
+    {
+      "name": "crispy fried shallots",
+      "name_ms": "bawang goreng",
+      "quantity": null,
+      "unit": null,
+      "note": "garnish; use generously"
+    },
+    {
+      "name": "lime",
+      "name_ms": "limau nipis",
+      "quantity": null,
+      "unit": null,
+      "note": "squeeze over before serving"
+    }
+  ]
+}

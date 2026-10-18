@@ -1,0 +1,145 @@
+{
+  "video_id": "7476807227114835218",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "chicken quantity not stated",
+  "title": "Chicken in Sweet Soy Sauce (Ayam Masak Kicap)",
+  "title_ms": "Ayam Masak Kicap",
+  "description": "Crispy fried chicken simmered in a sweet soy sauce glaze with aromatics — a classic Malaysian home-cooked dish.",
+  "description_ms": "Ayam yang digoreng garing kemudian direneh dalam sos kicap manis bersama rempah — hidangan rumah Malaysia yang klasik.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 15,
+  "cook_time": 20,
+  "servings": 3,
+  "ingredients": [
+    "chicken",
+    "salt",
+    "turmeric powder",
+    "cooking oil",
+    "shallot",
+    "garlic",
+    "lemongrass",
+    "ginger",
+    "sweet soy sauce",
+    "oyster sauce",
+    "bird's eye chilli",
+    "tomato",
+    "spring onion"
+  ],
+  "steps": [
+    "Coat chicken pieces with salt and turmeric; fry in hot oil until golden and crispy. Set aside.",
+    "Sauté 1 shallot, 3 garlic cloves, 1 lemongrass stalk and a knob of ginger until fragrant.",
+    "Add sweet soy sauce to taste, 1 tbsp oyster sauce, bird's eye chilli and 1 tomato (chopped).",
+    "Return the fried chicken; toss to coat in the sauce. Simmer briefly.",
+    "Garnish with spring onion and serve."
+  ],
+  "steps_ms": [
+    "Salit kepingan ayam dengan garam dan kunyit; goreng dalam minyak panas sehingga golden garing. Ketepikan.",
+    "Tumis 1 bawang merah, 3 ulas bawang putih, 1 batang serai dan seketul halia sehingga wangi.",
+    "Masukkan kicap manis secukup rasa, 1 sudu sos tiram, cili padi dan 1 biji tomato (dicincang).",
+    "Masukkan balik ayam goreng; gaul dalam sos. Reneh sebentar.",
+    "Hiaskan dengan daun bawang dan hidang."
+  ],
+  "tags": [
+    "halal",
+    "chicken",
+    "soy sauce",
+    "malaysian",
+    "ramadan",
+    "sahur"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "chicken",
+      "name_ms": "ayam",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated; any cut"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "turmeric powder",
+      "name_ms": "serbuk kunyit",
+      "quantity": null,
+      "unit": null,
+      "note": "for coating"
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "shallot",
+      "name_ms": "bawang merah",
+      "quantity": 1,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 3,
+      "unit": "clove",
+      "note": ""
+    },
+    {
+      "name": "lemongrass",
+      "name_ms": "serai",
+      "quantity": 1,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "ginger",
+      "name_ms": "halia",
+      "quantity": null,
+      "unit": null,
+      "note": "1 knob"
+    },
+    {
+      "name": "sweet soy sauce",
+      "name_ms": "kicap manis",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "oyster sauce",
+      "name_ms": "sos tiram",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "bird's eye chilli",
+      "name_ms": "cili padi",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "tomato",
+      "name_ms": "tomato",
+      "quantity": 1,
+      "unit": null,
+      "note": "chopped"
+    },
+    {
+      "name": "spring onion",
+      "name_ms": "daun bawang",
+      "quantity": null,
+      "unit": null,
+      "note": "garnish"
+    }
+  ]
+}

@@ -1,0 +1,157 @@
+{
+  "video_id": "7609908058969591047",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "chicken quantity not stated; green chilli/kaffir lime leaf/garlic fried at the end not quantified",
+  "title": "Crispy Fried Chicken with Thai Aromatics",
+  "title_ms": "Ayam Goreng Crispy Cicah Sos Thai",
+  "description": "Sesame-battered crispy fried chicken marinated in fish sauce, finished by frying with green chilli, kaffir lime leaf and garlic for fragrance.",
+  "description_ms": "Ayam goreng crispy berlapis bijan yang diperap dalam sos ikan, kemudian digoreng sekali dengan cili hijau, daun limau purut dan bawang putih untuk aroma yang wangi.",
+  "cuisine": "Fusion",
+  "difficulty": "Easy",
+  "prep_time": 40,
+  "cook_time": 20,
+  "servings": 3,
+  "ingredients": [
+    "chicken",
+    "fish sauce",
+    "black pepper",
+    "sugar",
+    "chicken fried flour",
+    "rice flour",
+    "salt",
+    "seasoning powder",
+    "water",
+    "sesame seeds",
+    "cooking oil",
+    "green chilli",
+    "kaffir lime leaf",
+    "garlic"
+  ],
+  "steps": [
+    "Marinate the chicken with 2 tbsp fish sauce, black pepper to taste and 1 tbsp sugar; rest for 30 minutes.",
+    "Mix 2 tbsp chicken fried flour, 2 tbsp rice flour, salt and seasoning powder; add water gradually until the batter is neither too thick nor too thin.",
+    "Stir in sesame seeds.",
+    "Coat the marinated chicken pieces in the batter.",
+    "Fry in very hot oil, placing pieces in one by one; when almost done, add sliced green chilli, kaffir lime leaf and garlic cloves — all these are edible and add fragrance.",
+    "Fry until golden and crispy. Drain and serve."
+  ],
+  "steps_ms": [
+    "Perap ayam dengan 2 sudu besar sos ikan, black pepper secukupnya dan 1 sudu besar gula; rehat selama 30 minit.",
+    "Gaul 2 sudu tepung goreng ayam (Bestari), 2 sudu tepung beras, garam dan serbuk perasa; masukkan air sikit-sikit sehingga adunan tidak terlalu pekat mahupun cair.",
+    "Masukkan bijan.",
+    "Celupkan kepingan ayam yang dah diperap ke dalam adunan.",
+    "Goreng dalam minyak betul-betul panas, masukkan satu-satu; bila hampir masak, masukkan hirisan cili hijau, daun limau purut dan bawang putih — semua ini boleh dimakan dan menambah aroma.",
+    "Goreng sehingga golden crispy. Toskan dan hidang."
+  ],
+  "tags": [
+    "halal",
+    "chicken",
+    "fried",
+    "crispy",
+    "thai",
+    "sesame",
+    "malaysian",
+    "ramadan"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "chicken",
+      "name_ms": "ayam",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated"
+    },
+    {
+      "name": "fish sauce",
+      "name_ms": "sos ikan",
+      "quantity": 2,
+      "unit": "tbsp",
+      "note": "for marinade"
+    },
+    {
+      "name": "black pepper",
+      "name_ms": "black pepper",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste; for marinade"
+    },
+    {
+      "name": "sugar",
+      "name_ms": "gula",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": "for marinade"
+    },
+    {
+      "name": "chicken fried flour",
+      "name_ms": "tepung goreng ayam",
+      "quantity": 2,
+      "unit": "tbsp",
+      "note": "brand Bestari; for batter"
+    },
+    {
+      "name": "rice flour",
+      "name_ms": "tepung beras",
+      "quantity": 2,
+      "unit": "tbsp",
+      "note": "for batter"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste; for batter"
+    },
+    {
+      "name": "seasoning powder",
+      "name_ms": "serbuk perasa",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste; for batter"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": null,
+      "unit": null,
+      "note": "for batter; add gradually"
+    },
+    {
+      "name": "sesame seeds",
+      "name_ms": "bijan",
+      "quantity": null,
+      "unit": null,
+      "note": "stirred into batter"
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": "deep frying"
+    },
+    {
+      "name": "green chilli",
+      "name_ms": "cili hijau",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated; fried with chicken at end"
+    },
+    {
+      "name": "kaffir lime leaf",
+      "name_ms": "daun limau purut",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated; fried with chicken at end"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated; fried with chicken at end"
+    }
+  ]
+}

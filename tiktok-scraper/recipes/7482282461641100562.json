@@ -1,0 +1,192 @@
+{
+  "video_id": "7482282461641100562",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "chicken quantity not stated; spice paste powder brand 'Adabi' or any brand; cook/prep times estimated",
+  "title": "Curry Noodle Soup (Mee Kari)",
+  "title_ms": "Mee Kari",
+  "description": "Rich, coconut-based curry noodle soup with chicken, tofu puffs and fish cake — a classic Malaysian street food.",
+  "description_ms": "Sup mi kari yang kaya berasaskan santan dengan ayam, tauhu goreng dan fishcake — makanan jalanan Malaysia yang klasik.",
+  "cuisine": "Malaysian",
+  "difficulty": "Medium",
+  "prep_time": 20,
+  "cook_time": 30,
+  "servings": 4,
+  "ingredients": [
+    "cooking oil",
+    "shallot",
+    "garlic",
+    "ginger",
+    "curry powder",
+    "chilli powder",
+    "chicken",
+    "water",
+    "coconut milk",
+    "tofu puffs",
+    "fish cake",
+    "fish ball",
+    "salt",
+    "sugar",
+    "seasoning powder",
+    "yellow noodles",
+    "bean sprouts",
+    "spring onion"
+  ],
+  "steps": [
+    "Sauté sliced onion, 5 garlic cloves and a knob of ginger until fragrant.",
+    "Add 3 tbsp curry powder and 1 tbsp chilli powder; fry briefly until fragrant.",
+    "Add chicken pieces; coat in the spice paste.",
+    "Add water; bring to a boil.",
+    "Add 1 box coconut milk; season with salt, sugar and seasoning powder.",
+    "Add tofu puffs, sliced fish cake and fish balls; simmer until chicken is cooked.",
+    "Blanch yellow noodles; place in bowls.",
+    "Ladle hot curry soup over the noodles; top with bean sprouts and spring onion."
+  ],
+  "steps_ms": [
+    "Tumis hirisan bawang, 5 ulas bawang putih dan seketul halia sehingga wangi.",
+    "Masukkan 3 sudu serbuk kari dan 1 sudu serbuk cili; goreng sebentar sehingga wangi.",
+    "Masukkan kepingan ayam; gaul rata dengan pes rempah.",
+    "Masukkan air; didihkan.",
+    "Masukkan 1 kotak santan; tambah garam, gula dan serbuk perasa.",
+    "Masukkan tauhu goreng, hirisan fishcake dan fishball; reneh sehingga ayam masak.",
+    "Celur mi kuning; susun dalam mangkuk.",
+    "Tuang sup kari panas di atas mi; tabur taugeh dan daun bawang."
+  ],
+  "tags": [
+    "halal",
+    "noodles",
+    "curry",
+    "chicken",
+    "coconut milk",
+    "malaysian",
+    "ramadan"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": "for sautéing"
+    },
+    {
+      "name": "shallot",
+      "name_ms": "bawang merah",
+      "quantity": null,
+      "unit": null,
+      "note": "sliced"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 5,
+      "unit": "clove",
+      "note": ""
+    },
+    {
+      "name": "ginger",
+      "name_ms": "halia",
+      "quantity": null,
+      "unit": null,
+      "note": "1 knob"
+    },
+    {
+      "name": "curry powder",
+      "name_ms": "serbuk kari",
+      "quantity": 3,
+      "unit": "tbsp",
+      "note": "brand Adabi or any"
+    },
+    {
+      "name": "chilli powder",
+      "name_ms": "serbuk cili",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "chicken",
+      "name_ms": "ayam",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": null,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "coconut milk",
+      "name_ms": "santan",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 box"
+    },
+    {
+      "name": "tofu puffs",
+      "name_ms": "tauhu goreng",
+      "quantity": null,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "fish cake",
+      "name_ms": "fishcake",
+      "quantity": null,
+      "unit": null,
+      "note": "sliced"
+    },
+    {
+      "name": "fish ball",
+      "name_ms": "fishball",
+      "quantity": null,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "sugar",
+      "name_ms": "gula",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "seasoning powder",
+      "name_ms": "serbuk perasa",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "yellow noodles",
+      "name_ms": "mi kuning",
+      "quantity": null,
+      "unit": null,
+      "note": "blanched"
+    },
+    {
+      "name": "bean sprouts",
+      "name_ms": "taugeh",
+      "quantity": null,
+      "unit": null,
+      "note": "for serving"
+    },
+    {
+      "name": "spring onion",
+      "name_ms": "daun bawang",
+      "quantity": null,
+      "unit": null,
+      "note": "for serving"
+    }
+  ]
+}

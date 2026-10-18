@@ -1,0 +1,144 @@
+{
+  "video_id": "7483768833728154888",
+  "is_recipe": true,
+  "needs_review": false,
+  "review_notes": "hazelnut spread filling quantity flexible; prep time includes 1 hour rise; times estimated",
+  "title": "Chocolate Beignets",
+  "title_ms": "Chocolate Beignets",
+  "description": "Light, crispy yeasted dough pockets fried until puffed and golden — filled with hazelnut chocolate spread and dusted with icing sugar.",
+  "description_ms": "Adunan ragi yang ringan dan crispy digoreng sehingga kembang dan keemasan — diisi dengan coklat hazelnut dan ditaburi gula serbuk.",
+  "cuisine": "Western",
+  "difficulty": "Easy",
+  "prep_time": 80,
+  "cook_time": 20,
+  "servings": 12,
+  "ingredients": [
+    "water",
+    "yeast",
+    "evaporated milk",
+    "sugar",
+    "butter",
+    "vanilla essence",
+    "egg",
+    "all-purpose flour",
+    "salt",
+    "cooking oil",
+    "chocolate hazelnut spread",
+    "icing sugar"
+  ],
+  "steps": [
+    "Combine 3/4 cup warm water and 1 packet yeast; wait 5 minutes.",
+    "Add 0.5 cup evaporated milk, 1/3 cup sugar, 3 tbsp melted butter, 1 tsp vanilla essence, 1 egg and 0.5 tsp salt; mix well.",
+    "Add 4 cup all-purpose flour and knead until smooth and non-sticky. Cover and rest for 1 hour.",
+    "After rising, lightly knock back; dust a board with flour and roll the dough thin.",
+    "Cut into squares; re-roll any scraps.",
+    "Deep-fry in hot oil in batches until puffed and golden. Drain.",
+    "Optionally fill with chocolate hazelnut spread (press into the dough square before frying, or pipe in after).",
+    "Dust generously with icing sugar and serve warm."
+  ],
+  "steps_ms": [
+    "Campurkan 3/4 cawan air suam dan 1 paket yis; tunggu 5 minit.",
+    "Masukkan setengah cawan susu sejat, 1/3 cawan gula, 3 sudu butter cair, 1 sudu kecil esen vanila, 1 biji telur dan setengah sudu kecil garam; gaul sebati.",
+    "Masukkan 4 cawan tepung gandum dan uli sehingga licin dan tidak melekat. Tutup dan rehat 1 jam.",
+    "Lepas kembang, lenyek keluar udara; tabur tepung di papan dan lenyekkan doh sehingga nipis.",
+    "Potong jadi petak-petak; gulung balik lebihan.",
+    "Goreng dalam minyak panas sehingga kembang dan keemasan. Toskan.",
+    "Boleh isi dengan coklat hazelnut (letakkan dalam petak sebelum goreng, atau paipkan masuk selepas).",
+    "Taburi banyak gula serbuk dan hidang panas."
+  ],
+  "tags": [
+    "halal",
+    "dessert",
+    "fried",
+    "dough",
+    "chocolate",
+    "western",
+    "ramadan"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": null,
+      "unit": null,
+      "note": "3/4 cup warm water"
+    },
+    {
+      "name": "yeast",
+      "name_ms": "yis",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 packet"
+    },
+    {
+      "name": "evaporated milk",
+      "name_ms": "krimer sejat",
+      "quantity": 0.5,
+      "unit": "cup",
+      "note": ""
+    },
+    {
+      "name": "sugar",
+      "name_ms": "gula",
+      "quantity": null,
+      "unit": null,
+      "note": "1/3 cup"
+    },
+    {
+      "name": "butter",
+      "name_ms": "butter",
+      "quantity": 3,
+      "unit": "tbsp",
+      "note": "melted"
+    },
+    {
+      "name": "vanilla essence",
+      "name_ms": "esen vanila",
+      "quantity": 1,
+      "unit": "tsp",
+      "note": ""
+    },
+    {
+      "name": "egg",
+      "name_ms": "telur",
+      "quantity": 1,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "all-purpose flour",
+      "name_ms": "tepung gandum",
+      "quantity": 4,
+      "unit": "cup",
+      "note": ""
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": 0.5,
+      "unit": "tsp",
+      "note": ""
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": "deep frying"
+    },
+    {
+      "name": "chocolate hazelnut spread",
+      "name_ms": "coklat hazelnut",
+      "quantity": null,
+      "unit": null,
+      "note": "for filling; quantity to preference"
+    },
+    {
+      "name": "icing sugar",
+      "name_ms": "gula serbuk",
+      "quantity": null,
+      "unit": null,
+      "note": "for dusting"
+    }
+  ]
+}

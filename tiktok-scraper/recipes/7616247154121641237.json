@@ -1,0 +1,117 @@
+{
+  "video_id": "7616247154121641237",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "red syrup (sirap) added 'sikit' for colour — quantity not stated; servings and times estimated",
+  "title": "Creamy Corn Pudding with Custard Sauce",
+  "title_ms": "Puding Jagung Creamy dengan Kuah Kastard",
+  "description": "A creamy, jiggly corn pudding made with creamed corn, coconut milk and condensed milk, topped with a smooth vanilla custard sauce — perfect served cold for open house.",
+  "description_ms": "Puding jagung yang creamy dan gebu diperbuat daripada jagung krim, santan dan susu pekat, dihidang sejuk dengan kuah kastard yang lembut.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 15,
+  "cook_time": 20,
+  "servings": 10,
+  "ingredients": [
+    "corn",
+    "evaporated milk",
+    "coconut milk",
+    "sweetened condensed milk",
+    "cornstarch",
+    "water",
+    "salt",
+    "custard powder",
+    "sugar"
+  ],
+  "steps": [
+    "In a pot, combine 1 can creamed corn, 1 can evaporated milk, 1 small box coconut milk, 2/3 cup sweetened condensed milk, 1/3 cup cornstarch dissolved in 1 cup water, 0.5 tsp salt and a dash of red syrup (for colour).",
+    "Stir in 1 cup custard powder (dissolved beforehand) — add it last or it will clump.",
+    "Cook over medium heat, stirring constantly, until the mixture is thick and glossy.",
+    "Pour quickly into moulds or a tray; tap gently to remove air bubbles. Optionally top with whole corn kernels for texture. Let cool before refrigerating.",
+    "[Custard sauce] Combine 1 can evaporated milk, 0.5 can water, 3 tbsp sweetened condensed milk and 1.5 tbsp custard powder in a pot.",
+    "Cook over medium heat, stirring, until the mixture just boils and thickens slightly. Pour over the set pudding."
+  ],
+  "steps_ms": [
+    "Dalam periuk, campurkan 1 tin jagung krim, 1 tin susu cair, 1 kotak kecil santan, 2/3 cawan susu pekat, 1/3 cawan tepung jagung yang dilarutkan dalam 1 cawan air, setengah sudu kecil garam dan sikit sirap untuk warna.",
+    "Masukkan 1 cawan tepung kastard (yang dah dilarutkan lebih awal) — masuk last sekali atau dia akan berketul.",
+    "Masak atas api sederhana sambil dikacau sehingga adunan pekat dan berkilat.",
+    "Tuang cepat-cepat ke dalam bekas atau loyang; hentak untuk buang buih. Boleh letak biji jagung di atas untuk tekstur. Biarkan sejuk sebelum dimasukkan ke dalam peti sejuk.",
+    "[Kuah kastard] Campurkan 1 tin susu cair, setengah tin air, 3 sudu susu pekat dan 1 sudu setengah tepung kastard dalam periuk.",
+    "Masak atas api sederhana sambil dikacau sehingga mendidih dan pekat sikit. Tuang di atas puding yang dah set."
+  ],
+  "tags": [
+    "halal",
+    "dessert",
+    "pudding",
+    "corn",
+    "custard",
+    "raya",
+    "open house",
+    "no-bake"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "corn",
+      "name_ms": "jagung",
+      "quantity": 1,
+      "unit": "can",
+      "note": "creamed corn (tin); for pudding"
+    },
+    {
+      "name": "evaporated milk",
+      "name_ms": "susu cair",
+      "quantity": 1.5,
+      "unit": "can",
+      "note": "1 can for pudding; 1 can for custard sauce (use 0.5 can water with the remaining 0.5 can)"
+    },
+    {
+      "name": "coconut milk",
+      "name_ms": "santan",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 small box; for pudding"
+    },
+    {
+      "name": "sweetened condensed milk",
+      "name_ms": "krimer manis",
+      "quantity": null,
+      "unit": null,
+      "note": "2/3 cup for pudding; 3 tbsp for custard sauce"
+    },
+    {
+      "name": "cornstarch",
+      "name_ms": "tepung jagung",
+      "quantity": null,
+      "unit": null,
+      "note": "1/3 cup dissolved in 1 cup water; for pudding"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": 1,
+      "unit": "cup",
+      "note": "for dissolving cornstarch"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": 0.5,
+      "unit": "tsp",
+      "note": "for pudding"
+    },
+    {
+      "name": "custard powder",
+      "name_ms": "tepung kastard",
+      "quantity": null,
+      "unit": null,
+      "note": "1 cup for pudding; 1.5 tbsp for custard sauce; dissolve before adding"
+    },
+    {
+      "name": "sugar",
+      "name_ms": "gula",
+      "quantity": null,
+      "unit": null,
+      "note": "red syrup (sirap ros) — a little for colour in pudding; quantity not stated"
+    }
+  ]
+}

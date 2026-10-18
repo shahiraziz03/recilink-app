@@ -1,0 +1,233 @@
+{
+  "video_id": "7486337073192946952",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "chicken quantity not stated; multi-component recipe (nasi tomato + ayam masak merah); some whole spice quantities (rempah 4 sekawan) not quantified",
+  "title": "Tomato Rice with Festive Red Chicken (Nasi Tomato & Ayam Masak Merah)",
+  "title_ms": "Nasi Tomato dan Ayam Masak Merah Ala Kenduri",
+  "description": "A festive open-house spread of fragrant tomato rice paired with rich, slow-cooked red chicken in a tangy tomato-based sauce.",
+  "description_ms": "Hidangan kenduri berupa nasi tomato yang wangi bersama ayam masak merah yang kaya dengan rasa tomato masam-manis yang sedap.",
+  "cuisine": "Malaysian",
+  "difficulty": "Medium",
+  "prep_time": 30,
+  "cook_time": 45,
+  "servings": 8,
+  "ingredients": [
+    "ghee",
+    "whole spices (cinnamon, cloves, star anise, cardamom)",
+    "shallot",
+    "garlic",
+    "chicken stock cube",
+    "ginger",
+    "tomato puree",
+    "pandan leaf",
+    "sugar",
+    "salt",
+    "evaporated milk",
+    "basmati rice",
+    "water",
+    "chicken",
+    "turmeric powder",
+    "cooking oil",
+    "onion",
+    "lemongrass",
+    "blended chilli",
+    "oyster sauce",
+    "chilli sauce",
+    "seasoning powder",
+    "tomato"
+  ],
+  "steps": [
+    "[Nasi Tomato] Heat 3 tbsp ghee; add whole spices, 3 onions, 3 garlic cloves and fry briefly. Add 1 chicken stock cube, a knob of ginger, 4 tbsp tomato puree, 1–2 pandan leaves, 1 tbsp sugar, 1/3 tbsp salt and 0.5 cup evaporated milk; stir.",
+    "Add 4 cup basmati rice (soaked 30 min) and 5 cup water; cook as normal rice.",
+    "[Ayam Masak Merah] Coat chicken with salt and turmeric; fry in oil until golden brown.",
+    "Blend 2 sweet onions, 4 onions and 8 garlic cloves with water; sauté with 1 lemongrass stalk and 1 pandan leaf until fragrant.",
+    "Add blended chilli (adjust to taste); cook until oil separates.",
+    "Add 1 small can tomato puree, 2 tbsp oyster sauce, 2 tbsp chilli sauce; season with salt, seasoning powder and a little sugar.",
+    "Return the fried chicken to the pot; add sliced sweet onion, sliced chilli and tomato.",
+    "Pour in 1/3 cup evaporated milk for a creamier gravy; simmer until the chicken is cooked through."
+  ],
+  "steps_ms": [
+    "[Nasi Tomato] Panaskan 3 sudu besar minyak sapi; masukkan rempah 4 sekawan, 3 biji bawang merah, 3 ulas bawang putih dan goreng sebentar. Masukkan 1 kiub pati ayam, seketul halia, 4 sudu tomato puree, 1–2 helai daun pandan, 1 sudu gula, 1/3 sudu garam dan setengah cawan susu cair; kacau.",
+    "Masukkan 4 cawan beras basmati (direndam 30 min) dan 5 cawan air; masak seperti biasa.",
+    "[Ayam Masak Merah] Gaul ayam dengan garam dan kunyit; goreng dalam minyak sehingga golden brown.",
+    "Blend 2 biji bawang Holland, 4 biji bawang merah dan 8 ulas bawang putih dengan air; tumis bersama 1 batang serai dan 1 helai daun pandan sehingga wangi.",
+    "Masukkan cili kisar (ikut selera); masak sehingga pecah minyak.",
+    "Masukkan 1 tin kecil tomato puree, 2 sudu sos tiram, 2 sudu sos cili; tambah garam, serbuk perasa dan sedikit gula.",
+    "Masukkan balik ayam goreng; tambah hirisan bawang Holland, cili dan tomato.",
+    "Tuang 1/3 cawan susu cair untuk kuah lebih creamy; masak sehingga ayam masak sepenuhnya."
+  ],
+  "tags": [
+    "halal",
+    "chicken",
+    "rice",
+    "tomato",
+    "festive",
+    "malaysian",
+    "raya",
+    "open house"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "ghee",
+      "name_ms": "minyak sapi",
+      "quantity": 3,
+      "unit": "tbsp",
+      "note": "for nasi tomato"
+    },
+    {
+      "name": "whole spices (cinnamon, cloves, star anise, cardamom)",
+      "name_ms": "rempah 4 sekawan",
+      "quantity": null,
+      "unit": null,
+      "note": "standard mixed whole spices; nasi tomato"
+    },
+    {
+      "name": "shallot",
+      "name_ms": "bawang merah",
+      "quantity": 7,
+      "unit": null,
+      "note": "3 for nasi tomato; 4 blended for ayam"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 11,
+      "unit": "clove",
+      "note": "3 for nasi tomato; 8 blended for ayam"
+    },
+    {
+      "name": "chicken stock cube",
+      "name_ms": "kiub pati ayam",
+      "quantity": 1,
+      "unit": null,
+      "note": "for nasi tomato"
+    },
+    {
+      "name": "ginger",
+      "name_ms": "halia",
+      "quantity": null,
+      "unit": null,
+      "note": "1 knob; nasi tomato"
+    },
+    {
+      "name": "tomato puree",
+      "name_ms": "tomato puree",
+      "quantity": null,
+      "unit": null,
+      "note": "4 tbsp for nasi tomato; 1 small can for ayam"
+    },
+    {
+      "name": "pandan leaf",
+      "name_ms": "daun pandan",
+      "quantity": 2,
+      "unit": null,
+      "note": "1-2 for nasi tomato; 1 for ayam sauce"
+    },
+    {
+      "name": "sugar",
+      "name_ms": "gula",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": "for nasi tomato; a little more for ayam sauce"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "1/3 tbsp for nasi tomato; to taste for ayam"
+    },
+    {
+      "name": "evaporated milk",
+      "name_ms": "susu cair",
+      "quantity": null,
+      "unit": null,
+      "note": "0.5 cup for nasi tomato; 1/3 cup for ayam sauce"
+    },
+    {
+      "name": "basmati rice",
+      "name_ms": "beras basmati",
+      "quantity": 4,
+      "unit": "cup",
+      "note": "soaked 30 min; use 5 cup water"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": 5,
+      "unit": "cup",
+      "note": "for cooking nasi tomato"
+    },
+    {
+      "name": "chicken",
+      "name_ms": "ayam",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated"
+    },
+    {
+      "name": "turmeric powder",
+      "name_ms": "serbuk kunyit",
+      "quantity": null,
+      "unit": null,
+      "note": "to coat chicken"
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": "for frying chicken"
+    },
+    {
+      "name": "onion",
+      "name_ms": "bawang holland",
+      "quantity": 2,
+      "unit": null,
+      "note": "blended for ayam sauce; some sliced for garnish"
+    },
+    {
+      "name": "lemongrass",
+      "name_ms": "serai",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 stalk; ayam sauce"
+    },
+    {
+      "name": "blended chilli",
+      "name_ms": "cili kisar",
+      "quantity": null,
+      "unit": null,
+      "note": "adjust to taste for ayam sauce"
+    },
+    {
+      "name": "oyster sauce",
+      "name_ms": "sos tiram",
+      "quantity": 2,
+      "unit": "tbsp",
+      "note": "ayam sauce"
+    },
+    {
+      "name": "chilli sauce",
+      "name_ms": "sos cili",
+      "quantity": 2,
+      "unit": "tbsp",
+      "note": "ayam sauce"
+    },
+    {
+      "name": "seasoning powder",
+      "name_ms": "serbuk perasa",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "tomato",
+      "name_ms": "tomato",
+      "quantity": null,
+      "unit": null,
+      "note": "sliced; garnish for ayam"
+    }
+  ]
+}
