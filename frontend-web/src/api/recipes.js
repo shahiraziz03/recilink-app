@@ -45,4 +45,58 @@ export const getPopularIngredients = () =>
 export const searchIngredients = (q) =>
   API.get(`/recommendations/ingredients/search?q=${encodeURIComponent(q)}`)
 
+export const getSimilarRecipes = (recipeId, limit = 10) =>
+  API.get(`/recommendations/recipes/${recipeId}/similar?limit=${limit}`)
+
+// Recipe Matching / Pantry
+export const matchRecipes = (ingredients) =>
+  API.post('/recipes/match', { ingredients })
+
+// Social Actions
+export const getComments = (recipeId) =>
+  API.get(`/social/recipes/${recipeId}/comments`)
+
+export const createComment = (recipeId, content) =>
+  API.post(`/social/recipes/${recipeId}/comments`, { content })
+
+export const toggleSaveRecipe = (recipeId) =>
+  API.post(`/social/recipes/${recipeId}/save`)
+
+export const isRecipeSaved = (recipeId) =>
+  API.get(`/social/recipes/${recipeId}/is-saved`)
+
+export const getSavedRecipes = () =>
+  API.get('/social/recipes/saved')
+
+// Profile and Following
+export const getUserProfile = (userId) =>
+  API.get(`/social/users/${userId}/profile`)
+
+export const followUser = (userId) =>
+  API.post(`/social/users/${userId}/follow`)
+
+export const unfollowUser = (userId) =>
+  API.delete(`/social/users/${userId}/follow`)
+
+export const getFollowers = () =>
+  API.get('/social/followers')
+
+export const getFollowing = () =>
+  API.get('/social/following')
+
+export const getMyProfile = () =>
+  API.get('/profile/me')
+
+export const updateMyProfile = (data) =>
+  API.put('/profile/me', data)
+
+export const getStreak = () =>
+  API.get('/profile/streak')
+
+export const dailyCheckin = () =>
+  API.post('/profile/checkin')
+
+export const getUserRecipes = (userId) =>
+  API.get(`/social/users/${userId}/recipes`)
+
 export default API

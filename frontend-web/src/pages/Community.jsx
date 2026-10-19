@@ -2,6 +2,16 @@ import { useState, useEffect, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { getCommunityFeed, updateRecipePost, deleteRecipePost } from '../api/posts'
+import { 
+  getComments, 
+  createComment, 
+  toggleSaveRecipe, 
+  isRecipeSaved, 
+  getSimilarRecipes, 
+  getUserProfile, 
+  followUser, 
+  unfollowUser 
+} from '../api/recipes'
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -194,7 +204,7 @@ function PostModal({ post, onClose, onPostUpdated }) {
   const photo = post.cover_photo_url || post.recipe?.image_url
   const recipe = post.recipe
 
-  const isOwner = user && post.posted_by?.id === user.id
+  const isOwner = user && Number(post.posted_by?.id) === Number(user.id)
 
   // Edit states
   const [isEditing, setIsEditing] = useState(false)
@@ -212,6 +222,49 @@ function PostModal({ post, onClose, onPostUpdated }) {
   const [isSaving, setIsSaving] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
   const [error, setError] = useState(null)
+
+  // Social / Interactive States
+  const [isSaved, setIsSaved] = useState(false)
+  const [profile, setProfile] = useState(null)
+  const [isFollowing, setIsFollowing] = useState(false)
+  const [comments, setComments] = useState([])
+  const [newComment, setNewComment] = useState('')
+  const [similar, setSimilar] = useState([])
+  const [activeTab, setActiveTab] = useState('ingredients') // 'ingredients' or 'steps'
+
+  // Load interactive state
+  useEffect(() => {
+    if (recipe?.id) {
+      // Check if recipe is saved
+      if (token) {
+        isRecipeSaved(recipe.id)
+          .then(res => setIsSaved(res.data.saved))
+          .catch(err => console.error("Error checking saved state:", err))
+      }
+
+      // Fetch comments
+      getComments(recipe.id)
+        .then(res => setComments(res.data))
+        .catch(err => console.error("Error fetching comments:", err))
+
+      // Fetch similar recipes
+      getSimilarRecipes(recipe.id, 4)
+        .then(res => setSimilar(res.data))
+        .catch(err => console.error("Error fetching similar recipes:", err))
+    }
+  }, [recipe?.id, token])
+
+  // Fetch author profile to see follow status
+  useEffect(() => {
+    if (post.posted_by?.id && token) {
+      getUserProfile(post.posted_by.id)
+        .then(res => {
+          setProfile(res.data)
+          setIsFollowing(res.data.is_following)
+        })
+        .catch(err => console.error("Error fetching user profile:", err))
+    }
+  }, [post.posted_by?.id, token])
 
   // Close on backdrop click
   const handleBackdrop = (e) => {
@@ -267,264 +320,458 @@ function PostModal({ post, onClose, onPostUpdated }) {
     }
   }
 
+  const handleSaveToggle = async () => {
+    if (!token) return navigate('/login')
+    try {
+      const res = await toggleSaveRecipe(recipe.id)
+      setIsSaved(res.data.saved)
+    } catch (err) {
+      console.error("Error toggling save:", err)
+    }
+  }
+
+  const handleFollowToggle = async () => {
+    if (!token) return navigate('/login')
+    try {
+      if (isFollowing) {
+        await unfollowUser(post.posted_by.id)
+        setIsFollowing(false)
+        if (profile) setProfile(prev => ({ ...prev, followers_count: prev.followers_count - 1 }))
+      } else {
+        await followUser(post.posted_by.id)
+        setIsFollowing(true)
+        if (profile) setProfile(prev => ({ ...prev, followers_count: prev.followers_count + 1 }))
+      }
+    } catch (err) {
+      console.error("Error toggling follow:", err)
+    }
+  }
+
+  const handleCommentSubmit = async (e) => {
+    e.preventDefault()
+    if (!token) return navigate('/login')
+    if (!newComment.trim()) return
+    try {
+      const res = await createComment(recipe.id, newComment.trim())
+      setComments(prev => [...prev, res.data])
+      setNewComment('')
+    } catch (err) {
+      console.error("Error submitting comment:", err)
+    }
+  }
+
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in"
+      className="fixed inset-0 z-50 flex items-start justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto animate-fade-in"
       onClick={handleBackdrop}
     >
-      <div className="bg-white rounded-3xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl animate-slide-up">
-        {/* Photo header */}
-        {photo && !isEditing && (
-          <div className="relative h-72 overflow-hidden rounded-t-3xl">
-            <img src={photo} alt={recipe?.title} className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-            {/* Close btn */}
-            <button
-              onClick={onClose}
-              className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors shadow-sm"
-            >
-              <svg className="w-4 h-4 text-[#261814]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-            {/* Badges on image */}
+      <div className="bg-white rounded-3xl w-full max-w-5xl shadow-2xl overflow-hidden my-4 md:my-8 animate-slide-up relative flex flex-col">
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-all shadow-md hover:scale-105 active:scale-95"
+        >
+          <svg className="w-4 h-4 text-[#261814]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        {error && (
+          <div className="m-6 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-red-600 text-xs font-semibold">
+            {error}
+          </div>
+        )}
+
+        {/* Top visual detail part */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 md:p-8">
+          {/* Left Column: Cover Image & Badges */}
+          <div className="relative flex flex-col justify-start rounded-2xl overflow-hidden bg-gray-50 max-h-[550px] shadow-sm">
+            {photo ? (
+              <img 
+                src={photo} 
+                alt={recipe?.title} 
+                className="w-full h-full object-cover rounded-2xl" 
+                style={{ minHeight: '350px', maxHeight: '550px' }}
+              />
+            ) : (
+              <div className="h-96 bg-gradient-to-br from-[#ffe9e3] to-[#fde3db] flex items-center justify-center rounded-2xl">
+                <span className="text-6xl">🍽️</span>
+              </div>
+            )}
+            
+            {/* Overlay Badges */}
             <div className="absolute bottom-4 left-4 flex gap-2">
               {recipe?.difficulty && (
-                <span className={`text-xs font-bold px-3 py-1 rounded-full text-white ${
-                  recipe.difficulty === 'Easy' ? 'bg-emerald-500' :
-                  recipe.difficulty === 'Medium' ? 'bg-[#FF6B35]' : 'bg-red-500'
+                <span className={`text-xs font-bold px-3.5 py-1.5 rounded-full text-white shadow-md backdrop-blur-sm ${
+                  recipe.difficulty === 'Easy' ? 'bg-emerald-500/90' :
+                  recipe.difficulty === 'Medium' ? 'bg-[#FF6B35]/90' : 'bg-red-500/90'
                 }`}>{recipe.difficulty}</span>
               )}
               {recipe?.cuisine && (
-                <span className="text-xs font-semibold px-3 py-1 rounded-full bg-white/90 text-[#594139]">
+                <span className="text-xs font-semibold px-3.5 py-1.5 rounded-full bg-white/95 text-[#594139] shadow-md backdrop-blur-sm">
                   {recipe.cuisine}
                 </span>
               )}
             </div>
           </div>
-        )}
 
-        <div className="p-6 space-y-5">
-          {error && (
-            <div className="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-red-600 text-xs font-semibold">
-              {error}
-            </div>
-          )}
-
-          {isEditing ? (
-            /* Editing form UI including full recipe updates */
-            <form onSubmit={handleUpdate} className="space-y-4">
-              <div className="flex items-center justify-between border-b border-[#f7ddd5] pb-3">
-                <h3 className="font-bold text-[#261814] text-lg">Edit Post & Recipe Details</h3>
-                <button type="button" onClick={() => setIsEditing(false)} className="text-xs text-[#8d7168] hover:text-[#261814] font-semibold">
-                  Cancel
-                </button>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-bold text-[#594139] mb-1">Recipe Title</label>
-                  <input type="text" value={title} onChange={e => setTitle(e.target.value)} required
-                    className="w-full px-3 py-2 bg-[#fff8f6] border border-[#e1bfb5] rounded-xl text-sm focus:outline-none focus:border-[#FF6B35]" />
-                </div>
-                <div>
-                  <label className="block text-xs font-bold text-[#594139] mb-1">Cuisine</label>
-                  <select value={cuisine} onChange={e => setCuisine(e.target.value)}
-                    className="w-full px-3 py-2 bg-[#fff8f6] border border-[#e1bfb5] rounded-xl text-sm focus:outline-none focus:border-[#FF6B35]">
-                    {['Malaysian', 'Chinese', 'Indian', 'Western', 'Japanese', 'Korean', 'Thai', 'Italian', 'Mexican', 'Other'].map(c => (
-                      <option key={c} value={c}>{c}</option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-3 gap-2">
-                <div>
-                  <label className="block text-xs font-bold text-[#594139] mb-1">Prep Time (min)</label>
-                  <input type="number" value={prepTime} onChange={e => setPrepTime(e.target.value)}
-                    className="w-full px-3 py-2 bg-[#fff8f6] border border-[#e1bfb5] rounded-xl text-sm focus:outline-none focus:border-[#FF6B35]" />
-                </div>
-                <div>
-                  <label className="block text-xs font-bold text-[#594139] mb-1">Cook Time (min)</label>
-                  <input type="number" value={cookTime} onChange={e => setCookTime(e.target.value)}
-                    className="w-full px-3 py-2 bg-[#fff8f6] border border-[#e1bfb5] rounded-xl text-sm focus:outline-none focus:border-[#FF6B35]" />
-                </div>
-                <div>
-                  <label className="block text-xs font-bold text-[#594139] mb-1">Servings</label>
-                  <input type="number" value={servings} onChange={e => setServings(e.target.value)}
-                    className="w-full px-3 py-2 bg-[#fff8f6] border border-[#e1bfb5] rounded-xl text-sm focus:outline-none focus:border-[#FF6B35]" />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-[#594139] mb-1">Difficulty</label>
-                <div className="flex gap-2">
-                  {['Easy', 'Medium', 'Hard'].map(d => (
-                    <button key={d} type="button" onClick={() => setDifficulty(d)}
-                      className={`flex-1 py-1.5 rounded-xl text-xs font-semibold border transition-all ${
-                        difficulty === d ? 'bg-[#FF6B35] text-white border-[#FF6B35]' : 'bg-[#fff8f6] text-[#594139] border-[#e1bfb5] hover:bg-[#ffe9e3]'
-                      }`}>
-                      {d}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-[#594139] mb-1">Cover Photo URL</label>
-                <input type="text" value={coverPhotoUrl} onChange={e => setCoverPhotoUrl(e.target.value)}
-                  placeholder="https://example.com/food.jpg"
-                  className="w-full px-3 py-2 bg-[#fff8f6] border border-[#e1bfb5] rounded-xl text-sm focus:outline-none focus:border-[#FF6B35]" />
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-[#594139] mb-1">Social Caption</label>
-                <textarea value={caption} onChange={e => setCaption(e.target.value)} rows="2"
-                  className="w-full px-3 py-2 bg-[#fff8f6] border border-[#e1bfb5] rounded-xl text-sm focus:outline-none focus:border-[#FF6B35]" />
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-[#594139] mb-1">Ingredients (comma-separated, name only)</label>
-                <input type="text" value={ingredients} onChange={e => setIngredients(e.target.value)}
-                  placeholder="coconut milk, pandan leaves, beef"
-                  className="w-full px-3 py-2 bg-[#fff8f6] border border-[#e1bfb5] rounded-xl text-sm focus:outline-none focus:border-[#FF6B35]" />
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-[#594139] mb-1">Steps (one step per line)</label>
-                <textarea value={steps} onChange={e => setSteps(e.target.value)} rows="3"
-                  placeholder="Step 1&#10;Step 2"
-                  className="w-full px-3 py-2 bg-[#fff8f6] border border-[#e1bfb5] rounded-xl text-sm focus:outline-none focus:border-[#FF6B35]" />
-              </div>
-
-              <div className="flex gap-2 pt-2 border-t border-[#f7ddd5]">
-                <button type="submit" disabled={isSaving} className="btn-primary flex-1">
-                  {isSaving ? 'Saving Changes...' : 'Save Changes'}
-                </button>
-                <button type="button" onClick={() => setIsEditing(false)} className="btn-secondary w-auto px-6">
-                  Cancel
-                </button>
-              </div>
-            </form>
-          ) : (
-            /* Standard Modal Details View */
-            <>
-              {/* Title + close */}
-              <div className="flex items-start justify-between gap-4">
-                <h2 className="text-xl font-bold text-[#261814]" style={{ fontFamily: 'Plus Jakarta Sans' }}>
-                  {recipe?.title}
-                </h2>
-                {!photo && (
-                  <button onClick={onClose} className="w-8 h-8 rounded-full bg-[#fff1ed] flex items-center justify-center flex-shrink-0">
-                    <svg className="w-4 h-4 text-[#594139]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                )}
-              </div>
-
-              {/* Author + meta */}
-              <div className="flex items-center gap-4 flex-wrap">
-                <div className="flex items-center gap-2">
-                  <div className={`w-8 h-8 rounded-full bg-gradient-to-br ${avatarColor(post.posted_by?.username)} flex items-center justify-center text-white text-xs font-bold`}>
-                    {getInitials(post.posted_by?.username)}
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-[#261814]">{post.posted_by?.username}</p>
-                    <p className="text-xs text-[#8d7168]">{timeAgo(post.created_at)}</p>
-                  </div>
-                </div>
-                <div className="flex gap-3 ml-auto text-xs text-[#8d7168]">
-                  {recipe?.prep_time && <span>⏱ {recipe.prep_time}m prep</span>}
-                  {recipe?.cook_time && <span>🔥 {recipe.cook_time}m cook</span>}
-                  {recipe?.servings && <span>🍽️ {recipe.servings} servings</span>}
-                </div>
-              </div>
-
-              {/* Edit/Delete Owner actions bar */}
-              {isOwner && (
-                <div className="flex gap-2 bg-[#fff1ed] rounded-2xl p-3 border border-[#fde3db] justify-end items-center">
-                  <span className="text-xs font-semibold text-[#594139] mr-auto pl-1">✨ You own this post</span>
-                  <button onClick={() => setIsEditing(true)}
-                    className="flex items-center gap-1 bg-white hover:bg-[#ffe9e3] text-xs font-bold px-3 py-1.5 rounded-full text-[#594139] border border-[#e1bfb5] transition-colors shadow-sm">
-                    <svg className="w-3.5 h-3.5 text-[#FF6B35]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                    </svg>
-                    Edit
-                  </button>
-                  <button onClick={handleDelete} disabled={isDeleting}
-                    className="flex items-center gap-1 bg-[#ff4a4a]/10 hover:bg-[#ff4a4a]/20 text-xs font-bold px-3 py-1.5 rounded-full text-red-600 border border-red-200 transition-colors">
-                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                    </svg>
-                    Delete
-                  </button>
-                </div>
-              )}
-
-              {/* Caption */}
-              {post.caption && (
-                <div className="bg-[#fff8f6] rounded-xl p-4 border border-[#f7ddd5]">
-                  <p className="text-sm text-[#594139] leading-relaxed italic">"{post.caption}"</p>
-                </div>
-              )}
-
-              {/* Tags */}
-              {recipe?.tags?.length > 0 && (
-                <div className="flex flex-wrap gap-2">
-                  {recipe.tags.map((tag) => (
-                    <span key={tag} className="text-xs font-semibold bg-[#fff1ed] text-[#FF6B35] px-3 py-1 rounded-full border border-[#fde3db]">
-                      #{tag}
-                    </span>
-                  ))}
-                </div>
-              )}
-
-              {/* Ingredients */}
-              <div>
-                <h3 className="text-sm font-bold text-[#261814] mb-3" style={{ fontFamily: 'Plus Jakarta Sans' }}>
-                  🥗 Ingredients ({recipe?.ingredients?.length})
-                </h3>
-                <div className="grid grid-cols-2 gap-1.5">
-                  {recipe?.ingredients?.map((ing, idx) => (
-                    <div key={idx} className="flex items-center gap-2 text-xs text-[#594139]">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#FF6B35] flex-shrink-0" />
-                      {ing}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Steps */}
-              <div>
-                <h3 className="text-sm font-bold text-[#261814] mb-3" style={{ fontFamily: 'Plus Jakarta Sans' }}>
-                  👨‍🍳 Steps
-                </h3>
+          {/* Right Column: Interaction Hub */}
+          <div className="flex flex-col justify-between space-y-5">
+            {isEditing ? (
+              /* Edit Form Layout */
+              <form onSubmit={handleUpdate} className="space-y-4 flex flex-col h-full justify-between">
                 <div className="space-y-3">
-                  {recipe?.steps?.map((step, idx) => (
-                    <div key={idx} className="flex gap-3">
-                      <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#FF6B35] to-[#ff9a72] text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">
-                        {idx + 1}
-                      </div>
-                      <p className="text-sm text-[#594139] leading-relaxed">{step}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+                  <div className="flex items-center justify-between border-b border-[#f7ddd5] pb-2">
+                    <h3 className="font-bold text-[#261814] text-base">Edit Post & Recipe</h3>
+                    <button type="button" onClick={() => setIsEditing(false)} className="text-xs text-[#FF6B35] hover:underline font-semibold">
+                      Cancel
+                    </button>
+                  </div>
 
-              {/* View full recipe button */}
-              <button
-                onClick={() => { navigate(`/recipes/${recipe?.id}`); onClose() }}
-                className="btn-primary mt-2"
-              >
-                View Full Recipe Page
-                <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </button>
-            </>
-          )}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-[10px] font-bold text-[#594139] mb-0.5">Title</label>
+                      <input type="text" value={title} onChange={e => setTitle(e.target.value)} required
+                        className="w-full px-2.5 py-1.5 bg-[#fff8f6] border border-[#e1bfb5] rounded-xl text-xs focus:outline-none focus:border-[#FF6B35]" />
+                    </div>
+                    <div>
+                      <label className="block text-[10px] font-bold text-[#594139] mb-0.5">Cuisine</label>
+                      <select value={cuisine} onChange={e => setCuisine(e.target.value)}
+                        className="w-full px-2.5 py-1.5 bg-[#fff8f6] border border-[#e1bfb5] rounded-xl text-xs focus:outline-none focus:border-[#FF6B35]">
+                        {['Malaysian', 'Chinese', 'Indian', 'Western', 'Japanese', 'Korean', 'Thai', 'Italian', 'Mexican', 'Other'].map(c => (
+                          <option key={c} value={c}>{c}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-2">
+                    <div>
+                      <label className="block text-[10px] font-bold text-[#594139] mb-0.5">Prep (m)</label>
+                      <input type="number" value={prepTime} onChange={e => setPrepTime(e.target.value)}
+                        className="w-full px-2.5 py-1.5 bg-[#fff8f6] border border-[#e1bfb5] rounded-xl text-xs focus:outline-none focus:border-[#FF6B35]" />
+                    </div>
+                    <div>
+                      <label className="block text-[10px] font-bold text-[#594139] mb-0.5">Cook (m)</label>
+                      <input type="number" value={cookTime} onChange={e => setCookTime(e.target.value)}
+                        className="w-full px-2.5 py-1.5 bg-[#fff8f6] border border-[#e1bfb5] rounded-xl text-xs focus:outline-none focus:border-[#FF6B35]" />
+                    </div>
+                    <div>
+                      <label className="block text-[10px] font-bold text-[#594139] mb-0.5">Servings</label>
+                      <input type="number" value={servings} onChange={e => setServings(e.target.value)}
+                        className="w-full px-2.5 py-1.5 bg-[#fff8f6] border border-[#e1bfb5] rounded-xl text-xs focus:outline-none focus:border-[#FF6B35]" />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[10px] font-bold text-[#594139] mb-1">Difficulty</label>
+                    <div className="flex gap-2">
+                      {['Easy', 'Medium', 'Hard'].map(d => (
+                        <button key={d} type="button" onClick={() => setDifficulty(d)}
+                          className={`flex-1 py-1 rounded-xl text-xs font-semibold border transition-all ${
+                            difficulty === d ? 'bg-[#FF6B35] text-white border-[#FF6B35]' : 'bg-[#fff8f6] text-[#594139] border-[#e1bfb5] hover:bg-[#ffe9e3]'
+                          }`}>
+                          {d}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[10px] font-bold text-[#594139] mb-0.5">Image URL</label>
+                    <input type="text" value={coverPhotoUrl} onChange={e => setCoverPhotoUrl(e.target.value)}
+                      placeholder="https://example.com/food.jpg"
+                      className="w-full px-2.5 py-1.5 bg-[#fff8f6] border border-[#e1bfb5] rounded-xl text-xs focus:outline-none focus:border-[#FF6B35]" />
+                  </div>
+
+                  <div>
+                    <label className="block text-[10px] font-bold text-[#594139] mb-0.5">Caption</label>
+                    <textarea value={caption} onChange={e => setCaption(e.target.value)} rows="2"
+                      className="w-full px-2.5 py-1.5 bg-[#fff8f6] border border-[#e1bfb5] rounded-xl text-xs focus:outline-none focus:border-[#FF6B35]" />
+                  </div>
+
+                  <div>
+                    <label className="block text-[10px] font-bold text-[#594139] mb-0.5">Ingredients (comma-separated)</label>
+                    <input type="text" value={ingredients} onChange={e => setIngredients(e.target.value)}
+                      placeholder="rice, egg, garlic"
+                      className="w-full px-2.5 py-1.5 bg-[#fff8f6] border border-[#e1bfb5] rounded-xl text-xs focus:outline-none focus:border-[#FF6B35]" />
+                  </div>
+
+                  <div>
+                    <label className="block text-[10px] font-bold text-[#594139] mb-0.5">Steps (one per line)</label>
+                    <textarea value={steps} onChange={e => setSteps(e.target.value)} rows="2"
+                      className="w-full px-2.5 py-1.5 bg-[#fff8f6] border border-[#e1bfb5] rounded-xl text-xs focus:outline-none focus:border-[#FF6B35]" />
+                  </div>
+                </div>
+
+                <div className="flex gap-2 pt-2 border-t border-[#f7ddd5]">
+                  <button type="submit" disabled={isSaving} className="btn-primary flex-1 py-2 text-xs">
+                    {isSaving ? 'Saving...' : 'Save Changes'}
+                  </button>
+                  <button type="button" onClick={() => setIsEditing(false)} className="btn-secondary w-auto px-4 py-2 text-xs">
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            ) : (
+              /* Interactive Pinterest-style Right Pane */
+              <>
+                <div className="space-y-4">
+                  {/* Action Bar (Save & Owner buttons) */}
+                  <div className="flex items-center justify-between">
+                    {/* Save Button */}
+                    <button
+                      onClick={handleSaveToggle}
+                      className={`flex items-center gap-1.5 px-6 py-2.5 rounded-full font-bold text-sm shadow-sm transition-all active:scale-95 ${
+                        isSaved
+                          ? 'bg-[#261814] text-white hover:bg-black'
+                          : 'bg-[#FF6B35] text-white hover:bg-[#ff5516]'
+                      }`}
+                    >
+                      <svg className="w-4 h-4" fill={isSaved ? 'currentColor' : 'none'} viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                      </svg>
+                      {isSaved ? 'Saved' : 'Save'}
+                    </button>
+
+                    {/* Owner Management */}
+                    {isOwner && (
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => setIsEditing(true)}
+                          className="w-8 h-8 rounded-full bg-gray-100 hover:bg-[#ffe9e3] flex items-center justify-center text-[#594139] transition-colors border border-gray-200"
+                          title="Edit Recipe"
+                        >
+                          <svg className="w-4 h-4 text-[#FF6B35]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                          </svg>
+                        </button>
+                        <button
+                          onClick={handleDelete}
+                          disabled={isDeleting}
+                          className="w-8 h-8 rounded-full bg-red-50 hover:bg-red-100 flex items-center justify-center text-red-600 transition-colors border border-red-100"
+                          title="Delete Recipe"
+                        >
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                          </svg>
+                        </button>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Creator Info and Follow Toggle */}
+                  <div className="flex items-center justify-between bg-gradient-to-r from-[#fff8f6] to-white p-3 rounded-2xl border border-[#ffe9e3]">
+                    <div className="flex items-center gap-2.5">
+                      <div className={`w-9 h-9 rounded-full bg-gradient-to-br ${avatarColor(post.posted_by?.username)} flex items-center justify-center text-white text-xs font-bold shadow-sm`}>
+                        {getInitials(post.posted_by?.username)}
+                      </div>
+                      <div>
+                        <p className="text-xs font-bold text-[#261814]">{post.posted_by?.username || 'Anonymous'}</p>
+                        <p className="text-[10px] text-[#8d7168]">
+                          {profile ? `${profile.followers_count || 0} followers` : 'Contributor'}
+                        </p>
+                      </div>
+                    </div>
+                    
+                    {!isOwner && (
+                      <button
+                        onClick={handleFollowToggle}
+                        className={`text-xs font-bold px-4 py-2 rounded-full transition-all active:scale-95 shadow-sm ${
+                          isFollowing
+                            ? 'bg-[#261814] text-white hover:bg-black'
+                            : 'bg-[#ffe9e3] text-[#FF6B35] hover:bg-[#fde3db] border border-[#fde3db]'
+                        }`}
+                      >
+                        {isFollowing ? 'Following' : 'Follow'}
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Title & Caption */}
+                  <div className="space-y-1">
+                    <h2 className="text-xl md:text-2xl font-extrabold text-[#261814] leading-snug" style={{ fontFamily: 'Plus Jakarta Sans' }}>
+                      {recipe?.title}
+                    </h2>
+                    {post.caption && (
+                      <p className="text-xs text-[#594139] leading-relaxed italic border-l-2 border-[#FF6B35] pl-2 bg-[#fffcfb] py-1">
+                        "{post.caption}"
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Recipe Stats Bar */}
+                  <div className="flex gap-4 text-[11px] text-[#8d7168] bg-[#fffcfb] p-2.5 rounded-xl border border-[#fdf0ec]">
+                    {recipe?.prep_time && <span>⏱️ <b>{recipe.prep_time}m</b> prep</span>}
+                    {recipe?.cook_time && <span>🔥 <b>{recipe.cook_time}m</b> cook</span>}
+                    {recipe?.servings && <span>🍽️ <b>{recipe.servings}</b> servings</span>}
+                  </div>
+
+                  {/* Tabs: Ingredients vs Steps */}
+                  <div className="space-y-2">
+                    <div className="flex border-b border-[#f7ddd5] text-xs font-semibold">
+                      <button
+                        onClick={() => setActiveTab('ingredients')}
+                        className={`flex-1 pb-2 text-center transition-all ${
+                          activeTab === 'ingredients'
+                            ? 'border-b-2 border-[#FF6B35] text-[#FF6B35]'
+                            : 'text-[#8d7168] hover:text-[#594139]'
+                        }`}
+                      >
+                        Ingredients ({recipe?.ingredients?.length || 0})
+                      </button>
+                      <button
+                        onClick={() => setActiveTab('steps')}
+                        className={`flex-1 pb-2 text-center transition-all ${
+                          activeTab === 'steps'
+                            ? 'border-b-2 border-[#FF6B35] text-[#FF6B35]'
+                            : 'text-[#8d7168] hover:text-[#594139]'
+                        }`}
+                      >
+                        Steps ({recipe?.steps?.length || 0})
+                      </button>
+                    </div>
+
+                    {/* Tab Panels */}
+                    <div className="max-h-40 overflow-y-auto pr-1 text-xs text-[#594139] space-y-1.5 scrollbar-thin">
+                      {activeTab === 'ingredients' ? (
+                        <div className="grid grid-cols-2 gap-1.5">
+                          {recipe?.ingredients?.map((ing, idx) => (
+                            <div key={idx} className="flex items-center gap-2 bg-[#fffcfb] px-2.5 py-1.5 rounded-lg border border-[#fef7f5]">
+                              <div className="w-1.5 h-1.5 rounded-full bg-[#FF6B35]" />
+                              <span>{ing}</span>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="space-y-2">
+                          {recipe?.steps?.map((step, idx) => (
+                            <div key={idx} className="flex gap-2">
+                              <div className="w-5 h-5 rounded-full bg-[#FF6B35] text-white font-bold flex items-center justify-center flex-shrink-0 text-[10px]">
+                                {idx + 1}
+                              </div>
+                              <p className="leading-relaxed pt-0.5">{step}</p>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Comments Section */}
+                <div className="border-t border-[#f7ddd5] pt-4 space-y-3">
+                  <h4 className="text-xs font-bold text-[#261814] flex items-center gap-1.5">
+                    <span>💬 Comments</span>
+                    <span className="bg-[#fff1ed] text-[#FF6B35] text-[10px] px-2 py-0.5 rounded-full">
+                      {comments.length}
+                    </span>
+                  </h4>
+
+                  {/* Scrollable comments box */}
+                  <div className="max-h-40 overflow-y-auto space-y-2.5 pr-2 scrollbar-thin">
+                    {comments.length === 0 ? (
+                      <p className="text-[11px] text-[#8d7168] italic py-2">No comments yet. Start the conversation!</p>
+                    ) : (
+                      comments.map((comment) => (
+                        <div key={comment.id} className="flex items-start gap-2 text-xs">
+                          <div className={`w-6.5 h-6.5 rounded-full bg-gradient-to-br ${avatarColor(comment.username)} flex items-center justify-center text-white text-[9px] font-bold flex-shrink-0 mt-0.5`}>
+                            {getInitials(comment.username)}
+                          </div>
+                          <div className="flex-1 bg-[#fffcfb] p-2 rounded-xl border border-[#fef7f5]">
+                            <div className="flex justify-between items-baseline mb-0.5">
+                              <span className="font-bold text-[#261814] text-[10px]">{comment.username}</span>
+                              <span className="text-[8px] text-[#8d7168]">{timeAgo(comment.created_at)}</span>
+                            </div>
+                            <p className="text-[#594139] leading-relaxed text-[11px]">{comment.content}</p>
+                          </div>
+                        </div>
+                      ))
+                    )}
+                  </div>
+
+                  {/* Comment Form */}
+                  <form onSubmit={handleCommentSubmit} className="flex gap-2">
+                    <input
+                      type="text"
+                      placeholder="Add a comment..."
+                      value={newComment}
+                      onChange={(e) => setNewComment(e.target.value)}
+                      className="flex-1 px-3.5 py-2 bg-[#fff8f6] border border-[#e1bfb5] rounded-full text-xs focus:outline-none focus:border-[#FF6B35] focus:ring-1 focus:ring-[#FF6B35]"
+                    />
+                    <button
+                      type="submit"
+                      disabled={!newComment.trim()}
+                      className="bg-[#FF6B35] hover:bg-[#ff5516] disabled:opacity-50 disabled:hover:bg-[#FF6B35] text-white font-bold text-xs px-4 py-2 rounded-full transition-colors active:scale-95"
+                    >
+                      Post
+                    </button>
+                  </form>
+                </div>
+              </>
+            )}
+          </div>
         </div>
+
+        {/* Bottom "More Like This" similar recipes grid */}
+        {!isEditing && similar.length > 0 && (
+          <div className="border-t border-[#f7ddd5] bg-[#fffcfb] p-6 md:p-8">
+            <h3 className="text-sm font-bold text-[#261814] mb-4 flex items-center gap-1.5" style={{ fontFamily: 'Plus Jakarta Sans' }}>
+              <span>✨ More Like This</span>
+              <span className="text-[10px] text-[#8d7168] font-normal">(Jaccard Similarity)</span>
+            </h3>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {similar.map((sim) => {
+                const simPhoto = sim.image_url
+                const simTime = (sim.prep_time || 0) + (sim.cook_time || 0)
+
+                return (
+                  <div
+                    key={sim.id}
+                    onClick={() => {
+                      navigate(`/recipes/${sim.id}`)
+                      onClose()
+                    }}
+                    className="cursor-pointer rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 bg-white border border-[#fde3db] flex flex-col group"
+                  >
+                    {/* Small image */}
+                    <div className="h-28 w-full overflow-hidden bg-gray-100 relative">
+                      {simPhoto ? (
+                        <img 
+                          src={simPhoto} 
+                          alt={sim.title} 
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-[#ffe9e3] to-[#fde3db] flex items-center justify-center">
+                          <span className="text-2xl">🍽️</span>
+                        </div>
+                      )}
+                      
+                      {sim.cuisine && (
+                        <span className="absolute top-2 right-2 text-[8px] font-bold px-1.5 py-0.5 rounded bg-white/90 text-[#594139] shadow-sm">
+                          {sim.cuisine}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Small body */}
+                    <div className="p-2.5 flex-1 flex flex-col justify-between">
+                      <h4 className="text-[11px] font-bold text-[#261814] line-clamp-2 leading-tight group-hover:text-[#FF6B35] transition-colors mb-1.5">
+                        {sim.title}
+                      </h4>
+                      <div className="flex justify-between items-center text-[9px] text-[#8d7168]">
+                        <span className="capitalize">{sim.difficulty || 'Medium'}</span>
+                        {simTime > 0 && <span>⏱️ {simTime}m</span>}
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )

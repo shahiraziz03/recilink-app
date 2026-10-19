@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { getRecipeById } from '../api/recipes'
+import { getRecipeById, toggleSaveRecipe, isRecipeSaved } from '../api/recipes'
 
 // ── Difficulty badge ──────────────────────────────────────────────────────────
 function DifficultyBadge({ difficulty }) {
@@ -35,12 +35,21 @@ export default function RecipeDetail() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
+  // Social states
+  const [isSaved, setIsSaved] = useState(false)
+  const [savesCount, setSavesCount] = useState(0)
+
   useEffect(() => {
     const fetchRecipe = async () => {
       setLoading(true)
       try {
-        const res = await getRecipeById(id)
-        setRecipe(res.data)
+        const [recipeRes, savedRes] = await Promise.all([
+          getRecipeById(id),
+          isRecipeSaved(id).catch(() => ({ data: { saved: false } }))
+        ])
+        setRecipe(recipeRes.data)
+        setSavesCount(recipeRes.data.saves_count || 0)
+        setIsSaved(savedRes.data.saved)
       } catch {
         setError('Recipe not found.')
       } finally {
@@ -49,6 +58,16 @@ export default function RecipeDetail() {
     }
     fetchRecipe()
   }, [id])
+
+  const handleToggleSave = async () => {
+    try {
+      const res = await toggleSaveRecipe(id)
+      setIsSaved(res.data.saved)
+      setSavesCount(res.data.saves_count)
+    } catch {
+      alert('Must be logged in to save recipes.')
+    }
+  }
 
   const handleGrocerySuggestions = () => {
     // Pass ingredients to grocery page via state
@@ -128,24 +147,42 @@ export default function RecipeDetail() {
         </div>
       </div>
 
-      {/* ── Title + meta ─────────────────────────────────────────────────── */}
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-[#261814] mb-3 leading-tight capitalize">
-          {recipe.title}
-        </h1>
+      {/* ── Title + Save Option ─────────────────────────────────────────── */}
+      <div className="flex items-start justify-between gap-4 mb-6">
+        <div>
+          <h1 className="text-3xl font-bold text-[#261814] mb-3 leading-tight capitalize">
+            {recipe.title}
+          </h1>
 
-        {/* Cuisine + Difficulty chips */}
-        <div className="flex flex-wrap items-center gap-2 mb-4">
-          {recipe.cuisine && (
-            <span className="flex items-center gap-1 bg-[#fff1ed] text-[#FF6B35] text-xs font-semibold px-3 py-1.5 rounded-full border border-[#fde3db]">
-              🌍 {recipe.cuisine}
-            </span>
-          )}
-          <DifficultyBadge difficulty={recipe.difficulty} />
-          {recipe.tags?.map((tag) => (
-            <span key={tag} className="text-[#8d7168] text-xs font-medium">#{tag}</span>
-          ))}
+          {/* Cuisine + Difficulty chips */}
+          <div className="flex flex-wrap items-center gap-2">
+            {recipe.cuisine && (
+              <span className="flex items-center gap-1 bg-[#fff1ed] text-[#FF6B35] text-xs font-semibold px-3 py-1.5 rounded-full border border-[#fde3db]">
+                🌍 {recipe.cuisine}
+              </span>
+            )}
+            <DifficultyBadge difficulty={recipe.difficulty} />
+            {recipe.tags?.map((tag) => (
+              <span key={tag} className="text-[#8d7168] text-xs font-medium">#{tag}</span>
+            ))}
+          </div>
         </div>
+
+        {/* Save/Bookmark button */}
+        <button
+          onClick={handleToggleSave}
+          className={`flex items-center gap-2 border px-5 py-2.5 rounded-full font-semibold text-sm shadow-sm transition-all active:scale-95 flex-shrink-0 ${
+            isSaved
+              ? 'bg-[#FF6B35] text-white border-[#FF6B35]'
+              : 'bg-white text-[#594139] border-[#e1bfb5] hover:bg-[#fff8f6]'
+          }`}
+        >
+          <span>{isSaved ? '🔖 Saved' : '🔖 Save Recipe'}</span>
+          <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${isSaved ? 'bg-white/20 text-white' : 'bg-[#fff1ed] text-[#FF6B35]'}`}>
+            {savesCount}
+          </span>
+        </button>
+      </div>
 
         {/* Description */}
         {recipe.description && (
@@ -155,7 +192,7 @@ export default function RecipeDetail() {
         )}
 
         {/* Meta pills */}
-        <div className="flex gap-3 flex-wrap">
+        <div className="flex gap-3 flex-wrap mb-8">
           {recipe.prep_time > 0 && (
             <MetaPill icon="🔪" label="Prep" value={`${recipe.prep_time}m`} />
           )}
@@ -169,7 +206,6 @@ export default function RecipeDetail() {
             <MetaPill icon="🍽️" label="Serves" value={recipe.servings} />
           )}
         </div>
-      </div>
 
       {/* ── Two column: Ingredients + Steps ──────────────────────────────── */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">

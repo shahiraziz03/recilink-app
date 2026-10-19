@@ -36,13 +36,49 @@ def run_neo4j(query: str, **params):
     for attempt in range(3):
         try:
             with driver.session() as session:
-                session.run(query, **params)
+                result = session.run(query, **params)
+                result.consume()  # Force query execution to catch connection drops immediately
             return
         except (SessionExpired, ServiceUnavailable) as e:
             if attempt == 2:
                 raise
             # Connection was stale — driver will open a fresh one on next attempt
             continue
+
+
+def run_neo4j_transaction(queries: list):
+    """
+    Execute a list of (query, params) tuples within a single Neo4j transaction.
+    If any query fails, the entire transaction is rolled back.
+    Handles stale connection retries.
+    """
+    for attempt in range(3):
+        try:
+            with driver.session() as session:
+                with session.begin_transaction() as tx:
+                    for query, params in queries:
+                        result = tx.run(query, **(params or {}))
+                        result.consume()
+                    tx.commit()
+            return
+        except (SessionExpired, ServiceUnavailable) as e:
+            if attempt == 2:
+                raise
+            continue
+
+
+def check_neo4j_connection() -> bool:
+    """
+    Verifies if the Neo4j driver can connect to the database.
+    Useful for health checks and startup validation.
+    """
+    try:
+        driver.verify_connectivity()
+        return True
+    except Exception as e:
+        print(f"Neo4j connection check failed: {e}")
+        return False
+
 
 def close_driver():
     """Close Neo4j driver on shutdown."""

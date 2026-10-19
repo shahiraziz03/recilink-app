@@ -13,6 +13,7 @@ from app.models.social import SavedRecipe, Comment
 from app.schemas.post import PostCreate, PostResponse, RecipeInPost, AuthorInPost
 from app.core.security import get_current_user_dep
 from app.db.neo4j import run_neo4j, normalize_title
+from app.routers.recipes import sync_recipe_to_neo4j, cleanup_deleted_recipe_in_neo4j
 
 router = APIRouter(prefix="/posts", tags=["Community Posts"])
 
@@ -200,6 +201,7 @@ async def update_post(
     recipe = post.recipe
     if recipe and recipe.source == "user" and recipe.contributor_id == current_user.id:
         recipe_updated = False
+        old_title = recipe.title
 
         if data.title is not None:
             recipe.title = data.title
@@ -226,58 +228,20 @@ async def update_post(
         if data.tags is not None:
             recipe.tags = data.tags
 
-        # Synchronize updates to Neo4j if recipe fields changed
-        if recipe_updated:
-            recipe_node_id = f"recipe_{recipe.id}"
-            
-            # Detach the recipe node (does not delete the DishConcept or ingredients, just the version node)
-            run_neo4j("""
-                MATCH (r:Recipe {id: $recipe_node_id})
-                DETACH DELETE r
-            """, recipe_node_id=recipe_node_id)
+        try:
+            await db.flush()
+            # Synchronize updates to Neo4j if recipe fields changed
+            if recipe_updated:
+                await sync_recipe_to_neo4j(recipe, db, old_title=old_title)
+            await db.commit()
+        except Exception as e:
+            await db.rollback()
+            raise e
 
-            concept_name = normalize_title(recipe.title)
+    else:
+        # Commit post updates even if no recipe changes occurred
+        await db.commit()
 
-            # Re-create or update central DishConcept node
-            run_neo4j("""
-                MERGE (c:DishConcept {name: $concept_name})
-                SET c.difficulty = $difficulty,
-                    c.cuisine = $cuisine
-            """, concept_name=concept_name, difficulty=recipe.difficulty, cuisine=recipe.cuisine)
-
-            # Re-create Recipe node & link IS_VERSION_OF
-            run_neo4j("""
-                MERGE (r:Recipe {id: $recipe_node_id})
-                SET r.title = $title,
-                    r.difficulty = $difficulty,
-                    r.cuisine = $cuisine
-                WITH r
-                MATCH (c:DishConcept {name: $concept_name})
-                MERGE (r)-[:IS_VERSION_OF]->(c)
-            """, recipe_node_id=recipe_node_id, title=recipe.title, difficulty=recipe.difficulty, cuisine=recipe.cuisine, concept_name=concept_name)
-
-            # Re-create Ingredient nodes & link CONTAINS to the central DishConcept
-            for ingredient in recipe.ingredients:
-                ing_normalized = normalize_title(ingredient)
-                if ing_normalized:
-                    run_neo4j("""
-                        MERGE (i:Ingredient {name: $name})
-                        WITH i
-                        MATCH (c:DishConcept {name: $concept_name})
-                        MERGE (c)-[:CONTAINS]->(i)
-                    """, name=ing_normalized, concept_name=concept_name)
-
-            # Re-create co-occurrences
-            run_neo4j("""
-                MATCH (c:DishConcept {name: $concept_name})-[:CONTAINS]->(i1:Ingredient)
-                MATCH (c)-[:CONTAINS]->(i2:Ingredient)
-                WHERE i1 <> i2
-                MERGE (i1)-[co:CO_OCCURS]->(i2)
-                ON CREATE SET co.frequency = 1
-                ON MATCH SET co.frequency = co.frequency + 1
-            """, concept_name=concept_name)
-
-    await db.commit()
     await db.refresh(post)
     return post
 
@@ -307,20 +271,20 @@ async def delete_post(
     if post.posted_by_id != current_user.id:
         raise HTTPException(status_code=403, detail="You do not own this post")
 
-    # Clean up associated recipe if user-owned
-    recipe = post.recipe
-    if recipe and recipe.source == "user" and recipe.contributor_id == current_user.id:
-        recipe_node_id = f"recipe_{recipe.id}"
-        # Detach specific recipe version node in Neo4j (leaves the general DishConcept alone)
-        run_neo4j("""
-            MATCH (r:Recipe {id: $recipe_node_id})
-            DETACH DELETE r
-        """, recipe_node_id=recipe_node_id)
-        
-        # Delete recipe in SQL
-        await db.delete(recipe)
+    try:
+        # Clean up associated recipe if user-owned
+        recipe = post.recipe
+        if recipe and recipe.source == "user" and recipe.contributor_id == current_user.id:
+            await cleanup_deleted_recipe_in_neo4j(recipe.id, recipe.title, db)
+            
+            # Delete recipe in SQL
+            await db.delete(recipe)
 
-    # Delete post
-    await db.delete(post)
-    await db.commit()
+        # Delete post
+        await db.delete(post)
+        await db.commit()
+    except Exception as e:
+        await db.rollback()
+        raise e
+
     return None

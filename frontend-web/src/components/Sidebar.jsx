@@ -102,7 +102,10 @@ export default function Sidebar() {
       <div className="px-3 py-4 border-t border-[#f7ddd5]">
         {user ? (
           <div className="space-y-2">
-            <div className="flex items-center gap-3 px-4 py-2">
+            <Link
+              to="/profile"
+              className="flex items-center gap-3 px-4 py-2 hover:bg-[#fff1ed] rounded-xl cursor-pointer transition-colors w-full"
+            >
               <div className="w-8 h-8 rounded-full bg-[#FF6B35]/20 flex items-center justify-center text-[#FF6B35] font-bold text-sm flex-shrink-0">
                 {user.username?.[0]?.toUpperCase()}
               </div>
@@ -110,7 +113,7 @@ export default function Sidebar() {
                 <p className="text-sm font-semibold text-[#261814] truncate">{user.username}</p>
                 <p className="text-xs text-[#8d7168] truncate">{user.email}</p>
               </div>
-            </div>
+            </Link>
             <button
               onClick={handleLogout}
               className="sidebar-link w-full text-left"
