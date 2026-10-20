@@ -17,6 +17,14 @@ export function AuthProvider({ children }) {
     localStorage.setItem('recilink_token', accessToken)
   }
 
+  const updateUser = (userData) => {
+    setUser((prev) => {
+      const updated = typeof userData === 'function' ? userData(prev) : { ...(prev || {}), ...userData }
+      localStorage.setItem('recilink_user', JSON.stringify(updated))
+      return updated
+    })
+  }
+
   const logoutUser = () => {
     setUser(null)
     setToken(null)
@@ -25,7 +33,7 @@ export function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, token, loginUser, logoutUser }}>
+    <AuthContext.Provider value={{ user, token, loginUser, logoutUser, updateUser }}>
       {children}
     </AuthContext.Provider>
   )

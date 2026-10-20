@@ -7,7 +7,9 @@ import {
   getStreak, 
   dailyCheckin, 
   getUserRecipes,
-  getSavedRecipes
+  getSavedRecipes,
+  getUserFollowers,
+  getUserFollowing
 } from '../api/recipes'
 
 const DIETARY_OPTIONS = [
@@ -24,9 +26,22 @@ function getInitials(username) {
   return username ? username.slice(0, 2).toUpperCase() : '?'
 }
 
+function avatarColor(username) {
+  const colors = [
+    'from-[#FF6B35] to-[#ff9a72]',
+    'from-violet-400 to-purple-500',
+    'from-emerald-400 to-teal-500',
+    'from-sky-400 to-blue-500',
+    'from-pink-400 to-rose-500',
+    'from-[#FF6B35] to-[#ffb698]',
+  ]
+  const idx = (username?.charCodeAt(0) || 0) % colors.length
+  return colors[idx]
+}
+
 export default function Profile() {
   const navigate = useNavigate()
-  const { user, token } = useAuth()
+  const { user, token, updateUser } = useAuth()
 
   // Profile data states
   const [profile, setProfile] = useState(null)
@@ -36,6 +51,10 @@ export default function Profile() {
   const [activeSubTab, setActiveSubTab] = useState('saved')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+
+  // Followers/Following Modal
+  const [modalType, setModalType] = useState(null) // 'followers' | 'following'
+  const [modalUsers, setModalUsers] = useState([])
 
   // Configuration Modal state
   const [showSettings, setShowSettings] = useState(false)
@@ -59,24 +78,39 @@ export default function Profile() {
       try {
         const [profRes, streakRes] = await Promise.all([
           getMyProfile(),
-          getStreak()
+          getStreak().catch(() => ({ data: { cooking_streak: 0 } }))
         ])
         
-        setProfile(profRes.data)
-        setBio(profRes.data.bio || '')
-        setDietary(profRes.data.dietary_preferences || [])
-        setIngredients(profRes.data.frequently_used_ingredients || [])
+        const profileData = profRes.data
+        setProfile(profileData)
+        setBio(profileData.bio || '')
+        setDietary(profileData.dietary_preferences || [])
+        setIngredients(profileData.frequently_used_ingredients || [])
         setStreakInfo(streakRes.data)
 
-        // Use user.id from AuthContext (not profRes.data.id which is the Profile table PK)
-        if (user?.id) {
-          const [recRes, savedRes] = await Promise.all([
-            getUserRecipes(user.id),
-            getSavedRecipes()
-          ])
-          setMyRecipes(recRes.data)
-          setSavedRecipes(savedRes.data)
+        const currentUserId = profileData.user_id || user?.id
+
+        if (profileData.user_id && updateUser) {
+          updateUser({
+            id: profileData.user_id,
+            username: profileData.username,
+            email: profileData.email
+          })
         }
+
+        const [savedRes, recRes] = await Promise.all([
+          getSavedRecipes().catch(err => {
+            console.error('Failed to load saved recipes:', err)
+            return { data: [] }
+          }),
+          currentUserId ? getUserRecipes(currentUserId).catch(err => {
+            console.error('Failed to load created recipes:', err)
+            return { data: [] }
+          }) : Promise.resolve({ data: [] })
+        ])
+
+        setSavedRecipes(savedRes.data || [])
+        setMyRecipes(recRes.data || [])
       } catch (err) {
         setError('Failed to load profile details.')
         console.error(err)
@@ -151,6 +185,32 @@ export default function Profile() {
     }
   }
 
+  const openFollowersModal = async () => {
+    const targetId = profile?.user_id || user?.id
+    if (!targetId) return
+    setModalType('followers')
+    try {
+      const res = await getUserFollowers(targetId)
+      setModalUsers(res.data || [])
+    } catch (err) {
+      console.error(err)
+      setModalUsers([])
+    }
+  }
+
+  const openFollowingModal = async () => {
+    const targetId = profile?.user_id || user?.id
+    if (!targetId) return
+    setModalType('following')
+    try {
+      const res = await getUserFollowing(targetId)
+      setModalUsers(res.data || [])
+    } catch (err) {
+      console.error(err)
+      setModalUsers([])
+    }
+  }
+
   if (loading) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
@@ -198,10 +258,22 @@ export default function Profile() {
         </div>
 
         {/* Inline Social Stats */}
-        <div className="flex items-center gap-3 text-sm text-gray-500 font-medium">
-          <span>{profile?.followers_count || 0} followers</span>
+        <div className="flex items-center gap-4 text-sm text-gray-500 font-medium">
+          <button
+            onClick={openFollowersModal}
+            className="hover:text-[#FF6B35] transition-colors cursor-pointer"
+            title="View your followers"
+          >
+            <span className="font-bold text-[#261814]">{profile?.followers_count || 0}</span> followers
+          </button>
           <span>•</span>
-          <span>{profile?.following_count || 0} following</span>
+          <button
+            onClick={openFollowingModal}
+            className="hover:text-[#FF6B35] transition-colors cursor-pointer"
+            title="View chefs you follow"
+          >
+            <span className="font-bold text-[#261814]">{profile?.following_count || 0}</span> following
+          </button>
           <span>•</span>
           <span className="text-[#FF6B35] font-bold">🔥 {streakInfo?.cooking_streak || 0}d streak</span>
         </div>
@@ -510,6 +582,66 @@ export default function Profile() {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* ── Followers / Following User List Modal ─────────────────── */}
+      {modalType && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setModalType(null)
+          }}
+        >
+          <div className="bg-white rounded-3xl w-full max-w-md shadow-2xl p-6 animate-slide-up relative max-h-[80vh] flex flex-col">
+            <div className="flex items-center justify-between pb-3 border-b border-gray-100 mb-4">
+              <h3 className="font-bold text-base text-[#261814]" style={{ fontFamily: 'Plus Jakarta Sans' }}>
+                {modalType === 'followers' ? 'Your Followers' : 'Chefs You Follow'}
+              </h3>
+              <button
+                onClick={() => setModalType(null)}
+                className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-500 transition-colors"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="overflow-y-auto space-y-3 flex-1 pr-1">
+              {modalUsers.length === 0 ? (
+                <p className="text-center text-xs text-gray-400 py-8">
+                  {modalType === 'followers' ? 'No followers yet.' : 'Not following any chefs yet.'}
+                </p>
+              ) : (
+                modalUsers.map((u) => (
+                  <div
+                    key={u.id}
+                    onClick={() => {
+                      setModalType(null)
+                      navigate(`/users/${u.id}`)
+                    }}
+                    className="flex items-center justify-between p-2 rounded-2xl hover:bg-[#fff8f6] cursor-pointer transition-colors group"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div
+                        className={`w-10 h-10 rounded-full bg-gradient-to-br ${avatarColor(u.username)} flex items-center justify-center text-white font-bold text-xs shadow-sm`}
+                      >
+                        {getInitials(u.username)}
+                      </div>
+                      <div>
+                        <h4 className="text-xs font-bold text-[#261814] group-hover:text-[#FF6B35] transition-colors">
+                          {u.username}
+                        </h4>
+                        {u.bio && <p className="text-[11px] text-gray-400 line-clamp-1 max-w-[200px]">{u.bio}</p>}
+                      </div>
+                    </div>
+                    <span className="text-[10px] text-gray-400 group-hover:text-[#FF6B35] transition-colors font-semibold">
+                      View Profile →
+                    </span>
+                  </div>
+                ))
+              )}
+            </div>
           </div>
         </div>
       )}

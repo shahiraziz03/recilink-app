@@ -10,7 +10,10 @@ import {
   getSimilarRecipes, 
   getUserProfile, 
   followUser, 
-  unfollowUser 
+  unfollowUser,
+  toggleLikePost,
+  getTrendingPosts,
+  getFollowingPosts
 } from '../api/recipes'
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -62,7 +65,8 @@ function SkeletonCard({ tall }) {
 
 // ── Post card ─────────────────────────────────────────────────────────────────
 
-function PostCard({ post, onClick }) {
+function PostCard({ post, onClick, onLikeToggle, currentUser }) {
+  const navigate = useNavigate()
   const [imgError, setImgError] = useState(false)
   const photo = post.cover_photo_url || post.recipe?.image_url
   const recipe = post.recipe
@@ -71,7 +75,7 @@ function PostCard({ post, onClick }) {
 
   return (
     <div
-      className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer group break-inside-avoid mb-4"
+      className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer group break-inside-avoid mb-4 border border-[#fde3db]"
       onClick={() => onClick(post)}
     >
       {/* Cover photo */}
@@ -179,17 +183,57 @@ function PostCard({ post, onClick }) {
         {/* Divider */}
         <div className="border-t border-[#f7ddd5]" />
 
-        {/* Author + time */}
+        {/* Author + Like + Comment actions */}
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
+          <div
+            className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+            onClick={(e) => {
+              e.stopPropagation()
+              if (!post.posted_by?.id) return
+              const isOwn = (currentUser?.id && Number(currentUser.id) === Number(post.posted_by.id)) ||
+                            (currentUser?.username && currentUser.username === post.posted_by.username)
+              if (isOwn) {
+                navigate('/profile')
+              } else {
+                navigate(`/users/${post.posted_by.id}`)
+              }
+            }}
+          >
             <div className={`w-7 h-7 rounded-full bg-gradient-to-br ${avatarColor(post.posted_by?.username)} flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0`}>
               {getInitials(post.posted_by?.username)}
             </div>
-            <span className="text-xs font-semibold text-[#594139] truncate max-w-[90px]">
+            <span className="text-xs font-semibold text-[#594139] truncate max-w-[85px] hover:text-[#FF6B35] transition-colors">
               {post.posted_by?.username || 'Anonymous'}
             </span>
           </div>
-          <span className="text-[10px] text-[#8d7168]">{timeAgo(post.created_at)}</span>
+
+          <div className="flex items-center gap-3">
+            {/* Heart Like button */}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation()
+                onLikeToggle?.(post.id)
+              }}
+              className={`flex items-center gap-1 text-xs font-bold transition-all active:scale-125 ${
+                post.is_liked ? 'text-red-500' : 'text-gray-400 hover:text-red-400'
+              }`}
+              title={post.is_liked ? 'Unlike' : 'Like recipe'}
+            >
+              <svg className="w-4 h-4" fill={post.is_liked ? 'currentColor' : 'none'} viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+              <span>{post.likes_count || 0}</span>
+            </button>
+
+            {/* Comment count */}
+            <div className="flex items-center gap-1 text-xs text-gray-400">
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+              <span>{recipe?.comments_count || 0}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -225,12 +269,31 @@ function PostModal({ post, onClose, onPostUpdated }) {
 
   // Social / Interactive States
   const [isSaved, setIsSaved] = useState(false)
+  const [isLiked, setIsLiked] = useState(post.is_liked || false)
+  const [likesCount, setLikesCount] = useState(post.likes_count || 0)
   const [profile, setProfile] = useState(null)
   const [isFollowing, setIsFollowing] = useState(false)
   const [comments, setComments] = useState([])
   const [newComment, setNewComment] = useState('')
   const [similar, setSimilar] = useState([])
   const [activeTab, setActiveTab] = useState('ingredients') // 'ingredients' or 'steps'
+
+  useEffect(() => {
+    setIsLiked(post.is_liked || false)
+    setLikesCount(post.likes_count || 0)
+  }, [post.id, post.is_liked, post.likes_count])
+
+  const handleLikeToggle = async () => {
+    if (!token) return navigate('/login')
+    try {
+      const res = await toggleLikePost(post.id)
+      setIsLiked(res.data.liked)
+      setLikesCount(res.data.likes_count)
+      onPostUpdated({ ...post, is_liked: res.data.liked, likes_count: res.data.likes_count })
+    } catch (err) {
+      console.error("Error toggling like:", err)
+    }
+  }
 
   // Load interactive state
   useEffect(() => {
@@ -517,22 +580,40 @@ function PostModal({ post, onClose, onPostUpdated }) {
               /* Interactive Pinterest-style Right Pane */
               <>
                 <div className="space-y-4">
-                  {/* Action Bar (Save & Owner buttons) */}
+                  {/* Action Bar (Like, Save & Owner buttons) */}
                   <div className="flex items-center justify-between">
-                    {/* Save Button */}
-                    <button
-                      onClick={handleSaveToggle}
-                      className={`flex items-center gap-1.5 px-6 py-2.5 rounded-full font-bold text-sm shadow-sm transition-all active:scale-95 ${
-                        isSaved
-                          ? 'bg-[#261814] text-white hover:bg-black'
-                          : 'bg-[#FF6B35] text-white hover:bg-[#ff5516]'
-                      }`}
-                    >
-                      <svg className="w-4 h-4" fill={isSaved ? 'currentColor' : 'none'} viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-                      </svg>
-                      {isSaved ? 'Saved' : 'Save'}
-                    </button>
+                    <div className="flex items-center gap-2">
+                      {/* Like Button */}
+                      <button
+                        onClick={handleLikeToggle}
+                        className={`flex items-center gap-1.5 px-5 py-2 rounded-full font-bold text-xs shadow-sm transition-all active:scale-95 ${
+                          isLiked
+                            ? 'bg-red-500 text-white hover:bg-red-600'
+                            : 'bg-gray-100 text-[#594139] hover:bg-red-50 hover:text-red-500 border border-gray-200'
+                        }`}
+                      >
+                        <svg className="w-4 h-4" fill={isLiked ? 'currentColor' : 'none'} viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                        <span>{isLiked ? 'Liked' : 'Like'}</span>
+                        <span className="opacity-80">({likesCount})</span>
+                      </button>
+
+                      {/* Save Button */}
+                      <button
+                        onClick={handleSaveToggle}
+                        className={`flex items-center gap-1.5 px-5 py-2 rounded-full font-bold text-xs shadow-sm transition-all active:scale-95 ${
+                          isSaved
+                            ? 'bg-[#261814] text-white hover:bg-black'
+                            : 'bg-[#FF6B35] text-white hover:bg-[#ff5516]'
+                        }`}
+                      >
+                        <svg className="w-4 h-4" fill={isSaved ? 'currentColor' : 'none'} viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                        </svg>
+                        {isSaved ? 'Saved' : 'Save'}
+                      </button>
+                    </div>
 
                     {/* Owner Management */}
                     {isOwner && (
@@ -562,12 +643,25 @@ function PostModal({ post, onClose, onPostUpdated }) {
 
                   {/* Creator Info and Follow Toggle */}
                   <div className="flex items-center justify-between bg-gradient-to-r from-[#fff8f6] to-white p-3 rounded-2xl border border-[#ffe9e3]">
-                    <div className="flex items-center gap-2.5">
+                    <div
+                      className="flex items-center gap-2.5 cursor-pointer hover:opacity-80 transition-opacity"
+                      onClick={() => {
+                        onClose()
+                        if (!post.posted_by?.id) return
+                        const isOwn = (user?.id && Number(user.id) === Number(post.posted_by.id)) ||
+                                      (user?.username && user.username === post.posted_by.username)
+                        if (isOwn) {
+                          navigate('/profile')
+                        } else {
+                          navigate(`/users/${post.posted_by.id}`)
+                        }
+                      }}
+                    >
                       <div className={`w-9 h-9 rounded-full bg-gradient-to-br ${avatarColor(post.posted_by?.username)} flex items-center justify-center text-white text-xs font-bold shadow-sm`}>
                         {getInitials(post.posted_by?.username)}
                       </div>
                       <div>
-                        <p className="text-xs font-bold text-[#261814]">{post.posted_by?.username || 'Anonymous'}</p>
+                        <p className="text-xs font-bold text-[#261814] hover:text-[#FF6B35] transition-colors">{post.posted_by?.username || 'Anonymous'}</p>
                         <p className="text-[10px] text-[#8d7168]">
                           {profile ? `${profile.followers_count || 0} followers` : 'Contributor'}
                         </p>
@@ -783,6 +877,8 @@ const CUISINE_FILTERS = ['All', 'Malaysian', 'Chinese', 'Indian', 'Western', 'Ja
 
 export default function Community() {
   const navigate = useNavigate()
+  const { user, token } = useAuth()
+  const [feedTab, setFeedTab] = useState('explore') // 'explore' | 'trending' | 'following'
   const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -791,11 +887,22 @@ export default function Community() {
   const [selectedPost, setSelectedPost] = useState(null)
 
   useEffect(() => {
-    getCommunityFeed()
+    setLoading(true)
+    setError(null)
+    let fetcher
+    if (feedTab === 'trending') {
+      fetcher = getTrendingPosts().then(res => res.data)
+    } else if (feedTab === 'following') {
+      fetcher = getFollowingPosts().then(res => res.data)
+    } else {
+      fetcher = getCommunityFeed(token)
+    }
+
+    fetcher
       .then(setPosts)
       .catch((e) => setError(e.message))
       .finally(() => setLoading(false))
-  }, [])
+  }, [feedTab, token])
 
   const handlePostUpdated = (updatedPost, deletedPostId) => {
     if (deletedPostId) {
@@ -803,6 +910,32 @@ export default function Community() {
       return
     }
     setPosts(prev => prev.map(p => p.id === updatedPost.id ? updatedPost : p))
+  }
+
+  const handleLikeToggle = async (postId) => {
+    if (!token) {
+      navigate('/login')
+      return
+    }
+    try {
+      const res = await toggleLikePost(postId)
+      setPosts((prev) =>
+        prev.map((p) =>
+          p.id === postId
+            ? { ...p, is_liked: res.data.liked, likes_count: res.data.likes_count }
+            : p
+        )
+      )
+      if (selectedPost && selectedPost.id === postId) {
+        setSelectedPost((prev) => ({
+          ...prev,
+          is_liked: res.data.liked,
+          likes_count: res.data.likes_count,
+        }))
+      }
+    } catch (err) {
+      console.error('Error toggling like:', err)
+    }
   }
 
   // Filter posts
@@ -833,10 +966,10 @@ export default function Community() {
           <div className="flex items-center justify-between mb-4">
             <div>
               <h1 className="text-2xl font-bold text-[#261814]" style={{ fontFamily: 'Plus Jakarta Sans' }}>
-                Community Feed
+                Community Food Feed
               </h1>
               <p className="text-sm text-[#8d7168] mt-0.5">
-                {loading ? 'Loading...' : `${posts.length} recipe${posts.length !== 1 ? 's' : ''} shared by the community`}
+                {loading ? 'Loading...' : `${posts.length} recipe${posts.length !== 1 ? 's' : ''} in ${feedTab === 'trending' ? 'Trending' : feedTab === 'following' ? 'Following' : 'Explore'}`}
               </p>
             </div>
             <button
@@ -848,6 +981,46 @@ export default function Community() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
               </svg>
               Share Recipe
+            </button>
+          </div>
+
+          {/* Social Feed Switcher Tabs */}
+          <div className="flex items-center gap-2 mb-4 border-b border-[#f7ddd5] pb-3">
+            <button
+              onClick={() => setFeedTab('explore')}
+              className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
+                feedTab === 'explore'
+                  ? 'bg-[#261814] text-white shadow-sm'
+                  : 'bg-white text-[#594139] hover:bg-[#ffe9e3] border border-[#f7ddd5]'
+              }`}
+            >
+              <span>🌟 Explore Feed</span>
+            </button>
+            <button
+              onClick={() => setFeedTab('trending')}
+              className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
+                feedTab === 'trending'
+                  ? 'bg-[#FF6B35] text-white shadow-sm'
+                  : 'bg-white text-[#594139] hover:bg-[#ffe9e3] border border-[#f7ddd5]'
+              }`}
+            >
+              <span>🔥 Trending</span>
+            </button>
+            <button
+              onClick={() => {
+                if (!token) {
+                  navigate('/login')
+                  return
+                }
+                setFeedTab('following')
+              }}
+              className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
+                feedTab === 'following'
+                  ? 'bg-[#FF6B35] text-white shadow-sm'
+                  : 'bg-white text-[#594139] hover:bg-[#ffe9e3] border border-[#f7ddd5]'
+              }`}
+            >
+              <span>👥 Following</span>
             </button>
           </div>
 
@@ -863,7 +1036,7 @@ export default function Community() {
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search recipes, captions, or authors..."
+                placeholder="Search recipes, captions, or chefs..."
                 className="w-full pl-11 pr-4 py-2.5 bg-[#fff8f6] border border-[#e1bfb5] rounded-full text-sm focus:outline-none focus:border-[#FF6B35] focus:ring-2 focus:ring-[#FF6B35]/20 transition-all"
               />
               {search && (
@@ -909,7 +1082,7 @@ export default function Community() {
               <p className="text-red-500 text-xs mt-0.5">{error}</p>
             </div>
             <button
-              onClick={() => { setError(null); setLoading(true); getCommunityFeed().then(setPosts).catch(e => setError(e.message)).finally(() => setLoading(false)) }}
+              onClick={() => { setError(null); setLoading(true); getCommunityFeed(token).then(setPosts).catch(e => setError(e.message)).finally(() => setLoading(false)) }}
               className="ml-auto text-sm font-semibold text-[#FF6B35] hover:underline"
             >
               Retry
@@ -933,13 +1106,19 @@ export default function Community() {
         {!loading && !error && filtered.length === 0 && (
           <div className="text-center py-20 space-y-4">
             <div className="w-20 h-20 rounded-full bg-[#ffe9e3] flex items-center justify-center mx-auto text-4xl">
-              {search || selectedCuisine !== 'All' ? '🔍' : '🍽️'}
+              {feedTab === 'following' ? '👥' : search || selectedCuisine !== 'All' ? '🔍' : '🍽️'}
             </div>
             <h3 className="text-lg font-bold text-[#261814]" style={{ fontFamily: 'Plus Jakarta Sans' }}>
-              {search || selectedCuisine !== 'All' ? 'No posts match your filter' : 'No posts yet'}
+              {feedTab === 'following'
+                ? "No posts from chefs you follow yet"
+                : search || selectedCuisine !== 'All'
+                ? 'No posts match your filter'
+                : 'No posts yet'}
             </h3>
             <p className="text-sm text-[#8d7168]">
-              {search || selectedCuisine !== 'All'
+              {feedTab === 'following'
+                ? 'Follow more home cooks in the Explore feed to see their delicious creations here!'
+                : search || selectedCuisine !== 'All'
                 ? 'Try a different cuisine or search term'
                 : 'Be the first to share a recipe with the community!'}
             </p>
@@ -967,13 +1146,25 @@ export default function Community() {
               {/* Column 1 */}
               <div className="flex-1">
                 {col1.map((post) => (
-                  <PostCard key={post.id} post={post} onClick={setSelectedPost} />
+                  <PostCard
+                    key={post.id}
+                    post={post}
+                    onClick={setSelectedPost}
+                    onLikeToggle={handleLikeToggle}
+                    currentUser={user}
+                  />
                 ))}
               </div>
               {/* Column 2 */}
               <div className="flex-1 mt-6">
                 {col2.map((post) => (
-                  <PostCard key={post.id} post={post} onClick={setSelectedPost} />
+                  <PostCard
+                    key={post.id}
+                    post={post}
+                    onClick={setSelectedPost}
+                    onLikeToggle={handleLikeToggle}
+                    currentUser={user}
+                  />
                 ))}
               </div>
             </div>
@@ -983,7 +1174,11 @@ export default function Community() {
 
       {/* ── Post detail modal ─────────────────────────────────────── */}
       {selectedPost && (
-        <PostModal post={selectedPost} onClose={() => setSelectedPost(null)} onPostUpdated={handlePostUpdated} />
+        <PostModal
+          post={selectedPost}
+          onClose={() => setSelectedPost(null)}
+          onPostUpdated={handlePostUpdated}
+        />
       )}
     </div>
   )

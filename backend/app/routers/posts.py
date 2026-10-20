@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func
 from sqlalchemy.orm import selectinload
@@ -9,21 +9,22 @@ from app.db.session import get_db
 from app.models.post import Post
 from app.models.recipe import Recipe
 from app.models.user import User
-from app.models.social import SavedRecipe, Comment
+from app.models.social import SavedRecipe, Comment, Follow, PostLike
 from app.schemas.post import PostCreate, PostResponse, RecipeInPost, AuthorInPost
-from app.core.security import get_current_user_dep
+from app.core.security import get_current_user_dep, get_optional_user_dep
 from app.db.neo4j import run_neo4j, normalize_title
 from app.routers.recipes import sync_recipe_to_neo4j, cleanup_deleted_recipe_in_neo4j
 
 router = APIRouter(prefix="/posts", tags=["Community Posts"])
 
 
-async def _enrich_posts(posts: list, db: AsyncSession) -> List[PostResponse]:
-    """Attach saves_count, comments_count, and contributor_username to embedded recipes."""
+async def _enrich_posts(posts: list, db: AsyncSession, current_user_id: Optional[int] = None) -> List[PostResponse]:
+    """Attach saves_count, comments_count, likes_count, is_liked, and contributor_username to embedded recipes."""
     if not posts:
         return []
 
-    recipe_ids = [p.recipe_id for p in posts]
+    post_ids    = [p.id for p in posts]
+    recipe_ids  = [p.recipe_id for p in posts]
 
     saves_rows = await db.execute(
         select(SavedRecipe.recipe_id, func.count(SavedRecipe.id).label("cnt"))
@@ -38,6 +39,23 @@ async def _enrich_posts(posts: list, db: AsyncSession) -> List[PostResponse]:
         .group_by(Comment.recipe_id)
     )
     comments_map = {row.recipe_id: row.cnt for row in comments_rows}
+
+    # Likes count per post
+    likes_rows = await db.execute(
+        select(PostLike.post_id, func.count(PostLike.id).label("cnt"))
+        .where(PostLike.post_id.in_(post_ids))
+        .group_by(PostLike.post_id)
+    )
+    likes_map = {row.post_id: row.cnt for row in likes_rows}
+
+    # Did current user like each post?
+    liked_post_ids = set()
+    if current_user_id:
+        liked_rows = await db.execute(
+            select(PostLike.post_id)
+            .where(PostLike.post_id.in_(post_ids), PostLike.user_id == current_user_id)
+        )
+        liked_post_ids = {row.post_id for row in liked_rows}
 
     contributor_ids = list({p.recipe.contributor_id for p in posts if p.recipe and p.recipe.contributor_id})
     users_map: dict = {}
@@ -70,6 +88,8 @@ async def _enrich_posts(posts: list, db: AsyncSession) -> List[PostResponse]:
             caption=post.caption,
             cover_photo_url=post.cover_photo_url,
             created_at=post.created_at,
+            likes_count=likes_map.get(post.id, 0),
+            is_liked=post.id in liked_post_ids,
             recipe=recipe_data,
             posted_by=AuthorInPost(id=post.posted_by.id, username=post.posted_by.username),
         ))
@@ -79,7 +99,10 @@ async def _enrich_posts(posts: list, db: AsyncSession) -> List[PostResponse]:
 # ── GET /api/v1/posts  ────────────────────────────────────────────────────────
 
 @router.get("", response_model=List[PostResponse])
-async def get_community_feed(db: AsyncSession = Depends(get_db)):
+async def get_community_feed(
+    db: AsyncSession = Depends(get_db),
+    current_user: Optional[User] = Depends(get_optional_user_dep),
+):
     """Community feed — returns all posts newest-first with enriched recipe data."""
     result = await db.execute(
         select(Post)
@@ -87,13 +110,76 @@ async def get_community_feed(db: AsyncSession = Depends(get_db)):
         .order_by(Post.created_at.desc())
     )
     posts = result.scalars().all()
-    return await _enrich_posts(posts, db)
+    return await _enrich_posts(posts, db, current_user_id=current_user.id if current_user else None)
+
+# ── GET /api/v1/posts/trending  ───────────────────────────────────────────────
+
+@router.get("/trending", response_model=List[PostResponse])
+async def get_trending_posts(
+    db: AsyncSession = Depends(get_db),
+    current_user: Optional[User] = Depends(get_optional_user_dep),
+):
+    """Trending feed — posts sorted by likes + comments count (most popular first)."""
+    likes_subq = (
+        select(PostLike.post_id, func.count(PostLike.id).label("lc"))
+        .group_by(PostLike.post_id)
+        .subquery()
+    )
+    comments_subq = (
+        select(Comment.recipe_id, func.count(Comment.id).label("cc"))
+        .group_by(Comment.recipe_id)
+        .subquery()
+    )
+    result = await db.execute(
+        select(Post)
+        .outerjoin(likes_subq, likes_subq.c.post_id == Post.id)
+        .outerjoin(comments_subq, comments_subq.c.recipe_id == Post.recipe_id)
+        .options(selectinload(Post.recipe), selectinload(Post.posted_by))
+        .order_by(
+            (func.coalesce(likes_subq.c.lc, 0) + func.coalesce(comments_subq.c.cc, 0)).desc(),
+            Post.created_at.desc()
+        )
+        .limit(50)
+    )
+    posts = result.scalars().all()
+    return await _enrich_posts(posts, db, current_user_id=current_user.id if current_user else None)
+
+
+# ── GET /api/v1/posts/feed/following  ─────────────────────────────────────────
+
+@router.get("/feed/following", response_model=List[PostResponse])
+async def get_following_feed(
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user_dep),
+):
+    """Following feed — posts only from users the current user follows."""
+    following_ids_result = await db.execute(
+        select(Follow.following_id).where(Follow.follower_id == current_user.id)
+    )
+    following_ids = [row.following_id for row in following_ids_result]
+
+    if not following_ids:
+        return []
+
+    result = await db.execute(
+        select(Post)
+        .where(Post.posted_by_id.in_(following_ids))
+        .options(selectinload(Post.recipe), selectinload(Post.posted_by))
+        .order_by(Post.created_at.desc())
+        .limit(50)
+    )
+    posts = result.scalars().all()
+    return await _enrich_posts(posts, db, current_user_id=current_user.id)
 
 
 # ── GET /api/v1/posts/{id}  ───────────────────────────────────────────────────
 
 @router.get("/{post_id}", response_model=PostResponse)
-async def get_post_detail(post_id: int, db: AsyncSession = Depends(get_db)):
+async def get_post_detail(
+    post_id: int,
+    db: AsyncSession = Depends(get_db),
+    current_user: Optional[User] = Depends(get_optional_user_dep),
+):
     """Single post detail by ID with enriched recipe data."""
     result = await db.execute(
         select(Post)
@@ -103,7 +189,7 @@ async def get_post_detail(post_id: int, db: AsyncSession = Depends(get_db)):
     post = result.scalar_one_or_none()
     if not post:
         raise HTTPException(status_code=404, detail="Post not found")
-    enriched = await _enrich_posts([post], db)
+    enriched = await _enrich_posts([post], db, current_user_id=current_user.id if current_user else None)
     return enriched[0]
 
 

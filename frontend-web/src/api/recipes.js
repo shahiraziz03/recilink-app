@@ -11,6 +11,21 @@ API.interceptors.request.use((config) => {
   return config
 })
 
+// Handle expired or invalid tokens cleanly
+API.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      const url = error.config?.url || ''
+      if (!url.includes('/auth/login') && !url.includes('/auth/register')) {
+        localStorage.removeItem('recilink_token')
+        localStorage.removeItem('recilink_user')
+      }
+    }
+    return Promise.reject(error)
+  }
+)
+
 // Recipes
 export const getRecipes = (page = 1, limit = 12) =>
   API.get(`/recipes?page=${page}&limit=${limit}`)
@@ -78,11 +93,11 @@ export const followUser = (userId) =>
 export const unfollowUser = (userId) =>
   API.delete(`/social/users/${userId}/follow`)
 
-export const getFollowers = () =>
-  API.get('/social/followers')
+export const getUserFollowers = (userId) =>
+  API.get(`/social/users/${userId}/followers`)
 
-export const getFollowing = () =>
-  API.get('/social/following')
+export const getUserFollowing = (userId) =>
+  API.get(`/social/users/${userId}/following`)
 
 export const getMyProfile = () =>
   API.get('/profile/me')
@@ -98,5 +113,18 @@ export const dailyCheckin = () =>
 
 export const getUserRecipes = (userId) =>
   API.get(`/social/users/${userId}/recipes`)
+
+export const getUserPosts = (userId) =>
+  API.get(`/social/users/${userId}/posts`)
+
+// Post likes & feeds
+export const toggleLikePost = (postId) =>
+  API.post(`/social/posts/${postId}/like`)
+
+export const getTrendingPosts = () =>
+  API.get('/posts/trending')
+
+export const getFollowingPosts = () =>
+  API.get('/posts/feed/following')
 
 export default API

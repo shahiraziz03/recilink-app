@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
 import { getRecipeById, toggleSaveRecipe, isRecipeSaved } from '../api/recipes'
 
 // ── Difficulty badge ──────────────────────────────────────────────────────────
@@ -30,6 +31,7 @@ function MetaPill({ icon, label, value }) {
 export default function RecipeDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
+  const { user } = useAuth()
 
   const [recipe, setRecipe] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -166,6 +168,29 @@ export default function RecipeDetail() {
               <span key={tag} className="text-[#8d7168] text-xs font-medium">#{tag}</span>
             ))}
           </div>
+
+          {/* Contributor Profile Link */}
+          {recipe.contributor_id && (
+            <div className="mt-3">
+              <Link
+                to={
+                  (user?.id && Number(user.id) === Number(recipe.contributor_id)) ||
+                  (user?.username && user.username === recipe.contributor_username)
+                    ? '/profile'
+                    : `/users/${recipe.contributor_id}`
+                }
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#fff4f0] hover:bg-[#ffe8e0] border border-[#fbd4c6] transition-all group shadow-xs"
+              >
+                <div className="w-6 h-6 rounded-full bg-[#FF6B35] text-white flex items-center justify-center text-xs font-bold shadow-sm">
+                  {recipe.contributor_username ? recipe.contributor_username[0].toUpperCase() : '👨‍🍳'}
+                </div>
+                <span className="text-xs text-[#594139] group-hover:text-[#FF6B35] font-semibold">
+                  Recipe by <span className="font-bold">@{recipe.contributor_username || `Chef #${recipe.contributor_id}`}</span>
+                </span>
+                <span className="text-xs text-[#FF6B35] font-bold group-hover:translate-x-0.5 transition-transform">→</span>
+              </Link>
+            </div>
+          )}
         </div>
 
         {/* Save/Bookmark button */}

@@ -8,6 +8,7 @@ from app.routers import auth, recommendations, recipes, posts, profile, social
 from app.db.neo4j import close_driver, check_neo4j_connection, normalize_title
 import app.models.user    # noqa: F401
 import app.models.recipe  # noqa: F401
+import app.models.post    # noqa: F401
 import app.models.social  # noqa: F401
 import json
 import os

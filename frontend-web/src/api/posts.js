@@ -48,8 +48,13 @@ export async function createRecipePost(recipeData, postData, token) {
 /**
  * Fetch all community posts (public feed).
  */
-export async function getCommunityFeed() {
-  const res = await fetch(`${BASE_URL}/posts`)
+export async function getCommunityFeed(token) {
+  const headers = {}
+  const authToken = token || localStorage.getItem('recilink_token')
+  if (authToken) {
+    headers['Authorization'] = `Bearer ${authToken}`
+  }
+  const res = await fetch(`${BASE_URL}/posts`, { headers })
   if (!res.ok) throw new Error('Failed to fetch community feed')
   return res.json()
 }

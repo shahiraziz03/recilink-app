@@ -10,6 +10,7 @@ import Grocery from './pages/Grocery'
 import PostRecipe from './pages/PostRecipe'
 import Community from './pages/Community'
 import Profile from './pages/Profile'
+import PublicProfile from './pages/PublicProfile'
 
 const AUTH_ROUTES = ['/login', '/register']
 
@@ -41,6 +42,7 @@ function Layout() {
           <Route path="/post" element={<PostRecipe />} />
           <Route path="/community" element={<Community />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/users/:id" element={<PublicProfile />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           {/* Future pages added here */}
