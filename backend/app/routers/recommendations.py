@@ -1,8 +1,15 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException, Query
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select, func
 from neo4j import Session
-from app.db.neo4j import get_neo4j
+from app.db.neo4j import get_neo4j, normalize_title, get_personalized_recipe_scores
+from app.db.session import get_db
+from app.models.recipe import Recipe
+from app.models.social import SavedRecipe, Comment
+from app.models.user import User
+from app.core.security import get_current_user
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 
 router = APIRouter(prefix="/recommendations", tags=["Recommendations"])
 
@@ -37,14 +44,15 @@ def search_ingredients(q: str = "", session: Session = Depends(get_neo4j)):
     if not q.strip():
         return {"ingredients": []}
     
+    q_norm = normalize_title(q)
     query = """
         MATCH (i:Ingredient)
-        WHERE i.name CONTAINS $q
+        WHERE toLower(i.name) CONTAINS toLower($q)
         RETURN i.name AS ingredient
         ORDER BY i.name ASC
         LIMIT 10
     """
-    results = session.run(query, q=q.lower().strip()).data()
+    results = session.run(query, q=q_norm).data()
     return {"ingredients": [r["ingredient"] for r in results]}
 
 
@@ -53,47 +61,52 @@ def recommend_recipes(data: IngredientsInput, session: Session = Depends(get_neo
     """
     Recommend recipes based on user's ingredients.
     Uses ingredient matching + Jaccard Similarity from Neo4j graph.
+    Queries the central DishConcept instead of specific Recipe version nodes,
+    allowing multiple versions of the same recipe title to share concepts.
     """
-    # Step 1 — ingredient matching
+    # Normalize inputs
+    normalized_inputs = [normalize_title(ing) for ing in data.ingredients if normalize_title(ing)]
+
+    # Step 1 — ingredient matching via central DishConcept
     match_query = """
-        MATCH (r:Recipe)-[:CONTAINS]->(i:Ingredient)
+        MATCH (c:DishConcept)-[:CONTAINS]->(i:Ingredient)
         WHERE i.name IN $ingredients
-        WITH r, count(i) AS matched_ingredients
+        WITH c, count(i) AS matched_ingredients
         ORDER BY matched_ingredients DESC
-        RETURN r.name AS recipe,
-               r.difficulty AS difficulty,
-               r.cuisine AS cuisine,
+        RETURN c.name AS recipe,
+               c.difficulty AS difficulty,
+               c.cuisine AS cuisine,
                matched_ingredients
         LIMIT 10
     """
 
-    # Step 2 — Jaccard similarity
+    # Step 2 — Jaccard similarity via central DishConcept
     jaccard_query = """
-        MATCH (r:Recipe)-[:CONTAINS]->(i:Ingredient)
+        MATCH (c:DishConcept)-[:CONTAINS]->(i:Ingredient)
         WHERE i.name IN $ingredients
-        WITH r, count(i) AS intersection
-        MATCH (r)-[:CONTAINS]->(all_i:Ingredient)
-        WITH r, intersection, count(all_i) AS recipe_total
-        WITH r, intersection,
+        WITH c, count(i) AS intersection
+        MATCH (c)-[:CONTAINS]->(all_i:Ingredient)
+        WITH c, intersection, count(all_i) AS recipe_total
+        WITH c, intersection,
              (recipe_total + $user_count - intersection) AS union_count
-        WITH r,
+        WITH c,
              toFloat(intersection) / toFloat(union_count) AS jaccard
         ORDER BY jaccard DESC
-        RETURN r.name AS recipe,
-               r.difficulty AS difficulty,
+        RETURN c.name AS recipe,
+               c.difficulty AS difficulty,
                round(jaccard * 100) / 100 AS jaccard_score
         LIMIT 5
     """
 
     match_results = session.run(
         match_query,
-        ingredients=data.ingredients
+        ingredients=normalized_inputs
     ).data()
 
     jaccard_results = session.run(
         jaccard_query,
-        ingredients=data.ingredients,
-        user_count=len(data.ingredients)
+        ingredients=normalized_inputs,
+        user_count=len(normalized_inputs)
     ).data()
 
     return {
@@ -107,6 +120,8 @@ def suggest_groceries(data: IngredientsInput, session: Session = Depends(get_neo
     """
     Suggest groceries based on ingredient co-occurrence in the graph.
     """
+    normalized_inputs = [normalize_title(ing) for ing in data.ingredients if normalize_title(ing)]
+
     grocery_query = """
         MATCH (i1:Ingredient)-[c:CO_OCCURS]->(i2:Ingredient)
         WHERE i1.name IN $ingredients
@@ -120,7 +135,7 @@ def suggest_groceries(data: IngredientsInput, session: Session = Depends(get_neo
 
     results = session.run(
         grocery_query,
-        ingredients=data.ingredients
+        ingredients=normalized_inputs
     ).data()
 
     return {"suggestions": results}
@@ -131,6 +146,7 @@ def get_cooccurrences(ingredient_name: str, session: Session = Depends(get_neo4j
     """
     Get top co-occurring ingredients for a given ingredient.
     """
+    normalized_ing = normalize_title(ingredient_name)
     query = """
         MATCH (i1:Ingredient {name: $name})-[c:CO_OCCURS]->(i2:Ingredient)
         RETURN i2.name AS ingredient, c.frequency AS frequency
@@ -138,5 +154,178 @@ def get_cooccurrences(ingredient_name: str, session: Session = Depends(get_neo4j
         LIMIT 5
     """
 
-    results = session.run(query, name=ingredient_name).data()
+    results = session.run(query, name=normalized_ing).data()
     return {"ingredient": ingredient_name, "cooccurrences": results}
+
+
+@router.get("/recipes/{recipe_id}/similar")
+async def get_similar_recipes(
+    recipe_id: int,
+    limit: int = Query(10, ge=1, le=20),
+    db: AsyncSession = Depends(get_db),
+    neo4j: Session = Depends(get_neo4j),
+):
+    """
+    Find recipes similar to a given recipe using Neo4j ingredient Jaccard similarity.
+
+    Algorithm:
+    1. Fetch the recipe's title from PostgreSQL.
+    2. In Neo4j, compute Jaccard similarity between the target recipe's ingredient set
+       and every other recipe's ingredient set via CO_OCCURS relationships.
+    3. Return the top-N most similar recipes from PostgreSQL, enriched with
+       saves/comments counts.
+    """
+    # ── 1. Get target recipe ───────────────────────────────────────────────────
+    result = await db.execute(select(Recipe).where(Recipe.id == recipe_id))
+    recipe = result.scalar_one_or_none()
+    if not recipe:
+        raise HTTPException(status_code=404, detail="Recipe not found")
+
+    # ── 2. Neo4j — Jaccard similarity on ingredient sets ──────────────────────
+    neo4j_results = neo4j.run("""
+        MATCH (target:Recipe {name: $title})-[:CONTAINS]->(ti:Ingredient)
+        WITH collect(ti.name) AS target_ings
+
+        MATCH (other:Recipe)-[:CONTAINS]->(si:Ingredient)
+        WHERE si.name IN target_ings AND other.name <> $title
+        WITH other, count(si) AS shared, size(target_ings) AS target_total
+
+        MATCH (other)-[:CONTAINS]->(oi:Ingredient)
+        WITH other, shared, target_total, count(oi) AS other_total
+
+        WITH other,
+             shared,
+             toFloat(shared) / toFloat(other_total + target_total - shared) AS jaccard
+        ORDER BY jaccard DESC
+        LIMIT $limit
+        RETURN other.name AS recipe_name, jaccard, shared AS shared_ingredients
+    """, title=recipe.title, limit=limit).data()
+
+    if not neo4j_results:
+        return []
+
+    # ── 3. Look up matched titles in PostgreSQL ────────────────────────────────
+    recipe_titles = [r["recipe_name"] for r in neo4j_results]
+    pg_result = await db.execute(
+        select(Recipe).where(Recipe.title.in_(recipe_titles))
+    )
+    similar = pg_result.scalars().all()
+
+    if not similar:
+        return []
+
+    # Sort by descending Jaccard score
+    score_map = {r["recipe_name"]: r["jaccard"] for r in neo4j_results}
+    similar.sort(key=lambda r: score_map.get(r.title, 0), reverse=True)
+
+    # ── 4. Enrich with saves / comments counts ─────────────────────────────────
+    ids = [r.id for r in similar]
+
+    saves_rows = await db.execute(
+        select(SavedRecipe.recipe_id, func.count(SavedRecipe.id).label("cnt"))
+        .where(SavedRecipe.recipe_id.in_(ids))
+        .group_by(SavedRecipe.recipe_id)
+    )
+    saves_map = {row.recipe_id: row.cnt for row in saves_rows}
+
+    comments_rows = await db.execute(
+        select(Comment.recipe_id, func.count(Comment.id).label("cnt"))
+        .where(Comment.recipe_id.in_(ids))
+        .group_by(Comment.recipe_id)
+    )
+    comments_map = {row.recipe_id: row.cnt for row in comments_rows}
+
+    return [
+        {
+            "id": r.id,
+            "title": r.title,
+            "cuisine": r.cuisine,
+            "difficulty": r.difficulty,
+            "prep_time": r.prep_time,
+            "cook_time": r.cook_time,
+            "image_url": r.image_url,
+            "saves_count": saves_map.get(r.id, 0),
+            "comments_count": comments_map.get(r.id, 0),
+            "jaccard_score": round(score_map.get(r.title, 0), 3),
+            "shared_ingredients": next(
+                (x["shared_ingredients"] for x in neo4j_results if x["recipe_name"] == r.title), 0
+            ),
+        }
+        for r in similar
+    ]
+
+
+@router.get("/personalized")
+async def get_personalized_feed(
+    current_user: User = Depends(get_current_user),
+    session: Session = Depends(get_neo4j),
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Personalized recipe feed using the Neo4j social graph:
+    1. Collaborative filtering (similar users' saves)
+    2. Social graph boost (people you follow)
+    3. Cuisine affinity bonus (top 3 cuisines from saves/likes)
+    4. Popularity fallback
+    """
+    scores = get_personalized_recipe_scores(current_user.id, session)
+    if not scores:
+        return {"recipes": [], "message": "Save some recipes to get personalised recommendations."}
+
+    # After scoring, run one PostgreSQL query to look up all recipe names:
+    recipe_names = list(scores.keys())
+    lower_names = [n.lower() for n in recipe_names]
+    pg_result = await db.execute(
+        select(Recipe).where(
+            (Recipe.title.in_(recipe_names)) | (func.lower(Recipe.title).in_(lower_names))
+        )
+    )
+    recipes = pg_result.scalars().all()
+
+    if not recipes:
+        return {"recipes": [], "message": "Save some recipes to get personalised recommendations."}
+
+    def get_score_and_reason(title):
+        if title in scores:
+            return scores[title]["combined_score"], scores[title]["reason"], scores[title].get("cuisine_bonuses", {})
+        t_lower = title.lower()
+        for n, data in scores.items():
+            if n.lower() == t_lower:
+                return data["combined_score"], data["reason"], data.get("cuisine_bonuses", {})
+        return 0.0, "Popular right now", {}
+
+    # Sort results by combined_score descending
+    recipes = sorted(recipes, key=lambda r: get_score_and_reason(r.title)[0], reverse=True)
+
+    results = []
+    seen_ids = set()
+    for r in recipes:
+        if r.id in seen_ids:
+            continue
+        seen_ids.add(r.id)
+
+        base_score, reason, cuisine_bonuses = get_score_and_reason(r.title)
+        bonus = 0.0
+        if r.cuisine:
+            bonus = cuisine_bonuses.get(r.cuisine.strip().lower(), 0.0)
+        final_score = round(base_score + bonus, 2)
+
+        results.append({
+            "id": r.id,
+            "title": r.title,
+            "cuisine": r.cuisine,
+            "difficulty": r.difficulty,
+            "prep_time": r.prep_time,
+            "cook_time": r.cook_time,
+            "image_url": r.image_url,
+            "combined_score": final_score,
+            "reason": reason,
+        })
+
+    # Re-sort after the bonus
+    results.sort(key=lambda x: x["combined_score"], reverse=True)
+
+    if not results:
+        return {"recipes": [], "message": "Save some recipes to get personalised recommendations."}
+
+    return results[:12]
