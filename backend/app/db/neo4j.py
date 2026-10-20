@@ -149,3 +149,97 @@ def sync_follow_to_neo4j(follower_id: int, following_id: int,
             """, frid=follower_id, fgid=following_id)
     except Exception:
         pass
+
+
+def get_personalized_recipe_scores(user_id: int, session) -> dict:
+    """
+    Runs the four personalization Cypher queries and returns a dict of:
+      { recipe_name: { "combined_score": float, "reason": str, "cuisine_bonuses": dict } }
+    Returns an empty dict if there is no data at all.
+    """
+    try:
+        # Query 1 — collaborative filtering
+        q1 = session.run("""
+            MATCH (me:User {id: $uid})-[:SAVED]->(r:Recipe)<-[:SAVED]-(similar:User)
+            WHERE similar.id <> $uid
+            MATCH (similar)-[:SAVED]->(rec:Recipe)
+            WHERE NOT (me)-[:SAVED]->(rec) AND NOT (me)-[:LIKED]->(rec)
+            RETURN rec.name AS recipe_name, count(similar) AS score
+            ORDER BY score DESC LIMIT 10
+        """, uid=user_id).data()
+
+        # Query 2 — social graph boost
+        q2 = session.run("""
+            MATCH (me:User {id: $uid})-[:FOLLOWS]->(friend:User)
+            MATCH (friend)-[:SAVED|LIKED]->(rec:Recipe)
+            WHERE NOT (me)-[:SAVED]->(rec) AND NOT (me)-[:LIKED]->(rec)
+            RETURN rec.name AS recipe_name, count(friend) AS score
+            ORDER BY score DESC LIMIT 10
+        """, uid=user_id).data()
+
+        # Query 3 — cuisine affinity
+        q3 = session.run("""
+            MATCH (me:User {id: $uid})-[:SAVED|LIKED]->(r:Recipe)
+            WHERE r.cuisine IS NOT NULL
+            RETURN r.cuisine AS cuisine, count(r) AS cuisine_count
+            ORDER BY cuisine_count DESC LIMIT 3
+        """, uid=user_id).data()
+
+        # Query 4 — popularity fallback
+        q4 = session.run("""
+            MATCH (u:User)-[:SAVED]->(r:Recipe)
+            WHERE u.id <> $uid
+            RETURN r.name AS recipe_name, count(u) AS score
+            ORDER BY score DESC LIMIT 10
+        """, uid=user_id).data()
+
+        # Build scores dict from q1 and q2
+        raw = {}
+        for row in q1:
+            name = row.get("recipe_name")
+            if name:
+                raw.setdefault(name, {"collab": 0, "social": 0})
+                raw[name]["collab"] = row.get("score", 0)
+        for row in q2:
+            name = row.get("recipe_name")
+            if name:
+                raw.setdefault(name, {"collab": 0, "social": 0})
+                raw[name]["social"] = row.get("score", 0)
+
+        # Fallback to q4 if empty
+        use_fallback = not raw
+        if use_fallback:
+            for row in q4:
+                name = row.get("recipe_name")
+                if name:
+                    raw[name] = {"collab": row.get("score", 0), "social": 0}
+
+        if not raw:
+            return {}
+
+        # Cuisine bonuses from q3
+        top_cuisines = [r["cuisine"].strip().lower() for r in q3 if r.get("cuisine")]
+        bonuses = {}
+        for i, c in enumerate(top_cuisines[:3]):
+            bonuses[c] = [0.2, 0.1, 0.05][i]
+
+        result = {}
+        for name, sc in raw.items():
+            if use_fallback:
+                combined = round(sc["collab"] * 0.4, 2)
+                reason = "Popular right now"
+            else:
+                collab, social = sc["collab"], sc["social"]
+                combined = round((collab * 0.4) + (social * 0.4), 2)
+                if social > 0 and collab > 0:
+                    reason = "Popular with cooks like you"
+                elif social > 0:
+                    reason = "Saved by people you follow"
+                else:
+                    reason = "Based on similar cooks"
+            result[name] = {"combined_score": combined, "reason": reason,
+                            "cuisine_bonuses": bonuses}
+        return result
+    except Exception:
+        return {}
+

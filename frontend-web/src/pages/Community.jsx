@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useRef } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import { getCommunityFeed, updateRecipePost, deleteRecipePost, getPostById } from '../api/posts'
+import { getCommunityFeed, updateRecipePost, deleteRecipePost, getPostById, getPersonalizedPostFeed } from '../api/posts'
 import { 
   getComments, 
   createComment, 
@@ -141,6 +141,13 @@ function PostCard({ post, onClick, onLikeToggle, currentUser }) {
 
       {/* Card body */}
       <div className="p-4 space-y-3">
+        {post.reason && (
+          <div>
+            <span className="inline-block bg-[#fff1ed] text-[#FF6B35] text-[10px] font-semibold px-2.5 py-0.5 rounded-full">
+              {post.reason}
+            </span>
+          </div>
+        )}
         {/* Recipe title */}
         <h3
           className="font-bold text-[#261814] text-sm leading-snug line-clamp-2"
@@ -961,6 +968,8 @@ export default function Community() {
       fetcher = getTrendingPosts().then(res => res.data)
     } else if (feedTab === 'following') {
       fetcher = getFollowingPosts().then(res => res.data)
+    } else if (feedTab === 'foryou') {
+      fetcher = getPersonalizedPostFeed(token).then(res => res.data)
     } else {
       fetcher = getCommunityFeed(token)
     }
@@ -1042,7 +1051,7 @@ export default function Community() {
                 Community Food Feed
               </h1>
               <p className="text-sm text-[#8d7168] mt-0.5">
-                {loading ? 'Loading...' : `${posts.length} recipe${posts.length !== 1 ? 's' : ''} in ${feedTab === 'trending' ? 'Trending' : feedTab === 'following' ? 'Following' : 'Explore'}`}
+                {loading ? 'Loading...' : `${posts.length} recipe${posts.length !== 1 ? 's' : ''} in ${feedTab === 'trending' ? 'Trending' : feedTab === 'following' ? 'Following' : feedTab === 'foryou' ? 'For You' : 'Explore'}`}
               </p>
             </div>
             <button
@@ -1095,6 +1104,18 @@ export default function Community() {
             >
               <span>👥 Following</span>
             </button>
+            {user && (
+              <button
+                onClick={() => setFeedTab('foryou')}
+                className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
+                  feedTab === 'foryou'
+                    ? 'bg-[#FF6B35] text-white shadow-sm'
+                    : 'bg-white text-[#594139] hover:bg-[#ffe9e3] border border-[#f7ddd5]'
+                }`}
+              >
+                <span>For You ✨</span>
+              </button>
+            )}
           </div>
 
           {/* Search + filters row */}
@@ -1179,23 +1200,27 @@ export default function Community() {
         {!loading && !error && filtered.length === 0 && (
           <div className="text-center py-20 space-y-4">
             <div className="w-20 h-20 rounded-full bg-[#ffe9e3] flex items-center justify-center mx-auto text-4xl">
-              {feedTab === 'following' ? '👥' : search || selectedCuisine !== 'All' ? '🔍' : '🍽️'}
+              {feedTab === 'foryou' ? '✨' : feedTab === 'following' ? '👥' : search || selectedCuisine !== 'All' ? '🔍' : '🍽️'}
             </div>
             <h3 className="text-lg font-bold text-[#261814]" style={{ fontFamily: 'Plus Jakarta Sans' }}>
-              {feedTab === 'following'
+              {feedTab === 'foryou'
+                ? 'Save or like some recipes to get a personalised feed.'
+                : feedTab === 'following'
                 ? "No posts from chefs you follow yet"
                 : search || selectedCuisine !== 'All'
                 ? 'No posts match your filter'
                 : 'No posts yet'}
             </h3>
             <p className="text-sm text-[#8d7168]">
-              {feedTab === 'following'
+              {feedTab === 'foryou'
+                ? 'Interact with recipes across ReciLink to train your personal recommendations graph.'
+                : feedTab === 'following'
                 ? 'Follow more home cooks in the Explore feed to see their delicious creations here!'
                 : search || selectedCuisine !== 'All'
                 ? 'Try a different cuisine or search term'
                 : 'Be the first to share a recipe with the community!'}
             </p>
-            {!search && selectedCuisine === 'All' && (
+            {!search && selectedCuisine === 'All' && feedTab !== 'foryou' && (
               <button onClick={() => navigate('/post')} className="btn-primary w-auto px-8 mx-auto">
                 Share Your First Recipe
               </button>

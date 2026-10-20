@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func
 from neo4j import Session
-from app.db.neo4j import get_neo4j, normalize_title
+from app.db.neo4j import get_neo4j, normalize_title, get_personalized_recipe_scores
 from app.db.session import get_db
 from app.models.recipe import Recipe
 from app.models.social import SavedRecipe, Comment
@@ -268,94 +268,7 @@ async def get_personalized_feed(
     3. Cuisine affinity bonus (top 3 cuisines from saves/likes)
     4. Popularity fallback
     """
-    uid = current_user.id
-
-    # Query 1 — collaborative filtering
-    q1_query = """
-        MATCH (me:User {id: $uid})-[:SAVED]->(r:Recipe)<-[:SAVED]-(similar:User)
-        WHERE similar.id <> $uid
-        MATCH (similar)-[:SAVED]->(rec:Recipe)
-        WHERE NOT (me)-[:SAVED]->(rec) AND NOT (me)-[:LIKED]->(rec)
-        RETURN rec.name AS recipe_name, count(similar) AS score
-        ORDER BY score DESC LIMIT 10
-    """
-    q1_results = session.run(q1_query, uid=uid).data()
-
-    # Query 2 — social graph boost (people you follow)
-    q2_query = """
-        MATCH (me:User {id: $uid})-[:FOLLOWS]->(friend:User)
-        MATCH (friend)-[:SAVED|LIKED]->(rec:Recipe)
-        WHERE NOT (me)-[:SAVED]->(rec) AND NOT (me)-[:LIKED]->(rec)
-        RETURN rec.name AS recipe_name, count(friend) AS score
-        ORDER BY score DESC LIMIT 10
-    """
-    q2_results = session.run(q2_query, uid=uid).data()
-
-    # Query 3 — cuisine affinity (top 3 cuisines from user's saves/likes)
-    q3_query = """
-        MATCH (me:User {id: $uid})-[:SAVED|LIKED]->(r:Recipe)
-        WHERE r.cuisine IS NOT NULL
-        RETURN r.cuisine AS cuisine, count(r) AS cuisine_count
-        ORDER BY cuisine_count DESC LIMIT 3
-    """
-    q3_results = session.run(q3_query, uid=uid).data()
-
-    # Query 4 — popularity fallback (used when queries 1 and 2 return nothing)
-    q4_query = """
-        MATCH (u:User)-[:SAVED]->(r:Recipe)
-        WHERE u.id <> $uid
-        RETURN r.name AS recipe_name, count(u) AS score
-        ORDER BY score DESC LIMIT 10
-    """
-    q4_results = session.run(q4_query, uid=uid).data()
-
-    # Score combiner logic in Python:
-    # Build a dict of {recipe_name: {collab: 0, social: 0}} from queries 1 and 2.
-    scores = {}
-    for row in q1_results:
-        name = row.get("recipe_name")
-        if not name:
-            continue
-        if name not in scores:
-            scores[name] = {"collab": 0, "social": 0}
-        scores[name]["collab"] = row.get("score", 0)
-
-    for row in q2_results:
-        name = row.get("recipe_name")
-        if not name:
-            continue
-        if name not in scores:
-            scores[name] = {"collab": 0, "social": 0}
-        scores[name]["social"] = row.get("score", 0)
-
-    # If that dict is empty, use query 4 results with reason "Popular right now".
-    recipe_reasons = {}
-    combined_scores = {}
-
-    if not scores:
-        for row in q4_results:
-            name = row.get("recipe_name")
-            if not name:
-                continue
-            score = row.get("score", 0)
-            scores[name] = {"collab": score, "social": 0}
-            combined_scores[name] = round(score * 0.4, 2)
-            recipe_reasons[name] = "Popular right now"
-    else:
-        for name, sc in scores.items():
-            collab = sc["collab"]
-            social = sc["social"]
-            combined = round((collab * 0.4) + (social * 0.4), 2)
-            combined_scores[name] = combined
-            if social > 0 and collab > 0:
-                recipe_reasons[name] = "Popular with cooks like you"
-            elif social > 0:
-                recipe_reasons[name] = "Saved by people you follow"
-            elif collab > 0:
-                recipe_reasons[name] = "Based on similar cooks"
-            else:
-                recipe_reasons[name] = "Popular right now"
-
+    scores = get_personalized_recipe_scores(current_user.id, session)
     if not scores:
         return {"recipes": [], "message": "Save some recipes to get personalised recommendations."}
 
@@ -373,27 +286,16 @@ async def get_personalized_feed(
         return {"recipes": [], "message": "Save some recipes to get personalised recommendations."}
 
     def get_score_and_reason(title):
-        if title in combined_scores:
-            return combined_scores[title], recipe_reasons[title]
+        if title in scores:
+            return scores[title]["combined_score"], scores[title]["reason"], scores[title].get("cuisine_bonuses", {})
         t_lower = title.lower()
-        for n in recipe_names:
+        for n, data in scores.items():
             if n.lower() == t_lower:
-                return combined_scores[n], recipe_reasons[n]
-        return 0.0, "Popular right now"
+                return data["combined_score"], data["reason"], data.get("cuisine_bonuses", {})
+        return 0.0, "Popular right now", {}
 
     # Sort results by combined_score descending
     recipes = sorted(recipes, key=lambda r: get_score_and_reason(r.title)[0], reverse=True)
-
-    # Cuisine affinity from query 3:
-    # If the user has top cuisines, give +0.2 bonus to top cuisine, +0.1 for second, +0.05 for third.
-    top_cuisines = [row["cuisine"] for row in q3_results if row.get("cuisine")]
-    cuisine_bonuses = {}
-    if len(top_cuisines) > 0 and top_cuisines[0]:
-        cuisine_bonuses[top_cuisines[0].strip().lower()] = 0.2
-    if len(top_cuisines) > 1 and top_cuisines[1]:
-        cuisine_bonuses[top_cuisines[1].strip().lower()] = 0.1
-    if len(top_cuisines) > 2 and top_cuisines[2]:
-        cuisine_bonuses[top_cuisines[2].strip().lower()] = 0.05
 
     results = []
     seen_ids = set()
@@ -402,7 +304,7 @@ async def get_personalized_feed(
             continue
         seen_ids.add(r.id)
 
-        base_score, reason = get_score_and_reason(r.title)
+        base_score, reason, cuisine_bonuses = get_score_and_reason(r.title)
         bonus = 0.0
         if r.cuisine:
             bonus = cuisine_bonuses.get(r.cuisine.strip().lower(), 0.0)
@@ -427,4 +329,3 @@ async def get_personalized_feed(
         return {"recipes": [], "message": "Save some recipes to get personalised recommendations."}
 
     return results[:12]
-

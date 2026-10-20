@@ -56,6 +56,7 @@ class PostResponse(BaseModel):
     created_at: datetime
     likes_count: int = 0
     is_liked: bool = False
+    reason: Optional[str] = None
 
     recipe: RecipeInPost
     posted_by: AuthorInPost

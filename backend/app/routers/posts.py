@@ -12,7 +12,8 @@ from app.models.user import User
 from app.models.social import SavedRecipe, Comment, Follow, PostLike
 from app.schemas.post import PostCreate, PostResponse, RecipeInPost, AuthorInPost
 from app.core.security import get_current_user_dep, get_optional_user_dep
-from app.db.neo4j import run_neo4j, normalize_title
+from neo4j import Session
+from app.db.neo4j import run_neo4j, normalize_title, get_neo4j, get_personalized_recipe_scores
 from app.routers.recipes import sync_recipe_to_neo4j, cleanup_deleted_recipe_in_neo4j
 
 router = APIRouter(prefix="/posts", tags=["Community Posts"])
@@ -170,6 +171,80 @@ async def get_following_feed(
     )
     posts = result.scalars().all()
     return await _enrich_posts(posts, db, current_user_id=current_user.id)
+
+
+# ── GET /api/v1/posts/feed/personalized  ─────────────────────────────────────
+
+@router.get("/feed/personalized", response_model=List[PostResponse])
+async def get_personalized_post_feed(
+    db: AsyncSession = Depends(get_db),
+    session: Session = Depends(get_neo4j),
+    current_user: User = Depends(get_current_user_dep),
+):
+    """
+    Personalized feed of posts based on Neo4j social graph and collaborative filtering.
+    """
+    scores = get_personalized_recipe_scores(current_user.id, session)
+    if not scores:
+        return []
+
+    recipe_names = list(scores.keys())
+    lower_names = [n.lower() for n in recipe_names]
+
+    recipes_result = await db.execute(
+        select(Recipe).where(
+            Recipe.title.in_(recipe_names) |
+            func.lower(Recipe.title).in_(lower_names)
+        )
+    )
+    recipes = recipes_result.scalars().all()
+    if not recipes:
+        return []
+
+    def get_base_data(title: str):
+        if title in scores:
+            return scores[title]
+        t_lower = title.lower()
+        for k, v in scores.items():
+            if k.lower() == t_lower:
+                return v
+        return None
+
+    scored_recipes = []
+    for r in recipes:
+        base = get_base_data(r.title)
+        if not base:
+            continue
+        bonuses = base.get("cuisine_bonuses", {})
+        cuisine_bonus = bonuses.get(r.cuisine.strip().lower(), 0.0) if r.cuisine else 0.0
+        final_score = base["combined_score"] + cuisine_bonus
+        scored_recipes.append((r, final_score, base["reason"]))
+
+    scored_recipes.sort(key=lambda x: x[1], reverse=True)
+    top_recipes = scored_recipes[:12]
+    if not top_recipes:
+        return []
+
+    recipe_order_map = {r.id: idx for idx, (r, score, reason) in enumerate(top_recipes)}
+    recipe_reason_map = {r.id: reason for (r, score, reason) in top_recipes}
+
+    top_recipe_ids = [r.id for (r, score, reason) in top_recipes]
+    posts_result = await db.execute(
+        select(Post)
+        .where(Post.recipe_id.in_(top_recipe_ids))
+        .options(selectinload(Post.recipe), selectinload(Post.posted_by))
+    )
+    posts = posts_result.scalars().all()
+    if not posts:
+        return []
+
+    posts = sorted(posts, key=lambda p: recipe_order_map.get(p.recipe_id, 9999))
+    enriched = await _enrich_posts(posts, db, current_user_id=current_user.id)
+
+    for p in enriched:
+        p.reason = recipe_reason_map.get(p.recipe.id)
+
+    return enriched
 
 
 # ── GET /api/v1/posts/{id}  ───────────────────────────────────────────────────

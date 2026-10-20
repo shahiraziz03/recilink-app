@@ -1,3 +1,4 @@
+import API from './recipes'
 const BASE_URL = 'http://localhost:8000/api/v1'
 
 /**
@@ -115,3 +116,8 @@ export async function deleteRecipePost(postId, token) {
 
   return true;
 }
+
+export const getPersonalizedPostFeed = (token) =>
+  API.get('/posts/feed/personalized', {
+    headers: token ? { Authorization: `Bearer ${token}` } : {}
+  })
