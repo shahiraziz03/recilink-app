@@ -7,7 +7,7 @@ from pydantic import BaseModel
 from datetime import datetime
 
 from app.db.session import get_db
-from app.db.neo4j import get_neo4j
+from app.db.neo4j import get_neo4j, sync_save_to_neo4j, sync_like_to_neo4j, sync_follow_to_neo4j
 from app.models.user import User, Profile
 from app.models.recipe import Recipe
 from app.models.post import Post
@@ -81,6 +81,13 @@ async def toggle_save(
         saved = True
 
     await db.commit()
+
+    recipe = await db.get(Recipe, recipe_id)
+    if recipe:
+        try:
+            sync_save_to_neo4j(current_user.id, recipe.title, saved=saved)
+        except Exception:
+            pass
 
     count_result = await db.execute(
         select(func.count(SavedRecipe.id)).where(SavedRecipe.recipe_id == recipe_id)
@@ -195,6 +202,10 @@ async def follow_user(
     try:
         db.add(Follow(follower_id=current_user.id, following_id=user_id))
         await db.commit()
+        try:
+            sync_follow_to_neo4j(current_user.id, user_id, following=True)
+        except Exception:
+            pass
     except IntegrityError:
         await db.rollback()
     return {"following": True}
@@ -213,6 +224,10 @@ async def unfollow_user(
         )
     )
     await db.commit()
+    try:
+        sync_follow_to_neo4j(current_user.id, user_id, following=False)
+    except Exception:
+        pass
     return {"following": False}
 
 
@@ -413,6 +428,13 @@ async def toggle_like(
         except IntegrityError:
             await db.rollback()
             liked = True
+
+    recipe = await db.get(Recipe, post.recipe_id)
+    if recipe:
+        try:
+            sync_like_to_neo4j(current_user.id, recipe.title, liked=liked)
+        except Exception:
+            pass
 
     count_result = await db.execute(
         select(func.count(PostLike.id)).where(PostLike.post_id == post_id)

@@ -83,3 +83,69 @@ def check_neo4j_connection() -> bool:
 def close_driver():
     """Close Neo4j driver on shutdown."""
     driver.close()
+
+
+def sync_user_to_neo4j(user_id: int, username: str) -> None:
+    """MERGE a User node. Safe to call on every login/register."""
+    try:
+        run_neo4j(
+            "MERGE (u:User {id: $id}) SET u.username = $username",
+            id=user_id, username=username
+        )
+    except Exception:
+        pass
+
+
+def sync_save_to_neo4j(user_id: int, recipe_title: str, saved: bool) -> None:
+    """MERGE or DELETE a (User)-[:SAVED]->(Recipe) edge."""
+    try:
+        if saved:
+            run_neo4j("""
+                MERGE (u:User {id: $uid})
+                MERGE (r:Recipe {name: $title})
+                MERGE (u)-[:SAVED]->(r)
+            """, uid=user_id, title=recipe_title)
+        else:
+            run_neo4j("""
+                MATCH (u:User {id: $uid})-[s:SAVED]->(r:Recipe {name: $title})
+                DELETE s
+            """, uid=user_id, title=recipe_title)
+    except Exception:
+        pass
+
+
+def sync_like_to_neo4j(user_id: int, recipe_title: str, liked: bool) -> None:
+    """MERGE or DELETE a (User)-[:LIKED]->(Recipe) edge."""
+    try:
+        if liked:
+            run_neo4j("""
+                MERGE (u:User {id: $uid})
+                MERGE (r:Recipe {name: $title})
+                MERGE (u)-[:LIKED]->(r)
+            """, uid=user_id, title=recipe_title)
+        else:
+            run_neo4j("""
+                MATCH (u:User {id: $uid})-[l:LIKED]->(r:Recipe {name: $title})
+                DELETE l
+            """, uid=user_id, title=recipe_title)
+    except Exception:
+        pass
+
+
+def sync_follow_to_neo4j(follower_id: int, following_id: int,
+                          following: bool) -> None:
+    """MERGE or DELETE a (User)-[:FOLLOWS]->(User) edge."""
+    try:
+        if following:
+            run_neo4j("""
+                MERGE (a:User {id: $frid})
+                MERGE (b:User {id: $fgid})
+                MERGE (a)-[:FOLLOWS]->(b)
+            """, frid=follower_id, fgid=following_id)
+        else:
+            run_neo4j("""
+                MATCH (a:User {id: $frid})-[f:FOLLOWS]->(b:User {id: $fgid})
+                DELETE f
+            """, frid=follower_id, fgid=following_id)
+    except Exception:
+        pass
