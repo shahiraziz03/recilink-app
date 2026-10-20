@@ -1,7 +1,7 @@
-import { useState, useEffect, useMemo } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect, useMemo, useRef } from 'react'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import { getCommunityFeed, updateRecipePost, deleteRecipePost } from '../api/posts'
+import { getCommunityFeed, updateRecipePost, deleteRecipePost, getPostById } from '../api/posts'
 import { 
   getComments, 
   createComment, 
@@ -877,6 +877,7 @@ const CUISINE_FILTERS = ['All', 'Malaysian', 'Chinese', 'Indian', 'Western', 'Ja
 
 export default function Community() {
   const navigate = useNavigate()
+  const [searchParams, setSearchParams] = useSearchParams()
   const { user, token } = useAuth()
   const [feedTab, setFeedTab] = useState('explore') // 'explore' | 'trending' | 'following'
   const [posts, setPosts] = useState([])
@@ -885,6 +886,72 @@ export default function Community() {
   const [selectedCuisine, setSelectedCuisine] = useState('All')
   const [search, setSearch] = useState('')
   const [selectedPost, setSelectedPost] = useState(null)
+  const openedFromPageRef = useRef(false)
+
+  const postIdParam = searchParams.get('post')
+
+  // URL is the source of truth for opening/closing post popup
+  useEffect(() => {
+    if (!postIdParam) {
+      setSelectedPost(null)
+      openedFromPageRef.current = false
+      return
+    }
+
+    if (selectedPost && String(selectedPost.id) === String(postIdParam)) {
+      const foundInPosts = posts.find((p) => String(p.id) === String(postIdParam))
+      if (foundInPosts && foundInPosts !== selectedPost) {
+        setSelectedPost(foundInPosts)
+      }
+      return
+    }
+
+    const found = posts.find((p) => String(p.id) === String(postIdParam))
+    if (found) {
+      setSelectedPost(found)
+      return
+    }
+
+    let isCancelled = false
+    getPostById(postIdParam, token)
+      .then((data) => {
+        if (!isCancelled) {
+          setSelectedPost(data)
+        }
+      })
+      .catch(() => {
+        if (!isCancelled) {
+          setSelectedPost(null)
+          const newParams = new URLSearchParams(searchParams)
+          newParams.delete('post')
+          setSearchParams(newParams, { replace: true })
+        }
+      })
+
+    return () => {
+      isCancelled = true
+    }
+  }, [postIdParam, posts, token])
+
+  const handlePostClick = (post) => {
+    openedFromPageRef.current = true
+    setSelectedPost(post)
+    const newParams = new URLSearchParams(searchParams)
+    newParams.set('post', String(post.id))
+    setSearchParams(newParams)
+  }
+
+  const handleClosePopup = () => {
+    setSelectedPost(null)
+    if (openedFromPageRef.current) {
+      openedFromPageRef.current = false
+      navigate(-1)
+    } else {
+      const newParams = new URLSearchParams(searchParams)
+      newParams.delete('post')
+      setSearchParams(newParams, { replace: true })
+    }
+  }
 
   useEffect(() => {
     setLoading(true)
@@ -907,9 +974,15 @@ export default function Community() {
   const handlePostUpdated = (updatedPost, deletedPostId) => {
     if (deletedPostId) {
       setPosts(prev => prev.filter(p => p.id !== deletedPostId))
+      if (selectedPost && selectedPost.id === deletedPostId) {
+        handleClosePopup()
+      }
       return
     }
     setPosts(prev => prev.map(p => p.id === updatedPost.id ? updatedPost : p))
+    if (selectedPost && selectedPost.id === updatedPost.id) {
+      setSelectedPost(prev => ({ ...prev, ...updatedPost }))
+    }
   }
 
   const handleLikeToggle = async (postId) => {
@@ -1149,7 +1222,7 @@ export default function Community() {
                   <PostCard
                     key={post.id}
                     post={post}
-                    onClick={setSelectedPost}
+                    onClick={handlePostClick}
                     onLikeToggle={handleLikeToggle}
                     currentUser={user}
                   />
@@ -1161,7 +1234,7 @@ export default function Community() {
                   <PostCard
                     key={post.id}
                     post={post}
-                    onClick={setSelectedPost}
+                    onClick={handlePostClick}
                     onLikeToggle={handleLikeToggle}
                     currentUser={user}
                   />
@@ -1176,7 +1249,7 @@ export default function Community() {
       {selectedPost && (
         <PostModal
           post={selectedPost}
-          onClose={() => setSelectedPost(null)}
+          onClose={handleClosePopup}
           onPostUpdated={handlePostUpdated}
         />
       )}

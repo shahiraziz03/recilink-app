@@ -378,7 +378,7 @@ export default function PublicProfile() {
                   return (
                     <div
                       key={post.id}
-                      onClick={() => navigate('/community')}
+                      onClick={() => navigate(`/community?post=${post.id}`)}
                       className="cursor-pointer rounded-2xl overflow-hidden border border-gray-100 bg-white hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex flex-col group relative"
                     >
                       {/* Photo */}

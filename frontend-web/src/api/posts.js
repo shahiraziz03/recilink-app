@@ -60,6 +60,23 @@ export async function getCommunityFeed(token) {
 }
 
 /**
+ * Fetch a single community post by ID.
+ */
+export async function getPostById(postId, token) {
+  const headers = {}
+  const authToken = token || localStorage.getItem('recilink_token')
+  if (authToken) {
+    headers['Authorization'] = `Bearer ${authToken}`
+  }
+  const res = await fetch(`${BASE_URL}/posts/${postId}`, { headers })
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}))
+    throw new Error(err.detail || 'Failed to fetch post')
+  }
+  return res.json()
+}
+
+/**
  * Update an existing post and its linked recipe.
  */
 export async function updateRecipePost(postId, payload, token) {
