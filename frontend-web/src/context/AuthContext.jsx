@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState, useEffect } from 'react'
 
 const AuthContext = createContext(null)
 
@@ -31,6 +31,14 @@ export function AuthProvider({ children }) {
     localStorage.removeItem('recilink_user')
     localStorage.removeItem('recilink_token')
   }
+
+  useEffect(() => {
+    const handleLogout = () => {
+      logoutUser()
+    }
+    window.addEventListener('recilink-logout', handleLogout)
+    return () => window.removeEventListener('recilink-logout', handleLogout)
+  }, [])
 
   return (
     <AuthContext.Provider value={{ user, token, loginUser, logoutUser, updateUser }}>

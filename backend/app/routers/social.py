@@ -393,17 +393,26 @@ async def toggle_like(
     db: AsyncSession = Depends(get_db),
 ):
     """Toggle like on a post. Returns new like state and total likes count."""
+    post = await db.get(Post, post_id)
+    if not post:
+        raise HTTPException(status_code=404, detail="Post not found")
+
     result = await db.execute(
         select(PostLike).where(PostLike.user_id == current_user.id, PostLike.post_id == post_id)
     )
     existing = result.scalar_one_or_none()
     if existing:
         await db.delete(existing)
+        await db.commit()
         liked = False
     else:
-        db.add(PostLike(user_id=current_user.id, post_id=post_id))
-        liked = True
-    await db.commit()
+        try:
+            db.add(PostLike(user_id=current_user.id, post_id=post_id))
+            await db.commit()
+            liked = True
+        except IntegrityError:
+            await db.rollback()
+            liked = True
 
     count_result = await db.execute(
         select(func.count(PostLike.id)).where(PostLike.post_id == post_id)

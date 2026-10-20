@@ -20,6 +20,7 @@ API.interceptors.response.use(
       if (!url.includes('/auth/login') && !url.includes('/auth/register')) {
         localStorage.removeItem('recilink_token')
         localStorage.removeItem('recilink_user')
+        window.dispatchEvent(new Event('recilink-logout'))
       }
     }
     return Promise.reject(error)
