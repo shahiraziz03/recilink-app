@@ -128,4 +128,10 @@ export const getTrendingPosts = () =>
 export const getFollowingPosts = () =>
   API.get('/posts/feed/following')
 
+export async function getPersonalizedFeed(token) {
+  return API.get('/recommendations/personalized', {
+    headers: { Authorization: `Bearer ${token}` }
+  }).then(r => r.data)
+}
+
 export default API

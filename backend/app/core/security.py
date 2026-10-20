@@ -73,3 +73,6 @@ async def get_optional_user_dep(
         return result.scalar_one_or_none()
     except Exception:
         return None
+
+
+get_current_user = get_current_user_dep
