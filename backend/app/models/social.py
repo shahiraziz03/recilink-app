@@ -36,3 +36,17 @@ class Follow(Base):
     created_at   = Column(DateTime(timezone=True), server_default=func.now())
 
     __table_args__ = (UniqueConstraint("follower_id", "following_id", name="uq_follow"),)
+
+
+class PostLike(Base):
+    """Tracks which user liked which post. One like per user per post."""
+    __tablename__ = "post_likes"
+
+    id         = Column(Integer, primary_key=True, index=True)
+    user_id    = Column(Integer, ForeignKey("users.id",  ondelete="CASCADE"), nullable=False)
+    post_id    = Column(Integer, ForeignKey("posts.id",  ondelete="CASCADE"), nullable=False)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+    user = relationship("User", backref="post_likes")
+
+    __table_args__ = (UniqueConstraint("user_id", "post_id", name="uq_post_like"),)

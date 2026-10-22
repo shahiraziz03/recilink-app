@@ -54,6 +54,9 @@ class PostResponse(BaseModel):
     caption: Optional[str]
     cover_photo_url: Optional[str]
     created_at: datetime
+    likes_count: int = 0
+    is_liked: bool = False
+    reason: Optional[str] = None
 
     recipe: RecipeInPost
     posted_by: AuthorInPost

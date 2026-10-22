@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta, timezone
 import bcrypt
 import jwt
-from fastapi import Depends, HTTPException, status
+from fastapi import Depends, HTTPException, status, Request
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
@@ -9,6 +9,7 @@ from app.db.session import get_db
 from app.core.config import settings
 
 bearer_scheme = HTTPBearer()
+optional_bearer_scheme = HTTPBearer(auto_error=False)
 
 # Secret key for signing JWT tokens
 SECRET_KEY = settings.SECRET_KEY
@@ -52,3 +53,26 @@ async def get_current_user_dep(
     if not user:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User not found")
     return user
+
+
+async def get_optional_user_dep(
+    credentials: HTTPAuthorizationCredentials = Depends(optional_bearer_scheme),
+    db: AsyncSession = Depends(get_db),
+):
+    """Returns the current user if a valid token is provided, otherwise returns None.
+    Use this for public endpoints that show extra info (e.g. is_liked) when logged in."""
+    from app.models.user import User
+    if not credentials:
+        return None
+    try:
+        payload = jwt.decode(credentials.credentials, SECRET_KEY, algorithms=[ALGORITHM])
+        user_id: int = payload.get("sub")
+        if user_id is None:
+            return None
+        result = await db.execute(select(User).where(User.id == int(user_id)))
+        return result.scalar_one_or_none()
+    except Exception:
+        return None
+
+
+get_current_user = get_current_user_dep

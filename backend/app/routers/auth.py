@@ -5,6 +5,7 @@ from app.db.session import get_db
 from app.models.user import User, Profile
 from app.schemas.user import UserRegister, UserLogin, TokenResponse, UserResponse
 from app.core.security import hash_password, verify_password, create_access_token
+from app.db.neo4j import sync_user_to_neo4j
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
 
@@ -42,6 +43,11 @@ async def register(user_data: UserRegister, db: AsyncSession = Depends(get_db)):
     await db.commit()
     await db.refresh(new_user)
 
+    try:
+        sync_user_to_neo4j(new_user.id, new_user.username)
+    except Exception:
+        pass
+
     return new_user
 
 
@@ -69,6 +75,11 @@ async def login(user_data: UserLogin, db: AsyncSession = Depends(get_db)):
 
     # Create JWT token
     access_token = create_access_token(data={"sub": str(user.id), "username": user.username})
+
+    try:
+        sync_user_to_neo4j(user.id, user.username)
+    except Exception:
+        pass
 
     return TokenResponse(
         access_token=access_token,
