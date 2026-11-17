@@ -13,6 +13,46 @@ from app.models.social import SavedRecipe, Comment
 from app.core.security import create_access_token, get_current_user_dep
 from neo4j import Session as Neo4jSession
 
+
+NON_HALAL_INGREDIENTS = [
+    "pork", "lard", "bacon", "ham", "prosciutto", "pancetta",
+    "wine", "beer", "alcohol", "rum", "brandy", "sake",
+    "gelatin", "suet"
+]
+
+NON_VEGETARIAN_INGREDIENTS = [
+    "chicken", "beef", "lamb", "pork", "fish", "prawn", "shrimp",
+    "crab", "squid", "anchovy", "bacon", "ham", "mutton", "duck",
+    "turkey", "tuna", "salmon", "sardine", "oyster", "clam",
+    "scallop", "lobster", "venison"
+]
+
+NON_VEGAN_INGREDIENTS = NON_VEGETARIAN_INGREDIENTS + [
+    "milk", "cream", "butter", "cheese", "egg", "honey",
+    "yogurt", "ghee", "whey"
+]
+
+
+def passes_dietary_filter(ingredients: list, preferences: list) -> bool:
+    """
+    Returns True if the recipe passes all the user's dietary filters.
+    ingredients: list of ingredient name strings from the recipe
+    preferences: list of strings e.g. ["halal", "vegetarian"]
+    """
+    if not preferences or not ingredients:
+        return True
+    flat = [i.lower() for i in ingredients]
+    if "halal" in preferences:
+        if any(h in ing for ing in flat for h in NON_HALAL_INGREDIENTS):
+            return False
+    if "vegetarian" in preferences:
+        if any(h in ing for ing in flat for h in NON_VEGETARIAN_INGREDIENTS):
+            return False
+    if "vegan" in preferences:
+        if any(h in ing for ing in flat for h in NON_VEGAN_INGREDIENTS):
+            return False
+    return True
+
 router = APIRouter(prefix="/recipes", tags=["Recipes"])
 
 # --- Schemas ---
@@ -107,6 +147,7 @@ async def get_recipes(
     limit: int = Query(12, ge=1, le=50),
     community_only: bool = Query(False),
     dataset_only: bool = Query(False),
+    preferences: Optional[str] = Query(None),
     db: AsyncSession = Depends(get_db)
 ):
     """Browse recipes with pagination. community_only=true → user-posted only. dataset_only=true → dataset only."""
@@ -118,7 +159,11 @@ async def get_recipes(
         query = query.where(Recipe.source == "dataset")
     query = query.offset(offset).limit(limit).order_by(Recipe.created_at.desc())
     result = await db.execute(query)
-    return await _enrich(result.scalars().all(), db)
+    recipes = result.scalars().all()
+    if preferences:
+        prefs_list = [p.strip().lower() for p in preferences.split(",") if p.strip()]
+        recipes = [r for r in recipes if passes_dietary_filter(r.ingredients or [], prefs_list)]
+    return await _enrich(recipes, db)
 
 
 @router.get("/search", response_model=List[RecipeResponse])

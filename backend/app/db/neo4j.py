@@ -3,6 +3,7 @@ from neo4j import GraphDatabase
 from neo4j.exceptions import SessionExpired, ServiceUnavailable
 from app.core.config import settings
 
+
 # Safe connection pool limits for AuraDB free tier
 driver = GraphDatabase.driver(
     settings.NEO4J_URI,
@@ -242,4 +243,7 @@ def get_personalized_recipe_scores(user_id: int, session) -> dict:
         return result
     except Exception:
         return {}
+    
+
+    
 

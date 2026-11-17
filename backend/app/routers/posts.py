@@ -14,7 +14,8 @@ from app.schemas.post import PostCreate, PostResponse, RecipeInPost, AuthorInPos
 from app.core.security import get_current_user_dep, get_optional_user_dep
 from neo4j import Session
 from app.db.neo4j import run_neo4j, normalize_title, get_neo4j, get_personalized_recipe_scores
-from app.routers.recipes import sync_recipe_to_neo4j, cleanup_deleted_recipe_in_neo4j
+from app.routers.recipes import sync_recipe_to_neo4j, cleanup_deleted_recipe_in_neo4j, passes_dietary_filter
+from app.models.user import Profile
 
 router = APIRouter(prefix="/posts", tags=["Community Posts"])
 
@@ -219,6 +220,16 @@ async def get_personalized_post_feed(
         cuisine_bonus = bonuses.get(r.cuisine.strip().lower(), 0.0) if r.cuisine else 0.0
         final_score = base["combined_score"] + cuisine_bonus
         scored_recipes.append((r, final_score, base["reason"]))
+
+    # Dietary preference filtering
+    profile_result = await db.execute(
+        select(Profile).where(Profile.user_id == current_user.id))
+    profile = profile_result.scalar_one_or_none()
+    prefs = (profile.dietary_preferences or []) if profile else []
+    scored_recipes = [
+        (r, score, reason) for (r, score, reason) in scored_recipes
+        if passes_dietary_filter(r.ingredients or [], prefs)
+    ]
 
     scored_recipes.sort(key=lambda x: x[1], reverse=True)
     top_recipes = scored_recipes[:12]

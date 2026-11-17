@@ -7,7 +7,9 @@ from app.db.session import get_db
 from app.models.recipe import Recipe
 from app.models.social import SavedRecipe, Comment
 from app.models.user import User
-from app.core.security import get_current_user
+from app.core.security import get_current_user, get_optional_user_dep
+from app.models.user import Profile
+from app.routers.recipes import passes_dietary_filter
 from pydantic import BaseModel
 from typing import List, Optional
 
@@ -164,6 +166,7 @@ async def get_similar_recipes(
     limit: int = Query(10, ge=1, le=20),
     db: AsyncSession = Depends(get_db),
     neo4j: Session = Depends(get_neo4j),
+    current_user: Optional[User] = Depends(get_optional_user_dep),
 ):
     """
     Find recipes similar to a given recipe using Neo4j ingredient Jaccard similarity.
@@ -210,6 +213,18 @@ async def get_similar_recipes(
         select(Recipe).where(Recipe.title.in_(recipe_titles))
     )
     similar = pg_result.scalars().all()
+
+    if not similar:
+        return []
+
+    # Dietary preference filtering
+    prefs = []
+    if current_user:
+        profile_result = await db.execute(
+            select(Profile).where(Profile.user_id == current_user.id))
+        profile = profile_result.scalar_one_or_none()
+        prefs = (profile.dietary_preferences or []) if profile else []
+    similar = [r for r in similar if passes_dietary_filter(r.ingredients or [], prefs)]
 
     if not similar:
         return []
@@ -281,6 +296,16 @@ async def get_personalized_feed(
         )
     )
     recipes = pg_result.scalars().all()
+
+    if not recipes:
+        return {"recipes": [], "message": "Save some recipes to get personalised recommendations."}
+
+    # Dietary preference filtering
+    profile_result = await db.execute(
+        select(Profile).where(Profile.user_id == current_user.id))
+    profile = profile_result.scalar_one_or_none()
+    prefs = (profile.dietary_preferences or []) if profile else []
+    recipes = [r for r in recipes if passes_dietary_filter(r.ingredients or [], prefs)]
 
     if not recipes:
         return {"recipes": [], "message": "Save some recipes to get personalised recommendations."}
