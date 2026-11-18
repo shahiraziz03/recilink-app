@@ -3,7 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func
 from sqlalchemy.orm import selectinload
 from typing import List, Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 from app.db.session import get_db
 from app.models.post import Post
@@ -16,6 +16,14 @@ from neo4j import Session
 from app.db.neo4j import run_neo4j, normalize_title, get_neo4j, get_personalized_recipe_scores
 from app.routers.recipes import sync_recipe_to_neo4j, cleanup_deleted_recipe_in_neo4j, passes_dietary_filter
 from app.models.user import Profile
+
+import re
+
+def video_thumbnail_url(video_url: str) -> str | None:
+    """Cloudinary returns a frame as an image if the video URL ends in .jpg."""
+    if not video_url or "/video/upload/" not in video_url:
+        return None
+    return re.sub(r"\.[A-Za-z0-9]+$", ".jpg", video_url)
 
 router = APIRouter(prefix="/posts", tags=["Community Posts"])
 
@@ -89,6 +97,7 @@ async def _enrich_posts(posts: list, db: AsyncSession, current_user_id: Optional
             id=post.id,
             caption=post.caption,
             cover_photo_url=post.cover_photo_url,
+            video_url=post.video_url,
             created_at=post.created_at,
             likes_count=likes_map.get(post.id, 0),
             is_liked=post.id in liked_post_ids,
@@ -297,10 +306,18 @@ async def create_post(
     if not recipe:
         raise HTTPException(status_code=404, detail="Recipe not found")
 
+    cover_photo_url = data.cover_photo_url
+    video_url = data.video_url
+    if cover_photo_url and video_url:
+        raise HTTPException(status_code=400, detail="Choose either a photo or a video, not both")
+    if video_url and not cover_photo_url:
+        cover_photo_url = video_thumbnail_url(video_url)
+
     new_post = Post(
         recipe_id=data.recipe_id,
         caption=data.caption,
-        cover_photo_url=data.cover_photo_url,
+        cover_photo_url=cover_photo_url,
+        video_url=video_url,
         posted_by_id=current_user.id,
     )
     db.add(new_post)
@@ -322,6 +339,7 @@ async def create_post(
 class PostUpdate(BaseModel):
     caption: Optional[str] = None
     cover_photo_url: Optional[str] = None
+    video_url: Optional[str] = None
     title: Optional[str] = None
     description: Optional[str] = None
     cuisine: Optional[str] = None
@@ -332,6 +350,14 @@ class PostUpdate(BaseModel):
     ingredients: Optional[list] = None
     steps: Optional[list] = None
     tags: Optional[list] = None
+
+    @field_validator("cover_photo_url", "video_url", mode="before")
+    @classmethod
+    def clean_media_urls(cls, v):
+        if isinstance(v, str):
+            v = v.strip()
+            return v if v else None
+        return v
 
 @router.put("/{post_id}", response_model=PostResponse)
 async def update_post(
@@ -366,8 +392,14 @@ async def update_post(
     # 3. Update Post details
     if data.caption is not None:
         post.caption = data.caption
-    if data.cover_photo_url is not None:
+    if data.cover_photo_url is not None and data.video_url is not None:
+        raise HTTPException(status_code=400, detail="Choose either a photo or a video, not both")
+    elif data.video_url is not None:
+        post.video_url = data.video_url
+        post.cover_photo_url = video_thumbnail_url(data.video_url)
+    elif data.cover_photo_url is not None:
         post.cover_photo_url = data.cover_photo_url
+        post.video_url = None
 
     # 4. Update Recipe details if applicable
     recipe = post.recipe

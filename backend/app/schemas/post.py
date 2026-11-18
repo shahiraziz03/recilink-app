@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 from typing import Optional
 from datetime import datetime
 
@@ -44,6 +44,15 @@ class PostCreate(BaseModel):
     recipe_id: int
     caption: Optional[str] = None
     cover_photo_url: Optional[str] = None
+    video_url: Optional[str] = None
+
+    @field_validator("cover_photo_url", "video_url", mode="before")
+    @classmethod
+    def clean_media_urls(cls, v):
+        if isinstance(v, str):
+            v = v.strip()
+            return v if v else None
+        return v
 
 
 # ── Response schemas ──────────────────────────────────────────────────────────
@@ -53,6 +62,7 @@ class PostResponse(BaseModel):
     id: int
     caption: Optional[str]
     cover_photo_url: Optional[str]
+    video_url: Optional[str] = None
     created_at: datetime
     likes_count: int = 0
     is_liked: bool = False

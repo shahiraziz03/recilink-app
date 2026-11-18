@@ -17,6 +17,11 @@ class Settings(BaseSettings):
     NEO4J_URI: str = ""
     NEO4J_USERNAME: str = "neo4j"
     NEO4J_PASSWORD: str = ""
+
+    # Cloudinary Configuration
+    CLOUDINARY_CLOUD_NAME: str = ""
+    CLOUDINARY_API_KEY: str = ""
+    CLOUDINARY_API_SECRET: str = ""
     
     @property
     def DATABASE_URL(self) -> str:

@@ -10,6 +10,7 @@ class Post(Base):
     recipe_id = Column(Integer, ForeignKey("recipes.id"), nullable=False)
     caption = Column(Text, nullable=True)
     cover_photo_url = Column(String, nullable=True)
+    video_url = Column(String, nullable=True)
     posted_by_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 

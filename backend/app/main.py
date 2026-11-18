@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import select, func
 from app.core.config import settings
 from app.db.session import engine, Base, SessionLocal
-from app.routers import auth, recommendations, recipes, posts, profile, social
+from app.routers import auth, recommendations, recipes, posts, profile, social, uploads
 from app.db.neo4j import close_driver, check_neo4j_connection, normalize_title
 import app.models.user    # noqa: F401
 import app.models.recipe  # noqa: F401
@@ -125,3 +125,4 @@ app.include_router(posts.router,           prefix="/api/v1")
 app.include_router(recommendations.router, prefix="/api/v1")
 app.include_router(profile.router,         prefix="/api/v1")
 app.include_router(social.router,          prefix="/api/v1")
+app.include_router(uploads.router,         prefix="/api/v1")
