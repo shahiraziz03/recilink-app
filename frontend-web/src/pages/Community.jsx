@@ -652,16 +652,12 @@ function PostModal({ post, onClose, onPostUpdated }) {
                   <div className="flex items-center justify-between bg-gradient-to-r from-[#fff8f6] to-white p-3 rounded-2xl border border-[#ffe9e3]">
                     <div
                       className="flex items-center gap-2.5 cursor-pointer hover:opacity-80 transition-opacity"
-                      onClick={() => {
-                        onClose()
+                      onClick={(e) => {
+                        e.stopPropagation()
                         if (!post.posted_by?.id) return
                         const isOwn = (user?.id && Number(user.id) === Number(post.posted_by.id)) ||
                                       (user?.username && user.username === post.posted_by.username)
-                        if (isOwn) {
-                          navigate('/profile')
-                        } else {
-                          navigate(`/users/${post.posted_by.id}`)
-                        }
+                        isOwn ? navigate('/profile') : navigate(`/users/${post.posted_by.id}`)
                       }}
                     >
                       <div className={`w-9 h-9 rounded-full bg-gradient-to-br ${avatarColor(post.posted_by?.username)} flex items-center justify-center text-white text-xs font-bold shadow-sm`}>
@@ -950,13 +946,11 @@ export default function Community() {
 
   const handleClosePopup = () => {
     setSelectedPost(null)
-    if (openedFromPageRef.current) {
-      openedFromPageRef.current = false
+    openedFromPageRef.current = false
+    if (window.history.state && window.history.state.idx > 0) {
       navigate(-1)
     } else {
-      const newParams = new URLSearchParams(searchParams)
-      newParams.delete('post')
-      setSearchParams(newParams, { replace: true })
+      navigate('/community', { replace: true })
     }
   }
 

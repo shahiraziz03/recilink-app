@@ -129,6 +129,7 @@ function RightPanel({ recentRecipes }) {
 // ── Filters ───────────────────────────────────────────────────────────────────
 const CUISINE_FILTERS = ['All', 'Malaysian', 'Asian', 'Italian', 'American', 'Western']
 const DIFFICULTY_FILTERS = ['Easy', 'Medium', 'Hard']
+const DIETARY_FILTERS = ['Halal', 'Vegetarian', 'Vegan']
 const LIMIT = 50
 
 // ── Main Home page ────────────────────────────────────────────────────────────
@@ -145,6 +146,7 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState('')
   const [activeCuisine, setActiveCuisine] = useState('All')
   const [activeDifficulty, setActiveDifficulty] = useState(null)
+  const [activeDietary, setActiveDietary] = useState([])
 
   const fetchRecipes = useCallback(async () => {
     setLoading(true)
@@ -158,10 +160,11 @@ export default function Home() {
           q: searchQuery || undefined,
           cuisine: activeCuisine !== 'All' ? activeCuisine : undefined,
           difficulty: activeDifficulty || undefined,
+          preferences: activeDietary,
         })
         setHasMore(false)
       } else {
-        res = await getRecipes(1, LIMIT)
+        res = await getRecipes(1, LIMIT, activeDietary)
         setHasMore(res.data.length === LIMIT)
       }
       setRecipes(res.data)
@@ -170,13 +173,13 @@ export default function Home() {
     } finally {
       setLoading(false)
     }
-  }, [searchQuery, activeCuisine, activeDifficulty])
+  }, [searchQuery, activeCuisine, activeDifficulty, activeDietary])
 
   const handleLoadMore = async () => {
     setLoadingMore(true)
     try {
       const nextPage = page + 1
-      const res = await getRecipes(nextPage, LIMIT)
+      const res = await getRecipes(nextPage, LIMIT, activeDietary)
       setRecipes(prev => [...prev, ...res.data])
       setPage(nextPage)
       setHasMore(res.data.length === LIMIT)
@@ -232,15 +235,32 @@ export default function Home() {
               {diff}
             </button>
           ))}
+          <div className="w-px bg-[#e1bfb5] mx-1 flex-shrink-0" />
+          {DIETARY_FILTERS.map((d) => (
+            <button key={d}
+              onClick={() => setActiveDietary(prev =>
+                prev.includes(d) ? prev.filter(x => x !== d) : [...prev, d]
+              )}
+              className={`filter-chip ${activeDietary.includes(d) ? 'active' : 'inactive'}`}>
+              {d}
+            </button>
+          ))}
         </div>
 
         {/* Results header */}
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-bold text-[#261814]">
-            {searchQuery || activeCuisine !== 'All' || activeDifficulty
-              ? `Results (${recipes.length})`
-              : `All Recipes (${recipes.length})`}
-          </h2>
+          <div>
+            <h2 className="text-lg font-bold text-[#261814]">
+              {searchQuery || activeCuisine !== 'All' || activeDifficulty
+                ? `Results (${recipes.length})`
+                : `All Recipes (${recipes.length})`}
+            </h2>
+            {activeDietary.length > 0 && (
+              <p className="text-xs text-[#8d7168] mt-0.5">
+                Filtered: {activeDietary.join(', ')}
+              </p>
+            )}
+          </div>
           {loading && <span className="text-xs text-[#8d7168] animate-pulse">Loading...</span>}
         </div>
 

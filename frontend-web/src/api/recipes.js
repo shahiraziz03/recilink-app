@@ -28,16 +28,24 @@ API.interceptors.response.use(
 )
 
 // Recipes
-export const getRecipes = (page = 1, limit = 12) =>
-  API.get(`/recipes?page=${page}&limit=${limit}`)
+export const getRecipes = (page = 1, limit = 12, preferences = []) => {
+  const params = new URLSearchParams({ page, limit })
+  if (preferences && preferences.length > 0) {
+    params.append('preferences', preferences.join(','))
+  }
+  return API.get(`/recipes?${params.toString()}`)
+}
 
 export const getRecipeById = (id) => API.get(`/recipes/${id}`)
 
-export const searchRecipes = ({ q, cuisine, difficulty }) => {
+export const searchRecipes = ({ q, cuisine, difficulty, preferences = [] }) => {
   const params = new URLSearchParams()
   if (q) params.append('q', q)
   if (cuisine) params.append('cuisine', cuisine)
   if (difficulty) params.append('difficulty', difficulty)
+  if (preferences && preferences.length > 0) {
+    params.append('preferences', preferences.join(','))
+  }
   return API.get(`/recipes/search?${params.toString()}`)
 }
 
