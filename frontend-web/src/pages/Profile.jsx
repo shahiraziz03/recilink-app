@@ -225,7 +225,7 @@ export default function Profile() {
   }
 
   return (
-    <div className="min-h-screen bg-white py-10 px-4 md:px-8 max-w-6xl mx-auto space-y-10">
+    <div className="min-h-screen bg-white py-6 sm:py-8 max-w-[1600px] mx-auto w-full px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
       
       {/* ── Center Pinterest Header ───────────────────────────────── */}
       <div className="flex flex-col items-center text-center space-y-4 max-w-lg mx-auto">
@@ -362,7 +362,7 @@ export default function Profile() {
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
               {savedRecipes.map(recipe => {
                 const totalTime = (recipe.prep_time || 0) + (recipe.cook_time || 0)
                 return (
@@ -415,7 +415,7 @@ export default function Profile() {
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
               {myRecipes.map(recipe => {
                 const totalTime = (recipe.prep_time || 0) + (recipe.cook_time || 0)
                 return (
@@ -462,7 +462,7 @@ export default function Profile() {
       {/* ── Settings Configuration Modal ──────────────────────────── */}
       {showSettings && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in">
-          <div className="bg-white rounded-3xl w-full max-w-lg shadow-2xl p-6 md:p-8 animate-slide-up relative">
+          <div className="bg-white rounded-3xl w-full max-w-[min(95vw,36rem)] max-h-[90vh] overflow-y-auto shadow-2xl p-4 sm:p-6 md:p-8 animate-slide-up relative">
             
             {/* Close Button */}
             <button
@@ -594,7 +594,7 @@ export default function Profile() {
             if (e.target === e.currentTarget) setModalType(null)
           }}
         >
-          <div className="bg-white rounded-3xl w-full max-w-md shadow-2xl p-6 animate-slide-up relative max-h-[80vh] flex flex-col">
+          <div className="bg-white rounded-3xl w-full max-w-[min(95vw,28rem)] max-h-[90vh] shadow-2xl p-4 sm:p-6 animate-slide-up relative flex flex-col">
             <div className="flex items-center justify-between pb-3 border-b border-gray-100 mb-4">
               <h3 className="font-bold text-base text-[#261814]" style={{ fontFamily: 'Plus Jakarta Sans' }}>
                 {modalType === 'followers' ? 'Your Followers' : 'Chefs You Follow'}

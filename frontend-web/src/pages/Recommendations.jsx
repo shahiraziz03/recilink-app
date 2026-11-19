@@ -305,7 +305,7 @@ export default function Recommendations() {
   }, [ingredients, excludeTitle])
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-6">
+    <div className="max-w-[1600px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
 
       {/* ── Header card ──────────────────────────────────────────────────── */}
       <div className="bg-white rounded-2xl p-6 shadow-sm border border-[#f7ddd5] mb-6">
@@ -466,7 +466,7 @@ export default function Recommendations() {
                 </span>
                 <span className="text-xs text-[#8d7168] ml-1">— sorted by ingredient overlap</span>
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
                 {results.matches.map((recipe, i) => (
                   <RecommendCard
                     key={i}
@@ -495,7 +495,7 @@ export default function Recommendations() {
               <p className="text-xs text-[#8d7168] mb-4">
                 These recipes share the most ingredient overlap with yours, calculated using Jaccard Similarity on our co-occurrence graph.
               </p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
                 {results.jaccard.map((recipe, i) => (
                   <RecommendCard
                     key={i}

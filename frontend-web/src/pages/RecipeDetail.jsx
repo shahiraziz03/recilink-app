@@ -79,11 +79,11 @@ export default function RecipeDetail() {
   // ── Loading skeleton ────────────────────────────────────────────────────────
   if (loading) {
     return (
-      <div className="max-w-5xl mx-auto px-6 py-6 animate-pulse">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-6 animate-pulse">
         <div className="h-72 bg-[#fde3db] rounded-3xl mb-6" />
         <div className="h-8 bg-[#fde3db] rounded w-1/2 mb-3" />
         <div className="h-4 bg-[#fde3db] rounded w-1/3 mb-6" />
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="h-64 bg-[#fde3db] rounded-2xl" />
           <div className="h-64 bg-[#fde3db] rounded-2xl" />
         </div>
@@ -94,7 +94,7 @@ export default function RecipeDetail() {
   // ── Error state ─────────────────────────────────────────────────────────────
   if (error || !recipe) {
     return (
-      <div className="max-w-5xl mx-auto px-6 py-20 text-center">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 text-center">
         <div className="text-5xl mb-4">😕</div>
         <h2 className="text-xl font-bold text-[#261814] mb-2">Recipe Not Found</h2>
         <p className="text-[#8d7168] mb-6">This recipe may have been removed or doesn't exist.</p>
@@ -108,7 +108,7 @@ export default function RecipeDetail() {
   const totalTime = (recipe.prep_time || 0) + (recipe.cook_time || 0)
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-6">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
 
       {/* ── Back button ──────────────────────────────────────────────────── */}
       <button

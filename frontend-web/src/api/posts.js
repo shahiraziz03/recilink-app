@@ -35,6 +35,7 @@ export async function createRecipePost(recipeData, postData, token) {
       recipe_id: recipe.id,
       caption: postData.caption,
       cover_photo_url: postData.cover_photo_url || null,
+      video_url: postData.video_url || null,
     }),
   })
 
@@ -121,3 +122,19 @@ export const getPersonalizedPostFeed = (token) =>
   API.get('/posts/feed/personalized', {
     headers: token ? { Authorization: `Bearer ${token}` } : {}
   })
+
+export async function uploadMedia(file, token) {
+  const formData = new FormData()
+  formData.append('file', file)
+  const res = await fetch('http://localhost:8000/api/v1/uploads', {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${token}` },
+    body: formData,
+  })
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}))
+    throw new Error(err.detail || 'Upload failed')
+  }
+  return res.json()
+  // returns { url, media_type, duration }
+}

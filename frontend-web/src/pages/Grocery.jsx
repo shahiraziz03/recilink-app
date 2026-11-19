@@ -286,7 +286,7 @@ export default function Grocery() {
   const activeCategory = QUICK_ADD_CATEGORIES.find(c => c.label === activeCategoryTab)
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-6">
+    <div className="max-w-[1600px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
 
       {/* ── Page Header ─────────────────────────────────────────────────── */}
       <div className="mb-6">

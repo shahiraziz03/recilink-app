@@ -37,7 +37,7 @@ function UserListModal({ title, users, onClose, onUserClick }) {
         if (e.target === e.currentTarget) onClose()
       }}
     >
-      <div className="bg-white rounded-3xl w-full max-w-md shadow-2xl p-6 animate-slide-up relative max-h-[80vh] flex flex-col">
+      <div className="bg-white rounded-3xl w-full max-w-[min(95vw,28rem)] max-h-[90vh] shadow-2xl p-4 sm:p-6 animate-slide-up relative flex flex-col">
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-gray-100 mb-4">
           <h3 className="font-bold text-base text-[#261814]" style={{ fontFamily: 'Plus Jakarta Sans' }}>
@@ -236,7 +236,7 @@ export default function PublicProfile() {
   }
 
   return (
-    <div className="min-h-screen bg-white py-8 px-4 md:px-8 max-w-5xl mx-auto space-y-8">
+    <div className="min-h-screen bg-white py-6 sm:py-8 max-w-[1600px] mx-auto w-full px-4 sm:px-6 lg:px-8 space-y-8">
       {/* Back button */}
       <button
         onClick={() => navigate(-1)}
@@ -372,7 +372,7 @@ export default function PublicProfile() {
                 <p className="text-xs">No food posts shared yet.</p>
               </div>
             ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
                 {posts.map((post) => {
                   const photo = post.cover_photo_url || post.recipe_image_url
                   return (
@@ -441,7 +441,7 @@ export default function PublicProfile() {
                 <p className="text-xs">No recipes contributed yet.</p>
               </div>
             ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
                 {recipes.map((recipe) => (
                   <div
                     key={recipe.id}

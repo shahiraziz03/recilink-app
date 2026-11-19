@@ -28,12 +28,12 @@ function Layout() {
   }
 
   return (
-    <div className="flex min-h-screen bg-[#fff8f6]">
+    <div className="flex min-h-screen bg-white">
       {/* Fixed sidebar */}
       <Sidebar />
 
       {/* Main content — offset by sidebar width */}
-      <main className="flex-1 ml-56 h-screen overflow-y-auto">
+      <main className="flex-1 ml-[72px] lg:ml-56 h-screen overflow-y-auto overflow-x-hidden min-w-0">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/recipes/:id" element={<RecipeDetail />} />

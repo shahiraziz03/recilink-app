@@ -8,14 +8,25 @@
     box-sizing: border-box;
   }
 
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
   body {
     font-family: 'Inter', sans-serif;
-    background-color: #fff8f6;
+    background-color: #ffffff;
     color: #261814;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4 {
     font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
   }
 }
 
@@ -33,11 +44,11 @@
   }
 
   .card {
-    @apply bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 cursor-pointer;
+    @apply bg-white rounded-2xl overflow-hidden transition-all duration-200 cursor-pointer;
   }
 
   .sidebar-link {
-    @apply flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-[#594139] hover:bg-[#ffe9e3] hover:text-[#FF6B35] transition-all duration-200 cursor-pointer;
+    @apply flex items-center gap-3 px-4 py-2 rounded-xl text-sm font-medium text-[#594139] hover:bg-[#ffe9e3] hover:text-[#FF6B35] transition-all duration-200 cursor-pointer;
   }
 
   .sidebar-link.active {
@@ -45,7 +56,7 @@
   }
 
   .filter-chip {
-    @apply px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 cursor-pointer whitespace-nowrap;
+    @apply px-3 py-1.5 rounded-full text-xs font-medium border transition-all duration-200 cursor-pointer whitespace-nowrap;
   }
 
   .filter-chip.active {

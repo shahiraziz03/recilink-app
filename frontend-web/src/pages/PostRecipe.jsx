@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import { createRecipePost } from '../api/posts'
+import { createRecipePost, uploadMedia } from '../api/posts'
 
 const CUISINES = [
   'Malaysian', 'Chinese', 'Indian', 'Western', 'Japanese',
@@ -49,6 +49,13 @@ export default function PostRecipe() {
   const [caption, setCaption] = useState('')
   const [coverPhotoUrl, setCoverPhotoUrl] = useState('')
   const [coverPreview, setCoverPreview] = useState(null)
+  const [mediaFile, setMediaFile] = useState(null)
+  const [mediaPreview, setMediaPreview] = useState(null)
+  const [mediaType, setMediaType] = useState(null)
+  const [uploading, setUploading] = useState(false)
+  const [uploadError, setUploadError] = useState(null)
+  const [videoUrl, setVideoUrl] = useState(null)
+  const fileInputRef = useRef(null)
 
   // ── Ingredient helpers ─────────────────────────────────
   const addIngredient = () => setIngredients([...ingredients, ''])
@@ -87,6 +94,39 @@ export default function PostRecipe() {
   const handleCoverUrlChange = (val) => {
     setCoverPhotoUrl(val)
     setCoverPreview(val || null)
+  }
+
+  // ── Media file upload handler ──────────────────────────
+  const handleFileSelect = async (e) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    setUploadError(null)
+    setMediaFile(file)
+    setMediaType(file.type.startsWith('video/') ? 'video' : 'image')
+    // Local preview
+    const objectUrl = URL.createObjectURL(file)
+    setMediaPreview(objectUrl)
+    // Upload to Cloudinary via backend
+    setUploading(true)
+    try {
+      const result = await uploadMedia(file, token)
+      if (result.media_type === 'video') {
+        setVideoUrl(result.url)
+        setCoverPhotoUrl('')
+        setCoverPreview(null)
+      } else {
+        setCoverPhotoUrl(result.url)
+        setCoverPreview(result.url)
+        setVideoUrl(null)
+      }
+    } catch (err) {
+      setUploadError(err.message || 'Upload failed')
+      setMediaPreview(null)
+      setMediaFile(null)
+      setMediaType(null)
+    } finally {
+      setUploading(false)
+    }
   }
 
   // Get final calculated cuisine value
@@ -137,6 +177,7 @@ export default function PostRecipe() {
       const postData = {
         caption: caption.trim() || null,
         cover_photo_url: coverPhotoUrl.trim() || null,
+        video_url: videoUrl || null,
       }
 
       await createRecipePost(recipeData, postData, token)
@@ -175,7 +216,7 @@ export default function PostRecipe() {
   }
 
   return (
-    <div className="min-h-screen bg-[#fff8f6] py-8 px-6">
+    <div className="min-h-screen bg-[#fff8f6] py-6 sm:py-8 px-4 sm:px-6">
       {/* Header */}
       <div className="max-w-4xl mx-auto mb-8">
         <div className="flex items-center gap-3 mb-1">
@@ -194,8 +235,8 @@ export default function PostRecipe() {
       </div>
 
       {/* Progress stepper */}
-      <div className="max-w-4xl mx-auto mb-8">
-        <div className="flex items-center gap-0">
+      <div className="max-w-4xl mx-auto mb-8 overflow-x-auto pb-2 scrollbar-none">
+        <div className="flex items-center gap-0 min-w-[500px] sm:min-w-0">
           {STEPS.map((step, idx) => (
             <div key={step.id} className="flex items-center flex-1">
               <button
@@ -277,7 +318,7 @@ export default function PostRecipe() {
               </div>
 
               {/* Cuisine + Difficulty */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
                   <label className="text-xs font-semibold text-[#594139] uppercase tracking-wide">Cuisine *</label>
                   <div className="space-y-2">
@@ -328,7 +369,7 @@ export default function PostRecipe() {
               </div>
 
               {/* Times + Servings */}
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div className="space-y-1.5">
                   <label className="text-xs font-semibold text-[#594139] uppercase tracking-wide">Prep Time</label>
                   <div className="relative">
@@ -518,21 +559,52 @@ export default function PostRecipe() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Left: Form */}
                 <div className="space-y-5">
-                  {/* Cover Photo URL */}
+                  {/* Media Upload */}
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-[#594139] uppercase tracking-wide">Cover Photo URL</label>
+                    <label className="text-xs font-semibold text-[#594139] uppercase tracking-wide">Cover Photo or Video</label>
+                    <div
+                      className="border-2 border-dashed border-[#e1bfb5] rounded-xl p-4 text-center cursor-pointer hover:border-[#FF6B35] transition-colors"
+                      onClick={() => fileInputRef.current?.click()}
+                    >
+                      {mediaPreview ? (
+                        mediaType === 'video' ? (
+                          <video src={mediaPreview} className="w-full rounded-lg max-h-40 object-cover" muted playsInline />
+                        ) : (
+                          <img src={mediaPreview} alt="Preview" className="w-full rounded-lg max-h-40 object-cover" />
+                        )
+                      ) : (
+                        <div className="space-y-1 py-4">
+                          <div className="text-3xl">📸</div>
+                          <p className="text-sm text-[#8d7168]">Click to upload photo or video</p>
+                          <p className="text-xs text-[#c4a39a]">JPG, PNG up to 10 MB · MP4 up to 50 MB</p>
+                        </div>
+                      )}
+                    </div>
                     <input
-                      id="cover-photo-url"
-                      type="url"
-                      value={coverPhotoUrl}
-                      onChange={(e) => handleCoverUrlChange(e.target.value)}
-                      placeholder="https://example.com/your-dish.jpg"
-                      className="input-field"
+                      ref={fileInputRef}
+                      type="file"
+                      accept="image/*,video/*"
+                      className="hidden"
+                      onChange={handleFileSelect}
                     />
-                    <p className="text-xs text-[#8d7168]">Paste a direct image URL (JPG, PNG)</p>
+                    {uploading && (
+                      <p className="text-xs text-[#FF6B35] flex items-center gap-1">
+                        <svg className="w-3 h-3 animate-spin" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                        </svg>
+                        Uploading...
+                      </p>
+                    )}
+                    {uploadError && (
+                      <p className="text-xs text-red-500">{uploadError}</p>
+                    )}
+                    {mediaFile && !uploading && !uploadError && (
+                      <p className="text-xs text-emerald-600">✓ {mediaFile.name} uploaded</p>
+                    )}
                   </div>
 
                   {/* Caption */}

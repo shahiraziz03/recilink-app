@@ -63,18 +63,18 @@ export default function Sidebar() {
   }
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-56 bg-white border-r border-[#f7ddd5] flex flex-col z-40 shadow-sm">
+    <aside className="fixed left-0 top-0 h-screen w-[72px] lg:w-56 bg-white border-r border-[#f7ddd5] flex flex-col z-40 shadow-sm transition-all duration-200">
       {/* Logo */}
-      <div className="px-5 py-6 border-b border-[#f7ddd5]">
-        <Link to="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-[#FF6B35] flex items-center justify-center text-white font-bold text-sm shadow-sm">
+      <div className="px-3 lg:px-5 py-4 lg:py-6 border-b border-[#f7ddd5] flex items-center justify-center lg:justify-start">
+        <Link to="/" className="flex items-center gap-2 justify-center lg:justify-start">
+          <div className="w-8 h-8 rounded-lg bg-[#FF6B35] flex items-center justify-center text-white font-bold text-sm shadow-sm flex-shrink-0">
             R
           </div>
-          <div>
-            <div className="font-bold text-base text-[#261814]" style={{ fontFamily: 'Plus Jakarta Sans' }}>
+          <div className="hidden lg:block min-w-0">
+            <div className="font-bold text-base text-[#261814] truncate" style={{ fontFamily: 'Plus Jakarta Sans' }}>
               ReciLink
             </div>
-            <div className="text-[9px] text-[#8d7168] tracking-widest font-medium uppercase">
+            <div className="text-[9px] text-[#8d7168] tracking-widest font-medium uppercase truncate">
               Discover. Cook. Share.
             </div>
           </div>
@@ -82,52 +82,63 @@ export default function Sidebar() {
       </div>
 
       {/* Nav links */}
-      <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+      <nav className="flex-1 px-2 lg:px-3 py-3 lg:py-4 space-y-1 overflow-y-auto overflow-x-hidden">
         {navItems.map((item) => {
           const isActive = location.pathname === item.to
           return (
             <Link
               key={item.to}
               to={item.to}
-              className={`sidebar-link ${isActive ? 'active' : ''}`}
+              title={item.label}
+              className={`sidebar-link justify-center lg:justify-start px-2 lg:px-4 ${isActive ? 'active' : ''}`}
             >
-              {item.icon}
-              <span>{item.label}</span>
+              <span className="flex-shrink-0">{item.icon}</span>
+              <span className="hidden lg:inline truncate">{item.label}</span>
             </Link>
           )
         })}
       </nav>
 
       {/* User section at bottom */}
-      <div className="px-3 py-4 border-t border-[#f7ddd5]">
+      <div className="px-2 lg:px-3 py-3 lg:py-4 border-t border-[#f7ddd5]">
         {user ? (
           <div className="space-y-2">
             <Link
               to="/profile"
-              className="flex items-center gap-3 px-4 py-2 hover:bg-[#fff1ed] rounded-xl cursor-pointer transition-colors w-full"
+              title={user.username}
+              className="flex items-center gap-3 px-2 lg:px-4 py-2 hover:bg-[#fff1ed] rounded-xl cursor-pointer transition-colors w-full justify-center lg:justify-start"
             >
               <div className="w-8 h-8 rounded-full bg-[#FF6B35]/20 flex items-center justify-center text-[#FF6B35] font-bold text-sm flex-shrink-0">
                 {user.username?.[0]?.toUpperCase()}
               </div>
-              <div className="min-w-0">
+              <div className="min-w-0 hidden lg:block">
                 <p className="text-sm font-semibold text-[#261814] truncate">{user.username}</p>
                 <p className="text-xs text-[#8d7168] truncate">{user.email}</p>
               </div>
             </Link>
             <button
               onClick={handleLogout}
-              className="sidebar-link w-full text-left"
+              title="Log Out"
+              className="sidebar-link w-full text-left justify-center lg:justify-start px-2 lg:px-4"
             >
-              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
-              </svg>
-              <span>Log Out</span>
+              <span className="flex-shrink-0">
+                <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+                </svg>
+              </span>
+              <span className="hidden lg:inline truncate">Log Out</span>
             </button>
           </div>
         ) : (
           <div className="space-y-2 px-1">
-            <Link to="/login" className="btn-outline w-auto">Log In</Link>
-            <Link to="/register" className="btn-primary w-auto">Sign Up</Link>
+            <Link to="/login" title="Log In" className="btn-outline w-full py-2 px-1 text-xs">
+              <span className="hidden lg:inline">Log In</span>
+              <span className="lg:hidden">In</span>
+            </Link>
+            <Link to="/register" title="Sign Up" className="btn-primary w-full py-2 px-1 text-xs">
+              <span className="hidden lg:inline">Sign Up</span>
+              <span className="lg:hidden">Up</span>
+            </Link>
           </div>
         )}
       </div>

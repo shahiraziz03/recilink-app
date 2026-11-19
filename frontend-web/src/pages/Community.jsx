@@ -49,7 +49,7 @@ function avatarColor(username) {
 
 function SkeletonCard({ tall }) {
   return (
-    <div className={`bg-white rounded-2xl overflow-hidden shadow-sm animate-pulse ${tall ? 'h-96' : 'h-72'}`}>
+    <div className={`bg-white rounded-2xl overflow-hidden shadow-sm animate-pulse break-inside-avoid mb-4 border border-gray-100 ${tall ? 'h-96' : 'h-72'}`}>
       <div className={`bg-[#fde3db] ${tall ? 'h-56' : 'h-40'}`} />
       <div className="p-4 space-y-2">
         <div className="h-3 bg-[#fde3db] rounded-full w-3/4" />
@@ -69,25 +69,37 @@ function PostCard({ post, onClick, onLikeToggle, currentUser }) {
   const navigate = useNavigate()
   const [imgError, setImgError] = useState(false)
   const photo = post.cover_photo_url || post.recipe?.image_url
+  const isVideo = Boolean(post.video_url)
   const recipe = post.recipe
   const totalTime = (recipe?.prep_time || 0) + (recipe?.cook_time || 0)
   const tags = recipe?.tags?.slice(0, 3) || []
 
   return (
     <div
-      className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer group break-inside-avoid mb-4 border border-[#fde3db]"
+      className="bg-white rounded-2xl overflow-hidden cursor-pointer group break-inside-avoid mb-4 hover:opacity-95 transition-opacity border border-gray-100"
       onClick={() => onClick(post)}
     >
       {/* Cover photo */}
       {photo && !imgError ? (
         <div className="relative overflow-hidden">
-          <img
-            src={photo}
-            alt={recipe?.title}
-            className="w-full object-cover group-hover:scale-105 transition-transform duration-500"
-            style={{ maxHeight: '320px' }}
-            onError={() => setImgError(true)}
-          />
+          {isVideo ? (
+            <video
+              src={post.video_url}
+              className="w-full object-cover max-h-[420px]"
+              autoPlay
+              muted
+              loop
+              playsInline
+              onClick={(e) => e.stopPropagation()}
+            />
+          ) : (
+            <img
+              src={photo}
+              alt={recipe?.title}
+              className="w-full object-cover group-hover:scale-105 transition-transform duration-500 max-h-[420px]"
+              onError={() => setImgError(true)}
+            />
+          )}
           {/* Gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
@@ -140,106 +152,24 @@ function PostCard({ post, onClick, onLikeToggle, currentUser }) {
       )}
 
       {/* Card body */}
-      <div className="p-4 space-y-3">
+      <div className="px-3 py-2.5">
         {post.reason && (
-          <div>
-            <span className="inline-block bg-[#fff1ed] text-[#FF6B35] text-[10px] font-semibold px-2.5 py-0.5 rounded-full">
-              {post.reason}
-            </span>
-          </div>
+          <span className="inline-block bg-[#fff1ed] text-[#FF6B35] text-[10px] font-semibold px-2 py-0.5 rounded-full mb-1">
+            {post.reason}
+          </span>
         )}
-        {/* Recipe title */}
-        <h3
-          className="font-bold text-[#261814] text-sm leading-snug line-clamp-2"
-          style={{ fontFamily: 'Plus Jakarta Sans' }}
-        >
-          {recipe?.title || 'Untitled Recipe'}
-        </h3>
-
-        {/* Caption */}
-        {post.caption && (
-          <p className="text-xs text-[#594139] leading-relaxed line-clamp-2">
-            {post.caption}
-          </p>
-        )}
-
-        {/* Tags */}
-        {tags.length > 0 && (
-          <div className="flex flex-wrap gap-1">
-            {tags.map((tag) => (
-              <span
-                key={tag}
-                className="text-[#FF6B35] text-[10px] font-semibold bg-[#fff1ed] px-2 py-0.5 rounded-full"
-              >
-                #{tag}
-              </span>
-            ))}
+        <p className="text-xs font-semibold text-[#261814] leading-snug line-clamp-1 capitalize">
+          {recipe?.title}
+        </p>
+        <div className="flex items-center gap-1.5 mt-1.5">
+          <div className="w-5 h-5 rounded-full bg-[#FF6B35]/20 flex items-center justify-center text-[#FF6B35] font-bold text-[9px] flex-shrink-0">
+            {post.posted_by?.username?.[0]?.toUpperCase()}
           </div>
-        )}
-
-        {/* Ingredients count */}
-        {recipe?.ingredients?.length > 0 && (
-          <div className="flex items-center gap-1.5 text-xs text-[#8d7168]">
-            <svg className="w-3.5 h-3.5 text-[#FF6B35]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-            </svg>
-            {recipe.ingredients.length} ingredients
-          </div>
-        )}
-
-        {/* Divider */}
-        <div className="border-t border-[#f7ddd5]" />
-
-        {/* Author + Like + Comment actions */}
-        <div className="flex items-center justify-between">
-          <div
-            className="flex items-center gap-2 hover:opacity-80 transition-opacity"
-            onClick={(e) => {
-              e.stopPropagation()
-              if (!post.posted_by?.id) return
-              const isOwn = (currentUser?.id && Number(currentUser.id) === Number(post.posted_by.id)) ||
-                            (currentUser?.username && currentUser.username === post.posted_by.username)
-              if (isOwn) {
-                navigate('/profile')
-              } else {
-                navigate(`/users/${post.posted_by.id}`)
-              }
-            }}
-          >
-            <div className={`w-7 h-7 rounded-full bg-gradient-to-br ${avatarColor(post.posted_by?.username)} flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0`}>
-              {getInitials(post.posted_by?.username)}
-            </div>
-            <span className="text-xs font-semibold text-[#594139] truncate max-w-[85px] hover:text-[#FF6B35] transition-colors">
-              {post.posted_by?.username || 'Anonymous'}
-            </span>
-          </div>
-
-          <div className="flex items-center gap-3">
-            {/* Heart Like button */}
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation()
-                onLikeToggle?.(post.id)
-              }}
-              className={`flex items-center gap-1 text-xs font-bold transition-all active:scale-125 ${
-                post.is_liked ? 'text-red-500' : 'text-gray-400 hover:text-red-400'
-              }`}
-              title={post.is_liked ? 'Unlike' : 'Like recipe'}
-            >
-              <svg className="w-4 h-4" fill={post.is_liked ? 'currentColor' : 'none'} viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-              </svg>
-              <span>{post.likes_count || 0}</span>
-            </button>
-
-            {/* Comment count */}
-            <div className="flex items-center gap-1 text-xs text-gray-400">
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-              </svg>
-              <span>{recipe?.comments_count || 0}</span>
-            </div>
+          <span className="text-[10px] text-[#8d7168] truncate">
+            {post.posted_by?.username}
+          </span>
+          <div className="ml-auto flex items-center gap-1 text-[#8d7168]">
+            <span className="text-[10px]">♡ {post.likes_count || 0}</span>
           </div>
         </div>
       </div>
@@ -253,6 +183,7 @@ function PostModal({ post, onClose, onPostUpdated }) {
   const navigate = useNavigate()
   const { user, token } = useAuth()
   const photo = post.cover_photo_url || post.recipe?.image_url
+  const isVideo = Boolean(post.video_url)
   const recipe = post.recipe
 
   const isOwner = user && Number(post.posted_by?.id) === Number(user.id)
@@ -432,10 +363,10 @@ function PostModal({ post, onClose, onPostUpdated }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-start justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto animate-fade-in"
+      className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/60 backdrop-blur-sm overflow-y-auto animate-fade-in"
       onClick={handleBackdrop}
     >
-      <div className="bg-white rounded-3xl w-full max-w-5xl shadow-2xl overflow-hidden my-4 md:my-8 animate-slide-up relative flex flex-col">
+      <div className="bg-white rounded-3xl w-full max-w-[min(95vw,64rem)] max-h-[90vh] overflow-y-auto shadow-2xl my-auto animate-slide-up relative flex flex-col">
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -456,7 +387,17 @@ function PostModal({ post, onClose, onPostUpdated }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 md:p-8">
           {/* Left Column: Cover Image & Badges */}
           <div className="relative flex flex-col justify-start rounded-2xl overflow-hidden bg-gray-50 max-h-[550px] shadow-sm">
-            {photo ? (
+            {isVideo ? (
+              <video
+                src={post.video_url}
+                className="w-full h-full object-cover rounded-2xl"
+                style={{ minHeight: '350px', maxHeight: '550px' }}
+                controls
+                autoPlay
+                muted
+                playsInline
+              />
+            ) : photo ? (
               <img 
                 src={photo} 
                 alt={recipe?.title} 
@@ -1026,25 +967,20 @@ export default function Community() {
     })
   }, [posts, selectedCuisine, search])
 
-  // Split into 2 masonry columns
-  const [col1, col2] = useMemo(() => {
-    const c1 = [], c2 = []
-    filtered.forEach((p, i) => (i % 2 === 0 ? c1 : c2).push(p))
-    return [c1, c2]
-  }, [filtered])
+  // CSS columns masonry — fluid responsive
 
   return (
-    <div className="min-h-screen bg-[#fff8f6]">
+    <div className="min-h-screen bg-white">
       {/* ── Hero header ──────────────────────────────────────────── */}
-      <div className="bg-white border-b border-[#f7ddd5] px-8 py-6 sticky top-0 z-30 shadow-sm backdrop-blur-sm">
-        <div className="max-w-5xl mx-auto">
+      <div className="bg-white border-b border-gray-100 px-4 sm:px-6 py-2.5 sm:py-3 sticky top-0 z-30 shadow-sm backdrop-blur-sm">
+        <div className="max-w-[1600px] mx-auto w-full">
           {/* Title row */}
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-3">
             <div>
-              <h1 className="text-2xl font-bold text-[#261814]" style={{ fontFamily: 'Plus Jakarta Sans' }}>
+              <h1 className="text-lg font-semibold text-[#261814]" style={{ fontFamily: 'Plus Jakarta Sans' }}>
                 Community Food Feed
               </h1>
-              <p className="text-sm text-[#8d7168] mt-0.5">
+              <p className="text-xs text-[#8d7168] mt-0.5">
                 {loading ? 'Loading...' : `${posts.length} recipe${posts.length !== 1 ? 's' : ''} in ${feedTab === 'trending' ? 'Trending' : feedTab === 'following' ? 'Following' : feedTab === 'foryou' ? 'For You' : 'Explore'}`}
               </p>
             </div>
@@ -1064,20 +1000,20 @@ export default function Community() {
           <div className="flex items-center gap-2 mb-4 border-b border-[#f7ddd5] pb-3">
             <button
               onClick={() => setFeedTab('explore')}
-              className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
+              className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors flex items-center gap-1.5 ${
                 feedTab === 'explore'
-                  ? 'bg-[#261814] text-white shadow-sm'
-                  : 'bg-white text-[#594139] hover:bg-[#ffe9e3] border border-[#f7ddd5]'
+                  ? 'bg-[#261814] text-white'
+                  : 'text-[#8d7168] hover:text-[#261814]'
               }`}
             >
               <span>🌟 Explore Feed</span>
             </button>
             <button
               onClick={() => setFeedTab('trending')}
-              className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
+              className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors flex items-center gap-1.5 ${
                 feedTab === 'trending'
-                  ? 'bg-[#FF6B35] text-white shadow-sm'
-                  : 'bg-white text-[#594139] hover:bg-[#ffe9e3] border border-[#f7ddd5]'
+                  ? 'bg-[#FF6B35] text-white'
+                  : 'text-[#8d7168] hover:text-[#261814]'
               }`}
             >
               <span>🔥 Trending</span>
@@ -1090,10 +1026,10 @@ export default function Community() {
                 }
                 setFeedTab('following')
               }}
-              className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
+              className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors flex items-center gap-1.5 ${
                 feedTab === 'following'
-                  ? 'bg-[#FF6B35] text-white shadow-sm'
-                  : 'bg-white text-[#594139] hover:bg-[#ffe9e3] border border-[#f7ddd5]'
+                  ? 'bg-[#FF6B35] text-white'
+                  : 'text-[#8d7168] hover:text-[#261814]'
               }`}
             >
               <span>👥 Following</span>
@@ -1101,10 +1037,10 @@ export default function Community() {
             {user && (
               <button
                 onClick={() => setFeedTab('foryou')}
-                className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
+                className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors flex items-center gap-1.5 ${
                   feedTab === 'foryou'
-                    ? 'bg-[#FF6B35] text-white shadow-sm'
-                    : 'bg-white text-[#594139] hover:bg-[#ffe9e3] border border-[#f7ddd5]'
+                    ? 'bg-[#FF6B35] text-white'
+                    : 'text-[#8d7168] hover:text-[#261814]'
                 }`}
               >
                 <span>For You ✨</span>
@@ -1125,7 +1061,7 @@ export default function Community() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search recipes, captions, or chefs..."
-                className="w-full pl-11 pr-4 py-2.5 bg-[#fff8f6] border border-[#e1bfb5] rounded-full text-sm focus:outline-none focus:border-[#FF6B35] focus:ring-2 focus:ring-[#FF6B35]/20 transition-all"
+                className="w-full pl-11 pr-4 py-2 bg-white border border-gray-200 text-gray-900 placeholder-gray-400 rounded-full focus:outline-none focus:border-gray-400 transition-all text-sm"
               />
               {search && (
                 <button
@@ -1159,7 +1095,7 @@ export default function Community() {
       </div>
 
       {/* ── Feed content ─────────────────────────────────────────── */}
-      <div className="max-w-5xl mx-auto px-8 py-8">
+      <div className="max-w-[1600px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
 
         {/* Error state */}
         {error && (
@@ -1180,13 +1116,10 @@ export default function Community() {
 
         {/* Loading skeleton */}
         {loading && (
-          <div className="flex gap-4">
-            <div className="flex-1 space-y-4">
-              {[1, 3, 5].map((i) => <SkeletonCard key={i} tall={i === 3} />)}
-            </div>
-            <div className="flex-1 space-y-4">
-              {[2, 4, 6].map((i) => <SkeletonCard key={i} tall={i === 2} />)}
-            </div>
+          <div className="columns-2 md:columns-3 xl:columns-4 2xl:columns-5 gap-4">
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
+              <SkeletonCard key={i} tall={i % 2 === 0} />
+            ))}
           </div>
         )}
 
@@ -1234,31 +1167,16 @@ export default function Community() {
               </p>
             )}
 
-            <div className="flex gap-4 items-start">
-              {/* Column 1 */}
-              <div className="flex-1">
-                {col1.map((post) => (
-                  <PostCard
-                    key={post.id}
-                    post={post}
-                    onClick={handlePostClick}
-                    onLikeToggle={handleLikeToggle}
-                    currentUser={user}
-                  />
-                ))}
-              </div>
-              {/* Column 2 */}
-              <div className="flex-1 mt-6">
-                {col2.map((post) => (
-                  <PostCard
-                    key={post.id}
-                    post={post}
-                    onClick={handlePostClick}
-                    onLikeToggle={handleLikeToggle}
-                    currentUser={user}
-                  />
-                ))}
-              </div>
+            <div className="columns-2 md:columns-3 xl:columns-4 2xl:columns-5 gap-4">
+              {filtered.map((post) => (
+                <PostCard
+                  key={post.id}
+                  post={post}
+                  onClick={handlePostClick}
+                  onLikeToggle={handleLikeToggle}
+                  currentUser={user}
+                />
+              ))}
             </div>
           </>
         )}
