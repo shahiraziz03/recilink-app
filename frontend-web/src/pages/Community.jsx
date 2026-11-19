@@ -23,15 +23,11 @@ import {
 
 function SkeletonCard({ tall }) {
   return (
-    <div className={`bg-white rounded-2xl overflow-hidden shadow-sm animate-pulse break-inside-avoid mb-4 border border-gray-100 ${tall ? 'h-96' : 'h-72'}`}>
-      <div className={`bg-[#fde3db] ${tall ? 'h-56' : 'h-40'}`} />
-      <div className="p-4 space-y-2">
-        <div className="h-3 bg-[#fde3db] rounded-full w-3/4" />
+    <div className="break-inside-avoid mb-5 animate-pulse">
+      <div className={`w-full rounded-2xl bg-[#fde3db] ${tall ? 'h-72' : 'h-48'}`} />
+      <div className="pt-2 px-0.5 space-y-1.5">
+        <div className="h-3.5 bg-[#fde3db] rounded-full w-3/4" />
         <div className="h-3 bg-[#fde3db] rounded-full w-1/2" />
-        <div className="flex items-center gap-2 mt-3">
-          <div className="w-7 h-7 rounded-full bg-[#fde3db]" />
-          <div className="h-2.5 bg-[#fde3db] rounded-full w-24" />
-        </div>
       </div>
     </div>
   )
@@ -831,132 +827,137 @@ export default function Community() {
   // CSS columns masonry — fluid responsive
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* ── Hero header ──────────────────────────────────────────── */}
-      <div className="bg-white border-b border-gray-100 px-4 sm:px-6 py-2.5 sm:py-3 sticky top-0 z-30 shadow-sm backdrop-blur-sm">
-        <div className="max-w-[1600px] mx-auto w-full">
-          {/* Title row */}
-          <div className="flex items-center justify-between mb-3">
-            <div>
-              <h1 className="text-lg font-semibold text-[#261814]" style={{ fontFamily: 'Plus Jakarta Sans' }}>
-                Community Food Feed
-              </h1>
-              <p className="text-xs text-[#8d7168] mt-0.5">
-                {loading ? 'Loading...' : `${posts.length} recipe${posts.length !== 1 ? 's' : ''} in ${feedTab === 'trending' ? 'Trending' : feedTab === 'following' ? 'Following' : feedTab === 'foryou' ? 'For You' : 'Explore'}`}
-              </p>
-            </div>
-            <button
-              id="community-post-btn"
-              onClick={() => navigate('/post')}
-              className="flex items-center gap-2 bg-gradient-to-r from-[#FF6B35] to-[#ff9a72] text-white text-sm font-bold px-5 py-2.5 rounded-full shadow-md hover:shadow-lg active:scale-95 transition-all duration-200"
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-              </svg>
-              Share Recipe
-            </button>
-          </div>
-
-          {/* Social Feed Switcher Tabs */}
-          <div className="flex items-center gap-2 mb-4 border-b border-[#f7ddd5] pb-3">
-            <button
-              onClick={() => setFeedTab('explore')}
-              className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors flex items-center gap-1.5 ${
-                feedTab === 'explore'
-                  ? 'bg-[#261814] text-white'
-                  : 'text-[#8d7168] hover:text-[#261814]'
-              }`}
-            >
-              <span>🌟 Explore Feed</span>
-            </button>
-            <button
-              onClick={() => setFeedTab('trending')}
-              className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors flex items-center gap-1.5 ${
-                feedTab === 'trending'
-                  ? 'bg-[#FF6B35] text-white'
-                  : 'text-[#8d7168] hover:text-[#261814]'
-              }`}
-            >
-              <span>🔥 Trending</span>
-            </button>
-            <button
-              onClick={() => {
-                if (!token) {
-                  navigate('/login')
-                  return
-                }
-                setFeedTab('following')
-              }}
-              className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors flex items-center gap-1.5 ${
-                feedTab === 'following'
-                  ? 'bg-[#FF6B35] text-white'
-                  : 'text-[#8d7168] hover:text-[#261814]'
-              }`}
-            >
-              <span>👥 Following</span>
-            </button>
-            {user && (
+    <div className="min-h-screen bg-[#fff8f6]">
+      {/* ── Slim 2-row sticky header ───────────────────────────── */}
+      <div className="sticky top-0 z-30 bg-[#fff8f6]/90 backdrop-blur-md border-b border-[#f7ddd5] py-2 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1600px] mx-auto w-full flex flex-col gap-1.5 sm:gap-2">
+          {/* Row 1: Left tabs, Center search, Right post */}
+          <div className="flex items-center justify-between gap-3 sm:gap-6">
+            {/* Social Feed Switcher Tabs */}
+            <div className="flex items-center gap-4 sm:gap-6 overflow-x-auto scrollbar-none flex-shrink-0">
               <button
-                onClick={() => setFeedTab('foryou')}
-                className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors flex items-center gap-1.5 ${
-                  feedTab === 'foryou'
-                    ? 'bg-[#FF6B35] text-white'
-                    : 'text-[#8d7168] hover:text-[#261814]'
+                type="button"
+                onClick={() => setFeedTab('explore')}
+                className={`pb-1 sm:pb-1.5 text-xs sm:text-sm font-semibold transition-colors whitespace-nowrap cursor-pointer ${
+                  feedTab === 'explore'
+                    ? 'text-[#261814] border-b-2 border-[#FF6B35]'
+                    : 'text-[#8d7168] hover:text-[#261814] border-b-2 border-transparent'
                 }`}
               >
-                <span>For You ✨</span>
+                Explore
               </button>
-            )}
-          </div>
-
-          {/* Search + filters row */}
-          <div className="flex flex-col gap-3">
-            {/* Search bar */}
-            <div className="relative">
-              <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8d7168]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-              <input
-                id="community-search"
-                type="text"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search recipes, captions, or chefs..."
-                className="w-full pl-11 pr-4 py-2 bg-white border border-gray-200 text-gray-900 placeholder-gray-400 rounded-full focus:outline-none focus:border-gray-400 transition-all text-sm"
-              />
-              {search && (
+              <button
+                type="button"
+                onClick={() => setFeedTab('trending')}
+                className={`pb-1 sm:pb-1.5 text-xs sm:text-sm font-semibold transition-colors whitespace-nowrap cursor-pointer ${
+                  feedTab === 'trending'
+                    ? 'text-[#261814] border-b-2 border-[#FF6B35]'
+                    : 'text-[#8d7168] hover:text-[#261814] border-b-2 border-transparent'
+                }`}
+              >
+                Trending
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  if (!token) {
+                    navigate('/login')
+                    return
+                  }
+                  setFeedTab('following')
+                }}
+                className={`pb-1 sm:pb-1.5 text-xs sm:text-sm font-semibold transition-colors whitespace-nowrap cursor-pointer ${
+                  feedTab === 'following'
+                    ? 'text-[#261814] border-b-2 border-[#FF6B35]'
+                    : 'text-[#8d7168] hover:text-[#261814] border-b-2 border-transparent'
+                }`}
+              >
+                Following
+              </button>
+              {user && (
                 <button
-                  onClick={() => setSearch('')}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[#8d7168] hover:text-[#FF6B35] transition-colors"
+                  type="button"
+                  onClick={() => setFeedTab('foryou')}
+                  className={`pb-1 sm:pb-1.5 text-xs sm:text-sm font-semibold transition-colors whitespace-nowrap cursor-pointer ${
+                    feedTab === 'foryou'
+                      ? 'text-[#261814] border-b-2 border-[#FF6B35]'
+                      : 'text-[#8d7168] hover:text-[#261814] border-b-2 border-transparent'
+                  }`}
                 >
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
+                  For You
                 </button>
               )}
             </div>
 
-            {/* Cuisine filter chips — horizontal scroll */}
-            <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
-              {CUISINE_FILTERS.map((cuisine) => (
+            {/* Search bar — flexibly centered */}
+            <div className="flex-1 max-w-xl mx-2 sm:mx-4">
+              <div className="relative w-full">
+                <svg className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8d7168] pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                <input
+                  id="community-search"
+                  type="text"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="Search recipes, tags..."
+                  className="w-full pl-10 pr-8 py-2 bg-white border border-[#e1bfb5] text-xs sm:text-sm text-[#261814] placeholder-[#8d7168]/70 rounded-full focus:outline-none focus:border-[#FF6B35] focus:ring-2 focus:ring-[#FF6B35]/15 transition-all shadow-2xs"
+                />
+                {search && (
+                  <button
+                    type="button"
+                    onClick={() => setSearch('')}
+                    aria-label="Clear search"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[#8d7168] hover:text-[#FF6B35] transition-colors"
+                  >
+                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* Post button */}
+            <button
+              id="community-post-btn"
+              type="button"
+              onClick={() => navigate('/post')}
+              className="flex items-center gap-1.5 bg-[#FF6B35] hover:bg-[#e55928] text-white text-xs sm:text-sm font-semibold px-4 py-2 rounded-full shadow-xs hover:shadow active:scale-95 transition-all duration-150 cursor-pointer whitespace-nowrap flex-shrink-0"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+              </svg>
+              <span>Post</span>
+            </button>
+          </div>
+
+          {/* Row 2: Cuisine filter chips — horizontal scroll */}
+          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto py-0.5 scrollbar-none">
+            {CUISINE_FILTERS.map((cuisine) => {
+              const isSelected = selectedCuisine === cuisine
+              return (
                 <button
                   key={cuisine}
                   id={`filter-${cuisine.toLowerCase()}`}
+                  type="button"
                   onClick={() => setSelectedCuisine(cuisine)}
-                  className={`filter-chip flex-shrink-0 transition-all duration-200 ${
-                    selectedCuisine === cuisine ? 'active' : 'inactive'
+                  className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-150 cursor-pointer whitespace-nowrap flex-shrink-0 ${
+                    isSelected
+                      ? 'bg-[#261814] text-white border border-[#261814]'
+                      : 'bg-white text-[#594139] border border-[#e1bfb5] hover:border-[#261814]'
                   }`}
                 >
                   {cuisine}
                 </button>
-              ))}
-            </div>
+              )
+            })}
           </div>
         </div>
       </div>
 
       {/* ── Feed content ─────────────────────────────────────────── */}
-      <div className="max-w-[1600px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+      <div className="max-w-[1600px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-4">
 
         {/* Error state */}
         {error && (
@@ -1018,28 +1019,17 @@ export default function Community() {
 
         {/* Masonry grid */}
         {!loading && !error && filtered.length > 0 && (
-          <>
-            {/* Results count when filtering */}
-            {(search || selectedCuisine !== 'All') && (
-              <p className="text-sm text-[#8d7168] mb-4">
-                Showing <span className="font-semibold text-[#FF6B35]">{filtered.length}</span> of {posts.length} posts
-                {selectedCuisine !== 'All' && <> in <span className="font-semibold">{selectedCuisine}</span></>}
-                {search && <> matching "<span className="font-semibold">{search}</span>"</>}
-              </p>
-            )}
-
-            <div className="columns-2 md:columns-3 xl:columns-4 2xl:columns-5 gap-4">
-              {filtered.map((post) => (
-                <PostCard
-                  key={post.id}
-                  post={post}
-                  onClick={handlePostClick}
-                  onLikeToggle={handleLikeToggle}
-                  currentUser={user}
-                />
-              ))}
-            </div>
-          </>
+          <div className="columns-2 md:columns-3 xl:columns-4 2xl:columns-5 gap-4">
+            {filtered.map((post) => (
+              <PostCard
+                key={post.id}
+                post={post}
+                onClick={handlePostClick}
+                onLikeToggle={handleLikeToggle}
+                currentUser={user}
+              />
+            ))}
+          </div>
         )}
       </div>
 
