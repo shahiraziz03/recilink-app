@@ -1,7 +1,8 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { createRecipePost, uploadMedia } from '../api/posts'
+import PostCard from '../components/PostCard'
 
 const CUISINES = [
   'Malaysian', 'Chinese', 'Indian', 'Western', 'Japanese',
@@ -45,17 +46,188 @@ export default function PostRecipe() {
   const [tags, setTags] = useState([])
   const [tagInput, setTagInput] = useState('')
 
-  // Post fields
+  // Post & media fields
   const [caption, setCaption] = useState('')
-  const [coverPhotoUrl, setCoverPhotoUrl] = useState('')
-  const [coverPreview, setCoverPreview] = useState(null)
   const [mediaFile, setMediaFile] = useState(null)
   const [mediaPreview, setMediaPreview] = useState(null)
-  const [mediaType, setMediaType] = useState(null)
-  const [uploading, setUploading] = useState(false)
-  const [uploadError, setUploadError] = useState(null)
+  const [mediaType, setMediaType] = useState(null) // 'image' | 'video'
+  const [coverUrl, setCoverUrl] = useState(null)
   const [videoUrl, setVideoUrl] = useState(null)
+  const [uploading, setUploading] = useState(false)
+  const [uploadProgress, setUploadProgress] = useState(0)
+  const [uploadError, setUploadError] = useState(null)
+  const [isDragging, setIsDragging] = useState(false)
+  const [showUrlFallback, setShowUrlFallback] = useState(false)
+  const [fallbackUrlInput, setFallbackUrlInput] = useState('')
   const fileInputRef = useRef(null)
+  const abortControllerRef = useRef(null)
+
+  // ── Cleanup on unmount only ───────────────────────────
+  const activePreviewRef = useRef(null)
+  activePreviewRef.current = mediaPreview
+
+  useEffect(() => {
+    return () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort()
+      }
+      if (activePreviewRef.current && activePreviewRef.current.startsWith('blob:')) {
+        URL.revokeObjectURL(activePreviewRef.current)
+      }
+    }
+  }, [])
+
+  const clearMediaPreview = () => {
+    if (mediaPreview && mediaPreview.startsWith('blob:')) {
+      URL.revokeObjectURL(mediaPreview)
+    }
+  }
+
+  // ── Remove / Cancel media ──────────────────────────────
+  const handleRemoveMedia = (e) => {
+    e?.stopPropagation()
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort()
+      abortControllerRef.current = null
+    }
+    clearMediaPreview()
+    setMediaFile(null)
+    setMediaPreview(null)
+    setMediaType(null)
+    setCoverUrl(null)
+    setVideoUrl(null)
+    setUploading(false)
+    setUploadProgress(0)
+    setUploadError(null)
+    setFallbackUrlInput('')
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''
+    }
+  }
+
+  // ── Process file selection / drop ──────────────────────
+  const processFile = async (file) => {
+    if (!file) return
+
+
+    setUploadError(null)
+
+    // 1. Client-side validation BEFORE uploading
+    const isImage = file.type?.startsWith('image/') || /\.(jpe?g|png|webp|gif)$/i.test(file.name)
+    const isVideo = file.type?.startsWith('video/') || /\.(mp4|mov|webm|mkv|avi)$/i.test(file.name)
+
+    if (!isImage && !isVideo) {
+      const msg = 'Invalid file type. Please upload a JPG, PNG image or MP4 video.'
+      setUploadError(msg)
+      if (fileInputRef.current) fileInputRef.current.value = ''
+      return
+    }
+
+    const maxImageSize = 10 * 1024 * 1024 // 10MB
+    const maxVideoSize = 50 * 1024 * 1024 // 50MB
+
+    if (isImage && file.size > maxImageSize) {
+      const msg = 'Image size exceeds 10MB limit.'
+      setUploadError(msg)
+      if (fileInputRef.current) fileInputRef.current.value = ''
+      return
+    }
+
+    if (isVideo && file.size > maxVideoSize) {
+      const msg = 'Video size exceeds 50MB limit.'
+      setUploadError(msg)
+      if (fileInputRef.current) fileInputRef.current.value = ''
+      return
+    }
+
+    // Abort any ongoing upload
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort()
+    }
+
+    clearMediaPreview()
+
+    // 2. Show local preview instantly
+    const objectUrl = URL.createObjectURL(file)
+    const detectedType = isVideo ? 'video' : 'image'
+
+    setMediaFile(file)
+    setMediaPreview(objectUrl)
+    setMediaType(detectedType)
+    setCoverUrl(null)
+    setVideoUrl(null)
+    setUploadProgress(0)
+
+    // 3. Start upload immediately
+    const controller = new AbortController()
+    abortControllerRef.current = controller
+    setUploading(true)
+
+    try {
+      const result = await uploadMedia(
+        file,
+        token,
+        (percent) => setUploadProgress(percent),
+        controller.signal
+      )
+
+      const isVideoResult = result.media_type === 'video' || (!result.media_type && detectedType === 'video')
+      if (isVideoResult) {
+        setVideoUrl(result.url)
+        setCoverUrl(null)
+        setMediaType('video')
+      } else {
+        setCoverUrl(result.url)
+        setVideoUrl(null)
+        setMediaType('image')
+      }
+      setUploadProgress(100)
+    } catch (err) {
+      if (err.name === 'AbortError') {
+        return
+      }
+
+      // On upload error: show message from backend, keep box in empty state, allow retry
+      if (objectUrl.startsWith('blob:')) {
+        URL.revokeObjectURL(objectUrl)
+      }
+      setMediaFile(null)
+      setMediaPreview(null)
+      setMediaType(null)
+      setCoverUrl(null)
+      setVideoUrl(null)
+      setUploadProgress(0)
+      setUploadError(err.message || 'Upload failed. Please try again.')
+      if (fileInputRef.current) fileInputRef.current.value = ''
+    } finally {
+      setUploading(false)
+      abortControllerRef.current = null
+    }
+  }
+
+  // ── URL fallback handler ───────────────────────────────
+  const handleApplyUrl = () => {
+    const url = fallbackUrlInput.trim()
+    if (!url) return
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort()
+      abortControllerRef.current = null
+    }
+    clearMediaPreview()
+    setMediaFile(null)
+    setMediaPreview(url)
+    setCoverUrl(url)
+    setVideoUrl(null)
+    setMediaType('image')
+    setUploadError(null)
+    setUploading(false)
+    setUploadProgress(100)
+  }
+
+  const getVideoThumbnailUrl = (url) => {
+    if (!url) return null
+    return url.replace(/\.[A-Za-z0-9]+$/, '.jpg')
+  }
 
   // ── Ingredient helpers ─────────────────────────────────
   const addIngredient = () => setIngredients([...ingredients, ''])
@@ -90,45 +262,6 @@ export default function PostRecipe() {
     }
   }
 
-  // ── Cover photo URL preview ────────────────────────────
-  const handleCoverUrlChange = (val) => {
-    setCoverPhotoUrl(val)
-    setCoverPreview(val || null)
-  }
-
-  // ── Media file upload handler ──────────────────────────
-  const handleFileSelect = async (e) => {
-    const file = e.target.files?.[0]
-    if (!file) return
-    setUploadError(null)
-    setMediaFile(file)
-    setMediaType(file.type.startsWith('video/') ? 'video' : 'image')
-    // Local preview
-    const objectUrl = URL.createObjectURL(file)
-    setMediaPreview(objectUrl)
-    // Upload to Cloudinary via backend
-    setUploading(true)
-    try {
-      const result = await uploadMedia(file, token)
-      if (result.media_type === 'video') {
-        setVideoUrl(result.url)
-        setCoverPhotoUrl('')
-        setCoverPreview(null)
-      } else {
-        setCoverPhotoUrl(result.url)
-        setCoverPreview(result.url)
-        setVideoUrl(null)
-      }
-    } catch (err) {
-      setUploadError(err.message || 'Upload failed')
-      setMediaPreview(null)
-      setMediaFile(null)
-      setMediaType(null)
-    } finally {
-      setUploading(false)
-    }
-  }
-
   // Get final calculated cuisine value
   const getSelectedCuisine = () => {
     if (cuisine === 'Other') {
@@ -155,10 +288,33 @@ export default function PostRecipe() {
       return
     }
 
+    if (uploading) {
+      setError('Please wait for the media upload to complete.')
+      return
+    }
+
+    if (mediaFile && !videoUrl && !coverUrl) {
+      setError(uploadError || 'Media upload has not completed or failed. Please re-select your file before posting.')
+      return
+    }
+
     setIsSubmitting(true)
     setError(null)
 
     try {
+      let recipeImageUrl = null
+      const postData = {
+        caption: caption.trim() || null,
+      }
+
+      if (videoUrl) {
+        postData.video_url = videoUrl
+        recipeImageUrl = getVideoThumbnailUrl(videoUrl)
+      } else if (coverUrl) {
+        postData.cover_photo_url = coverUrl
+        recipeImageUrl = coverUrl
+      }
+
       const recipeData = {
         title: title.trim(),
         description: description.trim() || null,
@@ -170,21 +326,16 @@ export default function PostRecipe() {
         ingredients: ingredients.filter((i) => i.trim()),
         steps: cookingSteps.filter((s) => s.trim()),
         tags: tags.length ? tags : null,
-        image_url: coverPhotoUrl.trim() || null,
+        image_url: recipeImageUrl,
         source: 'user',
       }
 
-      const postData = {
-        caption: caption.trim() || null,
-        cover_photo_url: coverPhotoUrl.trim() || null,
-        video_url: videoUrl || null,
-      }
 
       await createRecipePost(recipeData, postData, token)
       setSubmitSuccess(true)
       setTimeout(() => navigate('/'), 2500)
     } catch (err) {
-      setError(err.message)
+      setError(err.message || 'Failed to submit recipe')
     } finally {
       setIsSubmitting(false)
     }
@@ -213,6 +364,29 @@ export default function PostRecipe() {
         </div>
       </div>
     )
+  }
+
+  const mockPost = {
+    id: 0,
+    caption: caption.trim() || undefined,
+    cover_photo_url: videoUrl ? undefined : (coverUrl || (mediaType !== 'video' ? mediaPreview : undefined)),
+    video_url: videoUrl || (mediaType === 'video' ? mediaPreview : undefined),
+    likes_count: 0,
+    is_liked: false,
+    recipe: {
+      title: title.trim() || 'Your Recipe Title',
+      cuisine: getSelectedCuisine() || undefined,
+      difficulty,
+      prep_time: prepTime ? parseInt(prepTime) : 0,
+      cook_time: cookTime ? parseInt(cookTime) : 0,
+      tags: tags.length ? tags : [],
+      ingredients: ingredients.filter((i) => i.trim()),
+      steps: cookingSteps.filter((s) => s.trim()),
+    },
+    posted_by: {
+      id: user?.id || 0,
+      username: user?.username || 'You',
+    },
   }
 
   return (
@@ -559,52 +733,171 @@ export default function PostRecipe() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                 {/* Left: Form */}
                 <div className="space-y-5">
-                  {/* Media Upload */}
+                  {/* Media Upload Container */}
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-[#594139] uppercase tracking-wide">Cover Photo or Video</label>
-                    <div
-                      className="border-2 border-dashed border-[#e1bfb5] rounded-xl p-4 text-center cursor-pointer hover:border-[#FF6B35] transition-colors"
-                      onClick={() => fileInputRef.current?.click()}
-                    >
-                      {mediaPreview ? (
-                        mediaType === 'video' ? (
-                          <video src={mediaPreview} className="w-full rounded-lg max-h-40 object-cover" muted playsInline />
-                        ) : (
-                          <img src={mediaPreview} alt="Preview" className="w-full rounded-lg max-h-40 object-cover" />
-                        )
-                      ) : (
-                        <div className="space-y-1 py-4">
-                          <div className="text-3xl">📸</div>
-                          <p className="text-sm text-[#8d7168]">Click to upload photo or video</p>
-                          <p className="text-xs text-[#c4a39a]">JPG, PNG up to 10 MB · MP4 up to 50 MB</p>
-                        </div>
-                      )}
-                    </div>
+                    <label className="text-xs font-semibold text-[#594139] uppercase tracking-wide">
+                      Cover Photo or Video
+                    </label>
+
                     <input
                       ref={fileInputRef}
                       type="file"
                       accept="image/*,video/*"
                       className="hidden"
-                      onChange={handleFileSelect}
+                      onChange={(e) => {
+                        const file = e.target.files?.[0]
+                        if (file) processFile(file)
+                      }}
                     />
-                    {uploading && (
-                      <p className="text-xs text-[#FF6B35] flex items-center gap-1">
-                        <svg className="w-3 h-3 animate-spin" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                        </svg>
-                        Uploading...
+
+                    {!mediaPreview ? (
+                      /* Empty State */
+                      <div
+                        role="button"
+                        tabIndex={0}
+                        aria-label="Upload photo or video"
+                        onClick={() => fileInputRef.current?.click()}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault()
+                            fileInputRef.current?.click()
+                          }
+                        }}
+                        onDragOver={(e) => {
+                          e.preventDefault()
+                          setIsDragging(true)
+                        }}
+                        onDragLeave={(e) => {
+                          e.preventDefault()
+                          setIsDragging(false)
+                        }}
+                        onDrop={(e) => {
+                          e.preventDefault()
+                          setIsDragging(false)
+                          const file = e.dataTransfer.files?.[0]
+                          if (file) processFile(file)
+                        }}
+                        className={`relative w-full aspect-[4/5] max-h-[420px] rounded-2xl border-2 border-dashed flex flex-col items-center justify-center p-6 text-center cursor-pointer transition-colors ${
+                          isDragging
+                            ? 'border-[#FF6B35] bg-[#fff1ed]'
+                            : 'border-[#e1bfb5] hover:border-[#FF6B35] bg-[#fffcfb]'
+                        }`}
+                      >
+                        <div className="w-14 h-14 rounded-full bg-[#ffe9e3] text-[#FF6B35] flex items-center justify-center mb-3 text-2xl shadow-sm">
+                          <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
+                          </svg>
+                        </div>
+                        <p className="text-sm font-semibold text-[#261814]">Add a photo or video</p>
+                        <p className="text-xs text-[#8d7168] mt-1.5 max-w-[220px]">
+                          JPG, PNG or MP4. Photo max 10MB, video max 50MB
+                        </p>
+                      </div>
+                    ) : (
+                      /* Filled State */
+                      <div className="relative w-full aspect-[4/5] max-h-[420px] rounded-2xl bg-neutral-100 overflow-hidden border border-gray-200 flex items-center justify-center group">
+                        {mediaType === 'video' ? (
+                          <video
+                            src={mediaPreview}
+                            controls
+                            muted
+                            playsInline
+                            preload="metadata"
+                            className="w-full h-full object-contain"
+                          />
+                        ) : (
+                          <img
+                            src={mediaPreview}
+                            alt="Media Preview"
+                            className="w-full h-full object-contain"
+                          />
+                        )}
+
+                        {/* Remove (X) button */}
+                        <button
+                          type="button"
+                          onClick={handleRemoveMedia}
+                          aria-label="Remove media"
+                          className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center transition-colors shadow-md z-10 focus:outline-none focus:ring-2 focus:ring-[#FF6B35]"
+                        >
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        </button>
+
+                        {/* Replace button (bottom) */}
+                        {!uploading && (
+                          <button
+                            type="button"
+                            onClick={() => fileInputRef.current?.click()}
+                            aria-label="Replace media"
+                            className="absolute bottom-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-black/60 hover:bg-black/80 text-white text-xs font-medium backdrop-blur-sm transition-colors shadow-md z-10 focus:outline-none focus:ring-2 focus:ring-[#FF6B35]"
+                          >
+                            Replace
+                          </button>
+                        )}
+
+                        {/* Upload progress overlay */}
+                        {uploading && (
+                          <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px] flex flex-col items-center justify-center p-6 text-white z-20">
+                            <p className="text-sm font-semibold tracking-wide">
+                              Uploading... {uploadProgress}%
+                            </p>
+                            <div className="w-full max-w-[200px] h-2 bg-white/30 rounded-full overflow-hidden mt-3 shadow-inner">
+                              <div
+                                className="h-full bg-[#FF6B35] rounded-full transition-all duration-200"
+                                style={{ width: `${uploadProgress}%` }}
+                              />
+                            </div>
+                            <p className="text-xs text-white/70 mt-2">Click X above to cancel</p>
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Pre-upload validation error or backend upload error */}
+                    {uploadError && (
+                      <p className="text-xs text-red-500 mt-1.5 font-medium">{uploadError}</p>
+                    )}
+
+                    {/* Upload success indicator */}
+                    {(coverUrl || videoUrl) && !uploading && !uploadError && (
+                      <p className="text-xs text-emerald-600 mt-1.5 flex items-center gap-1 font-medium">
+                        <span>✓</span> Uploaded {mediaFile?.name ? `: ${mediaFile.name}` : ''}
                       </p>
                     )}
-                    {uploadError && (
-                      <p className="text-xs text-red-500">{uploadError}</p>
-                    )}
-                    {mediaFile && !uploading && !uploadError && (
-                      <p className="text-xs text-emerald-600">✓ {mediaFile.name} uploaded</p>
-                    )}
+
+                    {/* Collapsed URL fallback */}
+                    <div className="pt-1">
+                      <button
+                        type="button"
+                        onClick={() => setShowUrlFallback(!showUrlFallback)}
+                        className="text-xs text-[#8d7168] hover:text-[#FF6B35] underline underline-offset-2 transition-colors"
+                      >
+                        {showUrlFallback ? 'Hide URL input' : 'Or paste an image URL'}
+                      </button>
+                      {showUrlFallback && (
+                        <div className="flex gap-2 mt-2">
+                          <input
+                            type="url"
+                            value={fallbackUrlInput}
+                            onChange={(e) => setFallbackUrlInput(e.target.value)}
+                            placeholder="https://example.com/photo.jpg"
+                            className="input-field text-xs py-1.5 flex-1"
+                          />
+                          <button
+                            type="button"
+                            onClick={handleApplyUrl}
+                            className="px-3 py-1.5 bg-[#594139] hover:bg-[#261814] text-white text-xs font-semibold rounded-xl transition-colors"
+                          >
+                            Apply
+                          </button>
+                        </div>
+                      )}
+                    </div>
                   </div>
 
                   {/* Caption */}
@@ -676,67 +969,22 @@ export default function PostRecipe() {
                 {/* Right: Preview card */}
                 <div className="space-y-3">
                   <p className="text-xs font-semibold text-[#594139] uppercase tracking-wide">Preview</p>
-                  <div className="bg-white rounded-2xl border border-[#f7ddd5] overflow-hidden shadow-sm">
-                    {/* Cover */}
-                    <div className="h-44 bg-gradient-to-br from-[#ffe9e3] to-[#fde3db] flex items-center justify-center overflow-hidden relative">
-                      {coverPreview ? (
-                        <img
-                          src={coverPreview}
-                          alt="Cover preview"
-                          className="w-full h-full object-cover"
-                          onError={() => setCoverPreview(null)}
-                        />
-                      ) : (
-                        <div className="text-center space-y-2">
-                          <div className="text-4xl">📸</div>
-                          <p className="text-xs text-[#8d7168]">Cover photo preview</p>
-                        </div>
-                      )}
-                      {/* Difficulty badge */}
-                      <div className="absolute top-3 right-3">
-                        <span className={`text-xs font-bold px-2.5 py-1 rounded-full text-white shadow-sm ${
-                          difficulty === 'Easy' ? 'bg-emerald-500' :
-                          difficulty === 'Medium' ? 'bg-amber-500' : 'bg-red-500'
-                        }`}>
-                          {difficulty}
-                        </span>
-                      </div>
-                    </div>
-                    {/* Info */}
-                    <div className="p-4 space-y-2">
-                      <h3 className="font-bold text-[#261814] text-sm" style={{ fontFamily: 'Plus Jakarta Sans' }}>
-                        {title || 'Your Recipe Title'}
-                      </h3>
-                      <div className="flex items-center gap-3 text-xs text-[#8d7168]">
-                        {getSelectedCuisine() && <span className="font-medium text-[#FF6B35]">{getSelectedCuisine()}</span>}
-                        {prepTime && <span>⏱ {prepTime}m prep</span>}
-                        {cookTime && <span>🔥 {cookTime}m cook</span>}
-                      </div>
-                      {caption && (
-                        <p className="text-xs text-[#594139] line-clamp-2">{caption}</p>
-                      )}
-                      {/* Author */}
-                      <div className="flex items-center gap-2 pt-1 border-t border-[#f7ddd5]">
-                        <div className="w-6 h-6 rounded-full bg-[#FF6B35]/20 flex items-center justify-center text-[#FF6B35] text-xs font-bold">
-                          {user?.username?.[0]?.toUpperCase() || 'U'}
-                        </div>
-                        <span className="text-xs text-[#8d7168]">{user?.username || 'You'}</span>
-                      </div>
-                    </div>
-                  </div>
+                  <div className="w-full max-w-[22rem] mx-auto md:mx-0">
+                    <PostCard post={mockPost} onClick={() => {}} />
 
-                  {/* Summary stats */}
-                  <div className="grid grid-cols-3 gap-2">
-                    {[
-                      { label: 'Ingredients', value: ingredients.filter(i => i.trim()).length },
-                      { label: 'Steps', value: cookingSteps.filter(s => s.trim()).length },
-                      { label: 'Tags', value: tags.length },
-                    ].map((stat) => (
-                      <div key={stat.label} className="bg-[#fff1ed] rounded-xl p-2.5 text-center">
-                        <p className="text-lg font-bold text-[#FF6B35]">{stat.value}</p>
-                        <p className="text-xs text-[#8d7168]">{stat.label}</p>
-                      </div>
-                    ))}
+                    {/* Summary stats */}
+                    <div className="grid grid-cols-3 gap-2 mt-3">
+                      {[
+                        { label: 'Ingredients', value: ingredients.filter(i => i.trim()).length },
+                        { label: 'Steps', value: cookingSteps.filter(s => s.trim()).length },
+                        { label: 'Tags', value: tags.length },
+                      ].map((stat) => (
+                        <div key={stat.label} className="bg-[#fff1ed] rounded-xl p-2.5 text-center">
+                          <p className="text-lg font-bold text-[#FF6B35]">{stat.value}</p>
+                          <p className="text-xs text-[#8d7168]">{stat.label}</p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -806,7 +1054,7 @@ export default function PostRecipe() {
                 id="submit-post-btn"
                 type="button"
                 onClick={handleSubmit}
-                disabled={isSubmitting || !token}
+                disabled={isSubmitting || !token || uploading}
                 className={`flex items-center gap-2 px-7 py-2.5 rounded-full text-sm font-bold transition-all duration-200 ${
                   isSubmitting || !token
                     ? 'bg-[#fde3db] text-[#c4a39a] cursor-not-allowed'

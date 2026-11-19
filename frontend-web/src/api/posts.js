@@ -1,4 +1,4 @@
-import API from './recipes'
+import API from './recipes.js'
 const BASE_URL = 'http://localhost:8000/api/v1'
 
 /**
@@ -18,33 +18,39 @@ export async function createRecipePost(recipeData, postData, token) {
   })
 
   if (!recipeRes.ok) {
-    const err = await recipeRes.json()
+    const err = await recipeRes.json().catch(() => ({}))
     throw new Error(err.detail || 'Failed to create recipe')
   }
 
   const recipe = await recipeRes.json()
 
   // Step 2 — Create the community post linked to that recipe
+  const postPayload = {
+    recipe_id: recipe.id,
+    caption: postData.caption || null,
+  }
+  if (postData.video_url) {
+    postPayload.video_url = postData.video_url
+  } else if (postData.cover_photo_url) {
+    postPayload.cover_photo_url = postData.cover_photo_url
+  }
+
   const postRes = await fetch(`${BASE_URL}/posts`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({
-      recipe_id: recipe.id,
-      caption: postData.caption,
-      cover_photo_url: postData.cover_photo_url || null,
-      video_url: postData.video_url || null,
-    }),
+    body: JSON.stringify(postPayload),
   })
 
   if (!postRes.ok) {
-    const err = await postRes.json()
+    const err = await postRes.json().catch(() => ({}))
     throw new Error(err.detail || 'Failed to create post')
   }
 
-  return postRes.json()
+  const postDataResponse = await postRes.json()
+  return postDataResponse
 }
 
 /**
@@ -115,7 +121,7 @@ export async function deleteRecipePost(postId, token) {
     throw new Error(err.detail || 'Failed to delete post')
   }
 
-  return true;
+  return true
 }
 
 export const getPersonalizedPostFeed = (token) =>
@@ -123,18 +129,78 @@ export const getPersonalizedPostFeed = (token) =>
     headers: token ? { Authorization: `Bearer ${token}` } : {}
   })
 
-export async function uploadMedia(file, token) {
-  const formData = new FormData()
-  formData.append('file', file)
-  const res = await fetch('http://localhost:8000/api/v1/uploads', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${token}` },
-    body: formData,
+/**
+ * Upload image or video to /uploads endpoint with progress reporting and abort support.
+ */
+export function uploadMedia(file, token, onProgress = null, signal = null) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest()
+    const formData = new FormData()
+
+    const isVideo = file.type?.startsWith('video/') || /\.(mp4|mov|webm|mkv|avi)$/i.test(file.name)
+    const isImage = file.type?.startsWith('image/') || /\.(jpe?g|png|webp|gif)$/i.test(file.name)
+
+    let fileToSend = file
+    if ((!file.type || file.type === 'application/octet-stream') && isVideo) {
+      fileToSend = new File([file], file.name, { type: 'video/mp4' })
+    } else if ((!file.type || file.type === 'application/octet-stream') && isImage) {
+      fileToSend = new File([file], file.name, { type: 'image/jpeg' })
+    }
+    formData.append('file', fileToSend)
+
+    const authToken = token || localStorage.getItem('recilink_token')
+
+    let aborted = false
+
+    if (signal) {
+      if (signal.aborted) {
+        return reject(new DOMException('Upload aborted', 'AbortError'))
+      }
+      signal.addEventListener('abort', () => {
+        aborted = true
+        xhr.abort()
+        reject(new DOMException('Upload aborted', 'AbortError'))
+      })
+    }
+
+    xhr.upload.onprogress = (event) => {
+      if (event.lengthComputable && onProgress) {
+        const percent = Math.round((event.loaded / event.total) * 100)
+        onProgress(percent)
+      }
+    }
+
+    xhr.onload = () => {
+      if (aborted) return
+      let data = {}
+      try {
+        data = JSON.parse(xhr.responseText)
+      } catch (e) {}
+
+
+      if (xhr.status >= 200 && xhr.status < 300) {
+        resolve(data)
+      } else {
+        const msg = data.detail || (xhr.status === 413 ? 'File too large' : `Upload failed with status ${xhr.status}`)
+        reject(new Error(msg))
+      }
+    }
+
+    xhr.onerror = (e) => {
+      if (aborted) return
+      reject(new Error('Network error during upload. Please check your server connection.'))
+    }
+
+    xhr.onabort = () => {
+      if (!aborted) {
+        reject(new DOMException('Upload aborted', 'AbortError'))
+      }
+    }
+
+    xhr.open('POST', `${BASE_URL}/uploads`)
+    if (authToken) {
+      xhr.setRequestHeader('Authorization', `Bearer ${authToken}`)
+    }
+    xhr.send(formData)
   })
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}))
-    throw new Error(err.detail || 'Upload failed')
-  }
-  return res.json()
-  // returns { url, media_type, duration }
 }
