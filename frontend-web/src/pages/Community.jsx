@@ -766,10 +766,21 @@ export default function Community() {
       fetcher = getCommunityFeed(token)
     }
 
+    let cancelled = false
     fetcher
-      .then(setPosts)
-      .catch((e) => setError(e.message))
-      .finally(() => setLoading(false))
+      .then((d) => {
+        if (!cancelled) setPosts(d)
+      })
+      .catch((e) => {
+        if (!cancelled) setError(e.message)
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false)
+      })
+
+    return () => {
+      cancelled = true
+    }
   }, [feedTab, token])
 
   const handlePostUpdated = (updatedPost, deletedPostId) => {

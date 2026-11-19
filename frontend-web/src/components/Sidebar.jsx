@@ -131,13 +131,17 @@ export default function Sidebar() {
           </div>
         ) : (
           <div className="space-y-2 px-1">
-            <Link to="/login" title="Log In" className="btn-outline w-full py-2 px-1 text-xs">
+            <Link to="/login" title="Log In" aria-label="Log In" className="btn-outline w-full py-2 px-1 text-xs flex justify-center items-center">
               <span className="hidden lg:inline">Log In</span>
-              <span className="lg:hidden">In</span>
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} className="lg:hidden flex-shrink-0">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l3 3m0 0l-3 3m3-3H2.25" />
+              </svg>
             </Link>
-            <Link to="/register" title="Sign Up" className="btn-primary w-full py-2 px-1 text-xs">
+            <Link to="/register" title="Sign Up" aria-label="Sign Up" className="btn-primary w-full py-2 px-1 text-xs flex justify-center items-center">
               <span className="hidden lg:inline">Sign Up</span>
-              <span className="lg:hidden">Up</span>
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} className="lg:hidden flex-shrink-0">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 7.5v6m3-3h-6m-1.5-3.75a3 3 0 11-6 0 3 3 0 016 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.375 21c-2.331 0-4.512-.645-6.374-1.766z" />
+              </svg>
             </Link>
           </div>
         )}

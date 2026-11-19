@@ -78,6 +78,7 @@ export default function PostCard({ post, onClick, onLikeToggle, currentUser }) {
       tabIndex={0}
       onClick={() => onClick && onClick(post)}
       onKeyDown={(e) => {
+        if (e.target !== e.currentTarget) return
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault()
           onClick && onClick(post)
@@ -194,13 +195,25 @@ export default function PostCard({ post, onClick, onLikeToggle, currentUser }) {
         <div className="flex items-center justify-between gap-2 mt-1.5">
           {/* Author */}
           <div
-            className="flex items-center gap-1.5 min-w-0 cursor-pointer hover:opacity-80 transition-opacity"
+            role="link"
+            tabIndex={0}
+            className="flex items-center gap-1.5 min-w-0 cursor-pointer hover:opacity-80 transition-opacity focus:outline-none focus-visible:underline"
             onClick={(e) => {
               e.stopPropagation()
               if (!post?.posted_by?.id) return
               const isOwn = (currentUser?.id && Number(currentUser.id) === Number(post.posted_by.id)) ||
                             (currentUser?.username && currentUser.username === post.posted_by.username)
               isOwn ? navigate('/profile') : navigate(`/users/${post.posted_by.id}`)
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault()
+                e.stopPropagation()
+                if (!post?.posted_by?.id) return
+                const isOwn = (currentUser?.id && Number(currentUser.id) === Number(post.posted_by.id)) ||
+                              (currentUser?.username && currentUser.username === post.posted_by.username)
+                isOwn ? navigate('/profile') : navigate(`/users/${post.posted_by.id}`)
+              }
             }}
           >
             <div className={`w-5 h-5 rounded-full bg-gradient-to-br ${avatarColor(post?.posted_by?.username)} flex items-center justify-center text-white font-bold text-[9px] flex-shrink-0 shadow-xs`}>

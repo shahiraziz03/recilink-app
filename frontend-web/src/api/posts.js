@@ -1,5 +1,5 @@
 import API from './recipes.js'
-const BASE_URL = 'http://localhost:8000/api/v1'
+import { BASE_URL } from './config'
 
 /**
  * Create a new recipe + community post in one flow.

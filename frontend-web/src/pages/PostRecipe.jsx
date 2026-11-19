@@ -200,8 +200,10 @@ export default function PostRecipe() {
       setUploadError(err.message || 'Upload failed. Please try again.')
       if (fileInputRef.current) fileInputRef.current.value = ''
     } finally {
-      setUploading(false)
-      abortControllerRef.current = null
+      if (abortControllerRef.current === controller) {
+        abortControllerRef.current = null
+        setUploading(false)
+      }
     }
   }
 
@@ -333,7 +335,7 @@ export default function PostRecipe() {
 
       await createRecipePost(recipeData, postData, token)
       setSubmitSuccess(true)
-      setTimeout(() => navigate('/'), 2500)
+      setTimeout(() => navigate('/community'), 2500)
     } catch (err) {
       setError(err.message || 'Failed to submit recipe')
     } finally {
@@ -360,7 +362,7 @@ export default function PostRecipe() {
           <div className="w-48 h-1.5 bg-[#ffe9e3] rounded-full mx-auto overflow-hidden">
             <div className="h-full bg-[#FF6B35] rounded-full animate-progress" />
           </div>
-          <p className="text-sm text-[#8d7168]">Redirecting to home...</p>
+          <p className="text-sm text-[#8d7168]">Redirecting to the feed...</p>
         </div>
       </div>
     )
