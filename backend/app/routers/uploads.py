@@ -1,3 +1,4 @@
+import asyncio
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File
 import cloudinary
 import cloudinary.uploader
@@ -46,7 +47,8 @@ async def upload_file(
         )
 
     try:
-        result = cloudinary.uploader.upload(
+        result = await asyncio.to_thread(
+            cloudinary.uploader.upload,
             data,
             resource_type=resource_type,
             folder="recilink",
