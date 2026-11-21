@@ -1,0 +1,157 @@
+{
+  "video_id": "7610699789948308744",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "fish quantity not stated; dried tamarind slices quantity vague ('3-4 keping'); cook/prep times estimated",
+  "title": "Spanish Mackerel in Vinegar Gravy (Tenggiri Masak Cuka)",
+  "title_ms": "Tenggiri Masak Cuka",
+  "description": "Fried Spanish mackerel steaks simmered in a piquant, slightly sweet sour gravy made with dried tamarind, vinegar and aromatic spices.",
+  "description_ms": "Steak ikan tenggiri yang digoreng kemudian direneh dalam kuah masam-manis dengan asam keping, cuka dan rempah yang aromatik.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 20,
+  "cook_time": 20,
+  "servings": 3,
+  "ingredients": [
+    "Spanish mackerel",
+    "turmeric powder",
+    "salt",
+    "cooking oil",
+    "shallot",
+    "garlic",
+    "ginger",
+    "bird's eye chilli",
+    "dried tamarind slices",
+    "vinegar",
+    "water",
+    "palm sugar",
+    "seasoning powder",
+    "curry leaf"
+  ],
+  "steps": [
+    "Rub fish steaks with 1 tsp turmeric powder and 0.5 tsp salt; fry until cooked through and golden. Set aside.",
+    "In the same pan, sauté sliced onion, 4 garlic cloves and a knob of ginger until soft.",
+    "Add 3 bird's eye chillies; sauté briefly.",
+    "Add 3–4 dried tamarind slices, 1 tbsp vinegar, 1 cup water, 1 palm sugar block and seasoning powder.",
+    "Simmer until the gravy is slightly thickened.",
+    "Add the fried fish back; add curry leaf; simmer for a further 5 minutes.",
+    "Adjust sourness and sweetness; serve hot with rice."
+  ],
+  "steps_ms": [
+    "Lumur kepingan ikan tenggiri dengan 1 sudu kecil serbuk kunyit dan setengah sudu kecil garam; goreng sehingga masak dan golden. Ketepikan.",
+    "Dalam kuali yang sama, tumis hirisan bawang, 4 ulas bawang putih dan seketul halia sehingga layu.",
+    "Masukkan 3 biji cili padi; tumis sebentar.",
+    "Masukkan 3-4 keping asam keping, 1 sudu cuka, 1 cawan air, 1 ketul gula Melaka dan serbuk perasa.",
+    "Reneh sehingga kuah sedikit pekat.",
+    "Masukkan balik ikan yang sudah digoreng; masukkan daun kari; reneh 5 minit lagi.",
+    "Laraskan rasa masam dan manis; hidang panas bersama nasi."
+  ],
+  "tags": [
+    "halal",
+    "fish",
+    "sour",
+    "malaysian",
+    "ramadan",
+    "easy"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "Spanish mackerel",
+      "name_ms": "ikan tenggiri",
+      "quantity": null,
+      "unit": null,
+      "note": "fish steaks; quantity not stated"
+    },
+    {
+      "name": "turmeric powder",
+      "name_ms": "serbuk kunyit",
+      "quantity": 1,
+      "unit": "tsp",
+      "note": "for rubbing fish"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": 0.5,
+      "unit": "tsp",
+      "note": "for rubbing fish; more to taste"
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": "for frying fish and sautéing"
+    },
+    {
+      "name": "shallot",
+      "name_ms": "bawang merah",
+      "quantity": null,
+      "unit": null,
+      "note": "sliced"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 4,
+      "unit": "clove",
+      "note": ""
+    },
+    {
+      "name": "ginger",
+      "name_ms": "halia",
+      "quantity": null,
+      "unit": null,
+      "note": "1 knob"
+    },
+    {
+      "name": "bird's eye chilli",
+      "name_ms": "cili padi",
+      "quantity": 3,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "dried tamarind slices",
+      "name_ms": "asam keping",
+      "quantity": null,
+      "unit": null,
+      "note": "3-4 pieces; quantity vague"
+    },
+    {
+      "name": "vinegar",
+      "name_ms": "cuka",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": 1,
+      "unit": "cup",
+      "note": ""
+    },
+    {
+      "name": "palm sugar",
+      "name_ms": "gula melaka",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 block"
+    },
+    {
+      "name": "seasoning powder",
+      "name_ms": "serbuk perasa",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "curry leaf",
+      "name_ms": "daun kari",
+      "quantity": null,
+      "unit": null,
+      "note": "a few stalks"
+    }
+  ]
+}

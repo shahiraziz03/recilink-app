@@ -1,0 +1,89 @@
+{
+  "video_id": "7477057275442564359",
+  "is_recipe": true,
+  "needs_review": false,
+  "review_notes": "coconut milk 2 small boxes and condensed milk 0.5 cup are stated; serves 2 tall glasses",
+  "title": "Vietnamese Coconut Coffee (Kopi Santan Vietnam)",
+  "title_ms": "Kopi Santan Vietnam",
+  "description": "A viral creamy slushy drink: blended coconut milk slushy layered with strong instant coffee — a Vietnamese-inspired iftar favourite.",
+  "description_ms": "Minuman slushy yang viral: slushy santan yang diblend dilapis dengan kopi segera yang pekat — kegemaran berbuka gaya Vietnam.",
+  "cuisine": "Fusion",
+  "difficulty": "Easy",
+  "prep_time": 10,
+  "cook_time": 0,
+  "servings": 2,
+  "ingredients": [
+    "coconut milk",
+    "sweetened condensed milk",
+    "salt",
+    "ice",
+    "instant coffee",
+    "water"
+  ],
+  "steps": [
+    "Blend ice, 2 small boxes coconut milk, 0.5 cup sweetened condensed milk and a pinch of salt until a slushy forms.",
+    "Dissolve 3 tsp instant coffee in 2 tbsp hot water; stir until dissolved and let cool slightly.",
+    "Fill a tall glass with the coconut slushy.",
+    "Pour the coffee liquid over the top; serve immediately — stir before drinking."
+  ],
+  "steps_ms": [
+    "Blend ais, 2 kotak kecil santan, setengah cawan susu pekat manis dan secubit garam sehingga jadi slushy.",
+    "Larutkan 3 sudu kecil kopi segera dalam 2 sudu besar air panas; kacau sehingga larut dan biarkan sedikit sejuk.",
+    "Isi gelas tinggi dengan slushy santan.",
+    "Tuang cecair kopi di atas; hidang dengan segera — kacau sebelum minum."
+  ],
+  "tags": [
+    "halal",
+    "drink",
+    "coffee",
+    "cold",
+    "vietnamese",
+    "fusion",
+    "ramadan",
+    "iftar"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "coconut milk",
+      "name_ms": "santan",
+      "quantity": 2,
+      "unit": null,
+      "note": "2 small boxes"
+    },
+    {
+      "name": "sweetened condensed milk",
+      "name_ms": "krimer manis",
+      "quantity": 0.5,
+      "unit": "cup",
+      "note": ""
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "a pinch"
+    },
+    {
+      "name": "ice",
+      "name_ms": "ais",
+      "quantity": null,
+      "unit": null,
+      "note": "generous amount for slushy"
+    },
+    {
+      "name": "instant coffee",
+      "name_ms": "kopi segera",
+      "quantity": 3,
+      "unit": "tsp",
+      "note": "dissolved in 2 tbsp hot water"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": 2,
+      "unit": "tbsp",
+      "note": "hot; for dissolving coffee"
+    }
+  ]
+}

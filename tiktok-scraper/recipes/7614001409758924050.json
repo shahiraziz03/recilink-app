@@ -1,0 +1,174 @@
+{
+  "video_id": "7614001409758924050",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "parmesan cheese topping quantity not stated; recipe self-described as non-authentic local version using frozen beef and tinned tomato puree",
+  "title": "Local-Style Spaghetti Bolognese",
+  "title_ms": "Spaghetti Bolognese Versi Lokal",
+  "description": "A Malaysian-style bolognese using frozen beef mince, tinned tomato puree, fresh tomato and Italian herbs — a budget-friendly, crowd-pleasing pasta dish.",
+  "description_ms": "Spaghetti bolognese gaya Malaysia menggunakan daging beku, tomato puree tin, tomato segar dan rempah Itali — mudah, murah dan sedap untuk open house.",
+  "cuisine": "Fusion",
+  "difficulty": "Easy",
+  "prep_time": 15,
+  "cook_time": 30,
+  "servings": 4,
+  "ingredients": [
+    "frozen beef",
+    "celery",
+    "onion",
+    "carrot",
+    "garlic",
+    "tomato puree",
+    "tomato",
+    "water",
+    "oregano",
+    "chilli flakes",
+    "salt",
+    "black pepper",
+    "bay leaf",
+    "chicken stock cube",
+    "spaghetti",
+    "parmesan cheese"
+  ],
+  "steps": [
+    "Fry 400 g frozen beef (no oil needed) until its fat renders and it browns; set aside.",
+    "Chop 1 celery stalk, 1 sweet onion, 1 carrot and 4 garlic cloves; sauté until golden.",
+    "Add 1 can tomato puree and 2 blended fresh tomatoes (blended with a little water).",
+    "Return the beef; add 0.5 tbsp oregano, 1 tbsp chilli flakes, salt, black pepper, 1 bay leaf and 1 chicken (or beef) stock cube.",
+    "Add water; cover and simmer for 15 minutes (longer = more flavour). Add more water if it dries out.",
+    "Cook spaghetti per package instructions; drain.",
+    "Serve sauce over spaghetti; top with parmesan cheese."
+  ],
+  "steps_ms": [
+    "Goreng 400g daging beku (tanpa minyak) sehingga lemak cair dan daging garing; ketepikan.",
+    "Chop 1 batang salari, 1 bawang Holland, 1 carrot dan 4 ulas bawang putih; tumis sehingga keemasan.",
+    "Masukkan 1 tin tomato puree dan 2 biji tomato segar yang dah diblend (blend dengan sedikit air).",
+    "Masukkan balik daging; tambah setengah sudu oregano, 1 sudu cili flakes, garam, black pepper, 1 helai daun salam dan 1 kiub pati ayam (atau lembu).",
+    "Masukkan air; tutup dan reneh selama 15 minit (lebih lama lebih sedap). Tambah air kalau kering.",
+    "Rebus spaghetti ikut arahan pakej; toskan.",
+    "Hidang kuah di atas spaghetti; tabur parmesan cheese."
+  ],
+  "tags": [
+    "halal",
+    "pasta",
+    "beef",
+    "bolognese",
+    "western",
+    "open house",
+    "raya"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "frozen beef",
+      "name_ms": "daging beku",
+      "quantity": 400,
+      "unit": "g",
+      "note": "any brand; no oil needed"
+    },
+    {
+      "name": "celery",
+      "name_ms": "salari",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 stalk salari"
+    },
+    {
+      "name": "onion",
+      "name_ms": "bawang holland",
+      "quantity": 1,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "carrot",
+      "name_ms": "carrot",
+      "quantity": 1,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 4,
+      "unit": "clove",
+      "note": ""
+    },
+    {
+      "name": "tomato puree",
+      "name_ms": "tomato puree",
+      "quantity": 1,
+      "unit": "can",
+      "note": ""
+    },
+    {
+      "name": "tomato",
+      "name_ms": "tomato",
+      "quantity": 2,
+      "unit": null,
+      "note": "fresh; blended"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": null,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "oregano",
+      "name_ms": "oregano",
+      "quantity": 0.5,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "chilli flakes",
+      "name_ms": "cili flakes",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "black pepper",
+      "name_ms": "black pepper",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "bay leaf",
+      "name_ms": "daun salam",
+      "quantity": 1,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "chicken stock cube",
+      "name_ms": "kiub pati ayam",
+      "quantity": 1,
+      "unit": null,
+      "note": "or beef stock cube"
+    },
+    {
+      "name": "spaghetti",
+      "name_ms": "spagheti",
+      "quantity": null,
+      "unit": null,
+      "note": "cook per package instructions"
+    },
+    {
+      "name": "parmesan cheese",
+      "name_ms": "parmesan cheese",
+      "quantity": null,
+      "unit": null,
+      "note": "for topping; quantity not stated"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "video_id": "7608279986633510162",
+  "is_recipe": true,
+  "needs_review": false,
+  "review_notes": "quantities flexible; 1 mango per 2 glasses",
+  "title": "Mango Lassi",
+  "title_ms": "Mango Lassi",
+  "description": "A classic Indian-style mango lassi blended with yogurt, milk and honey — light, tangy and perfect for iftar.",
+  "description_ms": "Mango lassi gaya India klasik yang diblend dengan yogurt, susu dan madu — ringan, masam-manis dan sempurna untuk berbuka.",
+  "cuisine": "Indian",
+  "difficulty": "Easy",
+  "prep_time": 5,
+  "cook_time": 0,
+  "servings": 2,
+  "ingredients": [
+    "mango",
+    "plain yogurt",
+    "fresh milk",
+    "honey",
+    "ice"
+  ],
+  "steps": [
+    "Blend mango flesh (from 1 ripe mango), plain yogurt, fresh milk, honey to taste and ice until smooth.",
+    "Pour into glasses and serve cold."
+  ],
+  "steps_ms": [
+    "Blend isi mangga (dari 1 biji mangga masak), yogurt original, susu segar, madu secukup rasa dan ais sehingga licin.",
+    "Tuang ke dalam gelas dan hidang dingin."
+  ],
+  "tags": [
+    "halal",
+    "drink",
+    "cold",
+    "mango",
+    "lassi",
+    "indian",
+    "ramadan",
+    "iftar",
+    "easy"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "mango",
+      "name_ms": "mangga",
+      "quantity": 1,
+      "unit": null,
+      "note": "ripe"
+    },
+    {
+      "name": "plain yogurt",
+      "name_ms": "yogurt original",
+      "quantity": null,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "fresh milk",
+      "name_ms": "fresh milk",
+      "quantity": null,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "honey",
+      "name_ms": "madu",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "ice",
+      "name_ms": "ais",
+      "quantity": null,
+      "unit": null,
+      "note": ""
+    }
+  ]
+}

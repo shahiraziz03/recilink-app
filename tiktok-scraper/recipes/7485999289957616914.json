@@ -1,0 +1,233 @@
+{
+  "video_id": "7485999289957616914",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "some garnish quantities (kucai, taugeh, torch ginger bud, laksa noodles) not explicitly stated; laksa paste qty flexible; fish quantity for poaching not stated",
+  "title": "Siamese Laksa (Laksa Siam)",
+  "title_ms": "Laksa Siam",
+  "description": "A rich, creamy Siamese-style laksa broth made from poached fish, coconut milk and a fragrant pounded spice paste — served with rice vermicelli, cockles, boiled egg and fresh herbs.",
+  "description_ms": "Kuah laksa Siam yang kaya dan berkrim daripada ikan rebus, santan dan pes rempah yang ditumbuk — dihidang dengan bihun, kerang, telur rebus dan ulam-ulam segar.",
+  "cuisine": "Fusion",
+  "difficulty": "Hard",
+  "prep_time": 40,
+  "cook_time": 40,
+  "servings": 5,
+  "ingredients": [
+    "Indian mackerel",
+    "water",
+    "lemongrass",
+    "galangal",
+    "fresh turmeric",
+    "shallot",
+    "garlic",
+    "dried chilli",
+    "shrimp paste",
+    "blended chilli",
+    "coconut milk",
+    "tamarind paste",
+    "salt",
+    "sugar",
+    "seasoning powder",
+    "rice vermicelli",
+    "cockles",
+    "egg",
+    "garlic chives",
+    "bean sprouts",
+    "torch ginger bud",
+    "cucumber",
+    "Vietnamese mint"
+  ],
+  "steps": [
+    "Poach 2–3 mackerel in water with bruised lemongrass, galangal and a knob of fresh turmeric; once cooked, remove flesh and discard bones. Reserve the broth.",
+    "Pound or blend 2 lemongrass stalks, 1 knob galangal, 1 knob fresh turmeric, 2 onions, 5 garlic cloves, 10 soaked dried chillies and 1 roasted shrimp paste block into a fine paste.",
+    "Fry the paste in oil until fragrant and oil separates; add 3 tbsp blended chilli.",
+    "Add the reserved fish broth; stir in the shredded fish flesh.",
+    "Add 1 small box coconut milk and 1 tbsp tamarind paste; season with salt, sugar and seasoning powder.",
+    "Simmer for 10–15 minutes until the broth is rich and fragrant.",
+    "Blanch rice vermicelli; boil eggs (7 minutes for medium); open cockles and blanch briefly.",
+    "Serve broth over rice vermicelli with cockles, halved egg, garlic chives, bean sprouts, sliced torch ginger bud, cucumber julienne and Vietnamese mint."
+  ],
+  "steps_ms": [
+    "Rebus 2-3 ekor ikan kembung dalam air bersama serai diketuk, lengkuas dan seketul kunyit hidup; bila masak, ambil isi ikan dan buang tulang. Simpan air rebusan.",
+    "Tumbuk atau blend 2 batang serai, 1 ketul lengkuas, 1 ketul kunyit hidup, 2 biji bawang, 5 ulas bawang putih, 10 biji cili kering yang direndam dan 1 ketul belacan bakar sehingga lumat.",
+    "Goreng pes dalam minyak sehingga wangi dan pecah minyak; masukkan 3 sudu cili kisar.",
+    "Masukkan air rebusan ikan; masukkan isi ikan yang sudah disuwir.",
+    "Masukkan 1 kotak kecil santan dan 1 sudu pes asam jawa; tambah garam, gula dan serbuk perasa.",
+    "Reneh 10-15 minit sehingga kuah kaya dan wangi.",
+    "Celur bihun; rebus telur (7 minit untuk setengah masak); buka kerang dan celur sebentar.",
+    "Hidang kuah di atas bihun bersama kerang, telur belah dua, kucai, taugeh, hirisan bunga kantan, julien timun dan daun kesum."
+  ],
+  "tags": [
+    "halal",
+    "noodles",
+    "laksa",
+    "fish",
+    "coconut milk",
+    "thai",
+    "malaysian",
+    "ramadan"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "Indian mackerel",
+      "name_ms": "ikan kembung",
+      "quantity": null,
+      "unit": null,
+      "note": "2-3 fish for broth; quantity not stated exactly"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": null,
+      "unit": null,
+      "note": "for poaching"
+    },
+    {
+      "name": "lemongrass",
+      "name_ms": "serai",
+      "quantity": 4,
+      "unit": null,
+      "note": "2 bruised for poaching; 2 for paste"
+    },
+    {
+      "name": "galangal",
+      "name_ms": "lengkuas",
+      "quantity": null,
+      "unit": null,
+      "note": "1 knob for poaching; 1 knob for paste"
+    },
+    {
+      "name": "fresh turmeric",
+      "name_ms": "kunyit hidup",
+      "quantity": null,
+      "unit": null,
+      "note": "1 knob for poaching; 1 knob for paste"
+    },
+    {
+      "name": "shallot",
+      "name_ms": "bawang merah",
+      "quantity": 2,
+      "unit": null,
+      "note": "for paste"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 5,
+      "unit": "clove",
+      "note": "for paste"
+    },
+    {
+      "name": "dried chilli",
+      "name_ms": "cili kering",
+      "quantity": 10,
+      "unit": null,
+      "note": "soaked in hot water; for paste"
+    },
+    {
+      "name": "shrimp paste",
+      "name_ms": "belacan",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 block; roasted; for paste"
+    },
+    {
+      "name": "blended chilli",
+      "name_ms": "cili kisar",
+      "quantity": 3,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "coconut milk",
+      "name_ms": "santan",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 small box"
+    },
+    {
+      "name": "tamarind paste",
+      "name_ms": "pes asam jawa",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "sugar",
+      "name_ms": "gula",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "seasoning powder",
+      "name_ms": "serbuk perasa",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "rice vermicelli",
+      "name_ms": "bihun",
+      "quantity": null,
+      "unit": null,
+      "note": "blanched; for serving"
+    },
+    {
+      "name": "cockles",
+      "name_ms": "kerang",
+      "quantity": null,
+      "unit": null,
+      "note": "for serving"
+    },
+    {
+      "name": "egg",
+      "name_ms": "telur",
+      "quantity": null,
+      "unit": null,
+      "note": "boiled 7 min; for serving"
+    },
+    {
+      "name": "garlic chives",
+      "name_ms": "kucai",
+      "quantity": null,
+      "unit": null,
+      "note": "for serving"
+    },
+    {
+      "name": "bean sprouts",
+      "name_ms": "taugeh",
+      "quantity": null,
+      "unit": null,
+      "note": "for serving"
+    },
+    {
+      "name": "torch ginger bud",
+      "name_ms": "bunga kantan",
+      "quantity": null,
+      "unit": null,
+      "note": "sliced; for serving"
+    },
+    {
+      "name": "cucumber",
+      "name_ms": "timun",
+      "quantity": null,
+      "unit": null,
+      "note": "julienned; for serving"
+    },
+    {
+      "name": "Vietnamese mint",
+      "name_ms": "daun kesum",
+      "quantity": null,
+      "unit": null,
+      "note": "for serving"
+    }
+  ]
+}

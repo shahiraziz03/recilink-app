@@ -1,0 +1,142 @@
+{
+  "video_id": "7609170882749041928",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "chicken quantity not stated; peri peri sauce (bottled) amount flexible",
+  "title": "Peri Peri Chicken",
+  "title_ms": "Ayam Peri Peri",
+  "description": "Tender chicken thighs marinated overnight in homemade peri peri sauce — grilled or baked, then basted and finished on a griddle for a charred finish.",
+  "description_ms": "Peha ayam yang diperap semalaman dalam sos peri peri buatan sendiri — dibakar atau dipanggang, kemudian digrid untuk kesan hangus yang wangi.",
+  "cuisine": "Fusion",
+  "difficulty": "Easy",
+  "prep_time": 720,
+  "cook_time": 40,
+  "servings": 4,
+  "ingredients": [
+    "chicken",
+    "bird's eye chilli",
+    "large red chilli",
+    "garlic",
+    "lemon",
+    "cooking oil",
+    "paprika powder",
+    "oregano",
+    "salt",
+    "black pepper",
+    "butter",
+    "peri peri sauce"
+  ],
+  "steps": [
+    "Blend 5 bird's eye chillies, 3 large red chillies, 6 garlic cloves, juice of 1 lemon, 3 tbsp cooking oil, 1 tbsp paprika powder, 1 tsp oregano, 1 tsp salt and black pepper until smooth.",
+    "Score the chicken thighs (skin-on) deeply; coat thoroughly with the marinade.",
+    "Marinate overnight in the fridge for best results.",
+    "Bake at 200°C for 30 minutes until cooked through.",
+    "For the basting sauce: melt 2 tbsp butter; add 3 tbsp bottled peri peri sauce (Nando's or any brand) and a squeeze of lemon.",
+    "Sear the baked chicken on a hot griddle pan; baste with the butter-peri peri mix until lightly charred on both sides.",
+    "Serve with rice or sides of choice."
+  ],
+  "steps_ms": [
+    "Blend 5 biji cili padi, 3 biji lada besar merah, 6 ulas bawang putih, jus 1 biji lemon, 3 sudu minyak goreng, 1 sudu serbuk paprika, 1 sudu kecil oregano, 1 sudu kecil garam dan black pepper sehingga lumat.",
+    "Calit ayam (dengan kulit) secara dalam; salut dengan pes marinad secara menyeluruh.",
+    "Perap semalaman dalam peti sejuk untuk hasil terbaik.",
+    "Bakar pada suhu 200°C selama 30 minit sehingga masak.",
+    "Untuk sos sapuan: cairkan 2 sudu butter; masukkan 3 sudu sos peri peri dari botol (Nando's atau mana-mana jenama) dan perahan lemon.",
+    "Masak ayam yang telah dibakar dalam kuali griddle panas; sapu dengan campuran butter-peri peri sehingga sedikit hangus di kedua-dua belah.",
+    "Hidang dengan nasi atau ulam pilihan."
+  ],
+  "tags": [
+    "halal",
+    "chicken",
+    "grilled",
+    "peri peri",
+    "western",
+    "raya",
+    "easy"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "chicken",
+      "name_ms": "ayam",
+      "quantity": null,
+      "unit": null,
+      "note": "thigh pieces, skin-on; quantity not stated"
+    },
+    {
+      "name": "bird's eye chilli",
+      "name_ms": "cili padi",
+      "quantity": 5,
+      "unit": null,
+      "note": "for marinade"
+    },
+    {
+      "name": "large red chilli",
+      "name_ms": "cili besar",
+      "quantity": 3,
+      "unit": null,
+      "note": "for marinade"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 6,
+      "unit": "clove",
+      "note": "for marinade"
+    },
+    {
+      "name": "lemon",
+      "name_ms": "lemon",
+      "quantity": 1,
+      "unit": null,
+      "note": "juiced; more for basting sauce"
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": 3,
+      "unit": "tbsp",
+      "note": "for marinade"
+    },
+    {
+      "name": "paprika powder",
+      "name_ms": "serbuk paprika",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": "for marinade"
+    },
+    {
+      "name": "oregano",
+      "name_ms": "oregano",
+      "quantity": 1,
+      "unit": "tsp",
+      "note": "for marinade"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": 1,
+      "unit": "tsp",
+      "note": "for marinade"
+    },
+    {
+      "name": "black pepper",
+      "name_ms": "black pepper",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste; for marinade"
+    },
+    {
+      "name": "butter",
+      "name_ms": "butter",
+      "quantity": 2,
+      "unit": "tbsp",
+      "note": "for basting sauce"
+    },
+    {
+      "name": "peri peri sauce",
+      "name_ms": "sos peri peri",
+      "quantity": 3,
+      "unit": "tbsp",
+      "note": "bottled; any brand; for basting sauce"
+    }
+  ]
+}

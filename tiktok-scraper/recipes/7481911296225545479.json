@@ -1,0 +1,131 @@
+{
+  "video_id": "7481911296225545479",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "mozzarella cheese quantity per roll not stated; may need extra bread flour depending on egg size; bake time is 18-20 min",
+  "title": "Cheesy Garlic Bread (From Scratch)",
+  "title_ms": "Cheesy Garlic Bread dari Scratch",
+  "description": "Soft, fluffy rolls stuffed with mozzarella cheese and topped with a fragrant garlic-ghee spread — made completely from scratch at home.",
+  "description_ms": "Roti gulung yang sangat fluffy diisi dengan mozzarella cheese dan disapu dengan mentega bawang putih yang wangi — dibuat dari awal di rumah.",
+  "cuisine": "Western",
+  "difficulty": "Medium",
+  "prep_time": 100,
+  "cook_time": 20,
+  "servings": 12,
+  "ingredients": [
+    "fresh milk",
+    "water",
+    "sugar",
+    "yeast",
+    "egg",
+    "bread flour",
+    "salt",
+    "ghee",
+    "mozzarella cheese",
+    "parsley"
+  ],
+  "steps": [
+    "Warm 1 cup fresh milk with 0.5 cup water for 30 seconds (just warm, not hot). Stir in 1/3 cup sugar and 1 packet yeast; rest 5 minutes until foamy.",
+    "Add 2 eggs. Then add 4.5 cup bread flour and 1.5 tsp salt; mix to a rough dough.",
+    "Melt 2 tbsp ghee and add to the dough; knead until smooth and no longer sticky. Add 3-4 tbsp extra flour if too wet (egg size varies).",
+    "Cover and let rise for 1 hour until doubled.",
+    "Knock back; divide into portions. Flatten each portion, place mozzarella cheese in the centre, gather the edges and roll into a smooth ball.",
+    "Arrange in a greased baking tin; let rise for another 30 minutes until puffy.",
+    "Brush tops with beaten egg for a golden finish.",
+    "Bake at 190°C for 18–20 minutes until golden brown.",
+    "[Garlic spread] Melt 2 tbsp ghee with 10 minced garlic cloves, a pinch of salt and chopped parsley (optional). Brush over the hot rolls immediately after baking."
+  ],
+  "steps_ms": [
+    "Panaskan 1 cawan susu segar dengan setengah cawan air selama 30 saat (suam sahaja). Gaul dengan 1/3 cawan gula dan 1 paket yis; rehat 5 minit sehingga berbuih.",
+    "Masukkan 2 biji telur. Kemudian masukkan 4 cawan setengah tepung roti dan 1 sudu kecil setengah garam; gaul menjadi adunan kasar.",
+    "Cairkan 2 sudu minyak sapi dan masukkan ke dalam adunan; uli sehingga licin dan tidak melekat. Tambah 3-4 sudu tepung roti jika terlalu basah (saiz telur berbeza).",
+    "Tutup dan biarkan naik 1 jam sehingga dua kali ganda.",
+    "Hembus keluar udara; bahagi kepada bahagian-bahagian. Lenyekkan setiap bahagian, letakkan mozzarella di tengah, kumpulkan tepi dan gulung menjadi bebola licin.",
+    "Susun dalam loyang yang sudah disalutkan; biarkan naik 30 minit lagi sehingga gebu.",
+    "Sapu atas roti dengan telur yang telah dipukul.",
+    "Bakar pada suhu 190°C selama 18-20 minit sehingga golden brown.",
+    "[Sapu bawang putih] Cairkan 2 sudu minyak sapi dengan 10 ulas bawang putih yang dihacam, sedikit garam dan daun parsli cincang (pilihan). Sapu di atas roti yang baru keluar dari oven."
+  ],
+  "tags": [
+    "halal",
+    "bread",
+    "baked",
+    "garlic",
+    "cheese",
+    "western",
+    "ramadan",
+    "moreh"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "fresh milk",
+      "name_ms": "fresh milk",
+      "quantity": 1,
+      "unit": "cup",
+      "note": "for dough"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": 0.5,
+      "unit": "cup",
+      "note": "for dough"
+    },
+    {
+      "name": "sugar",
+      "name_ms": "gula",
+      "quantity": null,
+      "unit": null,
+      "note": "1/3 cup for dough"
+    },
+    {
+      "name": "yeast",
+      "name_ms": "yis",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 packet"
+    },
+    {
+      "name": "egg",
+      "name_ms": "telur",
+      "quantity": 3,
+      "unit": null,
+      "note": "2 in dough; 1 for egg wash"
+    },
+    {
+      "name": "bread flour",
+      "name_ms": "tepung roti",
+      "quantity": 4.5,
+      "unit": "cup",
+      "note": "plus 3-4 extra tbsp if dough is too wet"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": 1.5,
+      "unit": "tsp",
+      "note": "in dough; pinch for garlic spread"
+    },
+    {
+      "name": "ghee",
+      "name_ms": "minyak sapi",
+      "quantity": 4,
+      "unit": "tbsp",
+      "note": "2 tbsp for dough; 2 tbsp for garlic spread; brand QBB"
+    },
+    {
+      "name": "mozzarella cheese",
+      "name_ms": "mozzarella cheese",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity per roll not stated"
+    },
+    {
+      "name": "parsley",
+      "name_ms": "daun parsli",
+      "quantity": null,
+      "unit": null,
+      "note": "optional; for garlic spread; fresh or dried"
+    }
+  ]
+}

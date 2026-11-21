@@ -1,0 +1,134 @@
+{
+  "video_id": "7480398655820795144",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "cockles quantity not stated; dried tamarind slices quantity stated as '4-5 keping'; cook/prep times estimated",
+  "title": "Cockle Sambal with Dried Tamarind (Sambal Taun)",
+  "title_ms": "Sambal Taun (Sambal Kerang)",
+  "description": "A tangy, spicy cockle sambal soured with dried tamarind — a traditional Malay sambal that is excellent with white rice.",
+  "description_ms": "Sambal kerang yang masam-pedas dengan asam keping — sambal Melayu tradisi yang sangat sedap bersama nasi putih.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 15,
+  "cook_time": 15,
+  "servings": 3,
+  "ingredients": [
+    "cockles",
+    "cooking oil",
+    "shallot",
+    "garlic",
+    "blended chilli",
+    "dried tamarind slices",
+    "water",
+    "palm sugar",
+    "salt",
+    "seasoning powder",
+    "kaffir lime leaf"
+  ],
+  "steps": [
+    "Open and wash cockles; blanch briefly in boiling water. Set aside.",
+    "Sauté sliced onion and 5 garlic cloves in oil until fragrant.",
+    "Add 3 tbsp blended chilli; fry until oil separates.",
+    "Add 4–5 dried tamarind slices and a little water; stir.",
+    "Season with 1 small palm sugar block, salt and seasoning powder.",
+    "Add cockles; fold in gently. Do not over-cook — cockles toughen quickly.",
+    "Add torn kaffir lime leaves for fragrance; serve immediately."
+  ],
+  "steps_ms": [
+    "Buka dan basuh kerang; celur sebentar dalam air mendidih. Ketepikan.",
+    "Tumis hirisan bawang dan 5 ulas bawang putih dalam minyak sehingga wangi.",
+    "Masukkan 3 sudu cili kisar; goreng sehingga pecah minyak.",
+    "Masukkan 4-5 keping asam keping dan sedikit air; kacau.",
+    "Tambah 1 ketul kecil gula Melaka, garam dan serbuk perasa.",
+    "Masukkan kerang; gaul perlahan. Jangan masak terlalu lama — kerang mudah keras.",
+    "Masukkan daun limau purut yang dicarik untuk aroma; hidang dengan segera."
+  ],
+  "tags": [
+    "halal",
+    "seafood",
+    "cockles",
+    "sambal",
+    "sour",
+    "malaysian",
+    "ramadan"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "cockles",
+      "name_ms": "kerang",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated"
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "shallot",
+      "name_ms": "bawang merah",
+      "quantity": 1,
+      "unit": null,
+      "note": "sliced"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 5,
+      "unit": "clove",
+      "note": ""
+    },
+    {
+      "name": "blended chilli",
+      "name_ms": "cili kisar",
+      "quantity": 3,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "dried tamarind slices",
+      "name_ms": "asam keping",
+      "quantity": null,
+      "unit": null,
+      "note": "4-5 pieces; quantity vague"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": null,
+      "unit": null,
+      "note": "a little"
+    },
+    {
+      "name": "palm sugar",
+      "name_ms": "gula melaka",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 small block"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "seasoning powder",
+      "name_ms": "serbuk perasa",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "kaffir lime leaf",
+      "name_ms": "daun limau purut",
+      "quantity": null,
+      "unit": null,
+      "note": "torn; for fragrance"
+    }
+  ]
+}

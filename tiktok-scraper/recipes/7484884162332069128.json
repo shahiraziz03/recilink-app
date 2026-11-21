@@ -1,0 +1,120 @@
+{
+  "video_id": "7484884162332069128",
+  "is_recipe": true,
+  "needs_review": false,
+  "review_notes": "toppings (cashews, almonds, raisins, dates) quantities are flexible; prep time includes cooling; times estimated",
+  "title": "Marshmallow Nougat",
+  "title_ms": "Marshmallow Nougat",
+  "description": "A chewy, festive nougat made by melting marshmallows with butter and milk powder, then folding in biscuits and mixed nuts — a modern Raya confection.",
+  "description_ms": "Nougat yang chewy dan moden dibuat dengan mencairkan marshmallow bersama butter dan susu tepung, kemudian dilipat bersama biskut dan kacang campuran — kuih raya moden.",
+  "cuisine": "Fusion",
+  "difficulty": "Easy",
+  "prep_time": 120,
+  "cook_time": 15,
+  "servings": 20,
+  "ingredients": [
+    "butter",
+    "marshmallow",
+    "milk powder",
+    "salt",
+    "biscuit",
+    "cashew nuts",
+    "almond",
+    "raisin",
+    "dates"
+  ],
+  "steps": [
+    "Melt 3 tbsp butter in a non-stick wok over the lowest heat.",
+    "Add 500 g marshmallows; stir slowly and patiently until completely melted.",
+    "Stir in 0.5 cup milk powder and 0.5 tsp salt until combined.",
+    "Add biscuits (broken), cashews, almonds, raisins and/or dates gradually — fold in gently so the mixture doesn't become too firm.",
+    "Line a tray with baking paper dusted with milk powder; pour in the mixture.",
+    "Press down firmly using your hands (and a top sheet of baking paper); compact as densely as possible.",
+    "Leave at room temperature for several hours until fully set.",
+    "Dust the top with milk powder; cut into pieces to serve."
+  ],
+  "steps_ms": [
+    "Cairkan 3 sudu besar butter dalam kuali non-stick atas api paling kecil.",
+    "Masukkan 500g marshmallow; kacau perlahan-lahan dengan sabar sehingga cair sepenuhnya.",
+    "Gaul masuk setengah cawan susu tepung dan setengah sudu kecil garam sehingga sebati.",
+    "Masukkan biskut (dipatah-patah), kacang gajus, badam, kismis dan/atau kurma secara beransur — lipat perlahan supaya adunan tidak terlalu keras.",
+    "Alaskan dulang dengan kertas pembakar yang ditaburi susu tepung; tuangkan adunan.",
+    "Tekan padat dengan tangan (boleh guna kertas pembakar di atas sebagai lapisan); padatkan sebanyak mungkin.",
+    "Biarkan di suhu bilik beberapa jam sehingga betul-betul keras.",
+    "Taburi susu tepung di atas; potong kepada kepingan untuk dihidang."
+  ],
+  "tags": [
+    "halal",
+    "dessert",
+    "nougat",
+    "marshmallow",
+    "raya",
+    "easy",
+    "no-bake"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "butter",
+      "name_ms": "butter",
+      "quantity": 3,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "marshmallow",
+      "name_ms": "marshmallow",
+      "quantity": 500,
+      "unit": "g",
+      "note": "use a non-stick wok"
+    },
+    {
+      "name": "milk powder",
+      "name_ms": "susu tepung",
+      "quantity": 0.5,
+      "unit": "cup",
+      "note": "also for dusting"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": 0.5,
+      "unit": "tsp",
+      "note": ""
+    },
+    {
+      "name": "biscuit",
+      "name_ms": "biskut",
+      "quantity": null,
+      "unit": null,
+      "note": "Mary biscuits used; any sturdy biscuit"
+    },
+    {
+      "name": "cashew nuts",
+      "name_ms": "kacang gajus",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity flexible"
+    },
+    {
+      "name": "almond",
+      "name_ms": "badam",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity flexible"
+    },
+    {
+      "name": "raisin",
+      "name_ms": "kismis",
+      "quantity": null,
+      "unit": null,
+      "note": "kismis; quantity flexible"
+    },
+    {
+      "name": "dates",
+      "name_ms": "kurma",
+      "quantity": null,
+      "unit": null,
+      "note": "optional; leftover Ramadan dates work well"
+    }
+  ]
+}

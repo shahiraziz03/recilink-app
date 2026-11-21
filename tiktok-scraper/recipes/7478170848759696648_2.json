@@ -1,0 +1,152 @@
+{
+  "video_id": "7478170848759696648",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "fish quantity not stated",
+  "title": "Siamese Fish Soup (Sup Ikan Siam)",
+  "title_ms": "Sup Ikan Siam",
+  "description": "The fish version of Sup Ayam Siam — same tangy, spicy broth but made with fish and a fish-flavoured Siamese soup packet.",
+  "description_ms": "Versi ikan bagi Sup Ayam Siam — kuah yang sama masam-pedas tetapi menggunakan ikan dan paket sup Siam rasa ikan.",
+  "cuisine": "Fusion",
+  "difficulty": "Easy",
+  "prep_time": 10,
+  "cook_time": 20,
+  "servings": 4,
+  "ingredients": [
+    "red snapper",
+    "shallot",
+    "garlic",
+    "coriander roots",
+    "dried chilli",
+    "salt",
+    "water",
+    "soup powder",
+    "tomato",
+    "bird's eye chilli",
+    "fish sauce",
+    "lime",
+    "coriander leaves"
+  ],
+  "steps": [
+    "Sauté 2 shallots and 5 garlic cloves briefly.",
+    "Add 5 coriander roots and 5 dried chillies.",
+    "Add fish (red snapper or sea bass); season with salt and cover with water.",
+    "Add 3 tbsp Siamese fish soup powder (look for the packet with a fish-head image); simmer until the fish is cooked through.",
+    "Add 1 tomato and generous bird's eye chilli.",
+    "Remove from heat; stir in 3 tbsp fish sauce and juice of 1–2 limes.",
+    "Garnish with coriander leaves and serve."
+  ],
+  "steps_ms": [
+    "Tumis 2 bawang merah dan 5 ulas bawang putih sebentar.",
+    "Masukkan 5 akar ketumbar dan 5 biji cili kering.",
+    "Masukkan ikan (siakap atau ikan merah); tambah garam dan tutup dengan air.",
+    "Masukkan 3 sudu serbuk sup Siam rasa ikan (cari yang ada gambar kepala ikan); reneh sehingga ikan masak.",
+    "Masukkan 1 biji tomato dan banyak cili padi.",
+    "Padamkan api; masukkan 3 sudu sos ikan dan jus 1-2 biji limau nipis.",
+    "Tabur daun ketumbar dan hidang."
+  ],
+  "tags": [
+    "halal",
+    "fish",
+    "soup",
+    "thai",
+    "sour",
+    "spicy",
+    "fusion",
+    "malaysian",
+    "ramadan"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "red snapper",
+      "name_ms": "ikan merah",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated; or sea bass"
+    },
+    {
+      "name": "shallot",
+      "name_ms": "bawang merah",
+      "quantity": 2,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 5,
+      "unit": "clove",
+      "note": ""
+    },
+    {
+      "name": "coriander roots",
+      "name_ms": "akar ketumbar",
+      "quantity": 5,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "dried chilli",
+      "name_ms": "cili kering",
+      "quantity": 5,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": null,
+      "unit": null,
+      "note": "enough to cover fish"
+    },
+    {
+      "name": "soup powder",
+      "name_ms": "perencah sup",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 packet Siamese fish flavour"
+    },
+    {
+      "name": "tomato",
+      "name_ms": "tomato",
+      "quantity": 1,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "bird's eye chilli",
+      "name_ms": "cili padi",
+      "quantity": null,
+      "unit": null,
+      "note": "generously"
+    },
+    {
+      "name": "fish sauce",
+      "name_ms": "sos ikan",
+      "quantity": 3,
+      "unit": "tbsp",
+      "note": "added off heat"
+    },
+    {
+      "name": "lime",
+      "name_ms": "limau nipis",
+      "quantity": null,
+      "unit": null,
+      "note": "1-2 limes; added off heat"
+    },
+    {
+      "name": "coriander leaves",
+      "name_ms": "daun ketumbar",
+      "quantity": null,
+      "unit": null,
+      "note": "garnish"
+    }
+  ]
+}

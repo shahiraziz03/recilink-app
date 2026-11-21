@@ -1,0 +1,156 @@
+{
+  "video_id": "7478200055418162439",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "prawn quantity not stated; vegetable not quantified; cook/prep times estimated",
+  "title": "Spicy Wet Instant Noodles (Mee Goreng Basah)",
+  "title_ms": "Mee Goreng Basah Extra Pedas",
+  "description": "A quick and satisfying spicy wet instant noodle dish with fish ball, fish cake, prawn and egg in a flavourful sauce.",
+  "description_ms": "Mi goreng basah yang cepat dan pedas dengan fishball, fishcake, udang dan telur dalam sos yang sedap.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 5,
+  "cook_time": 10,
+  "servings": 2,
+  "ingredients": [
+    "shallot",
+    "garlic",
+    "blended chilli",
+    "fish ball",
+    "fish cake",
+    "sweet soy sauce",
+    "tomato sauce",
+    "chilli sauce",
+    "water",
+    "instant noodles",
+    "prawn",
+    "egg",
+    "bird's eye chilli",
+    "lime"
+  ],
+  "steps": [
+    "Sauté 1 onion and 2 garlic cloves; add 1 tbsp blended chilli.",
+    "Add fish balls and fish cake; stir briefly.",
+    "Add 1 tbsp sweet soy sauce, 1 tbsp tomato sauce and 1 tbsp chilli sauce; add water.",
+    "Add 2 packets of instant noodles with 1 seasoning packet; wait for the noodles to soften.",
+    "Add prawn, egg and bird's eye chilli; break the egg yolk into the broth for a creamier sauce.",
+    "Stir to combine; serve with a squeeze of lime."
+  ],
+  "steps_ms": [
+    "Tumis 1 biji bawang merah dan 2 ulas bawang putih; masukkan 1 sudu cili kisar.",
+    "Masukkan fishball dan fishcake; kacau sebentar.",
+    "Masukkan 1 sudu kicap manis, 1 sudu sos tomato dan 1 sudu sos cili; masukkan air.",
+    "Masukkan 2 paket mi segera dengan 1 paket perencah; tunggu mi kembang.",
+    "Masukkan udang, telur dan cili padi; pecahkan kuning telur ke dalam kuah untuk rasa lebih creamy.",
+    "Gaul sebati; hidang dengan perahan limau nipis."
+  ],
+  "tags": [
+    "halal",
+    "noodles",
+    "spicy",
+    "quick",
+    "seafood",
+    "malaysian",
+    "ramadan"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "shallot",
+      "name_ms": "bawang merah",
+      "quantity": 1,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 2,
+      "unit": "clove",
+      "note": ""
+    },
+    {
+      "name": "blended chilli",
+      "name_ms": "cili kisar",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "fish ball",
+      "name_ms": "fishball",
+      "quantity": null,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "fish cake",
+      "name_ms": "fishcake",
+      "quantity": null,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "sweet soy sauce",
+      "name_ms": "kicap manis",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "tomato sauce",
+      "name_ms": "sos tomato",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "chilli sauce",
+      "name_ms": "sos cili",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": null,
+      "unit": null,
+      "note": "enough for broth"
+    },
+    {
+      "name": "instant noodles",
+      "name_ms": "mi segera",
+      "quantity": 2,
+      "unit": null,
+      "note": "2 packets; use only 1 seasoning packet"
+    },
+    {
+      "name": "prawn",
+      "name_ms": "udang",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated"
+    },
+    {
+      "name": "egg",
+      "name_ms": "telur",
+      "quantity": 1,
+      "unit": null,
+      "note": "break yolk into broth"
+    },
+    {
+      "name": "bird's eye chilli",
+      "name_ms": "cili padi",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "lime",
+      "name_ms": "limau nipis",
+      "quantity": null,
+      "unit": null,
+      "note": "squeeze over to serve"
+    }
+  ]
+}

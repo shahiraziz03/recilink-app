@@ -1,0 +1,142 @@
+{
+  "video_id": "7609600086259125511",
+  "is_recipe": true,
+  "needs_review": false,
+  "review_notes": "serving and time estimates; recipe is for 1 block of tempeh",
+  "title": "Sambal Tempeh with Soy Dipping Sauce",
+  "title_ms": "Sambal Tempe dengan Sambal Kicap",
+  "description": "Crispy fried tempeh tossed in a pounded chilli sambal with calamansi lime — served with a blended sweet soy dipping sauce.",
+  "description_ms": "Tempe yang digoreng rangup kemudian dicampur dengan sambal cili yang ditumbuk dan perahan limau kasturi — dicicah dengan sambal kicap pedas.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 10,
+  "cook_time": 15,
+  "servings": 3,
+  "ingredients": [
+    "tempeh",
+    "cooking oil",
+    "bird's eye chilli",
+    "large red chilli",
+    "tomato",
+    "shallot",
+    "garlic",
+    "salt",
+    "sugar",
+    "seasoning powder",
+    "calamansi lime",
+    "sweet soy sauce"
+  ],
+  "steps": [
+    "Slice 1 block of tempeh thinly; fry in hot oil until golden and crispy. Drain and set aside.",
+    "Halve the bird's eye chillies and large red chillies (to prevent them from bursting during frying); fry in hot oil with 0.5 tomato, 0.5 onion and 5 garlic cloves until wilted and lightly charred.",
+    "Pound the fried aromatics until coarsely ground.",
+    "Season with salt, sugar and seasoning powder.",
+    "Add the fried tempeh; fold it into the sambal — do not over-pound, keep some crunch.",
+    "Squeeze in juice of 5 calamansi limes for a sour-spicy finish.",
+    "[Sambal kicap] Blend sweet soy sauce, bird's eye chilli and garlic until smooth; serve alongside."
+  ],
+  "steps_ms": [
+    "Potong 1 blok tempe nipis-nipis; goreng dalam minyak panas sehingga golden rangup. Toskan dan ketepikan.",
+    "Belah dua cili padi dan lada besar (elak meletus semasa goreng); goreng dalam minyak panas bersama setengah biji tomato, setengah biji bawang merah dan 5 ulas bawang putih sehingga layu dan sedikit hangus.",
+    "Tumbuk semua bahan yang dah digoreng sehingga lumat kasar.",
+    "Tambah garam, gula dan serbuk perasa.",
+    "Masukkan tempe goreng; gaul — jangan tumbuk terlalu hancur, kekalkan krup.",
+    "Perah jus 5 biji limau kasturi untuk rasa masam-pedas.",
+    "[Sambal kicap] Blend kicap manis, cili padi dan bawang putih sehingga lumat; hidang bersama tempe."
+  ],
+  "tags": [
+    "halal",
+    "vegetarian",
+    "tempeh",
+    "sambal",
+    "malaysian",
+    "ramadan",
+    "sahur"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "tempeh",
+      "name_ms": "tempe",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 block; sliced thin for maximum crispiness"
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": "for frying"
+    },
+    {
+      "name": "bird's eye chilli",
+      "name_ms": "cili padi",
+      "quantity": 10,
+      "unit": null,
+      "note": "halved before frying; more for sambal kicap"
+    },
+    {
+      "name": "large red chilli",
+      "name_ms": "cili besar",
+      "quantity": 2,
+      "unit": null,
+      "note": "halved; for sambal"
+    },
+    {
+      "name": "tomato",
+      "name_ms": "tomato",
+      "quantity": 0.5,
+      "unit": null,
+      "note": "half a tomato"
+    },
+    {
+      "name": "shallot",
+      "name_ms": "bawang merah",
+      "quantity": 0.5,
+      "unit": null,
+      "note": "half an onion"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 5,
+      "unit": "clove",
+      "note": "for sambal; more for sambal kicap"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "sugar",
+      "name_ms": "gula",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "seasoning powder",
+      "name_ms": "serbuk perasa",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "calamansi lime",
+      "name_ms": "limau kasturi",
+      "quantity": 5,
+      "unit": null,
+      "note": "squeezed into sambal"
+    },
+    {
+      "name": "sweet soy sauce",
+      "name_ms": "kicap manis",
+      "quantity": null,
+      "unit": null,
+      "note": "for sambal kicap; amount to taste"
+    }
+  ]
+}

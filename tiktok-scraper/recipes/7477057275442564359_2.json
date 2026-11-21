@@ -1,0 +1,104 @@
+{
+  "video_id": "7477057275442564359",
+  "is_recipe": true,
+  "needs_review": false,
+  "review_notes": "amounts are to taste; quantities are by feel",
+  "title": "Roselle Tea and Apple Soda (Teh Bunga Zapple)",
+  "title_ms": "Teh Bunga Zapple",
+  "description": "A refreshing layered iftar drink: chilled roselle tea topped with apple sparkling drink, lychee, lemon, lemongrass and preserved sour plum.",
+  "description_ms": "Minuman berbuka berlapis yang menyegarkan: teh bunga ros sejuk ditambah air zapple, laici, lemon, serai dan asam boi.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 10,
+  "cook_time": 0,
+  "servings": 2,
+  "ingredients": [
+    "roselle tea",
+    "apple sparkling drink",
+    "lychee",
+    "lemon",
+    "lemongrass",
+    "preserved sour plum",
+    "mint",
+    "ice"
+  ],
+  "steps": [
+    "Brew dried roselle flowers in hot water; sweeten to taste and chill.",
+    "In a glass, add ice, lychee pieces, a bruised lemongrass stalk, 1 preserved sour plum, lemon slices and mint leaves.",
+    "Pour the chilled roselle tea over.",
+    "Top with Zapple (apple sparkling drink); stir gently and serve."
+  ],
+  "steps_ms": [
+    "Seduh bunga ros kering dalam air panas; manis secukup rasa dan sejukkan.",
+    "Dalam gelas, masukkan ais, laici, 1 batang serai diketuk, 1 biji asam boi, hirisan lemon dan daun pudina.",
+    "Tuang teh bunga ros sejuk di atas.",
+    "Tambah Zapple (air epal berkarbonat); kacau perlahan dan hidang."
+  ],
+  "tags": [
+    "halal",
+    "drink",
+    "cold",
+    "roselle",
+    "ramadan",
+    "iftar",
+    "easy"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "roselle tea",
+      "name_ms": "teh bunga ros",
+      "quantity": null,
+      "unit": null,
+      "note": "brewed and chilled; sweeten to taste"
+    },
+    {
+      "name": "apple sparkling drink",
+      "name_ms": "zapple",
+      "quantity": null,
+      "unit": null,
+      "note": "any apple soda brand"
+    },
+    {
+      "name": "lychee",
+      "name_ms": "laici",
+      "quantity": null,
+      "unit": null,
+      "note": "canned or fresh"
+    },
+    {
+      "name": "lemon",
+      "name_ms": "lemon",
+      "quantity": null,
+      "unit": null,
+      "note": "sliced"
+    },
+    {
+      "name": "lemongrass",
+      "name_ms": "serai",
+      "quantity": 1,
+      "unit": null,
+      "note": "bruised"
+    },
+    {
+      "name": "preserved sour plum",
+      "name_ms": "asam boi",
+      "quantity": 1,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "mint",
+      "name_ms": "daun pudina",
+      "quantity": null,
+      "unit": null,
+      "note": "a few leaves"
+    },
+    {
+      "name": "ice",
+      "name_ms": "ais",
+      "quantity": null,
+      "unit": null,
+      "note": "to fill glass"
+    }
+  ]
+}

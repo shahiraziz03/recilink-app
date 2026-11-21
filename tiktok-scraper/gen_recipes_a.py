@@ -1,0 +1,787 @@
+#!/usr/bin/env python3
+"""Generate recipe JSONs for videos V4-V20."""
+import json, os
+BASE = os.path.dirname(__file__)
+OUT  = os.path.join(BASE, "recipes")
+os.makedirs(OUT, exist_ok=True)
+
+RECIPES = [
+
+# ── V4 ──────────────────────────────────────────────────────────────────────
+{"video_id":"7484150259581488392","is_recipe":True,"needs_review":True,
+"review_notes":"chicken quantity not stated; fresh turmeric blended with water then no volume given; prep/cook/servings estimated",
+"title":"Fried Chicken in Coconut Milk Gravy (Masak Lemak Cili Api)",
+"title_ms":"Ayam Goreng Masak Lemak Cili Api",
+"description":"Golden fried chicken pieces simmered in a rich, turmeric-yellow coconut milk gravy spiked with bird's eye chilli.",
+"description_ms":"Ayam goreng yang dimasak dalam kuah lemak kunyit bersama cili padi, menghasilkan hidangan yang creamy, pedas dan sangat sedap dimakan dengan nasi putih.",
+"cuisine":"Malaysian","difficulty":"Easy","prep_time":15,"cook_time":25,"servings":4,
+"ingredients":["chicken","turmeric powder","salt","onion","bird's eye chilli","garlic","fresh turmeric","water","coconut milk","turmeric leaf","seasoning powder"],
+"steps":[
+  "Toss chicken pieces with salt and turmeric powder until evenly coated; fry in hot oil until golden and crispy, then drain and set aside.",
+  "Chop (or pound) 1 onion, 8 bird's eye chillies and 3 cloves garlic.",
+  "Blend 1 knob of fresh turmeric with a little water until smooth; add extra turmeric powder if colour is insufficient.",
+  "Sauté the chopped aromatics briefly, then add the fresh turmeric blend.",
+  "Add the fried chicken and 1 small box of coconut milk; stir to combine.",
+  "Season with salt and seasoning powder; simmer until the gravy thickens slightly.",
+  "Stir in sliced turmeric leaf and cook for another minute before serving."
+],
+"steps_ms":[
+  "Gaul ayam dengan garam dan serbuk kunyit sehingga rata; goreng dalam minyak panas sehingga garing keemasan, kemudian angkat dan ketepikan.",
+  "Chop atau tumbuk 1 biji bawang merah, 8 cili padi dan 3 ulas bawang putih.",
+  "Blend 1 ketul kunyit hidup dengan sedikit air sehingga lumat; tambah serbuk kunyit jika warna kurang.",
+  "Tumis bahan-bahan yang dah dihancurkan sebentar, kemudian masukkan blend kunyit hidup.",
+  "Masukkan ayam goreng dan 1 kotak kecil santan; kacau sebati.",
+  "Tambah garam dan serbuk perasa; masak sehingga kuah pekat sikit.",
+  "Masukkan hirisan daun kunyit dan masak seminit lagi sebelum dihidang."
+],
+"tags":["halal","chicken","coconut milk","spicy","malaysian","ramadan"],
+"ingredients_detailed":[
+  {"name":"chicken",        "name_ms":"ayam",          "quantity":None,"unit":None,  "note":"quantity not stated; whole chicken or pieces"},
+  {"name":"turmeric powder","name_ms":"serbuk kunyit", "quantity":None,"unit":None,  "note":"to coat chicken, and extra if blended colour insufficient"},
+  {"name":"salt",           "name_ms":"garam",         "quantity":None,"unit":None,  "note":"to taste (chicken coating and gravy)"},
+  {"name":"onion",          "name_ms":"bawang merah",  "quantity":1,   "unit":None,  "note":"chopped or pounded"},
+  {"name":"bird's eye chilli","name_ms":"cili padi",   "quantity":8,   "unit":None,  "note":"chopped or pounded"},
+  {"name":"garlic",         "name_ms":"bawang putih",  "quantity":3,   "unit":"clove","note":"chopped or pounded"},
+  {"name":"fresh turmeric", "name_ms":"kunyit hidup",  "quantity":1,   "unit":None,  "note":"1 knob; blended with water"},
+  {"name":"water",          "name_ms":"air",            "quantity":None,"unit":None,  "note":"for blending fresh turmeric"},
+  {"name":"coconut milk",   "name_ms":"santan",         "quantity":1,   "unit":None,  "note":"1 small box"},
+  {"name":"turmeric leaf",  "name_ms":"daun kunyit",   "quantity":None,"unit":None,  "note":"sliced; added at end"},
+  {"name":"seasoning powder","name_ms":"serbuk perasa","quantity":None,"unit":None,  "note":"to taste"}
+]},
+
+# ── V5 ──────────────────────────────────────────────────────────────────────
+{"video_id":"7516790452549438727","is_recipe":True,"needs_review":True,
+"review_notes":"beef quantity not stated (described as 'raya leftover from freezer'); cook time estimated; servings estimated",
+"title":"Spiced Braised Beef (Daging Belenggas)",
+"title_ms":"Daging Belenggas",
+"description":"Tender braised beef cooked in a sweet-savoury sauce of caramel soy, oyster sauce, and aromatics until the liquid reduces.",
+"description_ms":"Daging yang direbus sehingga empuk kemudian dimasak dengan kicap karamel, sos tiram dan rempah sehingga kuah meresap dan pekat.",
+"cuisine":"Malaysian","difficulty":"Easy","prep_time":10,"cook_time":45,"servings":4,
+"ingredients":["beef","turmeric powder","cooking oil","garlic","ginger","caramel soy sauce","sweet soy sauce","chilli sauce","tomato sauce","oyster sauce","salt","seasoning powder","water","sweet onion","bird's eye chilli","long beans"],
+"steps":[
+  "Simmer the beef pieces for about 30 minutes until tender and the liquid has mostly reduced; drain.",
+  "Add 1 tsp turmeric powder and a little cooking oil; stir to coat and let the beef brown slightly.",
+  "Blend 7 cloves garlic with a knob of ginger.",
+  "Add the garlic-ginger blend to the beef; stir and cook briefly.",
+  "Add caramel soy sauce, sweet soy sauce, chilli sauce, tomato sauce and oyster sauce (use more oyster sauce for best flavour); stir to combine.",
+  "Season with salt and seasoning powder; if too dry, add a little water.",
+  "Add sliced sweet onion, bird's eye chillies and long beans; stir-fry until the vegetables are cooked and the sauce clings to the beef."
+],
+"steps_ms":[
+  "Rebus daging lebih kurang 30 minit sehingga empuk dan air hampir kering; toskan.",
+  "Masukkan 1 sudu kecil serbuk kunyit dan sedikit minyak masak; gaul dan biarkan daging garing sikit.",
+  "Blend 7 ulas bawang putih dengan seketul halia.",
+  "Masukkan blend bawang putih-halia ke dalam daging; kacau dan masak sebentar.",
+  "Masukkan kicap karamel, kicap manis, sos cili, sos tomato dan sos tiram (lebihkan sos tiram untuk rasa lebih sedap); kacau sebati.",
+  "Tambah garam dan serbuk perasa; kalau terlalu kering masukkan sedikit air.",
+  "Masukkan hirisan bawang Holland, cili padi dan kacang panjang; tumis sehingga sayur masak dan sos melekat pada daging."
+],
+"tags":["halal","beef","soy sauce","braised","malaysian","hari raya"],
+"ingredients_detailed":[
+  {"name":"beef",           "name_ms":"ayam",          "quantity":None,"unit":None,  "note":"quantity not stated; leftover from Hari Raya Haji"},
+  {"name":"turmeric powder","name_ms":"serbuk kunyit", "quantity":1,   "unit":"tsp", "note":""},
+  {"name":"cooking oil",    "name_ms":"minyak goreng", "quantity":None,"unit":None,  "note":"a little to brown the beef"},
+  {"name":"garlic",         "name_ms":"bawang putih",  "quantity":7,   "unit":"clove","note":"blended with ginger"},
+  {"name":"ginger",         "name_ms":"halia",         "quantity":None,"unit":None,  "note":"1 knob; blended with garlic"},
+  {"name":"caramel soy sauce","name_ms":"kicap karamel","quantity":None,"unit":None, "note":"to taste; omit and use extra sweet soy sauce if unavailable"},
+  {"name":"sweet soy sauce","name_ms":"kicap manis",   "quantity":None,"unit":None,  "note":"to taste"},
+  {"name":"chilli sauce",   "name_ms":"sos cili",      "quantity":None,"unit":None,  "note":"to taste"},
+  {"name":"tomato sauce",   "name_ms":"sos tomato",    "quantity":None,"unit":None,  "note":"to taste"},
+  {"name":"oyster sauce",   "name_ms":"sos tiram",     "quantity":None,"unit":None,  "note":"use more than other sauces for best flavour"},
+  {"name":"salt",           "name_ms":"garam",         "quantity":None,"unit":None,  "note":"to taste"},
+  {"name":"seasoning powder","name_ms":"serbuk perasa","quantity":None,"unit":None,  "note":"to taste"},
+  {"name":"water",          "name_ms":"air",            "quantity":None,"unit":None,  "note":"a little if sauce is too dry"},
+  {"name":"sweet onion",    "name_ms":"bawang holland", "quantity":1,  "unit":None,  "note":"sliced"},
+  {"name":"bird's eye chilli","name_ms":"cili padi",   "quantity":None,"unit":None,  "note":"to taste"},
+  {"name":"long beans",     "name_ms":"kacang panjang","quantity":None,"unit":None,  "note":""}
+]},
+
+# ── V6 ──────────────────────────────────────────────────────────────────────
+{"video_id":"7480808151659318536","is_recipe":True,"needs_review":True,
+"review_notes":"number of parathas and bananas not stated; toppings are optional and not quantified",
+"title":"Crispy Banana Egg Pancake (Thai-Style Paratha)",
+"title_ms":"Crispy Thai Pancake dengan Pisang dan Telur",
+"description":"A simple, crispy egg-and-banana filled paratha pancake made by pressing a frozen paratha flat and cooking over a very low flame until golden — no batter needed.",
+"description_ms":"Roti paratha yang dilenyekkan nipis-nipis dan diisi dengan telur dan hirisan pisang, dimasak atas api paling kecil sehingga crispy keemasan.",
+"cuisine":"Thai-inspired","difficulty":"Easy","prep_time":5,"cook_time":5,"servings":1,
+"ingredients":["egg","banana","frozen paratha","sweetened condensed milk"],
+"steps":[
+  "Crack 1 egg into a bowl, add sliced banana and mix lightly.",
+  "Take a frozen paratha (still in its plastic wrapper) and press it flat to thin it out; peel off one layer of plastic and place it in an unheated pan.",
+  "Peel off the remaining plastic, add the egg-banana mixture on top and fold in all four sides.",
+  "Cook over the lowest heat possible to avoid burning until the paratha is golden and crispy.",
+  "Slice and skewer with toothpicks; drizzle sweetened condensed milk or any topping of choice over the top."
+],
+"steps_ms":[
+  "Pecahkan 1 biji telur ke dalam mangkuk, masukkan hirisan pisang dan kacau perlahan.",
+  "Ambil roti paratha (masih dalam plastiknya) dan lenyekkan sehingga nipis; buka 1 lapisan plastik dan letakkan dalam kuali yang belum dipanaskan.",
+  "Buka plastik yang tinggal, letakkan adunan telur-pisang di atas dan lipat semua tepi ke dalam.",
+  "Masak atas api paling kecil untuk elak hangus sehingga roti crispy keemasan.",
+  "Potong dan cucuk dengan lidi; tuangkan susu pekat manis atau topping pilihan di atas."
+],
+"tags":["halal","dessert","snack","banana","egg","crispy","thai","ramadan"],
+"ingredients_detailed":[
+  {"name":"egg",                   "name_ms":"telur",          "quantity":1,   "unit":None,   "note":"per pancake"},
+  {"name":"banana",                "name_ms":"pisang",         "quantity":None,"unit":None,   "note":"sliced; quantity not stated"},
+  {"name":"frozen paratha",        "name_ms":"roti paratha",   "quantity":None,"unit":None,   "note":"number of parathas not stated"},
+  {"name":"sweetened condensed milk","name_ms":"krimer manis", "quantity":None,"unit":None,   "note":"optional topping; amount to taste"}
+]},
+
+# ── V7 ──────────────────────────────────────────────────────────────────────
+{"video_id":"7615766087359089927","is_recipe":True,"needs_review":True,
+"review_notes":"vanilla measured by 'penutup' (bottle cap) — quantity converted to approx. 1 tsp; butter stated as '1 blok, lebih kurang 200g'",
+"title":"Salted Caramel Cornflakes",
+"title_ms":"Salted Caramel Cornflakes",
+"description":"Crunchy cornflakes coated in a homemade salted caramel and baked until crisp — a modern Raya biscuit that is very easy to make.",
+"description_ms":"Cornflakes yang disalut dengan karamel bergaram buatan sendiri dan dibakar sehingga rangup — kuih raya moden yang sangat mudah dibuat.",
+"cuisine":"Western","difficulty":"Easy","prep_time":10,"cook_time":20,"servings":20,
+"ingredients":["sugar","whipping cream","butter","vanilla essence","salt","cornflakes"],
+"steps":[
+  "Place 2 cup sugar in a dry pan over medium heat; swirl (do not stir with a spoon) until it melts and turns golden caramel.",
+  "Once the centre begins to melt, use a spatula to stir gently.",
+  "Remove from heat and carefully pour in 1 cup whipping cream (room temperature); stir quickly — it will bubble vigorously.",
+  "Add 1 block (approx. 200 g) unsalted butter and stir until melted.",
+  "Add approx. 1 tsp vanilla essence and 1.5 tsp salt; stir to combine.",
+  "Add a 500 g packet of cornflakes and fold until evenly coated.",
+  "Spread on a baking tray and bake at 170°C for 5 minutes to crisp further.",
+  "Leave to cool completely before storing — they must be fully cool to become crunchy."
+],
+"steps_ms":[
+  "Masukkan 2 cawan gula dalam kuali kering atas api sederhana; pusingkan (jangan kacau dengan sudu) sehingga gula cair dan jadi karamel keemasan.",
+  "Bila tengah dah mula cair, boleh kacau dengan senduk.",
+  "Angkat dari api dan tuangkan 1 cawan whipping cream (suhu bilik) dengan berhati-hati; kacau cepat-cepat — ia akan berbuih kuat.",
+  "Masukkan 1 blok (lebih kurang 200g) unsalted butter dan kacau sehingga cair.",
+  "Tambah lebih kurang 1 sudu kecil esen vanila dan 1 sudu kecil setengah garam; gaul sebati.",
+  "Masukkan sepaket 500g cornflakes dan gaul sehingga rata.",
+  "Ratakan atas tray dan bakar pada suhu 170°C selama 5 minit untuk lebih rangup.",
+  "Biarkan sejuk sepenuhnya sebelum disimpan — mesti betul-betul sejuk baru jadi rangup."
+],
+"tags":["halal","dessert","snack","caramel","cornflakes","raya","no-bake"],
+"ingredients_detailed":[
+  {"name":"sugar",          "name_ms":"gula",          "quantity":2,   "unit":"cup",  "note":"for caramel"},
+  {"name":"whipping cream", "name_ms":"whipping cream","quantity":1,   "unit":"cup",  "note":"must be at room temperature"},
+  {"name":"butter",         "name_ms":"butter",        "quantity":200, "unit":"g",    "note":"1 block unsalted butter, approx. 200g"},
+  {"name":"vanilla essence","name_ms":"esen vanila",   "quantity":1,   "unit":"tsp",  "note":"stated as '1 penutup (bottle cap)'; approx. 1 tsp"},
+  {"name":"salt",           "name_ms":"garam",         "quantity":1.5, "unit":"tsp",  "note":"reduce if using salted butter"},
+  {"name":"cornflakes",     "name_ms":"jagung",        "quantity":500, "unit":"g",    "note":"1 packet; thin variety used"}
+]},
+
+# ── V8 ──────────────────────────────────────────────────────────────────────
+{"video_id":"7476807227114835218","is_recipe":True,"needs_review":True,
+"review_notes":"compilation of 6 separate recipes; each dish should be split into its own recipe entry; quantities for some ingredients (e.g. chicken for kicap dish, mackerel qty) are not stated",
+"title":"Six Sahur Dishes: Mackerel Sambal, Egg Roll, Chicken Soy Sauce, Butter Fried Rice, Chicken Paprik, Sardine Omelette",
+"title_ms":"6 Menu Sahur: Ikan Kembung Goreng Cili Padi, Telur Bungkus, Ayam Masak Kicap, Nasi Goreng Butter, Ayam Paprik, Telur Dadar Sardin",
+"description":"A compilation of six quick sahur dishes for Ramadan: fried mackerel with chilli, rolled egg omelette with minced chicken filling, chicken in soy sauce, butter fried rice, chicken paprik, and a sardine omelette.",
+"description_ms":"Kompilasi enam menu sahur Ramadan: ikan kembung goreng cili padi, telur bungkus inti ayam, ayam masak kicap, nasi goreng butter, ayam paprik, dan telur dadar sardin.",
+"cuisine":"Malaysian","difficulty":"Easy","prep_time":30,"cook_time":30,"servings":4,
+"ingredients":["Indian mackerel","salt","turmeric powder","cooking oil","onion","bird's eye chilli","garlic","lemongrass","oyster sauce","fish sauce","lime","chicken fillet","cornstarch","water","egg","sweet soy sauce","black pepper","ginger","tomato","spring onion","butter","prawn","instant fried rice seasoning","blended chilli","kaffir lime leaf","chilli sauce","tomato sauce","sardine (canned)","coriander leaves","seasoning powder"],
+"steps":[
+  "[Dish 1 – Ikan Kembung Goreng Cili Padi] Score the mackerel and coat with salt and turmeric; fry until crispy. Chop 1 onion, some bird's eye chilli, 1 garlic, 1 stalk lemongrass; sauté until soft. Add 1 tbsp oyster sauce, a dash of fish sauce, salt and sugar. Add the fried mackerel and squeeze over lime juice.",
+  "[Dish 2 – Telur Bungkus] Sauté 1 onion, 3 garlic cloves and minced chicken with 1 tbsp oyster sauce, 2 tbsp sweet soy sauce, 0.5 tbsp crushed black pepper; add water and cornstarch slurry to thicken. Set filling aside. Fry 3 eggs in a large thin omelette; place filling in the centre and fold to enclose.",
+  "[Dish 3 – Ayam Masak Kicap] Fry chicken (coated in salt and turmeric) until crispy. Sauté 1 onion, 3 garlic, 1 lemongrass stalk, knob of ginger; add sweet soy sauce (to taste), 1 tbsp oyster sauce, bird's eye chilli, tomato and spring onion.",
+  "[Dish 4 – Nasi Goreng Butter] Melt 2 tbsp butter, add 1 egg and prawn, then 3 minced garlic cloves. Add leftover cooked rice; season with 1 packet instant fried rice seasoning. Add bird's eye chilli and spring onion.",
+  "[Dish 5 – Ayam Paprik] Sauté 0.5 sweet onion, 3 garlic, 1 lemongrass, 1 tbsp blended chilli; add chicken. Add 1 tbsp oyster sauce, 1 tbsp tomato sauce, 1 tbsp chilli sauce, dash of fish sauce, kaffir lime leaf, bird's eye chilli.",
+  "[Dish 6 – Telur Dadar Sardin] Sauté 1 onion, 3 garlic; add canned sardine (use the sauce liquid only first, add water); break up the sardine flesh and add sweet soy sauce and bird's eye chilli. When thick, stir in coriander leaves. Serve on top of a plain fried omelette."
+],
+"steps_ms":[
+  "[Hidangan 1 – Ikan Kembung Goreng Cili Padi] Kelarkan ikan kembung dan gaul dengan garam dan kunyit; goreng sehingga garing. Chop bawang merah, cili padi, bawang putih, serai; tumis sehingga layu. Tambah sos tiram, sos ikan, garam dan gula. Masukkan ikan goreng dan perah limau.",
+  "[Hidangan 2 – Telur Bungkus] Tumis bawang merah, bawang putih dan isi dada ayam yang dicincang dengan sos tiram, kicap manis, black pepper; tambah air dan air tepung jagung untuk pekatkan. Ketepikan inti. Goreng 3 biji telur jadi telur dadar besar; letak inti di tengah dan bungkus.",
+  "[Hidangan 3 – Ayam Masak Kicap] Goreng ayam (disalut garam dan kunyit) sehingga garing. Tumis bawang merah, bawang putih, serai, halia; tambah kicap manis, sos tiram, cili padi, tomato dan daun bawang.",
+  "[Hidangan 4 – Nasi Goreng Butter] Cairkan butter, masukkan telur dan udang, kemudian bawang putih yang dah dihacam. Masukkan nasi sejuk; tambah 1 paket perencah nasi goreng. Tambah cili padi dan daun bawang.",
+  "[Hidangan 5 – Ayam Paprik] Tumis bawang Holland, bawang putih, serai, cili kisar; masukkan ayam. Tambah sos tiram, sos tomato, sos cili, sos ikan, daun limau purut, cili padi.",
+  "[Hidangan 6 – Telur Dadar Sardin] Tumis bawang merah, bawang putih; masukkan sardin tin (guna kuah dulu, tambah air); pecah-pecahkan sardin, tambah kicap manis dan cili padi. Bila pekat, masuk daun ketumbar. Hidang di atas telur dadar."
+],
+"tags":["halal","chicken","fish","egg","fried rice","malaysian","ramadan","sahur","compilation"],
+"ingredients_detailed":[
+  {"name":"Indian mackerel",       "name_ms":"ikan kembung",   "quantity":None,"unit":None,   "note":"scored; dish 1"},
+  {"name":"salt",                  "name_ms":"garam",          "quantity":None,"unit":None,   "note":"to taste; all dishes"},
+  {"name":"turmeric powder",       "name_ms":"serbuk kunyit",  "quantity":None,"unit":None,   "note":"to coat fish and chicken"},
+  {"name":"cooking oil",           "name_ms":"minyak goreng",  "quantity":None,"unit":None,   "note":"for frying"},
+  {"name":"onion",                 "name_ms":"bawang merah",   "quantity":None,"unit":None,   "note":"across multiple dishes"},
+  {"name":"bird's eye chilli",     "name_ms":"cili padi",      "quantity":None,"unit":None,   "note":"to taste; multiple dishes"},
+  {"name":"garlic",                "name_ms":"bawang putih",   "quantity":None,"unit":None,   "note":"across multiple dishes"},
+  {"name":"lemongrass",            "name_ms":"serai",          "quantity":None,"unit":None,   "note":"used in dishes 1, 3, 5"},
+  {"name":"oyster sauce",          "name_ms":"sos tiram",      "quantity":None,"unit":None,   "note":"1 tbsp per dish"},
+  {"name":"fish sauce",            "name_ms":"sos ikan",       "quantity":None,"unit":None,   "note":"a dash; dishes 1 and 5"},
+  {"name":"lime",                  "name_ms":"limau nipis",    "quantity":None,"unit":None,   "note":"for dish 1"},
+  {"name":"chicken fillet",        "name_ms":"isi ayam",       "quantity":None,"unit":None,   "note":"minced for dish 2; whole for dishes 3 and 5"},
+  {"name":"cornstarch",            "name_ms":"tepung jagung",  "quantity":None,"unit":None,   "note":"slurry for dish 2 filling"},
+  {"name":"water",                 "name_ms":"air",             "quantity":None,"unit":None,   "note":"multiple dishes"},
+  {"name":"egg",                   "name_ms":"telur",          "quantity":None,"unit":None,   "note":"3 eggs for dish 2 omelette; more for dish 6"},
+  {"name":"sweet soy sauce",       "name_ms":"kicap manis",    "quantity":None,"unit":None,   "note":"2 tbsp for dish 2; to taste for others"},
+  {"name":"black pepper",          "name_ms":"black pepper",   "quantity":0.5, "unit":"tbsp", "note":"crushed; dish 2"},
+  {"name":"ginger",                "name_ms":"halia",          "quantity":None,"unit":None,   "note":"1 knob; dish 3"},
+  {"name":"tomato",                "name_ms":"tomato",         "quantity":None,"unit":None,   "note":"dish 3"},
+  {"name":"spring onion",          "name_ms":"daun bawang",   "quantity":None,"unit":None,   "note":"dishes 3 and 4"},
+  {"name":"butter",                "name_ms":"butter",         "quantity":2,   "unit":"tbsp", "note":"dish 4"},
+  {"name":"prawn",                 "name_ms":"udang",          "quantity":None,"unit":None,   "note":"dish 4"},
+  {"name":"instant fried rice seasoning","name_ms":"perencah nasi goreng","quantity":1,"unit":None,"note":"1 packet; dish 4"},
+  {"name":"blended chilli",        "name_ms":"cili kisar",     "quantity":1,   "unit":"tbsp", "note":"dish 5"},
+  {"name":"kaffir lime leaf",      "name_ms":"daun limau purut","quantity":None,"unit":None,  "note":"2-3 leaves; dish 5"},
+  {"name":"chilli sauce",          "name_ms":"sos cili",       "quantity":1,   "unit":"tbsp", "note":"dish 5"},
+  {"name":"tomato sauce",          "name_ms":"sos tomato",     "quantity":1,   "unit":"tbsp", "note":"dish 5"},
+  {"name":"coriander leaves",      "name_ms":"daun ketumbar",  "quantity":None,"unit":None,   "note":"dish 6; added at end"},
+  {"name":"seasoning powder",      "name_ms":"serbuk perasa",  "quantity":None,"unit":None,   "note":"to taste; multiple dishes"}
+]},
+
+# ── V9 ──────────────────────────────────────────────────────────────────────
+{"video_id":"7485245974458289426","is_recipe":True,"needs_review":True,
+"review_notes":"tamarind paste quantity not stated ('letakkan pes asam jawa'); servings estimated for 1 whole chicken",
+"title":"Whole Chicken Rendang",
+"title_ms":"Rendang Satu Ekor Ayam",
+"description":"A classic Malay dry rendang made with a whole chicken, slow-cooked in spiced coconut milk with lemongrass and galangal until the sauce reduces and the chicken is tender.",
+"description_ms":"Rendang ayam tradisional Melayu menggunakan satu ekor ayam yang dimasak perlahan dalam santan berempah sehingga kuah menjadi pekat dan kering.",
+"cuisine":"Malaysian","difficulty":"Medium","prep_time":20,"cook_time":60,"servings":6,
+"ingredients":["onion","lemongrass","garlic","ginger","galangal","fresh turmeric","water","cooking oil","blended chilli","chicken","coconut milk","kaffir lime leaf","turmeric leaf","toasted desiccated coconut","palm sugar","tamarind paste","salt","seasoning powder"],
+"steps":[
+  "Blend 4 onions, 4 lemongrass stalks, 4 garlic cloves, a knob each of ginger and galangal, and a small knob of fresh turmeric with a little water until smooth.",
+  "Heat oil in a wok; sauté the blended paste until fragrant.",
+  "Add 2–3 tbsp blended chilli; cook until the oil separates.",
+  "Add 1 whole chicken (cut into pieces) and stir to coat.",
+  "Add 2 small boxes of coconut milk, 4 kaffir lime leaves and 1 large turmeric leaf; cook until the chicken is tender.",
+  "Add 2 tbsp toasted desiccated coconut, 1 small block of palm sugar, tamarind paste (to taste), salt and seasoning powder.",
+  "Continue cooking, stirring occasionally, until the gravy is very thick and almost dry.",
+  "Finish with sliced turmeric leaf before serving."
+],
+"steps_ms":[
+  "Blend 4 biji bawang merah, 4 batang serai, 4 ulas bawang putih, seketul halia dan lengkuas, serta seketul kecil kunyit hidup dengan sedikit air sehingga lumat.",
+  "Panaskan minyak dalam kuali; tumis blend sehingga wangi.",
+  "Masukkan 2-3 sudu cili kisar; masak sehingga pecah minyak.",
+  "Masukkan 1 ekor ayam (potong) dan kacau sehingga rata.",
+  "Masukkan 2 kotak kecil santan, 4 helai daun limau purut dan 1 helai besar daun kunyit; masak sehingga ayam empuk.",
+  "Masukkan 2 sudu kerisik, 1 ketul kecil gula Melaka, pes asam jawa secukupnya, garam dan serbuk perasa.",
+  "Sambung masak sambil dikacau sesekali sehingga kuah sangat pekat dan hampir kering.",
+  "Hias dengan hirisan daun kunyit sebelum dihidang."
+],
+"tags":["halal","chicken","rendang","coconut milk","malaysian","hari raya","raya"],
+"ingredients_detailed":[
+  {"name":"onion",         "name_ms":"bawang merah",  "quantity":4,   "unit":None,   "note":""},
+  {"name":"lemongrass",    "name_ms":"serai",          "quantity":4,   "unit":None,   "note":"stalks; blended"},
+  {"name":"garlic",        "name_ms":"bawang putih",  "quantity":4,   "unit":"clove","note":"blended"},
+  {"name":"ginger",        "name_ms":"halia",         "quantity":None,"unit":None,   "note":"1 thumb-sized knob; blended"},
+  {"name":"galangal",      "name_ms":"lengkuas",      "quantity":None,"unit":None,   "note":"1 thumb-sized knob; blended"},
+  {"name":"fresh turmeric","name_ms":"kunyit hidup",  "quantity":None,"unit":None,   "note":"1 small knob; blended"},
+  {"name":"water",         "name_ms":"air",            "quantity":None,"unit":None,   "note":"for blending"},
+  {"name":"cooking oil",   "name_ms":"minyak goreng", "quantity":None,"unit":None,   "note":"for sautéing"},
+  {"name":"blended chilli","name_ms":"cili kisar",    "quantity":2.5, "unit":"tbsp", "note":"2–3 tbsp; increase for more heat"},
+  {"name":"chicken",       "name_ms":"ayam",          "quantity":1,   "unit":None,   "note":"1 whole chicken, cut into pieces"},
+  {"name":"coconut milk",  "name_ms":"santan",        "quantity":2,   "unit":None,   "note":"2 small boxes"},
+  {"name":"kaffir lime leaf","name_ms":"daun limau purut","quantity":4,"unit":None,  "note":""},
+  {"name":"turmeric leaf", "name_ms":"daun kunyit",   "quantity":1,   "unit":None,   "note":"1 large leaf; plus more sliced for garnish"},
+  {"name":"toasted desiccated coconut","name_ms":"kerisik","quantity":2,"unit":"tbsp","note":""},
+  {"name":"palm sugar",    "name_ms":"gula melaka",   "quantity":None,"unit":None,   "note":"1 small block"},
+  {"name":"tamarind paste","name_ms":"pes asam jawa", "quantity":None,"unit":None,   "note":"to taste; quantity not stated"},
+  {"name":"salt",          "name_ms":"garam",         "quantity":None,"unit":None,   "note":"to taste; be careful not to over-salt"},
+  {"name":"seasoning powder","name_ms":"serbuk perasa","quantity":None,"unit":None,  "note":"to taste"}
+]},
+
+# ── V10 ─────────────────────────────────────────────────────────────────────
+{"video_id":"7486337073192946952","is_recipe":True,"needs_review":True,
+"review_notes":"chicken quantity not stated; multi-component recipe (nasi tomato + ayam masak merah); some whole spice quantities (rempah 4 sekawan) not quantified",
+"title":"Tomato Rice with Festive Red Chicken (Nasi Tomato & Ayam Masak Merah)",
+"title_ms":"Nasi Tomato dan Ayam Masak Merah Ala Kenduri",
+"description":"A festive open-house spread of fragrant tomato rice paired with rich, slow-cooked red chicken in a tangy tomato-based sauce.",
+"description_ms":"Hidangan kenduri berupa nasi tomato yang wangi bersama ayam masak merah yang kaya dengan rasa tomato masam-manis yang sedap.",
+"cuisine":"Malaysian","difficulty":"Medium","prep_time":30,"cook_time":45,"servings":8,
+"ingredients":["ghee","whole spices (cinnamon, cloves, star anise, cardamom)","onion","garlic","chicken stock cube","ginger","tomato puree","pandan leaf","sugar","salt","evaporated milk (liquid)","basmati rice","water","chicken","turmeric powder","cooking oil","sweet onion","lemongrass","blended chilli","oyster sauce","chilli sauce","seasoning powder","tomato"],
+"steps":[
+  "[Nasi Tomato] Heat 3 tbsp ghee; add whole spices, 3 onions, 3 garlic cloves and fry briefly. Add 1 chicken stock cube, a knob of ginger, 4 tbsp tomato puree, 1–2 pandan leaves, 1 tbsp sugar, 1/3 tbsp salt and 0.5 cup evaporated milk; stir.",
+  "Add 4 cup basmati rice (soaked 30 min) and 5 cup water; cook as normal rice.",
+  "[Ayam Masak Merah] Coat chicken with salt and turmeric; fry in oil until golden brown.",
+  "Blend 2 sweet onions, 4 onions and 8 garlic cloves with water; sauté with 1 lemongrass stalk and 1 pandan leaf until fragrant.",
+  "Add blended chilli (adjust to taste); cook until oil separates.",
+  "Add 1 small can tomato puree, 2 tbsp oyster sauce, 2 tbsp chilli sauce; season with salt, seasoning powder and a little sugar.",
+  "Return the fried chicken to the pot; add sliced sweet onion, sliced chilli and tomato.",
+  "Pour in 1/3 cup evaporated milk for a creamier gravy; simmer until the chicken is cooked through."
+],
+"steps_ms":[
+  "[Nasi Tomato] Panaskan 3 sudu besar minyak sapi; masukkan rempah 4 sekawan, 3 biji bawang merah, 3 ulas bawang putih dan goreng sebentar. Masukkan 1 kiub pati ayam, seketul halia, 4 sudu tomato puree, 1–2 helai daun pandan, 1 sudu gula, 1/3 sudu garam dan setengah cawan susu cair; kacau.",
+  "Masukkan 4 cawan beras basmati (direndam 30 min) dan 5 cawan air; masak seperti biasa.",
+  "[Ayam Masak Merah] Gaul ayam dengan garam dan kunyit; goreng dalam minyak sehingga golden brown.",
+  "Blend 2 biji bawang Holland, 4 biji bawang merah dan 8 ulas bawang putih dengan air; tumis bersama 1 batang serai dan 1 helai daun pandan sehingga wangi.",
+  "Masukkan cili kisar (ikut selera); masak sehingga pecah minyak.",
+  "Masukkan 1 tin kecil tomato puree, 2 sudu sos tiram, 2 sudu sos cili; tambah garam, serbuk perasa dan sedikit gula.",
+  "Masukkan balik ayam goreng; tambah hirisan bawang Holland, cili dan tomato.",
+  "Tuang 1/3 cawan susu cair untuk kuah lebih creamy; masak sehingga ayam masak sepenuhnya."
+],
+"tags":["halal","chicken","rice","tomato","festive","malaysian","raya","open house"],
+"ingredients_detailed":[
+  {"name":"ghee",          "name_ms":"minyak sapi",   "quantity":3,   "unit":"tbsp", "note":"for nasi tomato"},
+  {"name":"whole spices (cinnamon, cloves, star anise, cardamom)","name_ms":"rempah 4 sekawan","quantity":None,"unit":None,"note":"standard mixed whole spices; nasi tomato"},
+  {"name":"onion",         "name_ms":"bawang merah",  "quantity":7,   "unit":None,   "note":"3 for nasi tomato; 4 blended for ayam"},
+  {"name":"garlic",        "name_ms":"bawang putih",  "quantity":11,  "unit":"clove","note":"3 for nasi tomato; 8 blended for ayam"},
+  {"name":"chicken stock cube","name_ms":"kiub pati ayam","quantity":1,"unit":None,  "note":"for nasi tomato"},
+  {"name":"ginger",        "name_ms":"halia",         "quantity":None,"unit":None,   "note":"1 knob; nasi tomato"},
+  {"name":"tomato puree",  "name_ms":"tomato puree",  "quantity":None,"unit":None,   "note":"4 tbsp for nasi tomato; 1 small can for ayam"},
+  {"name":"pandan leaf",   "name_ms":"daun pandan",   "quantity":2,   "unit":None,   "note":"1-2 for nasi tomato; 1 for ayam sauce"},
+  {"name":"sugar",         "name_ms":"gula",          "quantity":1,   "unit":"tbsp", "note":"for nasi tomato; a little more for ayam sauce"},
+  {"name":"salt",          "name_ms":"garam",         "quantity":None,"unit":None,   "note":"1/3 tbsp for nasi tomato; to taste for ayam"},
+  {"name":"evaporated milk (liquid)","name_ms":"susu cair","quantity":None,"unit":None,"note":"0.5 cup for nasi tomato; 1/3 cup for ayam sauce"},
+  {"name":"basmati rice",  "name_ms":"beras basmati", "quantity":4,   "unit":"cup",  "note":"soaked 30 min; use 5 cup water"},
+  {"name":"water",         "name_ms":"air",            "quantity":5,   "unit":"cup",  "note":"for cooking nasi tomato"},
+  {"name":"chicken",       "name_ms":"ayam",          "quantity":None,"unit":None,   "note":"quantity not stated"},
+  {"name":"turmeric powder","name_ms":"serbuk kunyit","quantity":None,"unit":None,   "note":"to coat chicken"},
+  {"name":"cooking oil",   "name_ms":"minyak goreng", "quantity":None,"unit":None,   "note":"for frying chicken"},
+  {"name":"sweet onion",   "name_ms":"bawang holland","quantity":2,   "unit":None,   "note":"blended for ayam sauce; some sliced for garnish"},
+  {"name":"lemongrass",    "name_ms":"serai",         "quantity":1,   "unit":None,   "note":"1 stalk; ayam sauce"},
+  {"name":"blended chilli","name_ms":"cili kisar",    "quantity":None,"unit":None,   "note":"adjust to taste for ayam sauce"},
+  {"name":"oyster sauce",  "name_ms":"sos tiram",     "quantity":2,   "unit":"tbsp", "note":"ayam sauce"},
+  {"name":"chilli sauce",  "name_ms":"sos cili",      "quantity":2,   "unit":"tbsp", "note":"ayam sauce"},
+  {"name":"seasoning powder","name_ms":"serbuk perasa","quantity":None,"unit":None,  "note":"to taste"},
+  {"name":"tomato",        "name_ms":"tomato",        "quantity":None,"unit":None,   "note":"sliced; garnish for ayam"}
+]},
+
+# ── V11 ─────────────────────────────────────────────────────────────────────
+{"video_id":"7614748072328875282","is_recipe":True,"needs_review":False,
+"review_notes":"cook/prep times and servings estimated; recipe designed for 1 family",
+"title":"Macaroni Goreng (Stir-Fried Macaroni)",
+"title_ms":"Makaroni Goreng",
+"description":"Hearty stir-fried macaroni with minced beef and a rich, savoury sauce — a crowd-pleasing open-house dish for Raya.",
+"description_ms":"Makaroni goreng berkuah pekat dengan daging cincang dan sos yang sedap — hidangan sempurna untuk open house raya.",
+"cuisine":"Malaysian","difficulty":"Easy","prep_time":15,"cook_time":25,"servings":6,
+"ingredients":["frozen beef","onion","garlic","blended chilli","water","oyster sauce","tomato sauce","chilli sauce","sweet soy sauce","chicken stock cube","macaroni","salt","seasoning powder","bell pepper","Chinese celery","crispy fried shallots","lime"],
+"steps":[
+  "Fry 400 g frozen beef (no oil needed) until its fat renders and it browns slightly; drain and set aside.",
+  "In the same wok, sauté 3 onions and 6 garlic cloves (chopped); add 1–2 tbsp blended chilli.",
+  "Deglaze the browned bits on the wok with a little water — this is all flavour.",
+  "Return the beef; add 2 tbsp oyster sauce, 2 tbsp tomato sauce, 2 tbsp chilli sauce, 3 tbsp sweet soy sauce and 1 chicken stock cube. Mix well.",
+  "Boil 400 g macaroni in salted water until al dente; drain.",
+  "Add the macaroni to the beef mixture and toss until the sauce coats evenly.",
+  "Stir in sliced bell pepper (any colour); adjust seasoning with salt and seasoning powder.",
+  "Serve topped with Chinese celery, crispy fried shallots and a squeeze of lime."
+],
+"steps_ms":[
+  "Goreng 400g daging beku (tanpa minyak) sehingga lemaknya cair dan daging garing sikit; ketepikan.",
+  "Dalam kuali yang sama, tumis 3 biji bawang merah dan 6 ulas bawang putih (dihacam); masukkan 1-2 sudu cili kisar.",
+  "Deglaze kerak daging di tepi kuali dengan sedikit air — itu semua flavour.",
+  "Masukkan balik daging; tambah 2 sudu sos tiram, 2 sudu sos tomato, 2 sudu sos cili, 3 sudu kicap manis dan 1 kiub pati ayam. Kacau sebati.",
+  "Rebus 400g makaroni dalam air bergaram sehingga masak; toskan.",
+  "Masukkan makaroni ke dalam tumisan daging dan gaul sehingga sos melekat rata.",
+  "Masukkan hirisan lada benggala (warna apa pun); laraskan perasa dengan garam dan serbuk perasa.",
+  "Hidang ditaburi daun sup, bawang goreng dan perahan limau nipis."
+],
+"tags":["halal","pasta","beef","stir-fry","malaysian","raya","open house"],
+"ingredients_detailed":[
+  {"name":"frozen beef",    "name_ms":"daging beku",   "quantity":400, "unit":"g",    "note":"any brand; no oil needed"},
+  {"name":"onion",         "name_ms":"bawang merah",   "quantity":3,   "unit":None,   "note":"chopped"},
+  {"name":"garlic",        "name_ms":"bawang putih",   "quantity":6,   "unit":"clove","note":"chopped"},
+  {"name":"blended chilli","name_ms":"cili kisar",     "quantity":1.5, "unit":"tbsp", "note":"1–2 tbsp; adjust to taste"},
+  {"name":"water",         "name_ms":"air",             "quantity":None,"unit":None,   "note":"to deglaze wok"},
+  {"name":"oyster sauce",  "name_ms":"sos tiram",       "quantity":2,   "unit":"tbsp", "note":""},
+  {"name":"tomato sauce",  "name_ms":"sos tomato",      "quantity":2,   "unit":"tbsp", "note":""},
+  {"name":"chilli sauce",  "name_ms":"sos cili",        "quantity":2,   "unit":"tbsp", "note":""},
+  {"name":"sweet soy sauce","name_ms":"kicap manis",    "quantity":3,   "unit":"tbsp", "note":""},
+  {"name":"chicken stock cube","name_ms":"kiub pati ayam","quantity":1,"unit":None,   "note":""},
+  {"name":"macaroni",      "name_ms":"tepung gandum",   "quantity":400, "unit":"g",    "note":"1 packet; boiled in salted water"},
+  {"name":"salt",          "name_ms":"garam",           "quantity":None,"unit":None,   "note":"to taste"},
+  {"name":"seasoning powder","name_ms":"serbuk perasa", "quantity":None,"unit":None,   "note":"to taste"},
+  {"name":"bell pepper",   "name_ms":"lada benggala",   "quantity":None,"unit":None,   "note":"any colour; sliced"},
+  {"name":"Chinese celery","name_ms":"daun sup",        "quantity":None,"unit":None,   "note":"garnish"},
+  {"name":"crispy fried shallots","name_ms":"bawang goreng","quantity":None,"unit":None,"note":"garnish; use generously"},
+  {"name":"lime",          "name_ms":"limau nipis",     "quantity":None,"unit":None,   "note":"squeeze over before serving"}
+]},
+
+# ── V12 ─────────────────────────────────────────────────────────────────────
+{"video_id":"7616247154121641237","is_recipe":True,"needs_review":True,
+"review_notes":"red syrup (sirap) added 'sikit' for colour — quantity not stated; servings and times estimated",
+"title":"Creamy Corn Pudding with Custard Sauce",
+"title_ms":"Puding Jagung Creamy dengan Kuah Kastard",
+"description":"A creamy, jiggly corn pudding made with creamed corn, coconut milk and condensed milk, topped with a smooth vanilla custard sauce — perfect served cold for open house.",
+"description_ms":"Puding jagung yang creamy dan gebu diperbuat daripada jagung krim, santan dan susu pekat, dihidang sejuk dengan kuah kastard yang lembut.",
+"cuisine":"Malaysian","difficulty":"Easy","prep_time":15,"cook_time":20,"servings":10,
+"ingredients":["corn","evaporated milk (liquid)","coconut milk","sweetened condensed milk","cornstarch","water","salt","custard powder","evaporated milk (liquid)","sweetened condensed milk"],
+"steps":[
+  "In a pot, combine 1 can creamed corn, 1 can evaporated milk, 1 small box coconut milk, 2/3 cup sweetened condensed milk, 1/3 cup cornstarch dissolved in 1 cup water, 0.5 tsp salt and a dash of red syrup (for colour).",
+  "Stir in 1 cup custard powder (dissolved beforehand) — add it last or it will clump.",
+  "Cook over medium heat, stirring constantly, until the mixture is thick and glossy.",
+  "Pour quickly into moulds or a tray; tap gently to remove air bubbles. Optionally top with whole corn kernels for texture. Let cool before refrigerating.",
+  "[Custard sauce] Combine 1 can evaporated milk, 0.5 can water, 3 tbsp sweetened condensed milk and 1.5 tbsp custard powder in a pot.",
+  "Cook over medium heat, stirring, until the mixture just boils and thickens slightly. Pour over the set pudding."
+],
+"steps_ms":[
+  "Dalam periuk, campurkan 1 tin jagung krim, 1 tin susu cair, 1 kotak kecil santan, 2/3 cawan susu pekat, 1/3 cawan tepung jagung yang dilarutkan dalam 1 cawan air, setengah sudu kecil garam dan sikit sirap untuk warna.",
+  "Masukkan 1 cawan tepung kastard (yang dah dilarutkan lebih awal) — masuk last sekali atau dia akan berketul.",
+  "Masak atas api sederhana sambil dikacau sehingga adunan pekat dan berkilat.",
+  "Tuang cepat-cepat ke dalam bekas atau loyang; hentak untuk buang buih. Boleh letak biji jagung di atas untuk tekstur. Biarkan sejuk sebelum dimasukkan ke dalam peti sejuk.",
+  "[Kuah kastard] Campurkan 1 tin susu cair, setengah tin air, 3 sudu susu pekat dan 1 sudu setengah tepung kastard dalam periuk.",
+  "Masak atas api sederhana sambil dikacau sehingga mendidih dan pekat sikit. Tuang di atas puding yang dah set."
+],
+"tags":["halal","dessert","pudding","corn","custard","raya","open house","no-bake"],
+"ingredients_detailed":[
+  {"name":"corn",           "name_ms":"jagung",         "quantity":1,   "unit":"can",  "note":"creamed corn (tin); for pudding"},
+  {"name":"evaporated milk (liquid)","name_ms":"susu cair","quantity":1.5,"unit":"can","note":"1 can for pudding; 1 can for custard sauce (use 0.5 can water with the remaining 0.5 can)"},
+  {"name":"coconut milk",   "name_ms":"santan",         "quantity":1,   "unit":None,   "note":"1 small box; for pudding"},
+  {"name":"sweetened condensed milk","name_ms":"krimer manis","quantity":None,"unit":None,"note":"2/3 cup for pudding; 3 tbsp for custard sauce"},
+  {"name":"cornstarch",     "name_ms":"tepung jagung",  "quantity":None,"unit":None,   "note":"1/3 cup dissolved in 1 cup water; for pudding"},
+  {"name":"water",          "name_ms":"air",             "quantity":1,   "unit":"cup",  "note":"for dissolving cornstarch"},
+  {"name":"salt",           "name_ms":"garam",           "quantity":0.5, "unit":"tsp",  "note":"for pudding"},
+  {"name":"custard powder", "name_ms":"tepung kastard",  "quantity":None,"unit":None,   "note":"1 cup for pudding; 1.5 tbsp for custard sauce; dissolve before adding"},
+  {"name":"sugar",          "name_ms":"gula",            "quantity":None,"unit":None,   "note":"red syrup (sirap ros) — a little for colour in pudding; quantity not stated"}
+]},
+
+# ── V13 ─────────────────────────────────────────────────────────────────────
+{"video_id":"7483041417590213895","is_recipe":True,"needs_review":False,
+"review_notes":"sesame seeds optional; vegetables (sweet onion, carrot, water spinach) quantities flexible; times estimated",
+"title":"Fritters (Cucur) with Thai Dipping Sauce",
+"title_ms":"Colek Malas (Cucur dengan Sos Thai)",
+"description":"Simple yeasted vegetable fritters made with 1 kg flour and 1 L water, fried until golden, served with a tangy-sweet Thai-style dipping sauce.",
+"description_ms":"Cucur ragi yang mudah dan sedap, dibuat dengan 1 kg tepung dan 1 liter air, digoreng garing dan dicicah dengan sos Thai yang pedas-masam-manis.",
+"cuisine":"Malaysian","difficulty":"Easy","prep_time":70,"cook_time":20,"servings":10,
+"ingredients":["all-purpose flour","yeast","sugar","salt","seasoning powder","sweet onion","carrot","water spinach","water","Thai sweet chilli sauce","bird's eye chilli","garlic","palm sugar","soy sauce","fish sauce","cornstarch","lime","sesame seeds","cooking oil"],
+"steps":[
+  "Combine 1 kg all-purpose flour, 1 packet yeast, 2 tbsp sugar, salt and seasoning powder to taste in a large bowl.",
+  "Grate the sweet onion and carrot; roughly chop the water spinach. Add to the flour mixture.",
+  "Add 1 L water and mix until a thick batter forms. Cover and rest for 1 hour until the batter rises.",
+  "Fry spoonfuls in hot oil until deep golden and cooked through, turning once. Drain.",
+  "[Sauce] Combine 1 cup Thai sweet chilli sauce, 3 bird's eye chillies, 2 garlic cloves, 0.5 cup water, 2 tbsp palm sugar, 1 tbsp soy sauce, 1 tbsp fish sauce, salt and seasoning powder in a pot; bring to a boil.",
+  "Stir in a cornstarch slurry to thicken, remove from heat, then squeeze in juice of 0.5 lime.",
+  "Optionally sprinkle sesame seeds into the sauce before serving."
+],
+"steps_ms":[
+  "Campurkan 1 kg tepung gandum, 1 paket yis, 2 sudu besar gula, garam dan serbuk perasa secukupnya dalam mangkuk besar.",
+  "Sagat bawang Holland dan carrot; potong kasar kangkung. Masukkan ke dalam tepung.",
+  "Tuang 1 liter air dan gaul sehingga jadi adunan pekat. Tutup dan rehatkan selama 1 jam sehingga adunan naik.",
+  "Goreng sesudu adunan dalam minyak panas sehingga keemasan gelap dan masak, balikkan sekali. Toskan.",
+  "[Sos] Campurkan 1 cawan sos Thai, 3 cili padi, 2 ulas bawang putih, setengah cawan air, 2 sudu besar gula Melaka, 1 sudu kicap, 1 sudu sos ikan, garam dan serbuk perasa dalam periuk; masak sehingga mendidih.",
+  "Masukkan air tepung jagung untuk memekatkan, padamkan api, kemudian perah jus separuh biji limau nipis.",
+  "Tabur bijan dalam sos sebelum dihidang (pilihan)."
+],
+"tags":["halal","snack","fritters","fried","vegetarian","malaysian","ramadan","moreh"],
+"ingredients_detailed":[
+  {"name":"all-purpose flour","name_ms":"tepung gandum","quantity":1000,"unit":"g",   "note":"1 kg"},
+  {"name":"yeast",          "name_ms":"yis",           "quantity":1,   "unit":None,   "note":"1 packet"},
+  {"name":"sugar",          "name_ms":"gula",          "quantity":2,   "unit":"tbsp", "note":"for batter"},
+  {"name":"salt",           "name_ms":"garam",         "quantity":None,"unit":None,   "note":"to taste"},
+  {"name":"seasoning powder","name_ms":"serbuk perasa","quantity":None,"unit":None,   "note":"to taste"},
+  {"name":"sweet onion",    "name_ms":"bawang holland","quantity":None,"unit":None,   "note":"grated; quantity flexible"},
+  {"name":"carrot",         "name_ms":"carrot",        "quantity":None,"unit":None,   "note":"grated; quantity flexible"},
+  {"name":"water spinach",  "name_ms":"kangkung",      "quantity":None,"unit":None,   "note":"roughly chopped; bean sprouts can be added too"},
+  {"name":"water",          "name_ms":"air",            "quantity":1000,"unit":"ml",   "note":"1 L for batter (ratio: 1 kg flour : 1 L water)"},
+  {"name":"cooking oil",    "name_ms":"minyak goreng", "quantity":None,"unit":None,   "note":"deep frying"},
+  {"name":"Thai sweet chilli sauce","name_ms":"sos cili","quantity":1,"unit":"cup",   "note":"for dipping sauce; use the brand with a rooster logo"},
+  {"name":"bird's eye chilli","name_ms":"cili padi",   "quantity":3,   "unit":None,   "note":"for sauce"},
+  {"name":"garlic",         "name_ms":"bawang putih",  "quantity":2,   "unit":"clove","note":"for sauce"},
+  {"name":"palm sugar",     "name_ms":"gula melaka",   "quantity":2,   "unit":"tbsp", "note":"for sauce"},
+  {"name":"soy sauce",      "name_ms":"kicap",         "quantity":1,   "unit":"tbsp", "note":"for sauce"},
+  {"name":"fish sauce",     "name_ms":"sos ikan",      "quantity":1,   "unit":"tbsp", "note":"for sauce"},
+  {"name":"cornstarch",     "name_ms":"tepung jagung", "quantity":None,"unit":None,   "note":"slurry to thicken sauce"},
+  {"name":"lime",           "name_ms":"limau nipis",   "quantity":0.5, "unit":None,   "note":"juice; for sauce"},
+  {"name":"sesame seeds",   "name_ms":"bijan",         "quantity":None,"unit":None,   "note":"optional garnish in sauce"}
+]},
+
+# ── V14 ─────────────────────────────────────────────────────────────────────
+{"video_id":"7478170848759696648","is_recipe":True,"needs_review":True,
+"review_notes":"compilation of 2 separate recipes (chicken soup and fish soup); each should be split into its own recipe entry; chicken/fish quantity not stated",
+"title":"Siamese Chicken Soup and Siamese Fish Soup",
+"title_ms":"Sup Ayam Siam dan Sup Ikan Siam",
+"description":"Two Siamese-style soups — one with chicken and one with fish — both rich, sour and spicy with coriander roots, dried chilli and fish sauce.",
+"description_ms":"Dua resipi sup Siam — satu dengan ayam dan satu dengan ikan — kedua-duanya pekat, masam-pedas dengan akar ketumbar, cili kering dan sos ikan.",
+"cuisine":"Thai-inspired","difficulty":"Easy","prep_time":15,"cook_time":30,"servings":4,
+"ingredients":["onion","garlic","coriander roots","dried chilli","chicken","salt","water","soup powder","tomato","bird's eye chilli","fish sauce","lime","coriander leaves","red snapper"],
+"steps":[
+  "[Sup Ayam Siam] Sauté 2 onions and 5 garlic cloves briefly. Add 5 coriander roots and 5 dried chillies.",
+  "Add 1 whole chicken; season with salt and cover with water.",
+  "Add 3 tbsp Siamese soup powder (any brand) and simmer until the chicken is tender and the broth has thickened.",
+  "Add 1 tomato and bird's eye chilli (generously). Remove from heat; stir in 3 tbsp fish sauce and juice of 1–2 limes.",
+  "Garnish with fresh coriander leaves before serving.",
+  "[Sup Ikan Siam] Follow the same method but use fish (snapper or sea bass) instead of chicken, and use a fish-flavoured Siamese soup packet (look for the one with a fish-head image)."
+],
+"steps_ms":[
+  "[Sup Ayam Siam] Tumis 2 biji bawang merah dan 5 ulas bawang putih sebentar. Masukkan 5 akar ketumbar dan 5 biji cili kering.",
+  "Masukkan 1 ekor ayam; tambah garam dan tutup dengan air.",
+  "Masukkan 3 sudu serbuk sup Siam (mana-mana brand) dan masak sehingga ayam empuk dan kuah pekat.",
+  "Masukkan 1 biji tomato dan banyak cili padi. Padamkan api; masukkan 3 sudu sos ikan dan perahan 1-2 biji limau nipis.",
+  "Tabur daun ketumbar sebelum dihidang.",
+  "[Sup Ikan Siam] Ikut cara yang sama tapi guna ikan (siakap atau ikan merah) dan guna paket sup Siam rasa ikan (yang ada gambar kepala ikan)."
+],
+"tags":["halal","soup","chicken","fish","thai","sour","spicy","malaysian","ramadan"],
+"ingredients_detailed":[
+  {"name":"onion",           "name_ms":"bawang merah",   "quantity":2,   "unit":None,   "note":"per soup"},
+  {"name":"garlic",          "name_ms":"bawang putih",   "quantity":5,   "unit":"clove","note":"per soup"},
+  {"name":"coriander roots", "name_ms":"akar ketumbar",  "quantity":5,   "unit":None,   "note":"per soup"},
+  {"name":"dried chilli",    "name_ms":"cili kering",    "quantity":5,   "unit":None,   "note":"per soup"},
+  {"name":"chicken",         "name_ms":"ayam",           "quantity":1,   "unit":None,   "note":"1 whole chicken; for soup 1"},
+  {"name":"salt",            "name_ms":"garam",          "quantity":None,"unit":None,   "note":"to taste"},
+  {"name":"water",           "name_ms":"air",             "quantity":None,"unit":None,   "note":"enough to cover"},
+  {"name":"soup powder",     "name_ms":"perencah sup",   "quantity":3,   "unit":"tbsp", "note":"1 packet per soup; Siamese flavour for chicken, fish flavour for fish soup"},
+  {"name":"tomato",          "name_ms":"tomato",         "quantity":1,   "unit":None,   "note":"per soup"},
+  {"name":"bird's eye chilli","name_ms":"cili padi",     "quantity":None,"unit":None,   "note":"generously; more = spicier"},
+  {"name":"fish sauce",      "name_ms":"sos ikan",       "quantity":3,   "unit":"tbsp", "note":"per soup; added off heat"},
+  {"name":"lime",            "name_ms":"limau nipis",    "quantity":None,"unit":None,   "note":"1–2 per soup; added off heat"},
+  {"name":"coriander leaves","name_ms":"daun ketumbar",  "quantity":None,"unit":None,   "note":"garnish"},
+  {"name":"red snapper",     "name_ms":"ikan merah",     "quantity":None,"unit":None,   "note":"for soup 2; or use sea bass"}
+]},
+
+# ── V15 ─────────────────────────────────────────────────────────────────────
+{"video_id":"7477428153808325906","is_recipe":True,"needs_review":True,
+"review_notes":"multi-component recipe (nasi lemak + sambal + ayam goreng berempah); some ratios are 'one bowl each' without exact weights; chicken quantity not stated; fried anchovies and peanuts method not shown",
+"title":"Basmati Nasi Lemak with Spiced Fried Chicken and Sambal",
+"title_ms":"Nasi Lemak Basmati dengan Ayam Goreng Berempah dan Sambal",
+"description":"A complete nasi lemak set with fluffy basmati coconut rice, rich spiced fried chicken marinated in lemongrass paste and curry powder, and a deep dark sambal made with two types of dried chilli.",
+"description_ms":"Hidangan nasi lemak lengkap dengan nasi lemak basmati yang gebu, ayam goreng berempah yang juicy, dan sambal nasi lemak yang hitam pekat daripada dua jenis cili kering.",
+"cuisine":"Malaysian","difficulty":"Medium","prep_time":50,"cook_time":40,"servings":6,
+"ingredients":["dried chilli","onion","garlic","dried anchovies","shrimp paste","cooking oil","palm sugar","tamarind paste","salt","seasoning powder","lemongrass","galangal","curry powder","chilli powder","coriander powder","fennel seeds","cumin","turmeric powder","curry leaf","water","chicken","basmati rice","ginger","pandan leaf","coconut milk"],
+"steps":[
+  "[Sambal] Boil the fat dried chillies separately from the thin dried chillies; blend each type separately. Blend 2 large onions, 6 garlic cloves, a small handful of dried anchovies and 1 roasted shrimp paste block together.",
+  "Use equal proportions of the fat chilli paste and the blended aromatics (ratio 1:1). Heat plenty of oil; fry until the oil separates. Add 2 small blocks palm sugar, 0.5 tbsp tamarind paste, salt and seasoning powder.",
+  "[Ayam Goreng Berempah] Blend 4 lemongrass stalks and a knob of galangal to a dry paste (press out excess water). Mix the paste with 1 tsp each: curry powder, chilli powder, coriander powder, fennel seeds, cumin, turmeric powder; 0.5 tsp salt; 2 stalks curry leaf; a little water. Marinate the chicken for 20 minutes.",
+  "Fry the marinated chicken in medium-heat oil (not too hot or the spices will burn) until golden and cooked through.",
+  "[Nasi Lemak Basmati] Rinse 4 cup basmati rice; add 5 garlic cloves, 1 onion, a knob of ginger, 2 pandan leaves, 2 lemongrass stalks, 1 small box coconut milk, 6 cup water, 2 tbsp cooking oil and 1 tsp salt; cook as normal."
+],
+"steps_ms":[
+  "[Sambal] Rebus cili kering gemuk dan cili kering kurus secara berasingan; blend berasingan. Blend 2 biji bawang merah besar, 6 ulas bawang putih, segenggam kecil ikan bilis dan 1 ketul belacan bakar bersama.",
+  "Guna nisbah 1:1 cili gemuk dengan blend bawang. Panaskan banyak minyak; goreng sehingga pecah minyak. Masukkan 2 ketul kecil gula Melaka, setengah sudu pes asam jawa, garam dan serbuk perasa.",
+  "[Ayam Goreng Berempah] Blend 4 batang serai dan seketul lengkuas jadi pes kering (buang air berlebihan). Gaul pes dengan 1 sudu kecil setiap satu: serbuk kari, serbuk cili, serbuk ketumbar, jintan manis, jintan putih, serbuk kunyit; setengah sudu kecil garam; 2 tangkai daun kari; sedikit air. Perap ayam selama 20 minit.",
+  "Goreng ayam dalam minyak api sederhana (jangan terlalu panas atau rempah akan hangus) sehingga golden dan masak.",
+  "[Nasi Lemak Basmati] Basuh 4 cawan beras basmati; masukkan 5 ulas bawang putih, 1 biji bawang merah, seketul halia, 2 helai daun pandan, 2 batang serai, 1 kotak kecil santan, 6 cawan air, 2 sudu minyak masak dan 1 sudu kecil garam; masak seperti biasa."
+],
+"tags":["halal","chicken","rice","coconut milk","nasi lemak","sambal","malaysian","ramadan"],
+"ingredients_detailed":[
+  {"name":"dried chilli",    "name_ms":"cili kering",    "quantity":None,"unit":None,   "note":"2 types: fat (not spicy) and thin (spicy); equal bowls of each"},
+  {"name":"onion",           "name_ms":"bawang merah",   "quantity":None,"unit":None,   "note":"2 large for sambal; 1 for nasi"},
+  {"name":"garlic",          "name_ms":"bawang putih",   "quantity":None,"unit":None,   "note":"6 cloves for sambal; 5 cloves for nasi"},
+  {"name":"dried anchovies", "name_ms":"ikan bilis",     "quantity":None,"unit":None,   "note":"a small handful for sambal; fried separately for topping (not shown)"},
+  {"name":"shrimp paste",    "name_ms":"belacan",        "quantity":1,   "unit":None,   "note":"1 block; roasted before blending"},
+  {"name":"cooking oil",     "name_ms":"minyak goreng",  "quantity":None,"unit":None,   "note":"generous amount for sambal; also for nasi"},
+  {"name":"palm sugar",      "name_ms":"gula melaka",    "quantity":2,   "unit":None,   "note":"2 small blocks; for sambal"},
+  {"name":"tamarind paste",  "name_ms":"pes asam jawa",  "quantity":0.5, "unit":"tbsp", "note":"for sambal"},
+  {"name":"salt",            "name_ms":"garam",          "quantity":None,"unit":None,   "note":"to taste (sambal + nasi)"},
+  {"name":"seasoning powder","name_ms":"serbuk perasa",  "quantity":None,"unit":None,   "note":"to taste"},
+  {"name":"lemongrass",      "name_ms":"serai",          "quantity":6,   "unit":None,   "note":"4 stalks blended for ayam marinade; 2 stalks for nasi"},
+  {"name":"galangal",        "name_ms":"lengkuas",       "quantity":None,"unit":None,   "note":"1 knob; blended for ayam marinade"},
+  {"name":"curry powder",    "name_ms":"serbuk kari",    "quantity":1,   "unit":"tsp",  "note":"for ayam marinade"},
+  {"name":"chilli powder",   "name_ms":"serbuk cili",    "quantity":1,   "unit":"tsp",  "note":"for ayam marinade"},
+  {"name":"coriander powder","name_ms":"serbuk ketumbar","quantity":1,   "unit":"tsp",  "note":"for ayam marinade"},
+  {"name":"fennel seeds",    "name_ms":"jintan manis",   "quantity":1,   "unit":"tsp",  "note":"for ayam marinade"},
+  {"name":"cumin",           "name_ms":"jintan putih",   "quantity":1,   "unit":"tsp",  "note":"for ayam marinade"},
+  {"name":"turmeric powder", "name_ms":"serbuk kunyit",  "quantity":1,   "unit":"tsp",  "note":"for ayam marinade"},
+  {"name":"curry leaf",      "name_ms":"daun kari",      "quantity":2,   "unit":None,   "note":"2 stalks; for ayam marinade"},
+  {"name":"water",           "name_ms":"air",             "quantity":None,"unit":None,   "note":"a little for marinade; 6 cups for nasi"},
+  {"name":"chicken",         "name_ms":"ayam",           "quantity":None,"unit":None,   "note":"quantity not stated"},
+  {"name":"basmati rice",    "name_ms":"beras basmati",  "quantity":4,   "unit":"cup",  "note":"rinsed; for nasi lemak"},
+  {"name":"ginger",          "name_ms":"halia",          "quantity":None,"unit":None,   "note":"1 knob; for nasi"},
+  {"name":"pandan leaf",     "name_ms":"daun pandan",    "quantity":2,   "unit":None,   "note":"for nasi"},
+  {"name":"coconut milk",    "name_ms":"santan",         "quantity":1,   "unit":None,   "note":"1 small box; for nasi"}
+]},
+
+# ── V16 ─────────────────────────────────────────────────────────────────────
+{"video_id":"7628524921236294920","is_recipe":True,"needs_review":True,
+"review_notes":"video contains product promotion for 'Sambal Nyet' brand — no generic substitute shown; onion and garlic quantities vague ('tumis bawang merah dengan bawang putih'); seafood quantity optional/not stated",
+"title":"Spicy Instant Noodle Soup (Mee Goreng Basah)",
+"title_ms":"Mee Goreng Basah Pedas dengan Sambal",
+"description":"A quick spicy wet instant noodle dish with fish balls, fish cake, seafood and egg in a bold, savoury sambal broth.",
+"description_ms":"Mi segera goreng basah yang cepat dan pedas dengan fishball, fishcake, seafood dan telur dalam kuah sambal yang kaya rasa.",
+"cuisine":"Malaysian","difficulty":"Easy","prep_time":5,"cook_time":10,"servings":2,
+"ingredients":["onion","garlic","cooking oil","fish ball","fish cake","water","blended chilli","sweet soy sauce","tomato sauce","chilli sauce","instant noodles","prawn","egg","lime"],
+"steps":[
+  "Sauté onion and garlic in a little oil until fragrant.",
+  "Add fish balls and fish cake; fry briefly until lightly browned.",
+  "Add water and bring to a simmer.",
+  "Add 1 tbsp blended chilli (or sambal), 1 tbsp sweet soy sauce, 1 tbsp tomato sauce and 1 tbsp chilli sauce.",
+  "Add 2 packets of instant noodles with only 1 seasoning packet (2 packets is too salty); let the noodles soften.",
+  "Add prawn, egg and a little vegetable; stir until the noodles have absorbed the sauce.",
+  "Serve with a fried egg on top and a squeeze of lime."
+],
+"steps_ms":[
+  "Tumis bawang merah dan bawang putih dalam sedikit minyak sehingga wangi.",
+  "Masukkan fishball dan fishcake; goreng sebentar sehingga kekuningan.",
+  "Masukkan air dan biarkan mendidih.",
+  "Masukkan 1 sudu cili kisar (atau sambal), 1 sudu kicap manis, 1 sudu sos tomato dan 1 sudu sos cili.",
+  "Masukkan 2 paket mi segera dengan hanya 1 paket perencah (2 paket terlalu masin); biarkan mi kembang.",
+  "Masukkan udang, telur dan sedikit sayur; kacau sehingga mi menyerap kuah.",
+  "Hidang dengan telur mata goyang di atas dan perahan limau."
+],
+"tags":["halal","noodles","spicy","quick","seafood","malaysian","ramadan"],
+"ingredients_detailed":[
+  {"name":"onion",         "name_ms":"bawang merah",  "quantity":None,"unit":None,   "note":"quantity not stated"},
+  {"name":"garlic",        "name_ms":"bawang putih",  "quantity":None,"unit":None,   "note":"quantity not stated"},
+  {"name":"cooking oil",   "name_ms":"minyak goreng", "quantity":None,"unit":None,   "note":"a little"},
+  {"name":"fish ball",     "name_ms":"fishball",      "quantity":None,"unit":None,   "note":""},
+  {"name":"fish cake",     "name_ms":"fishcake",      "quantity":None,"unit":None,   "note":""},
+  {"name":"water",         "name_ms":"air",            "quantity":None,"unit":None,   "note":"enough to create broth"},
+  {"name":"blended chilli","name_ms":"cili kisar",    "quantity":1,   "unit":"tbsp", "note":"or use a branded sambal; video uses 'Sambal Nyet' 1 tbsp"},
+  {"name":"sweet soy sauce","name_ms":"kicap manis",  "quantity":1,   "unit":"tbsp", "note":""},
+  {"name":"tomato sauce",  "name_ms":"sos tomato",    "quantity":1,   "unit":"tbsp", "note":""},
+  {"name":"chilli sauce",  "name_ms":"sos cili",      "quantity":1,   "unit":"tbsp", "note":""},
+  {"name":"instant noodles","name_ms":"mi segera",    "quantity":2,   "unit":None,   "note":"2 packets; use only 1 seasoning packet"},
+  {"name":"prawn",         "name_ms":"udang",         "quantity":None,"unit":None,   "note":"optional; to taste"},
+  {"name":"egg",           "name_ms":"telur",         "quantity":1,   "unit":None,   "note":"stirred in during cooking; 1 more fried as topping"},
+  {"name":"lime",          "name_ms":"limau nipis",   "quantity":None,"unit":None,   "note":"squeeze over to serve"}
+]},
+
+# ── V17 ─────────────────────────────────────────────────────────────────────
+{"video_id":"7609573463442918663","is_recipe":True,"needs_review":True,
+"review_notes":"marshmallow and chocolate bar quantities not stated; biscuit type stated as Hobnobs but any will work",
+"title":"S'mores Dip",
+"title_ms":"S'mores Dip",
+"description":"A simple three-ingredient s'mores dip — toasted marshmallow topped with melted chocolate, served with biscuits for dipping.",
+"description_ms":"Dip s'mores tiga bahan yang mudah — marshmallow yang dibakar dengan coklat cair di atas, dicicah dengan biskut yang rangup.",
+"cuisine":"Western","difficulty":"Easy","prep_time":5,"cook_time":5,"servings":4,
+"ingredients":["marshmallow","chocolate bar","biscuit"],
+"steps":[
+  "Use an oven-safe aluminium container (not plastic).",
+  "Fill the container with marshmallows (do not overfill — they will expand); bake in an air fryer at 200°C for 3 minutes until toasted.",
+  "Break the chocolate bar into pieces and place on top of the toasted marshmallow; bake at 140°C for 1–2 minutes until just melted.",
+  "Serve immediately with biscuits for dipping — or press two biscuits around a spoonful to make a sandwich."
+],
+"steps_ms":[
+  "Guna bekas aluminium yang sesuai untuk air fryer (jangan plastik — ia akan cair).",
+  "Isi bekas dengan marshmallow (jangan penuh sangat — ia akan kembang); bakar dalam air fryer pada suhu 200°C selama 3 minit.",
+  "Pecah-pecahkan bar coklat dan letak di atas marshmallow yang dah dibakar; bakar pada 140°C selama 1-2 minit sehingga cair sikit sahaja.",
+  "Hidang segera dengan biskut untuk cicah — atau kapit di antara dua biskut jadi sandwich."
+],
+"tags":["halal","dessert","snack","chocolate","marshmallow","western","raya","easy"],
+"ingredients_detailed":[
+  {"name":"marshmallow",  "name_ms":"marshmallow",  "quantity":None,"unit":None, "note":"quantity not stated; fill the container"},
+  {"name":"chocolate bar","name_ms":"coklat bar",   "quantity":None,"unit":None, "note":"quantity not stated; semi-sweet or dark recommended for balance"},
+  {"name":"biscuit",      "name_ms":"biskut",       "quantity":None,"unit":None, "note":"Hobnobs preferred per transcript; any sturdy biscuit works"}
+]},
+
+# ── V18 ─────────────────────────────────────────────────────────────────────
+{"video_id":"7608083211482172679","is_recipe":True,"needs_review":True,
+"review_notes":"chicken quantity not stated; initial marinade quantities (black pepper, oyster sauce) not stated; cook_time estimated",
+"title":"Chicken in Plum Sauce (Ayam Sos Plum)",
+"title_ms":"Ayam Sos Plum",
+"description":"Crispy air-fried chicken pieces glazed in a sweet-tangy plum sauce with lemongrass, kaffir lime leaf and chilli.",
+"description_ms":"Ayam goreng air fryer yang crispy kemudian digaulkan dalam sos plum manis-masam dengan serai, daun limau purut dan cili.",
+"cuisine":"Malaysian","difficulty":"Easy","prep_time":15,"cook_time":25,"servings":4,
+"ingredients":["chicken","black pepper","oyster sauce","large chilli","bird's eye chilli","onion","garlic","water","plum sauce","sweet soy sauce","fish sauce","lemongrass","kaffir lime leaf","cooking oil"],
+"steps":[
+  "Marinate the chicken with black pepper and oyster sauce; air-fry at 200°C for 20 minutes until crispy and golden brown.",
+  "Chop 6 large chillies, 8 bird's eye chillies, 1 onion and 4 garlic cloves.",
+  "Sauté the chopped aromatics until soft and the chilli is cooked.",
+  "Add water, 4 tbsp plum sauce, 1 tbsp oyster sauce, 1 tbsp sweet soy sauce and 1 tbsp fish sauce; stir to combine.",
+  "Add 2 sliced lemongrass stalks, 4 more bird's eye chillies and 2–3 kaffir lime leaves.",
+  "Add the crispy chicken and toss until evenly coated. Serve immediately."
+],
+"steps_ms":[
+  "Perap ayam dengan black pepper dan sos tiram; bakar dalam air fryer pada suhu 200°C selama 20 minit sehingga crispy golden brown.",
+  "Chop 6 biji lada besar, 8 biji cili padi, 1 biji bawang merah dan 4 ulas bawang putih.",
+  "Tumis semua bahan yang dah dihacam sehingga layu dan cili masak.",
+  "Masukkan air, 4 sudu sos plum, 1 sudu sos tiram, 1 sudu kicap manis dan 1 sudu sos ikan; kacau sebati.",
+  "Masukkan 2 batang serai yang dihiris, 4 biji cili padi lagi dan 2-3 helai daun limau purut.",
+  "Masukkan ayam crispy dan gaul sehingga rata. Hidang segera."
+],
+"tags":["halal","chicken","plum sauce","air fryer","sweet","spicy","malaysian","ramadan","sahur"],
+"ingredients_detailed":[
+  {"name":"chicken",        "name_ms":"ayam",          "quantity":None,"unit":None,   "note":"quantity not stated"},
+  {"name":"black pepper",   "name_ms":"black pepper",  "quantity":None,"unit":None,   "note":"for marinade; to taste"},
+  {"name":"oyster sauce",   "name_ms":"sos tiram",     "quantity":None,"unit":None,   "note":"for marinade; 1 tbsp for sauce"},
+  {"name":"large chilli",   "name_ms":"lada besar",    "quantity":6,   "unit":None,   "note":"chopped for sauce"},
+  {"name":"bird's eye chilli","name_ms":"cili padi",   "quantity":12,  "unit":None,   "note":"8 chopped for sauce; 4 more added as aromatics"},
+  {"name":"onion",          "name_ms":"bawang merah",  "quantity":1,   "unit":None,   "note":"chopped"},
+  {"name":"garlic",         "name_ms":"bawang putih",  "quantity":4,   "unit":"clove","note":"chopped"},
+  {"name":"water",          "name_ms":"air",            "quantity":None,"unit":None,   "note":"a little for sauce"},
+  {"name":"plum sauce",     "name_ms":"sos plum",      "quantity":4,   "unit":"tbsp", "note":"any brand"},
+  {"name":"sweet soy sauce","name_ms":"kicap manis",   "quantity":1,   "unit":"tbsp", "note":""},
+  {"name":"fish sauce",     "name_ms":"sos ikan",      "quantity":1,   "unit":"tbsp", "note":""},
+  {"name":"lemongrass",     "name_ms":"serai",         "quantity":2,   "unit":None,   "note":"sliced; aromatic"},
+  {"name":"kaffir lime leaf","name_ms":"daun limau purut","quantity":3,"unit":None,   "note":"2-3 leaves"},
+  {"name":"cooking oil",    "name_ms":"minyak goreng", "quantity":None,"unit":None,   "note":"for sautéing"}
+]},
+
+# ── V19 ─────────────────────────────────────────────────────────────────────
+{"video_id":"7616991468783291666","is_recipe":True,"needs_review":False,
+"review_notes":"petis udang is optional; vegetable quantities flexible; times estimated for 1 packet",
+"title":"Stir-Fried Vermicelli (Bihun Goreng)",
+"title_ms":"Bihun Goreng",
+"description":"A family-sized plate of stir-fried rice vermicelli with fish cake, fish ball and vegetables in a savory dark sauce — a classic Raya dish.",
+"description_ms":"Bihun goreng untuk satu keluarga dengan fishcake, fishball, sawi dan sos pekat yang sedap — hidangan klasik yang sesuai untuk hari raya.",
+"cuisine":"Malaysian","difficulty":"Easy","prep_time":15,"cook_time":15,"servings":4,
+"ingredients":["rice vermicelli","onion","garlic","dried anchovies","blended chilli","fish cake","fish ball","water","oyster sauce","sweet soy sauce","tomato sauce","chilli sauce","shrimp paste (petis)","fish sauce","salt","seasoning powder","mustard greens","bell pepper"],
+"steps":[
+  "Soak 1 packet of rice vermicelli in tap water (no need for hot water); drain and set aside.",
+  "Blend 2 onions, 3 garlic cloves and a small handful of dried anchovies together; add blended chilli.",
+  "Sauté the blend; add fish cake and fish ball, then a little water.",
+  "Add 2 tbsp oyster sauce, 4 tbsp sweet soy sauce, 2 tbsp tomato sauce and 4 tbsp chilli sauce. Optionally add 0.5 tbsp shrimp paste (petis).",
+  "Add the soaked vermicelli; it will initially look dry — just keep stirring.",
+  "Add fish sauce generously; season with salt and seasoning powder.",
+  "Once the vermicelli has absorbed the sauce and softened, add sliced mustard greens and bell pepper; toss until wilted.",
+  "Serve topped with Chinese celery and crispy fried shallots if available."
+],
+"steps_ms":[
+  "Rendam 1 paket bihun dalam air paip (tidak perlu air suam); toskan dan ketepikan.",
+  "Blend 2 biji bawang merah, 3 ulas bawang putih dan segenggam kecil ikan bilis; masukkan cili kisar.",
+  "Tumis blend; masukkan fishcake dan fishball, kemudian sedikit air.",
+  "Masukkan 2 sudu sos tiram, 4 sudu kicap manis, 2 sudu sos tomato dan 4 sudu sos cili. Boleh tambah setengah sudu petis udang (pilihan).",
+  "Masukkan bihun yang dah direndam; ia akan nampak kering pada mulanya — kacau sahaja.",
+  "Masukkan banyak sos ikan; laraskan dengan garam dan serbuk perasa.",
+  "Bila bihun sudah lembut dan menyerap sos, masukkan sawi dan hirisan lada besar; gaul sehingga layu.",
+  "Hidang ditaburi daun sup dan bawang goreng jika ada."
+],
+"tags":["halal","noodles","vermicelli","stir-fry","seafood","malaysian","raya"],
+"ingredients_detailed":[
+  {"name":"rice vermicelli","name_ms":"tepung beras", "quantity":1,   "unit":None,   "note":"1 packet; soaked in tap water"},
+  {"name":"onion",         "name_ms":"bawang merah",  "quantity":2,   "unit":None,   "note":"blended"},
+  {"name":"garlic",        "name_ms":"bawang putih",  "quantity":3,   "unit":"clove","note":"blended"},
+  {"name":"dried anchovies","name_ms":"ikan bilis",   "quantity":None,"unit":None,   "note":"a small handful; blended"},
+  {"name":"blended chilli","name_ms":"cili kisar",    "quantity":None,"unit":None,   "note":"to taste"},
+  {"name":"fish cake",     "name_ms":"fishcake",      "quantity":None,"unit":None,   "note":""},
+  {"name":"fish ball",     "name_ms":"fishball",      "quantity":None,"unit":None,   "note":""},
+  {"name":"water",         "name_ms":"air",            "quantity":None,"unit":None,   "note":"a little"},
+  {"name":"oyster sauce",  "name_ms":"sos tiram",     "quantity":2,   "unit":"tbsp", "note":""},
+  {"name":"sweet soy sauce","name_ms":"kicap manis",  "quantity":4,   "unit":"tbsp", "note":""},
+  {"name":"tomato sauce",  "name_ms":"sos tomato",    "quantity":2,   "unit":"tbsp", "note":""},
+  {"name":"chilli sauce",  "name_ms":"sos cili",      "quantity":4,   "unit":"tbsp", "note":""},
+  {"name":"shrimp paste (petis)","name_ms":"petis udang","quantity":0.5,"unit":"tbsp","note":"optional"},
+  {"name":"fish sauce",    "name_ms":"sos ikan",      "quantity":None,"unit":None,   "note":"generous amount; to taste"},
+  {"name":"salt",          "name_ms":"garam",         "quantity":None,"unit":None,   "note":"to taste"},
+  {"name":"seasoning powder","name_ms":"serbuk perasa","quantity":None,"unit":None,  "note":"to taste"},
+  {"name":"mustard greens","name_ms":"sawi",          "quantity":None,"unit":None,   "note":""},
+  {"name":"bell pepper",   "name_ms":"lada benggala", "quantity":None,"unit":None,   "note":"sliced"}
+]},
+
+# ── V20 ─────────────────────────────────────────────────────────────────────
+{"video_id":"7478200055418162439","is_recipe":True,"needs_review":True,
+"review_notes":"prawn quantity not stated; vegetable not quantified; cook/prep times estimated",
+"title":"Spicy Wet Instant Noodles (Mee Goreng Basah)",
+"title_ms":"Mee Goreng Basah Extra Pedas",
+"description":"A quick and satisfying spicy wet instant noodle dish with fish ball, fish cake, prawn and egg in a flavourful sauce.",
+"description_ms":"Mi goreng basah yang cepat dan pedas dengan fishball, fishcake, udang dan telur dalam sos yang sedap.",
+"cuisine":"Malaysian","difficulty":"Easy","prep_time":5,"cook_time":10,"servings":2,
+"ingredients":["onion","garlic","blended chilli","fish ball","fish cake","sweet soy sauce","tomato sauce","chilli sauce","water","instant noodles","prawn","egg","bird's eye chilli","lime"],
+"steps":[
+  "Sauté 1 onion and 2 garlic cloves; add 1 tbsp blended chilli.",
+  "Add fish balls and fish cake; stir briefly.",
+  "Add 1 tbsp sweet soy sauce, 1 tbsp tomato sauce and 1 tbsp chilli sauce; add water.",
+  "Add 2 packets of instant noodles with 1 seasoning packet; wait for the noodles to soften.",
+  "Add prawn, egg and bird's eye chilli; break the egg yolk into the broth for a creamier sauce.",
+  "Stir to combine; serve with a squeeze of lime."
+],
+"steps_ms":[
+  "Tumis 1 biji bawang merah dan 2 ulas bawang putih; masukkan 1 sudu cili kisar.",
+  "Masukkan fishball dan fishcake; kacau sebentar.",
+  "Masukkan 1 sudu kicap manis, 1 sudu sos tomato dan 1 sudu sos cili; masukkan air.",
+  "Masukkan 2 paket mi segera dengan 1 paket perencah; tunggu mi kembang.",
+  "Masukkan udang, telur dan cili padi; pecahkan kuning telur ke dalam kuah untuk rasa lebih creamy.",
+  "Gaul sebati; hidang dengan perahan limau nipis."
+],
+"tags":["halal","noodles","spicy","quick","seafood","malaysian","ramadan"],
+"ingredients_detailed":[
+  {"name":"onion",         "name_ms":"bawang merah",  "quantity":1,   "unit":None,   "note":""},
+  {"name":"garlic",        "name_ms":"bawang putih",  "quantity":2,   "unit":"clove","note":""},
+  {"name":"blended chilli","name_ms":"cili kisar",    "quantity":1,   "unit":"tbsp", "note":""},
+  {"name":"fish ball",     "name_ms":"fishball",      "quantity":None,"unit":None,   "note":""},
+  {"name":"fish cake",     "name_ms":"fishcake",      "quantity":None,"unit":None,   "note":""},
+  {"name":"sweet soy sauce","name_ms":"kicap manis",  "quantity":1,   "unit":"tbsp", "note":""},
+  {"name":"tomato sauce",  "name_ms":"sos tomato",    "quantity":1,   "unit":"tbsp", "note":""},
+  {"name":"chilli sauce",  "name_ms":"sos cili",      "quantity":1,   "unit":"tbsp", "note":""},
+  {"name":"water",         "name_ms":"air",            "quantity":None,"unit":None,   "note":"enough for broth"},
+  {"name":"instant noodles","name_ms":"mi segera",    "quantity":2,   "unit":None,   "note":"2 packets; use only 1 seasoning packet"},
+  {"name":"prawn",         "name_ms":"udang",         "quantity":None,"unit":None,   "note":"quantity not stated"},
+  {"name":"egg",           "name_ms":"telur",         "quantity":1,   "unit":None,   "note":"break yolk into broth"},
+  {"name":"bird's eye chilli","name_ms":"cili padi",  "quantity":None,"unit":None,   "note":"to taste"},
+  {"name":"lime",          "name_ms":"limau nipis",   "quantity":None,"unit":None,   "note":"squeeze over to serve"}
+]},
+
+]  # end RECIPES
+
+for r in RECIPES:
+    path = os.path.join(OUT, f"{r['video_id']}.json")
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(r, f, ensure_ascii=False, indent=2)
+    flag = "✓" if r["is_recipe"] else "○"
+    rev  = "needs_review=true" if r.get("needs_review") else "needs_review=false"
+    print(f"  {flag} {r['video_id']} | {r['title'][:60]} | {rev}")
+
+print(f"\nWrote {len(RECIPES)} files (V4-V20).")

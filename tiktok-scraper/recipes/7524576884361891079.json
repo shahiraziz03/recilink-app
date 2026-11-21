@@ -1,0 +1,122 @@
+{
+  "video_id": "7524576884361891079",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "non-dairy cream quantity not stated; durian filling amount flexible; recipe is for crepes with durian cream filling",
+  "title": "Durian Crepe",
+  "title_ms": "Durian Crepe",
+  "description": "Thin pandan crepe wrappers filled with a light, fluffy durian whipped cream — a popular Malaysian dessert.",
+  "description_ms": "Kulit crepe pandan yang nipis diisi dengan krim durian yang ringan dan gebu — pencuci mulut Malaysia yang popular.",
+  "cuisine": "Malaysian",
+  "difficulty": "Medium",
+  "prep_time": 60,
+  "cook_time": 20,
+  "servings": 10,
+  "ingredients": [
+    "egg",
+    "sugar",
+    "salt",
+    "all-purpose flour",
+    "fresh milk",
+    "butter",
+    "pandan extract",
+    "non-dairy whipping cream",
+    "durian"
+  ],
+  "steps": [
+    "Beat 4 eggs with 3 tbsp sugar and a pinch of salt.",
+    "Gradually add 2 cup all-purpose flour, alternating with 2.5 cup fresh milk, whisking until smooth.",
+    "Stir in 3 tbsp melted butter and a few drops of pandan extract for colour.",
+    "Strain the batter; rest for 30 minutes.",
+    "Cook thin crepes in a non-stick pan — pour a small ladle of batter, swirl to spread, cook until just set (no browning).",
+    "Stack and cool completely.",
+    "Whisk non-dairy cream until stiff peaks; fold in durian flesh until combined.",
+    "Place a spoonful of durian cream in the centre of each crepe; fold or roll to enclose.",
+    "Refrigerate for at least 1 hour before serving."
+  ],
+  "steps_ms": [
+    "Pukul 4 biji telur bersama 3 sudu gula dan secubit garam.",
+    "Masukkan 2 cawan tepung gandum secara berselang-seli dengan 2 cawan setengah susu segar, kacau sehingga licin.",
+    "Masukkan 3 sudu butter cair dan beberapa titik pewarna/ekstrak pandan.",
+    "Tapis adunan; rehat 30 minit.",
+    "Masak crepe nipis dalam kuali non-stick — tuang sedikit adunan, pusingkan supaya rata, masak sehingga set (jangan perang).",
+    "Susun dan biarkan sejuk sepenuhnya.",
+    "Pukul non-dairy cream sehingga kaku; lipat bersama isi durian sehingga sebati.",
+    "Letakkan sesenduk krim durian di tengah-tengah setiap crepe; lipat atau gulung.",
+    "Simpan dalam peti sejuk sekurang-kurangnya 1 jam sebelum dihidang."
+  ],
+  "tags": [
+    "halal",
+    "dessert",
+    "crepe",
+    "durian",
+    "pandan",
+    "malaysian",
+    "raya"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "egg",
+      "name_ms": "telur",
+      "quantity": 4,
+      "unit": null,
+      "note": "for crepe batter"
+    },
+    {
+      "name": "sugar",
+      "name_ms": "gula",
+      "quantity": 3,
+      "unit": "tbsp",
+      "note": "for crepe batter"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "a pinch"
+    },
+    {
+      "name": "all-purpose flour",
+      "name_ms": "tepung gandum",
+      "quantity": 2,
+      "unit": "cup",
+      "note": "for crepe batter"
+    },
+    {
+      "name": "fresh milk",
+      "name_ms": "fresh milk",
+      "quantity": 2.5,
+      "unit": "cup",
+      "note": "for crepe batter"
+    },
+    {
+      "name": "butter",
+      "name_ms": "butter",
+      "quantity": 3,
+      "unit": "tbsp",
+      "note": "melted; for crepe batter"
+    },
+    {
+      "name": "pandan extract",
+      "name_ms": "ekstrak pandan",
+      "quantity": null,
+      "unit": null,
+      "note": "a few drops for colour; or pandan paste"
+    },
+    {
+      "name": "non-dairy whipping cream",
+      "name_ms": "non-dairy cream",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated; whipped to stiff peaks"
+    },
+    {
+      "name": "durian",
+      "name_ms": "durian",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity flexible to taste"
+    }
+  ]
+}

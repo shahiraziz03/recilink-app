@@ -1,0 +1,66 @@
+{
+  "video_id": "7610718382635191570",
+  "is_recipe": true,
+  "needs_review": false,
+  "review_notes": "ice cream flavour flexible; fry time approx. 10 seconds in very hot oil; freeze time 2-3 hours; prep time includes freezing",
+  "title": "Fried Ice Cream (Aiskrim Goreng)",
+  "title_ms": "Aiskrim Goreng Pro Max",
+  "description": "A viral two-ingredient fried ice cream: a scoop of ice cream sandwiched between two slices of bread, frozen solid, then deep-fried for just 10 seconds in very hot oil.",
+  "description_ms": "Aiskrim goreng dua bahan yang viral: skop aiskrim dikepit di antara dua keping roti, dibekukan hingga keras, kemudian digoreng hanya 10 saat dalam minyak betul-betul panas.",
+  "cuisine": "Fusion",
+  "difficulty": "Easy",
+  "prep_time": 150,
+  "cook_time": 1,
+  "servings": 4,
+  "ingredients": [
+    "ice cream",
+    "white bread",
+    "cooking oil"
+  ],
+  "steps": [
+    "Scoop ice cream onto a slice of bread; place another slice on top.",
+    "Press and seal all four edges tightly; trim with a cup rim for a neat seal if desired.",
+    "Freeze for 2–3 hours until rock-solid (tap to check — it should sound firm).",
+    "Heat oil until very hot. Deep-fry the frozen ice cream sandwich for exactly 10 seconds; remove immediately.",
+    "Serve and eat right away before the ice cream melts."
+  ],
+  "steps_ms": [
+    "Skopkan aiskrim atas sekeping roti; letak sekeping roti lagi di atas.",
+    "Tekan dan lekatkan semua empat tepi rapat-rapat; boleh tekan dengan tepi cawan untuk bentuk yang kemas.",
+    "Bekukan selama 2-3 jam sehingga keras seperti batu (ketuk untuk semak — bunyi mesti keras).",
+    "Panaskan minyak betul-betul panas. Goreng sandwich aiskrim beku tepat 10 saat; angkat dengan segera.",
+    "Hidang dan makan terus sebelum aiskrim cair."
+  ],
+  "tags": [
+    "halal",
+    "dessert",
+    "fried",
+    "ice cream",
+    "western",
+    "easy",
+    "ramadan"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "ice cream",
+      "name_ms": "aiskrim",
+      "quantity": null,
+      "unit": null,
+      "note": "any flavour; video shows chocolate, vanilla, taro and corn"
+    },
+    {
+      "name": "white bread",
+      "name_ms": "roti putih",
+      "quantity": null,
+      "unit": null,
+      "note": "2 slices per portion"
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": "for deep frying; must be very hot"
+    }
+  ]
+}

@@ -1,0 +1,182 @@
+{
+  "video_id": "7479285273063427336",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "butter for spreading not quantified; mayonnaise quantity not stated; cheese slices quantity per roll not stated",
+  "title": "Roti Khurasan (Beef-Stuffed Crispy Spring Roll Burger)",
+  "title_ms": "Roti Khurasan (Burger Dibalut Kulit Popia)",
+  "description": "A unique snack that wraps a spiced minced-beef burger bun in spring roll pastry and deep-fries until crispy — crunchy outside, hearty inside.",
+  "description_ms": "Makanan unik yang membalut burger bun berinti daging cincang berbumbu dengan kulit popia kemudian digoreng sehingga crispy — garing kat luar, padat kat dalam.",
+  "cuisine": "Fusion",
+  "difficulty": "Easy",
+  "prep_time": 20,
+  "cook_time": 20,
+  "servings": 4,
+  "ingredients": [
+    "onion",
+    "garlic",
+    "minced beef",
+    "curry powder",
+    "tomato sauce",
+    "oyster sauce",
+    "chilli sauce",
+    "water",
+    "black pepper",
+    "salt",
+    "seasoning powder",
+    "burger bun",
+    "butter",
+    "mayonnaise",
+    "processed cheese",
+    "spring roll pastry",
+    "cooking oil"
+  ],
+  "steps": [
+    "Sauté 1 sweet onion and 5 garlic cloves (chopped); add 200 g frozen minced beef.",
+    "Add 2 tbsp curry powder, 1 tbsp tomato sauce, 1 tbsp oyster sauce and 2 tbsp chilli sauce; add water to prevent burning.",
+    "Season with black pepper, salt and seasoning powder; cook until the filling is dry. Set aside.",
+    "Cut a burger bun in half; spread butter on both sides.",
+    "Spread a little mayonnaise on the cut surfaces; add the beef filling generously, a little more chilli sauce and a slice of cheese.",
+    "Press the bun halves together and wrap tightly in spring roll pastry, sealing all edges with water.",
+    "Deep-fry in very hot oil for just a few seconds until golden and puffed. Drain and serve hot."
+  ],
+  "steps_ms": [
+    "Tumis 1 biji bawang Holland dan 5 ulas bawang putih (dihacam); masukkan 200g daging cincang beku.",
+    "Masukkan 2 sudu serbuk kari, 1 sudu sos tomato, 1 sudu sos tiram dan 2 sudu sos cili; masukkan air elak hangus.",
+    "Tambah black pepper, garam dan serbuk perasa; masak sehingga inti kering. Ketepikan.",
+    "Potong roti burger menjadi dua; sapu butter di kedua-dua belah.",
+    "Sapu sedikit mayo pada permukaan yang dipotong; letak inti daging banyak-banyak, sedikit sos cili lagi dan sekeping cheese.",
+    "Kepit dua bahagian bun dan balut rapat dengan kulit popia, lekatkan semua tepi dengan air.",
+    "Goreng dalam minyak betul-betul panas hanya beberapa saat sehingga golden dan kembang. Toskan dan hidang panas."
+  ],
+  "tags": [
+    "halal",
+    "beef",
+    "fried",
+    "snack",
+    "fusion",
+    "malaysian",
+    "ramadan"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "onion",
+      "name_ms": "bawang holland",
+      "quantity": 1,
+      "unit": null,
+      "note": "chopped"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 5,
+      "unit": "clove",
+      "note": "chopped"
+    },
+    {
+      "name": "minced beef",
+      "name_ms": "daging cincang",
+      "quantity": 200,
+      "unit": "g",
+      "note": "frozen is fine"
+    },
+    {
+      "name": "curry powder",
+      "name_ms": "serbuk kari",
+      "quantity": 2,
+      "unit": "tbsp",
+      "note": "for filling"
+    },
+    {
+      "name": "tomato sauce",
+      "name_ms": "sos tomato",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": "for filling"
+    },
+    {
+      "name": "oyster sauce",
+      "name_ms": "sos tiram",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": "for filling"
+    },
+    {
+      "name": "chilli sauce",
+      "name_ms": "sos cili",
+      "quantity": 2,
+      "unit": "tbsp",
+      "note": "for filling; more for assembling"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": null,
+      "unit": null,
+      "note": "a little to prevent burning"
+    },
+    {
+      "name": "black pepper",
+      "name_ms": "black pepper",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "seasoning powder",
+      "name_ms": "serbuk perasa",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "burger bun",
+      "name_ms": "roti burger",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated; 1 per serving"
+    },
+    {
+      "name": "butter",
+      "name_ms": "butter",
+      "quantity": null,
+      "unit": null,
+      "note": "to spread on bun; quantity not stated"
+    },
+    {
+      "name": "mayonnaise",
+      "name_ms": "mayonis",
+      "quantity": null,
+      "unit": null,
+      "note": "to spread on bun; quantity not stated"
+    },
+    {
+      "name": "processed cheese",
+      "name_ms": "cheese",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity per roll not stated"
+    },
+    {
+      "name": "spring roll pastry",
+      "name_ms": "kulit popia",
+      "quantity": null,
+      "unit": null,
+      "note": "water to seal edges"
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": "deep frying; must be very hot"
+    }
+  ]
+}

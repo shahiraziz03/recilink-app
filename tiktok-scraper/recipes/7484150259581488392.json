@@ -1,0 +1,133 @@
+{
+  "video_id": "7484150259581488392",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "chicken quantity not stated; fresh turmeric blended with water then no volume given; prep/cook/servings estimated",
+  "title": "Fried Chicken in Coconut Milk Gravy (Masak Lemak Cili Api)",
+  "title_ms": "Ayam Goreng Masak Lemak Cili Api",
+  "description": "Golden fried chicken pieces simmered in a rich, turmeric-yellow coconut milk gravy spiked with bird's eye chilli.",
+  "description_ms": "Ayam goreng yang dimasak dalam kuah lemak kunyit bersama cili padi, menghasilkan hidangan yang creamy, pedas dan sangat sedap dimakan dengan nasi putih.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 15,
+  "cook_time": 25,
+  "servings": 4,
+  "ingredients": [
+    "chicken",
+    "turmeric powder",
+    "salt",
+    "shallot",
+    "bird's eye chilli",
+    "garlic",
+    "fresh turmeric",
+    "water",
+    "coconut milk",
+    "turmeric leaf",
+    "seasoning powder"
+  ],
+  "steps": [
+    "Toss chicken pieces with salt and turmeric powder until evenly coated; fry in hot oil until golden and crispy, then drain and set aside.",
+    "Chop (or pound) 1 onion, 8 bird's eye chillies and 3 cloves garlic.",
+    "Blend 1 knob of fresh turmeric with a little water until smooth; add extra turmeric powder if colour is insufficient.",
+    "Sauté the chopped aromatics briefly, then add the fresh turmeric blend.",
+    "Add the fried chicken and 1 small box of coconut milk; stir to combine.",
+    "Season with salt and seasoning powder; simmer until the gravy thickens slightly.",
+    "Stir in sliced turmeric leaf and cook for another minute before serving."
+  ],
+  "steps_ms": [
+    "Gaul ayam dengan garam dan serbuk kunyit sehingga rata; goreng dalam minyak panas sehingga garing keemasan, kemudian angkat dan ketepikan.",
+    "Chop atau tumbuk 1 biji bawang merah, 8 cili padi dan 3 ulas bawang putih.",
+    "Blend 1 ketul kunyit hidup dengan sedikit air sehingga lumat; tambah serbuk kunyit jika warna kurang.",
+    "Tumis bahan-bahan yang dah dihancurkan sebentar, kemudian masukkan blend kunyit hidup.",
+    "Masukkan ayam goreng dan 1 kotak kecil santan; kacau sebati.",
+    "Tambah garam dan serbuk perasa; masak sehingga kuah pekat sikit.",
+    "Masukkan hirisan daun kunyit dan masak seminit lagi sebelum dihidang."
+  ],
+  "tags": [
+    "halal",
+    "chicken",
+    "coconut milk",
+    "spicy",
+    "malaysian",
+    "ramadan"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "chicken",
+      "name_ms": "ayam",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated; whole chicken or pieces"
+    },
+    {
+      "name": "turmeric powder",
+      "name_ms": "serbuk kunyit",
+      "quantity": null,
+      "unit": null,
+      "note": "to coat chicken, and extra if blended colour insufficient"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste (chicken coating and gravy)"
+    },
+    {
+      "name": "shallot",
+      "name_ms": "bawang merah",
+      "quantity": 1,
+      "unit": null,
+      "note": "chopped or pounded"
+    },
+    {
+      "name": "bird's eye chilli",
+      "name_ms": "cili padi",
+      "quantity": 8,
+      "unit": null,
+      "note": "chopped or pounded"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 3,
+      "unit": "clove",
+      "note": "chopped or pounded"
+    },
+    {
+      "name": "fresh turmeric",
+      "name_ms": "kunyit hidup",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 knob; blended with water"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": null,
+      "unit": null,
+      "note": "for blending fresh turmeric"
+    },
+    {
+      "name": "coconut milk",
+      "name_ms": "santan",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 small box"
+    },
+    {
+      "name": "turmeric leaf",
+      "name_ms": "daun kunyit",
+      "quantity": null,
+      "unit": null,
+      "note": "sliced; added at end"
+    },
+    {
+      "name": "seasoning powder",
+      "name_ms": "serbuk perasa",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    }
+  ]
+}

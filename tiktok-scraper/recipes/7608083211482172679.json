@@ -1,0 +1,158 @@
+{
+  "video_id": "7608083211482172679",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "chicken quantity not stated; initial marinade quantities (black pepper, oyster sauce) not stated; cook_time estimated",
+  "title": "Chicken in Plum Sauce (Ayam Sos Plum)",
+  "title_ms": "Ayam Sos Plum",
+  "description": "Crispy air-fried chicken pieces glazed in a sweet-tangy plum sauce with lemongrass, kaffir lime leaf and chilli.",
+  "description_ms": "Ayam goreng air fryer yang crispy kemudian digaulkan dalam sos plum manis-masam dengan serai, daun limau purut dan cili.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 15,
+  "cook_time": 25,
+  "servings": 4,
+  "ingredients": [
+    "chicken",
+    "black pepper",
+    "oyster sauce",
+    "large red chilli",
+    "bird's eye chilli",
+    "shallot",
+    "garlic",
+    "water",
+    "plum sauce",
+    "sweet soy sauce",
+    "fish sauce",
+    "lemongrass",
+    "kaffir lime leaf",
+    "cooking oil"
+  ],
+  "steps": [
+    "Marinate the chicken with black pepper and oyster sauce; air-fry at 200°C for 20 minutes until crispy and golden brown.",
+    "Chop 6 large chillies, 8 bird's eye chillies, 1 onion and 4 garlic cloves.",
+    "Sauté the chopped aromatics until soft and the chilli is cooked.",
+    "Add water, 4 tbsp plum sauce, 1 tbsp oyster sauce, 1 tbsp sweet soy sauce and 1 tbsp fish sauce; stir to combine.",
+    "Add 2 sliced lemongrass stalks, 4 more bird's eye chillies and 2–3 kaffir lime leaves.",
+    "Add the crispy chicken and toss until evenly coated. Serve immediately."
+  ],
+  "steps_ms": [
+    "Perap ayam dengan black pepper dan sos tiram; bakar dalam air fryer pada suhu 200°C selama 20 minit sehingga crispy golden brown.",
+    "Chop 6 biji lada besar, 8 biji cili padi, 1 biji bawang merah dan 4 ulas bawang putih.",
+    "Tumis semua bahan yang dah dihacam sehingga layu dan cili masak.",
+    "Masukkan air, 4 sudu sos plum, 1 sudu sos tiram, 1 sudu kicap manis dan 1 sudu sos ikan; kacau sebati.",
+    "Masukkan 2 batang serai yang dihiris, 4 biji cili padi lagi dan 2-3 helai daun limau purut.",
+    "Masukkan ayam crispy dan gaul sehingga rata. Hidang segera."
+  ],
+  "tags": [
+    "halal",
+    "chicken",
+    "plum sauce",
+    "air fryer",
+    "sweet",
+    "spicy",
+    "malaysian",
+    "ramadan",
+    "sahur"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "chicken",
+      "name_ms": "ayam",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated"
+    },
+    {
+      "name": "black pepper",
+      "name_ms": "black pepper",
+      "quantity": null,
+      "unit": null,
+      "note": "for marinade; to taste"
+    },
+    {
+      "name": "oyster sauce",
+      "name_ms": "sos tiram",
+      "quantity": null,
+      "unit": null,
+      "note": "for marinade; 1 tbsp for sauce"
+    },
+    {
+      "name": "large red chilli",
+      "name_ms": "lada besar",
+      "quantity": 6,
+      "unit": null,
+      "note": "chopped for sauce"
+    },
+    {
+      "name": "bird's eye chilli",
+      "name_ms": "cili padi",
+      "quantity": 12,
+      "unit": null,
+      "note": "8 chopped for sauce; 4 more added as aromatics"
+    },
+    {
+      "name": "shallot",
+      "name_ms": "bawang merah",
+      "quantity": 1,
+      "unit": null,
+      "note": "chopped"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 4,
+      "unit": "clove",
+      "note": "chopped"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": null,
+      "unit": null,
+      "note": "a little for sauce"
+    },
+    {
+      "name": "plum sauce",
+      "name_ms": "sos plum",
+      "quantity": 4,
+      "unit": "tbsp",
+      "note": "any brand"
+    },
+    {
+      "name": "sweet soy sauce",
+      "name_ms": "kicap manis",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "fish sauce",
+      "name_ms": "sos ikan",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "lemongrass",
+      "name_ms": "serai",
+      "quantity": 2,
+      "unit": null,
+      "note": "sliced; aromatic"
+    },
+    {
+      "name": "kaffir lime leaf",
+      "name_ms": "daun limau purut",
+      "quantity": 3,
+      "unit": null,
+      "note": "2-3 leaves"
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": "for sautéing"
+    }
+  ]
+}

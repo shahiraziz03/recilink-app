@@ -1,0 +1,135 @@
+{
+  "video_id": "7478580043820616967",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "beef quantity not stated; number of wraps not stated; cook/prep times estimated; flour tortilla substituted for taco shell",
+  "title": "Smash Burger Tacos",
+  "title_ms": "Smash Burger Tacos",
+  "description": "Thin, crispy smashed beef patties cooked inside a folded flour tortilla — a fusion of burger and taco with cheese, sauce and lettuce.",
+  "description_ms": "Patty daging nipis yang dihempas dan garing dimasak di dalam tortilla yang dilipat — gabungan burger dan taco dengan cheese, sos dan salad.",
+  "cuisine": "Fusion",
+  "difficulty": "Easy",
+  "prep_time": 15,
+  "cook_time": 15,
+  "servings": 4,
+  "ingredients": [
+    "minced beef",
+    "salt",
+    "black pepper",
+    "garlic powder",
+    "cooking oil",
+    "flour tortilla",
+    "processed cheese",
+    "mayonnaise",
+    "chilli sauce",
+    "lettuce",
+    "tomato"
+  ],
+  "steps": [
+    "Season minced beef with salt, black pepper and garlic powder; shape into loose balls.",
+    "Heat a flat griddle or pan; add a little oil.",
+    "Place a ball of beef on the pan; immediately press flat with a spatula (smash) until very thin.",
+    "Place a flour tortilla on top of the patty; press down.",
+    "When the beef is seared on one side, flip the whole thing (tortilla side down) to toast the tortilla.",
+    "Lay a slice of cheese on the beef; fold the tortilla in half.",
+    "Serve with mayonnaise, chilli sauce, shredded lettuce and diced tomato."
+  ],
+  "steps_ms": [
+    "Perasa daging cincang dengan garam, black pepper dan garlic powder; bentuk menjadi bebola longgar.",
+    "Panaskan griddle atau kuali rata; masukkan sedikit minyak.",
+    "Letakkan bebola daging di atas kuali; terus hempas rata dengan pengepit (smash) sehingga sangat nipis.",
+    "Letakkan tortilla di atas patty; tekan.",
+    "Bila daging dah garing di satu sisi, balik kesemuanya (sisi tortilla ke bawah) untuk bakar tortilla.",
+    "Letakkan sekeping cheese di atas daging; lipat tortilla jadi dua.",
+    "Hidang dengan mayo, sos cili, hirisan salad dan tomato kiub."
+  ],
+  "tags": [
+    "halal",
+    "beef",
+    "burger",
+    "taco",
+    "fusion",
+    "western",
+    "ramadan",
+    "easy"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "minced beef",
+      "name_ms": "daging cincang",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "black pepper",
+      "name_ms": "black pepper",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "garlic powder",
+      "name_ms": "garlic powder",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": "a little for griddle"
+    },
+    {
+      "name": "flour tortilla",
+      "name_ms": "roti wrap",
+      "quantity": null,
+      "unit": null,
+      "note": "number not stated"
+    },
+    {
+      "name": "processed cheese",
+      "name_ms": "cheese",
+      "quantity": null,
+      "unit": null,
+      "note": "1 slice per taco"
+    },
+    {
+      "name": "mayonnaise",
+      "name_ms": "mayonis",
+      "quantity": null,
+      "unit": null,
+      "note": "for serving"
+    },
+    {
+      "name": "chilli sauce",
+      "name_ms": "sos cili",
+      "quantity": null,
+      "unit": null,
+      "note": "for serving"
+    },
+    {
+      "name": "lettuce",
+      "name_ms": "salad",
+      "quantity": null,
+      "unit": null,
+      "note": "shredded"
+    },
+    {
+      "name": "tomato",
+      "name_ms": "tomato",
+      "quantity": null,
+      "unit": null,
+      "note": "diced"
+    }
+  ]
+}

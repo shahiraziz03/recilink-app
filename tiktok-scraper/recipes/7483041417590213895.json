@@ -1,0 +1,199 @@
+{
+  "video_id": "7483041417590213895",
+  "is_recipe": true,
+  "needs_review": false,
+  "review_notes": "sesame seeds optional; vegetables (sweet onion, carrot, water spinach) quantities flexible; times estimated",
+  "title": "Fritters (Cucur) with Thai Dipping Sauce",
+  "title_ms": "Colek Malas (Cucur dengan Sos Thai)",
+  "description": "Simple yeasted vegetable fritters made with 1 kg flour and 1 L water, fried until golden, served with a tangy-sweet Thai-style dipping sauce.",
+  "description_ms": "Cucur ragi yang mudah dan sedap, dibuat dengan 1 kg tepung dan 1 liter air, digoreng garing dan dicicah dengan sos Thai yang pedas-masam-manis.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 70,
+  "cook_time": 20,
+  "servings": 10,
+  "ingredients": [
+    "all-purpose flour",
+    "yeast",
+    "sugar",
+    "salt",
+    "seasoning powder",
+    "onion",
+    "carrot",
+    "water spinach",
+    "water",
+    "cooking oil",
+    "chilli sauce",
+    "bird's eye chilli",
+    "garlic",
+    "palm sugar",
+    "soy sauce",
+    "fish sauce",
+    "cornstarch",
+    "lime",
+    "sesame seeds"
+  ],
+  "steps": [
+    "Combine 1 kg all-purpose flour, 1 packet yeast, 2 tbsp sugar, salt and seasoning powder to taste in a large bowl.",
+    "Grate the sweet onion and carrot; roughly chop the water spinach. Add to the flour mixture.",
+    "Add 1 L water and mix until a thick batter forms. Cover and rest for 1 hour until the batter rises.",
+    "Fry spoonfuls in hot oil until deep golden and cooked through, turning once. Drain.",
+    "[Sauce] Combine 1 cup Thai sweet chilli sauce, 3 bird's eye chillies, 2 garlic cloves, 0.5 cup water, 2 tbsp palm sugar, 1 tbsp soy sauce, 1 tbsp fish sauce, salt and seasoning powder in a pot; bring to a boil.",
+    "Stir in a cornstarch slurry to thicken, remove from heat, then squeeze in juice of 0.5 lime.",
+    "Optionally sprinkle sesame seeds into the sauce before serving."
+  ],
+  "steps_ms": [
+    "Campurkan 1 kg tepung gandum, 1 paket yis, 2 sudu besar gula, garam dan serbuk perasa secukupnya dalam mangkuk besar.",
+    "Sagat bawang Holland dan carrot; potong kasar kangkung. Masukkan ke dalam tepung.",
+    "Tuang 1 liter air dan gaul sehingga jadi adunan pekat. Tutup dan rehatkan selama 1 jam sehingga adunan naik.",
+    "Goreng sesudu adunan dalam minyak panas sehingga keemasan gelap dan masak, balikkan sekali. Toskan.",
+    "[Sos] Campurkan 1 cawan sos Thai, 3 cili padi, 2 ulas bawang putih, setengah cawan air, 2 sudu besar gula Melaka, 1 sudu kicap, 1 sudu sos ikan, garam dan serbuk perasa dalam periuk; masak sehingga mendidih.",
+    "Masukkan air tepung jagung untuk memekatkan, padamkan api, kemudian perah jus separuh biji limau nipis.",
+    "Tabur bijan dalam sos sebelum dihidang (pilihan)."
+  ],
+  "tags": [
+    "halal",
+    "snack",
+    "fritters",
+    "fried",
+    "vegetarian",
+    "malaysian",
+    "ramadan",
+    "moreh"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "all-purpose flour",
+      "name_ms": "tepung gandum",
+      "quantity": 1000,
+      "unit": "g",
+      "note": "1 kg"
+    },
+    {
+      "name": "yeast",
+      "name_ms": "yis",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 packet"
+    },
+    {
+      "name": "sugar",
+      "name_ms": "gula",
+      "quantity": 2,
+      "unit": "tbsp",
+      "note": "for batter"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "seasoning powder",
+      "name_ms": "serbuk perasa",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "onion",
+      "name_ms": "bawang holland",
+      "quantity": null,
+      "unit": null,
+      "note": "grated; quantity flexible"
+    },
+    {
+      "name": "carrot",
+      "name_ms": "carrot",
+      "quantity": null,
+      "unit": null,
+      "note": "grated; quantity flexible"
+    },
+    {
+      "name": "water spinach",
+      "name_ms": "kangkung",
+      "quantity": null,
+      "unit": null,
+      "note": "roughly chopped; bean sprouts can be added too"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": 1000,
+      "unit": "ml",
+      "note": "1 L for batter (ratio: 1 kg flour : 1 L water)"
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": "deep frying"
+    },
+    {
+      "name": "chilli sauce",
+      "name_ms": "sos cili",
+      "quantity": 1,
+      "unit": "cup",
+      "note": "for dipping sauce; use the brand with a rooster logo"
+    },
+    {
+      "name": "bird's eye chilli",
+      "name_ms": "cili padi",
+      "quantity": 3,
+      "unit": null,
+      "note": "for sauce"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 2,
+      "unit": "clove",
+      "note": "for sauce"
+    },
+    {
+      "name": "palm sugar",
+      "name_ms": "gula melaka",
+      "quantity": 2,
+      "unit": "tbsp",
+      "note": "for sauce"
+    },
+    {
+      "name": "soy sauce",
+      "name_ms": "kicap",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": "for sauce"
+    },
+    {
+      "name": "fish sauce",
+      "name_ms": "sos ikan",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": "for sauce"
+    },
+    {
+      "name": "cornstarch",
+      "name_ms": "tepung jagung",
+      "quantity": null,
+      "unit": null,
+      "note": "slurry to thicken sauce"
+    },
+    {
+      "name": "lime",
+      "name_ms": "limau nipis",
+      "quantity": 0.5,
+      "unit": null,
+      "note": "juice; for sauce"
+    },
+    {
+      "name": "sesame seeds",
+      "name_ms": "bijan",
+      "quantity": null,
+      "unit": null,
+      "note": "optional garnish in sauce"
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "video_id": "7476807227114835218",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "chicken quantity not stated",
+  "title": "Chicken Paprik (Ayam Paprik)",
+  "title_ms": "Ayam Paprik",
+  "description": "Thai-influenced stir-fried chicken with lemongrass, blended chilli, oyster sauce and kaffir lime leaf — aromatic and slightly spicy.",
+  "description_ms": "Ayam paprik gaya Thai yang ditumis bersama serai, cili kisar, sos tiram dan daun limau purut — wangi dan sedikit pedas.",
+  "cuisine": "Fusion",
+  "difficulty": "Easy",
+  "prep_time": 10,
+  "cook_time": 15,
+  "servings": 3,
+  "ingredients": [
+    "chicken",
+    "cooking oil",
+    "onion",
+    "garlic",
+    "lemongrass",
+    "blended chilli",
+    "oyster sauce",
+    "tomato sauce",
+    "chilli sauce",
+    "fish sauce",
+    "kaffir lime leaf",
+    "bird's eye chilli"
+  ],
+  "steps": [
+    "Sauté 0.5 onion (bawang Holland), 3 garlic cloves and 1 lemongrass stalk in hot oil.",
+    "Add 1 tbsp blended chilli; fry until fragrant.",
+    "Add chicken pieces; stir-fry until sealed.",
+    "Add 1 tbsp oyster sauce, 1 tbsp tomato sauce, 1 tbsp chilli sauce and a dash of fish sauce.",
+    "Add 2–3 kaffir lime leaves and bird's eye chilli; toss and cook until the chicken is done.",
+    "Serve with rice."
+  ],
+  "steps_ms": [
+    "Tumis setengah biji bawang Holland, 3 ulas bawang putih dan 1 batang serai dalam minyak panas.",
+    "Masukkan 1 sudu cili kisar; goreng sehingga wangi.",
+    "Masukkan kepingan ayam; tumis sehingga bertukar warna.",
+    "Masukkan 1 sudu sos tiram, 1 sudu sos tomato, 1 sudu sos cili dan sedikit sos ikan.",
+    "Masukkan 2-3 helai daun limau purut dan cili padi; gaul dan masak sehingga ayam masak.",
+    "Hidang bersama nasi."
+  ],
+  "tags": [
+    "halal",
+    "chicken",
+    "stir-fry",
+    "thai",
+    "fusion",
+    "malaysian",
+    "ramadan",
+    "sahur"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "chicken",
+      "name_ms": "ayam",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated"
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "onion",
+      "name_ms": "bawang holland",
+      "quantity": 0.5,
+      "unit": null,
+      "note": "half a Holland onion"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 3,
+      "unit": "clove",
+      "note": ""
+    },
+    {
+      "name": "lemongrass",
+      "name_ms": "serai",
+      "quantity": 1,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "blended chilli",
+      "name_ms": "cili kisar",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "oyster sauce",
+      "name_ms": "sos tiram",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "tomato sauce",
+      "name_ms": "sos tomato",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "chilli sauce",
+      "name_ms": "sos cili",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "fish sauce",
+      "name_ms": "sos ikan",
+      "quantity": null,
+      "unit": null,
+      "note": "a dash"
+    },
+    {
+      "name": "kaffir lime leaf",
+      "name_ms": "daun limau purut",
+      "quantity": null,
+      "unit": null,
+      "note": "2-3 leaves"
+    },
+    {
+      "name": "bird's eye chilli",
+      "name_ms": "cili padi",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    }
+  ]
+}

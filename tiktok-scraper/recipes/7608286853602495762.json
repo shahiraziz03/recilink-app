@@ -1,0 +1,185 @@
+{
+  "video_id": "7608286853602495762",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "chicken quantity not stated; cassava shoots optional and not quantified; coconut milk for gravy stated as '2-3 sudu santan'",
+  "title": "Padang-Style Coconut Poached Chicken (Ayam Pop)",
+  "title_ms": "Ayam Pop",
+  "description": "Tender chicken poached in coconut water and coconut milk, served with a rich fried sambal and a silky coconut milk gravy — a classic Padang restaurant favourite.",
+  "description_ms": "Ayam yang direbus dalam air kelapa dan santan sehingga lembut, dihidang dengan sambal goreng yang kaya dan kuah santan yang licin — kegemaran restoran nasi Padang.",
+  "cuisine": "Indonesian",
+  "difficulty": "Medium",
+  "prep_time": 20,
+  "cook_time": 35,
+  "servings": 4,
+  "ingredients": [
+    "chicken",
+    "lemongrass",
+    "ginger",
+    "garlic",
+    "coconut water",
+    "coconut milk",
+    "salt",
+    "tomato",
+    "bird's eye chilli",
+    "shallot",
+    "shrimp paste",
+    "kaffir lime leaf",
+    "water",
+    "cornstarch",
+    "sugar",
+    "seasoning powder",
+    "cassava shoots"
+  ],
+  "steps": [
+    "Place chicken in a pot with 4 bruised lemongrass stalks, a knob of ginger, 5 bruised garlic cloves, 3 cup coconut water, 1/4 cup coconut milk and 1 tsp salt.",
+    "Simmer until the chicken is cooked through; remove chicken and set aside. Reserve the poaching liquid.",
+    "[Sambal] Blend 1 tomato, 15 bird's eye chillies, 1 onion, 5 garlic cloves and 1 roasted shrimp paste block with a little oil (not water).",
+    "Fry the sambal paste over medium heat, adding 2 sliced kaffir lime leaves; cook until the oil separates and the colour is deep.",
+    "Add a little water and 2–3 tbsp coconut milk; season with salt, sugar and seasoning powder. Continue cooking until glossy and the oil separates.",
+    "[Kuah] Add coconut milk (0.5 small box), sugar and water to the reserved poaching liquid; thicken with a cornstarch slurry.",
+    "Optionally boil cassava shoots in salted water and serve alongside.",
+    "Plate the chicken; top with sambal and pour the coconut milk gravy over."
+  ],
+  "steps_ms": [
+    "Masukkan ayam dalam periuk bersama 4 batang serai diketuk, seketul halia, 5 ulas bawang putih diketuk, 3 cawan air kelapa, 1/4 cawan santan dan 1 sudu kecil garam.",
+    "Rebus sehingga ayam masak; angkat ayam dan ketepikan. Simpan air rebusan.",
+    "[Sambal] Blend 1 biji tomato, 15 biji cili padi, 1 biji bawang merah, 5 ulas bawang putih dan 1 ketul belacan yang dibakar dengan sedikit minyak (bukan air).",
+    "Goreng pes sambal atas api sederhana bersama 2 helai daun limau purut yang dihiris; masak sehingga pecah minyak dan warna gelap.",
+    "Tambah sedikit air dan 2-3 sudu santan; tambah garam, gula dan serbuk perasa. Sambung masak sehingga berkilat dan pecah minyak.",
+    "[Kuah] Masukkan santan (setengah kotak kecil), gula dan air ke dalam air rebusan ayam tadi; pekatkan dengan air tepung jagung.",
+    "Boleh rebus pucuk ubi kayu dalam air bergaram dan hidang bersama (pilihan).",
+    "Susun ayam di atas pinggan; letak sambal di atas dan tuang kuah santan."
+  ],
+  "tags": [
+    "halal",
+    "chicken",
+    "coconut milk",
+    "padang",
+    "indonesian",
+    "sambal",
+    "malaysian",
+    "raya"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "chicken",
+      "name_ms": "ayam",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated"
+    },
+    {
+      "name": "lemongrass",
+      "name_ms": "serai",
+      "quantity": 4,
+      "unit": null,
+      "note": "bruised; for poaching"
+    },
+    {
+      "name": "ginger",
+      "name_ms": "halia",
+      "quantity": null,
+      "unit": null,
+      "note": "1 knob; bruised; for poaching"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 10,
+      "unit": "clove",
+      "note": "5 bruised for poaching; 5 blended for sambal"
+    },
+    {
+      "name": "coconut water",
+      "name_ms": "air kelapa",
+      "quantity": 3,
+      "unit": "cup",
+      "note": "for poaching"
+    },
+    {
+      "name": "coconut milk",
+      "name_ms": "santan",
+      "quantity": null,
+      "unit": null,
+      "note": "1/4 cup for poaching; 2-3 tbsp for sambal; 0.5 small box for kuah"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": 1,
+      "unit": "tsp",
+      "note": "for poaching; also to taste for sambal and kuah"
+    },
+    {
+      "name": "tomato",
+      "name_ms": "tomato",
+      "quantity": 1,
+      "unit": null,
+      "note": "for sambal"
+    },
+    {
+      "name": "bird's eye chilli",
+      "name_ms": "cili padi",
+      "quantity": 15,
+      "unit": null,
+      "note": "for sambal"
+    },
+    {
+      "name": "shallot",
+      "name_ms": "bawang merah",
+      "quantity": 1,
+      "unit": null,
+      "note": "for sambal"
+    },
+    {
+      "name": "shrimp paste",
+      "name_ms": "belacan",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 block; roasted; for sambal"
+    },
+    {
+      "name": "kaffir lime leaf",
+      "name_ms": "daun limau purut",
+      "quantity": 2,
+      "unit": null,
+      "note": "sliced; for sambal"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": null,
+      "unit": null,
+      "note": "for sambal and kuah"
+    },
+    {
+      "name": "cornstarch",
+      "name_ms": "tepung jagung",
+      "quantity": null,
+      "unit": null,
+      "note": "slurry to thicken kuah"
+    },
+    {
+      "name": "sugar",
+      "name_ms": "gula",
+      "quantity": null,
+      "unit": null,
+      "note": "for sambal and kuah"
+    },
+    {
+      "name": "seasoning powder",
+      "name_ms": "serbuk perasa",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "cassava shoots",
+      "name_ms": "pucuk ubi kayu",
+      "quantity": null,
+      "unit": null,
+      "note": "optional side; boiled in salted water"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "video_id": "7480808151659318536",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "number of parathas and bananas not stated; toppings are optional and not quantified",
+  "title": "Crispy Banana Egg Pancake (Thai-Style Paratha)",
+  "title_ms": "Crispy Thai Pancake dengan Pisang dan Telur",
+  "description": "A simple, crispy egg-and-banana filled paratha pancake made by pressing a frozen paratha flat and cooking over a very low flame until golden — no batter needed.",
+  "description_ms": "Roti paratha yang dilenyekkan nipis-nipis dan diisi dengan telur dan hirisan pisang, dimasak atas api paling kecil sehingga crispy keemasan.",
+  "cuisine": "Fusion",
+  "difficulty": "Easy",
+  "prep_time": 5,
+  "cook_time": 5,
+  "servings": 1,
+  "ingredients": [
+    "egg",
+    "banana",
+    "frozen paratha",
+    "sweetened condensed milk"
+  ],
+  "steps": [
+    "Crack 1 egg into a bowl, add sliced banana and mix lightly.",
+    "Take a frozen paratha (still in its plastic wrapper) and press it flat to thin it out; peel off one layer of plastic and place it in an unheated pan.",
+    "Peel off the remaining plastic, add the egg-banana mixture on top and fold in all four sides.",
+    "Cook over the lowest heat possible to avoid burning until the paratha is golden and crispy.",
+    "Slice and skewer with toothpicks; drizzle sweetened condensed milk or any topping of choice over the top."
+  ],
+  "steps_ms": [
+    "Pecahkan 1 biji telur ke dalam mangkuk, masukkan hirisan pisang dan kacau perlahan.",
+    "Ambil roti paratha (masih dalam plastiknya) dan lenyekkan sehingga nipis; buka 1 lapisan plastik dan letakkan dalam kuali yang belum dipanaskan.",
+    "Buka plastik yang tinggal, letakkan adunan telur-pisang di atas dan lipat semua tepi ke dalam.",
+    "Masak atas api paling kecil untuk elak hangus sehingga roti crispy keemasan.",
+    "Potong dan cucuk dengan lidi; tuangkan susu pekat manis atau topping pilihan di atas."
+  ],
+  "tags": [
+    "halal",
+    "dessert",
+    "snack",
+    "banana",
+    "egg",
+    "crispy",
+    "thai",
+    "ramadan"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "egg",
+      "name_ms": "telur",
+      "quantity": 1,
+      "unit": null,
+      "note": "per pancake"
+    },
+    {
+      "name": "banana",
+      "name_ms": "pisang",
+      "quantity": null,
+      "unit": null,
+      "note": "sliced; quantity not stated"
+    },
+    {
+      "name": "frozen paratha",
+      "name_ms": "roti paratha",
+      "quantity": null,
+      "unit": null,
+      "note": "number of parathas not stated"
+    },
+    {
+      "name": "sweetened condensed milk",
+      "name_ms": "krimer manis",
+      "quantity": null,
+      "unit": null,
+      "note": "optional topping; amount to taste"
+    }
+  ]
+}

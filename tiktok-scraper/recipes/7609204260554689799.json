@@ -1,0 +1,93 @@
+{
+  "video_id": "7609204260554689799",
+  "is_recipe": true,
+  "needs_review": false,
+  "review_notes": "sago quantity flexible; evaporated milk for serving not quantified; prep/cook times estimated",
+  "title": "Banana Sago in Palm Sugar Syrup (Pisang Sagu Gula Melaka)",
+  "title_ms": "Pisang Sagu Gula Melaka",
+  "description": "A refreshing cold dessert of soft banana pieces and sago pearls in a fragrant palm sugar syrup, served over ice with evaporated milk.",
+  "description_ms": "Pencuci mulut sejuk berupa kepingan pisang lembut dan sagu dalam sirup gula Melaka yang wangi, dihidang atas ais dengan susu cair.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 10,
+  "cook_time": 15,
+  "servings": 4,
+  "ingredients": [
+    "banana",
+    "palm sugar",
+    "water",
+    "sago pearls",
+    "salt",
+    "evaporated milk"
+  ],
+  "steps": [
+    "Cook sago pearls in boiling water until translucent; drain, rinse and set aside.",
+    "Place 4 small blocks palm sugar and 0.5 cup water in a pot; add sliced ripe bananas (from 5 bananas).",
+    "Cook until the bananas are soft and the palm sugar has dissolved into a syrup.",
+    "Add a pinch of salt.",
+    "Stir in the cooked sago.",
+    "Let cool; serve over ice with a generous pour of evaporated milk."
+  ],
+  "steps_ms": [
+    "Masak sagu dalam air mendidih sehingga lutsinar; toskan, bilas dan ketepikan.",
+    "Masukkan 4 ketul kecil gula Melaka dan setengah cawan air ke dalam periuk; masukkan hirisan pisang masak (dari 5 biji pisang).",
+    "Masak sehingga pisang lembut dan gula Melaka cair menjadi sirup.",
+    "Masukkan secubit garam.",
+    "Gaul masuk sagu yang sudah dimasak.",
+    "Biarkan sejuk; hidang atas ais dengan susu cair yang banyak."
+  ],
+  "tags": [
+    "halal",
+    "dessert",
+    "banana",
+    "sago",
+    "palm sugar",
+    "cold",
+    "malaysian",
+    "raya"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "banana",
+      "name_ms": "pisang",
+      "quantity": 5,
+      "unit": null,
+      "note": "very ripe; sliced"
+    },
+    {
+      "name": "palm sugar",
+      "name_ms": "gula melaka",
+      "quantity": 4,
+      "unit": null,
+      "note": "4 small blocks"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": 0.5,
+      "unit": "cup",
+      "note": "for syrup"
+    },
+    {
+      "name": "sago pearls",
+      "name_ms": "sagu",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity flexible"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "a pinch"
+    },
+    {
+      "name": "evaporated milk",
+      "name_ms": "susu cair",
+      "quantity": null,
+      "unit": null,
+      "note": "poured over when serving"
+    }
+  ]
+}

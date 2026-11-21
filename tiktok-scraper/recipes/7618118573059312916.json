@@ -1,0 +1,94 @@
+{
+  "video_id": "7618118573059312916",
+  "is_recipe": true,
+  "needs_review": false,
+  "review_notes": "sets at room temp in ~2 hrs then refrigerate; dragon fruit can be red or white; quantities all stated; prep/cook times estimated",
+  "title": "Dragon Fruit Jelly Pudding (Puding Buah Naga)",
+  "title_ms": "Puding Buah Naga",
+  "description": "A beautiful layered jelly pudding made with fresh dragon fruit blended into the jelly — sets to a gorgeous pink colour and needs no artificial colouring.",
+  "description_ms": "Puding jeli berlapis yang cantik dibuat dengan buah naga segar yang diblend masuk ke dalam jeli — warna merah jambu yang cantik semula jadi tanpa pewarna.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 30,
+  "cook_time": 15,
+  "servings": 8,
+  "ingredients": [
+    "jelly powder",
+    "sugar",
+    "water",
+    "dragon fruit",
+    "evaporated milk",
+    "sweetened condensed milk"
+  ],
+  "steps": [
+    "Blend the flesh of 1 dragon fruit (red or white) with 2 cup water until smooth.",
+    "Strain through a sieve; combine with 1.5 cup additional water.",
+    "Add 1 packet (10 g) jelly powder and 5 tbsp sugar; stir well.",
+    "Bring to a boil over medium heat, stirring continuously, until the jelly powder dissolves completely.",
+    "Remove from heat; pour into moulds or a large tray.",
+    "Allow to set at room temperature for about 2 hours, then refrigerate.",
+    "For the sauce: mix 0.5 cup evaporated milk and 0.5 cup sweetened condensed milk; serve drizzled over sliced jelly."
+  ],
+  "steps_ms": [
+    "Blend isi 1 biji buah naga (merah atau putih) dengan 2 cawan air sehingga lumat.",
+    "Tapis melalui penapis; campurkan dengan 1 cawan setengah air tambahan.",
+    "Masukkan 1 paket (10g) serbuk jeli dan 5 sudu gula; kacau rata.",
+    "Masak atas api sederhana sambil kacau berterusan sehingga serbuk jeli larut sepenuhnya.",
+    "Angkat dari api; tuang ke dalam acuan atau tray besar.",
+    "Biarkan set di suhu bilik kira-kira 2 jam, kemudian simpan dalam peti sejuk.",
+    "Untuk sos: gaul setengah cawan susu cair dan setengah cawan susu pekat manis; hidang dititis di atas jeli yang dipotong."
+  ],
+  "tags": [
+    "halal",
+    "dessert",
+    "jelly",
+    "dragon fruit",
+    "no-bake",
+    "malaysian",
+    "raya"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "jelly powder",
+      "name_ms": "serbuk jeli",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 packet (10 g); any brand"
+    },
+    {
+      "name": "sugar",
+      "name_ms": "gula",
+      "quantity": 5,
+      "unit": "tbsp",
+      "note": "adjust to taste"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": 3.5,
+      "unit": "cup",
+      "note": "2 cup for blending dragon fruit; 1.5 cup additional"
+    },
+    {
+      "name": "dragon fruit",
+      "name_ms": "buah naga",
+      "quantity": 1,
+      "unit": null,
+      "note": "red for pink colour; white also works"
+    },
+    {
+      "name": "evaporated milk",
+      "name_ms": "susu cair",
+      "quantity": 0.5,
+      "unit": "cup",
+      "note": "for sauce"
+    },
+    {
+      "name": "sweetened condensed milk",
+      "name_ms": "krimer manis",
+      "quantity": 0.5,
+      "unit": "cup",
+      "note": "for sauce"
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "video_id": "7479656713285569800",
+  "is_recipe": true,
+  "needs_review": false,
+  "review_notes": "kucai and taugeh quantities flexible; cook/prep times estimated",
+  "title": "Stir-Fried Flat Rice Noodles with Cockles (Kuey Teow Goreng Kerang)",
+  "title_ms": "Kuey Teow Goreng Kerang",
+  "description": "Classic wok-fried flat rice noodles with cockles, fish ball, egg, garlic chives and bean sprouts in a smoky dark soy sauce.",
+  "description_ms": "Kuetiau goreng klasik dengan kerang, fishball, telur, kucai dan taugeh dalam kicap karamel yang wangi.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 10,
+  "cook_time": 10,
+  "servings": 2,
+  "ingredients": [
+    "flat rice noodles",
+    "caramel soy sauce",
+    "sweet soy sauce",
+    "cooking oil",
+    "shallot",
+    "garlic",
+    "blended chilli",
+    "fish ball",
+    "cockles",
+    "oyster sauce",
+    "egg",
+    "garlic chives",
+    "bean sprouts"
+  ],
+  "steps": [
+    "Separate 1 packet of flat rice noodles; toss with 1 tbsp caramel soy sauce, 1 tbsp sweet soy sauce and a little oil.",
+    "Stir-fry the seasoned noodles in a hot wok briefly until the soy sauce is absorbed; remove and set aside.",
+    "Sauté 1 onion and 3 garlic cloves; add 1 tbsp blended chilli.",
+    "Add fish balls and cockles; toss until the cockles are just cooked.",
+    "Return the noodles to the wok; add a little extra oyster sauce and sweet soy sauce to taste.",
+    "Push everything to the side; crack in 1 egg and scramble it, then fold into the noodles.",
+    "Adjust seasoning; add garlic chives and bean sprouts. Serve with pickled chilli or sliced fresh chilli in soy sauce."
+  ],
+  "steps_ms": [
+    "Leraikan 1 paket kuetiau; gaul dengan 1 sudu kicap karamel, 1 sudu kicap manis dan sedikit minyak.",
+    "Goreng kuetiau yang dah dibumbui dalam kuali panas sebentar sehingga kicap meresap; angkat dan ketepikan.",
+    "Tumis 1 biji bawang merah dan 3 ulas bawang putih; masukkan 1 sudu cili kisar.",
+    "Masukkan fishball dan kerang; gaul sehingga kerang baru masak.",
+    "Masukkan balik kuetiau; tambah sedikit sos tiram dan kicap manis mengikut rasa.",
+    "Tolak ke tepi; pecahkan 1 biji telur dan scramble, kemudian gaul bersama kuetiau.",
+    "Laraskan perasa; masukkan kucai dan taugeh. Hidang dengan cili jeruk atau cili potong dalam kicap."
+  ],
+  "tags": [
+    "halal",
+    "noodles",
+    "cockles",
+    "stir-fry",
+    "malaysian",
+    "ramadan"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "flat rice noodles",
+      "name_ms": "kuetiau",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 packet; separated"
+    },
+    {
+      "name": "caramel soy sauce",
+      "name_ms": "kicap karamel",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": "for pre-seasoning noodles"
+    },
+    {
+      "name": "sweet soy sauce",
+      "name_ms": "kicap manis",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": "for pre-seasoning; more to taste during cooking"
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": "a little for noodles and sautéing"
+    },
+    {
+      "name": "shallot",
+      "name_ms": "bawang merah",
+      "quantity": 1,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 3,
+      "unit": "clove",
+      "note": ""
+    },
+    {
+      "name": "blended chilli",
+      "name_ms": "cili kisar",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "fish ball",
+      "name_ms": "fishball",
+      "quantity": null,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "cockles",
+      "name_ms": "kerang",
+      "quantity": null,
+      "unit": null,
+      "note": "can substitute prawn or chicken"
+    },
+    {
+      "name": "oyster sauce",
+      "name_ms": "sos tiram",
+      "quantity": null,
+      "unit": null,
+      "note": "a little to taste"
+    },
+    {
+      "name": "egg",
+      "name_ms": "telur",
+      "quantity": 1,
+      "unit": null,
+      "note": "scrambled into noodles"
+    },
+    {
+      "name": "garlic chives",
+      "name_ms": "kucai",
+      "quantity": null,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "bean sprouts",
+      "name_ms": "taugeh",
+      "quantity": null,
+      "unit": null,
+      "note": ""
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "video_id": "7608284402535107848",
+  "is_recipe": true,
+  "needs_review": false,
+  "review_notes": "cook_time from transcript (45 min steaming); prep_time estimated; servings estimated",
+  "title": "Steamed Caramel Pudding",
+  "title_ms": "Puding Karamel",
+  "description": "A creamy, smooth caramel pudding made with cream cheese, evaporated milk and bread, steamed until set and best served cold straight from the fridge.",
+  "description_ms": "Puding karamel berkrim yang diperbuat daripada campuran roti, krim cheese dan krimer sejat, dikukus sehingga lembut dan paling sedap dimakan sejuk dari peti ais.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 20,
+  "cook_time": 45,
+  "servings": 8,
+  "ingredients": [
+    "sugar",
+    "white bread",
+    "evaporated milk",
+    "egg",
+    "sweetened condensed milk",
+    "cream cheese",
+    "vanilla essence",
+    "salt"
+  ],
+  "steps": [
+    "Place 0.5 cup sugar in a dry pan and swirl over medium heat — do not stir with a spoon — until fully melted into golden caramel.",
+    "Immediately pour the hot caramel into a baking tin; it is extremely hot so handle with care.",
+    "Remove and discard the hard crusts from 2 slices of white bread.",
+    "Blend 2 cup evaporated milk, the trimmed bread, 4 eggs, 0.5 cup sweetened condensed milk, 0.5 cup cream cheese, 1 tsp vanilla essence, and a pinch of salt until completely smooth.",
+    "Strain the blended mixture through a sieve.",
+    "Rest a ladle underneath the stream and slowly pour the strained mixture into the caramel-lined tin to avoid splashing.",
+    "Wrap the tin tightly with aluminium foil.",
+    "Steam over medium-low heat for 45 minutes.",
+    "Allow to cool completely, then refrigerate for at least 2–3 hours before serving."
+  ],
+  "steps_ms": [
+    "Masukkan setengah cawan gula ke dalam kuali kering, gerak-gerakkan atas api sederhana — jangan kacau dengan sudu — sehingga gula cair dan jadi caramel keemasan.",
+    "Tuangkan caramel ke dalam loyang dengan segera; sangat panas jadi berhati-hati.",
+    "Potong dan buang bahagian keras tepi 2 keping roti putih.",
+    "Blend 2 cawan krimer sejat, roti yang dipotong, 4 biji telur, setengah cawan krimer manis, setengah cawan krim cheese, 1 sudu kecil esen vanila, dan garam sikit sehingga sebati.",
+    "Tapis adunan blend melalui penapis.",
+    "Letakkan senduk di bawah aliran dan tuang adunan yang ditapis ke dalam loyang beralas caramel secara perlahan.",
+    "Balut loyang dengan aluminium foil rapat-rapat.",
+    "Kukus atas api sederhana-kecil selama 45 minit.",
+    "Biarkan cool down sepenuhnya, kemudian simpan dalam peti sejuk sekurang-kurangnya 2–3 jam sebelum dihidang."
+  ],
+  "tags": ["halal", "dessert", "steamed", "pudding", "caramel", "ramadan", "raya"],
+  "ingredients_detailed": [
+    {"name": "sugar",                    "name_ms": "gula",         "quantity": 0.5, "unit": "cup",   "note": "for the caramel layer"},
+    {"name": "white bread",              "name_ms": "roti putih",   "quantity": 2,   "unit": "slice", "note": "hard crusts removed"},
+    {"name": "evaporated milk",          "name_ms": "krimer sejat", "quantity": 2,   "unit": "cup",   "note": "brand FNN"},
+    {"name": "egg",                      "name_ms": "telur",        "quantity": 4,   "unit": null,     "note": ""},
+    {"name": "sweetened condensed milk", "name_ms": "krimer manis", "quantity": 0.5, "unit": "cup",   "note": "brand FNN"},
+    {"name": "cream cheese",             "name_ms": "krim cheese",  "quantity": 0.5, "unit": "cup",   "note": ""},
+    {"name": "vanilla essence",          "name_ms": "esen vanila",  "quantity": 1,   "unit": "tsp",    "note": ""},
+    {"name": "salt",                     "name_ms": "garam",        "quantity": null,"unit": null,     "note": "to taste"}
+  ]
+}

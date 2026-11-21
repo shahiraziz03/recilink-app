@@ -1,0 +1,173 @@
+{
+  "video_id": "7516790452549438727",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "beef quantity not stated (described as 'raya leftover from freezer'); cook time estimated; servings estimated",
+  "title": "Spiced Braised Beef (Daging Belenggas)",
+  "title_ms": "Daging Belenggas",
+  "description": "Tender braised beef cooked in a sweet-savoury sauce of caramel soy, oyster sauce, and aromatics until the liquid reduces.",
+  "description_ms": "Daging yang direbus sehingga empuk kemudian dimasak dengan kicap karamel, sos tiram dan rempah sehingga kuah meresap dan pekat.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 10,
+  "cook_time": 45,
+  "servings": 4,
+  "ingredients": [
+    "beef",
+    "turmeric powder",
+    "cooking oil",
+    "garlic",
+    "ginger",
+    "caramel soy sauce",
+    "sweet soy sauce",
+    "chilli sauce",
+    "tomato sauce",
+    "oyster sauce",
+    "salt",
+    "seasoning powder",
+    "water",
+    "onion",
+    "bird's eye chilli",
+    "long beans"
+  ],
+  "steps": [
+    "Simmer the beef pieces for about 30 minutes until tender and the liquid has mostly reduced; drain.",
+    "Add 1 tsp turmeric powder and a little cooking oil; stir to coat and let the beef brown slightly.",
+    "Blend 7 cloves garlic with a knob of ginger.",
+    "Add the garlic-ginger blend to the beef; stir and cook briefly.",
+    "Add caramel soy sauce, sweet soy sauce, chilli sauce, tomato sauce and oyster sauce (use more oyster sauce for best flavour); stir to combine.",
+    "Season with salt and seasoning powder; if too dry, add a little water.",
+    "Add sliced sweet onion, bird's eye chillies and long beans; stir-fry until the vegetables are cooked and the sauce clings to the beef."
+  ],
+  "steps_ms": [
+    "Rebus daging lebih kurang 30 minit sehingga empuk dan air hampir kering; toskan.",
+    "Masukkan 1 sudu kecil serbuk kunyit dan sedikit minyak masak; gaul dan biarkan daging garing sikit.",
+    "Blend 7 ulas bawang putih dengan seketul halia.",
+    "Masukkan blend bawang putih-halia ke dalam daging; kacau dan masak sebentar.",
+    "Masukkan kicap karamel, kicap manis, sos cili, sos tomato dan sos tiram (lebihkan sos tiram untuk rasa lebih sedap); kacau sebati.",
+    "Tambah garam dan serbuk perasa; kalau terlalu kering masukkan sedikit air.",
+    "Masukkan hirisan bawang Holland, cili padi dan kacang panjang; tumis sehingga sayur masak dan sos melekat pada daging."
+  ],
+  "tags": [
+    "halal",
+    "beef",
+    "soy sauce",
+    "braised",
+    "malaysian",
+    "hari raya"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "beef",
+      "name_ms": "daging",
+      "quantity": null,
+      "unit": null,
+      "note": "quantity not stated; leftover from Hari Raya Haji"
+    },
+    {
+      "name": "turmeric powder",
+      "name_ms": "serbuk kunyit",
+      "quantity": 1,
+      "unit": "tsp",
+      "note": ""
+    },
+    {
+      "name": "cooking oil",
+      "name_ms": "minyak goreng",
+      "quantity": null,
+      "unit": null,
+      "note": "a little to brown the beef"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 7,
+      "unit": "clove",
+      "note": "blended with ginger"
+    },
+    {
+      "name": "ginger",
+      "name_ms": "halia",
+      "quantity": null,
+      "unit": null,
+      "note": "1 knob; blended with garlic"
+    },
+    {
+      "name": "caramel soy sauce",
+      "name_ms": "kicap karamel",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste; omit and use extra sweet soy sauce if unavailable"
+    },
+    {
+      "name": "sweet soy sauce",
+      "name_ms": "kicap manis",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "chilli sauce",
+      "name_ms": "sos cili",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "tomato sauce",
+      "name_ms": "sos tomato",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "oyster sauce",
+      "name_ms": "sos tiram",
+      "quantity": null,
+      "unit": null,
+      "note": "use more than other sauces for best flavour"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "seasoning powder",
+      "name_ms": "serbuk perasa",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": null,
+      "unit": null,
+      "note": "a little if sauce is too dry"
+    },
+    {
+      "name": "onion",
+      "name_ms": "bawang holland",
+      "quantity": 1,
+      "unit": null,
+      "note": "sliced"
+    },
+    {
+      "name": "bird's eye chilli",
+      "name_ms": "cili padi",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "long beans",
+      "name_ms": "kacang panjang",
+      "quantity": null,
+      "unit": null,
+      "note": ""
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "video_id": "7608279986633510162",
+  "is_recipe": true,
+  "needs_review": false,
+  "review_notes": "all quantities to taste; simple assembly",
+  "title": "Pink Lemonade",
+  "title_ms": "Pink Lemonade",
+  "description": "A classic sweet-sour pink lemonade coloured with a drop of food colouring — quick to make and refreshing for iftar.",
+  "description_ms": "Pink lemonade masam-manis klasik yang diwarnai dengan sedikit pewarna merah — cepat dibuat dan menyegarkan untuk berbuka.",
+  "cuisine": "Western",
+  "difficulty": "Easy",
+  "prep_time": 5,
+  "cook_time": 0,
+  "servings": 2,
+  "ingredients": [
+    "lemon",
+    "sugar syrup",
+    "water",
+    "red food colouring",
+    "ice"
+  ],
+  "steps": [
+    "Squeeze fresh lemon juice into a pitcher.",
+    "Add sugar syrup to taste and fill with cold water; stir.",
+    "Add a few drops of red food colouring for the pink colour.",
+    "Serve over ice."
+  ],
+  "steps_ms": [
+    "Perah jus lemon segar ke dalam jag.",
+    "Masukkan air gula secukup rasa dan isi dengan air sejuk; kacau.",
+    "Masukkan beberapa titik pewarna merah untuk warna pink.",
+    "Hidang atas ais."
+  ],
+  "tags": [
+    "halal",
+    "drink",
+    "cold",
+    "lemonade",
+    "western",
+    "ramadan",
+    "iftar",
+    "easy"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "lemon",
+      "name_ms": "lemon",
+      "quantity": null,
+      "unit": null,
+      "note": "squeezed fresh"
+    },
+    {
+      "name": "sugar syrup",
+      "name_ms": "air gula",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste; or dissolve sugar in a little hot water"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": null,
+      "unit": null,
+      "note": "cold"
+    },
+    {
+      "name": "red food colouring",
+      "name_ms": "pewarna merah",
+      "quantity": null,
+      "unit": null,
+      "note": "a few drops"
+    },
+    {
+      "name": "ice",
+      "name_ms": "ais",
+      "quantity": null,
+      "unit": null,
+      "note": ""
+    }
+  ]
+}

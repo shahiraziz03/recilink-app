@@ -1,0 +1,184 @@
+{
+  "video_id": "7477798778829851912",
+  "is_recipe": true,
+  "needs_review": true,
+  "review_notes": "Vietnamese mint and torch ginger bud quantities not stated; okra quantity not stated; cook/prep times estimated",
+  "title": "Sour and Spicy Chicken Soup (Asam Pedas Ayam)",
+  "title_ms": "Asam Pedas Ayam",
+  "description": "A thick, tangy and fiery Malay soup with a whole chicken, tamarind, Vietnamese mint and torch ginger bud for deep aroma.",
+  "description_ms": "Kuah asam pedas Melayu yang pekat dan masam-masam pedas dengan satu ekor ayam, asam jawa, daun kesum dan bunga kantan.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 20,
+  "cook_time": 30,
+  "servings": 5,
+  "ingredients": [
+    "shallot",
+    "garlic",
+    "ginger",
+    "fresh turmeric",
+    "bird's eye chilli",
+    "shrimp paste",
+    "lemongrass",
+    "blended chilli",
+    "chicken",
+    "salt",
+    "seasoning powder",
+    "water",
+    "tamarind paste",
+    "Vietnamese mint",
+    "torch ginger bud",
+    "tomato",
+    "okra"
+  ],
+  "steps": [
+    "Blend 2 large onions, 5 garlic cloves, a knob of ginger, a small piece of fresh turmeric, 3 bird's eye chillies and 1 small roasted shrimp paste block until smooth.",
+    "Sauté the blend with 2 bruised lemongrass stalks until fragrant.",
+    "Add blended chilli (the more, the redder the gravy); continue to cook.",
+    "Add 1 whole chicken (cut up) when the oil starts to separate; add salt, seasoning powder and a little water.",
+    "Add 1 tbsp tamarind paste; stir.",
+    "Add Vietnamese mint (daun kesum) and torch ginger bud (bunga kantan) — add generously for best aroma.",
+    "Once the gravy begins to thicken, add 1 tomato and okra (kacang bendi); cook until the vegetables are tender.",
+    "Serve hot with white rice."
+  ],
+  "steps_ms": [
+    "Blend 2 biji bawang merah besar, 5 ulas bawang putih, seketul halia, seketul kecil kunyit hidup, 3 biji cili padi dan 1 ketul kecil belacan yang sudah dibakar sehingga lumat.",
+    "Tumis blend bersama 2 batang serai yang diketuk sehingga wangi.",
+    "Masukkan cili kisar (lebih banyak = kuah lebih merah); sambung masak.",
+    "Masukkan 1 ekor ayam (dipotong) bila minyak dah mula pecah; tambah garam, serbuk perasa dan sedikit air.",
+    "Masukkan 1 sudu pes asam jawa; kacau.",
+    "Masukkan daun kesum dan bunga kantan — masukkan banyak-banyak untuk aroma terbaik.",
+    "Bila kuah mula pekat, masukkan 1 biji tomato dan kacang bendi; masak sehingga sayur lembut.",
+    "Hidang panas dengan nasi putih."
+  ],
+  "tags": [
+    "halal",
+    "chicken",
+    "sour",
+    "spicy",
+    "soup",
+    "malaysian",
+    "ramadan"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "shallot",
+      "name_ms": "bawang merah",
+      "quantity": 2,
+      "unit": null,
+      "note": "large; blended"
+    },
+    {
+      "name": "garlic",
+      "name_ms": "bawang putih",
+      "quantity": 5,
+      "unit": "clove",
+      "note": "blended"
+    },
+    {
+      "name": "ginger",
+      "name_ms": "halia",
+      "quantity": null,
+      "unit": null,
+      "note": "1 knob; blended"
+    },
+    {
+      "name": "fresh turmeric",
+      "name_ms": "kunyit hidup",
+      "quantity": null,
+      "unit": null,
+      "note": "small piece; blended"
+    },
+    {
+      "name": "bird's eye chilli",
+      "name_ms": "cili padi",
+      "quantity": 3,
+      "unit": null,
+      "note": "blended"
+    },
+    {
+      "name": "shrimp paste",
+      "name_ms": "belacan",
+      "quantity": null,
+      "unit": null,
+      "note": "1 small block; roasted and blended"
+    },
+    {
+      "name": "lemongrass",
+      "name_ms": "serai",
+      "quantity": 2,
+      "unit": null,
+      "note": "bruised; sautéed"
+    },
+    {
+      "name": "blended chilli",
+      "name_ms": "cili kisar",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste; more = redder gravy"
+    },
+    {
+      "name": "chicken",
+      "name_ms": "ayam",
+      "quantity": 1,
+      "unit": null,
+      "note": "1 whole chicken, cut up; or substitute any protein"
+    },
+    {
+      "name": "salt",
+      "name_ms": "garam",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "seasoning powder",
+      "name_ms": "serbuk perasa",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "water",
+      "name_ms": "air",
+      "quantity": null,
+      "unit": null,
+      "note": "a little for gravy"
+    },
+    {
+      "name": "tamarind paste",
+      "name_ms": "pes asam jawa",
+      "quantity": 1,
+      "unit": "tbsp",
+      "note": ""
+    },
+    {
+      "name": "Vietnamese mint",
+      "name_ms": "daun kesum",
+      "quantity": null,
+      "unit": null,
+      "note": "generous amount; quantity not stated"
+    },
+    {
+      "name": "torch ginger bud",
+      "name_ms": "bunga kantan",
+      "quantity": null,
+      "unit": null,
+      "note": "generous amount; quantity not stated"
+    },
+    {
+      "name": "tomato",
+      "name_ms": "tomato",
+      "quantity": 1,
+      "unit": null,
+      "note": ""
+    },
+    {
+      "name": "okra",
+      "name_ms": "kacang bendi",
+      "quantity": null,
+      "unit": null,
+      "note": "kacang bendi in transcript; quantity not stated"
+    }
+  ]
+}

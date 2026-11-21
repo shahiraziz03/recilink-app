@@ -1,0 +1,73 @@
+{
+  "video_id": "7608279986633510162",
+  "is_recipe": true,
+  "needs_review": false,
+  "review_notes": "quantities to taste; serve 1 tall glass",
+  "title": "Sirap Bandung Fizz",
+  "title_ms": "Sirap Bandung Fizz",
+  "description": "A fizzy take on the classic Malaysian Sirap Bandung — rose syrup and evaporated milk topped with sparkling water.",
+  "description_ms": "Versi berkarbonat Sirap Bandung Malaysia — sirap ros dan susu cair ditambah air berkarbonat.",
+  "cuisine": "Malaysian",
+  "difficulty": "Easy",
+  "prep_time": 3,
+  "cook_time": 0,
+  "servings": 1,
+  "ingredients": [
+    "roselle syrup",
+    "evaporated milk",
+    "sparkling water",
+    "ice"
+  ],
+  "steps": [
+    "Fill a glass with ice.",
+    "Add a generous pour of rose/roselle syrup.",
+    "Add evaporated milk; stir briefly.",
+    "Top with sparkling water and serve."
+  ],
+  "steps_ms": [
+    "Isi gelas dengan ais.",
+    "Masukkan sirap ros secara banyak.",
+    "Masukkan susu cair; kacau sebentar.",
+    "Tambah air berkarbonat dan hidang."
+  ],
+  "tags": [
+    "halal",
+    "drink",
+    "cold",
+    "bandung",
+    "malaysian",
+    "ramadan",
+    "iftar",
+    "easy"
+  ],
+  "ingredients_detailed": [
+    {
+      "name": "roselle syrup",
+      "name_ms": "sirap ros",
+      "quantity": null,
+      "unit": null,
+      "note": "generous pour; any rose/roselle syrup"
+    },
+    {
+      "name": "evaporated milk",
+      "name_ms": "susu cair",
+      "quantity": null,
+      "unit": null,
+      "note": "to taste"
+    },
+    {
+      "name": "sparkling water",
+      "name_ms": "air berkarbonat",
+      "quantity": null,
+      "unit": null,
+      "note": "to top up"
+    },
+    {
+      "name": "ice",
+      "name_ms": "ais",
+      "quantity": null,
+      "unit": null,
+      "note": "to fill glass"
+    }
+  ]
+}
