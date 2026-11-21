@@ -16,9 +16,11 @@ class Recipe(Base):
     cook_time = Column(Integer, nullable=True)        # minutes
     servings = Column(Integer, default=4)
     ingredients = Column(JSON, nullable=False)        # list of strings
+    ingredient_details = Column(JSON, nullable=True)  # list of dicts: name, quantity, unit, note
     steps = Column(JSON, nullable=False)              # list of strings
     tags = Column(JSON, nullable=True)                # list of strings
     image_url = Column(String, nullable=True)
+    source_url = Column(String, nullable=True)
     source = Column(String, default="dataset")        # "dataset" or "user"
     contributor_id = Column(Integer, ForeignKey("users.id"), nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())

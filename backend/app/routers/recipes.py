@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func
-from typing import List, Optional
+from typing import List, Optional, Union
 from pydantic import BaseModel
 from datetime import datetime
 
@@ -57,6 +57,13 @@ router = APIRouter(prefix="/recipes", tags=["Recipes"])
 
 # --- Schemas ---
 
+class IngredientDetail(BaseModel):
+    name: str
+    quantity: Optional[Union[float, int]] = None
+    unit: Optional[str] = None
+    note: Optional[str] = None
+
+
 class RecipeResponse(BaseModel):
     id: int
     title: str
@@ -67,9 +74,11 @@ class RecipeResponse(BaseModel):
     cook_time: Optional[int]
     servings: Optional[int]
     ingredients: list
+    ingredient_details: Optional[List[IngredientDetail]] = None
     steps: list
     tags: Optional[list]
     image_url: Optional[str]
+    source_url: Optional[str] = None
     source: str
     contributor_id: Optional[int]
     contributor_username: Optional[str] = None
@@ -125,9 +134,11 @@ class RecipeCreate(BaseModel):
     cook_time: Optional[int] = None
     servings: Optional[int] = 4
     ingredients: list
+    ingredient_details: Optional[List[IngredientDetail]] = None
     steps: list
     tags: Optional[list] = []
     image_url: Optional[str] = None
+    source_url: Optional[str] = None
 
 class IngredientMatchRequest(BaseModel):
     ingredients: List[str]
@@ -487,6 +498,13 @@ async def create_recipe(
     """
     # 1. Save to PostgreSQL
     normalized_title_val = normalize_title(data.title)
+    ingredient_details_data = None
+    if data.ingredient_details is not None:
+        ingredient_details_data = [
+            item.model_dump() if hasattr(item, "model_dump") else item
+            for item in data.ingredient_details
+        ]
+
     new_recipe = Recipe(
         title=normalized_title_val,
         description=data.description,
@@ -496,9 +514,11 @@ async def create_recipe(
         cook_time=data.cook_time,
         servings=data.servings,
         ingredients=[normalize_title(ing) for ing in data.ingredients if normalize_title(ing)],
+        ingredient_details=ingredient_details_data,
         steps=data.steps,
         tags=data.tags,
         image_url=data.image_url,
+        source_url=data.source_url,
         source="user",
         contributor_id=current_user.id,
     )
@@ -553,9 +573,16 @@ async def update_recipe(
     recipe.cook_time = data.cook_time
     recipe.servings = data.servings
     recipe.ingredients = normalized_ingredients
+    if data.ingredient_details is not None:
+        recipe.ingredient_details = [
+            item.model_dump() if hasattr(item, "model_dump") else item
+            for item in data.ingredient_details
+        ]
     recipe.steps = data.steps
     recipe.tags = data.tags
     recipe.image_url = data.image_url
+    if data.source_url is not None:
+        recipe.source_url = data.source_url
 
     try:
         await db.flush()
