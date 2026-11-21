@@ -35,22 +35,42 @@ export async function createRecipePost(recipeData, postData, token) {
     postPayload.cover_photo_url = postData.cover_photo_url
   }
 
-  const postRes = await fetch(`${BASE_URL}/posts`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(postPayload),
-  })
+  try {
+    const postRes = await fetch(`${BASE_URL}/posts`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(postPayload),
+    })
 
-  if (!postRes.ok) {
-    const err = await postRes.json().catch(() => ({}))
-    throw new Error(err.detail || 'Failed to create post')
+    if (!postRes.ok) {
+      const err = await postRes.json().catch(() => ({}))
+      let detailMsg = 'Failed to create post'
+      if (typeof err.detail === 'string') {
+        detailMsg = err.detail
+      } else if (Array.isArray(err.detail) && err.detail.length > 0) {
+        detailMsg = err.detail[0].msg || JSON.stringify(err.detail)
+      } else if (err.message) {
+        detailMsg = err.message
+      }
+      throw new Error(detailMsg)
+    }
+
+    const postDataResponse = await postRes.json()
+    return postDataResponse
+  } catch (error) {
+    // If step 2 (POST /posts) fails, delete the recipe that was just created
+    await fetch(`${BASE_URL}/recipes/${recipe.id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).catch(() => {})
+
+    throw error
   }
-
-  const postDataResponse = await postRes.json()
-  return postDataResponse
 }
 
 /**

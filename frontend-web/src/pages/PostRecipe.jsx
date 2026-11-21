@@ -285,6 +285,11 @@ export default function PostRecipe() {
 
   // ── Submit ─────────────────────────────────────────────
   const handleSubmit = async () => {
+    if (!videoUrl && !coverUrl) {
+      setError('Please add a photo or video to share your recipe.')
+      return
+    }
+
     if (!token) {
       setError('You must be logged in to post a recipe.')
       return
@@ -740,9 +745,12 @@ export default function PostRecipe() {
                 <div className="space-y-5">
                   {/* Media Upload Container */}
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-[#594139] uppercase tracking-wide">
-                      Cover Photo or Video
-                    </label>
+                    <div className="flex items-center justify-between">
+                      <label className="text-xs font-semibold text-[#594139] uppercase tracking-wide">
+                        Cover Photo or Video <span className="text-red-500">*</span>
+                      </label>
+                      <span className="text-xs text-red-500 font-medium">Required</span>
+                    </div>
 
                     <input
                       ref={fileInputRef}
@@ -823,7 +831,7 @@ export default function PostRecipe() {
                           type="button"
                           onClick={handleRemoveMedia}
                           aria-label="Remove media"
-                          className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center transition-colors shadow-md z-10 focus:outline-none focus:ring-2 focus:ring-[#FF6B35]"
+                          className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center transition-colors shadow-md z-30 focus:outline-none focus:ring-2 focus:ring-[#FF6B35]"
                         >
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -1052,34 +1060,50 @@ export default function PostRecipe() {
                 </svg>
               </button>
             ) : (
-              <button
-                id="submit-post-btn"
-                type="button"
-                onClick={handleSubmit}
-                disabled={isSubmitting || !token || uploading}
-                className={`flex items-center gap-2 px-7 py-2.5 rounded-full text-sm font-bold transition-all duration-200 ${
-                  isSubmitting || !token
-                    ? 'bg-[#fde3db] text-[#c4a39a] cursor-not-allowed'
-                    : 'bg-gradient-to-r from-[#FF6B35] to-[#ff9a72] text-white shadow-md hover:shadow-lg active:scale-95 hover:from-[#e55928] hover:to-[#FF6B35]'
-                }`}
-              >
-                {isSubmitting ? (
-                  <>
-                    <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                    </svg>
-                    Posting...
-                  </>
-                ) : (
-                  <>
-                    Post Recipe
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.269 20.876L5.999 12zm0 0h7.5" />
-                    </svg>
-                  </>
+              <div className="flex items-center gap-3">
+                {!coverUrl && !videoUrl && !uploading && !isSubmitting && (
+                  <span className="text-xs text-red-500 font-medium">
+                    Add a photo or video to continue
+                  </span>
                 )}
-              </button>
+                <button
+                  id="submit-post-btn"
+                  type="button"
+                  onClick={handleSubmit}
+                  disabled={isSubmitting || !token || uploading || (!coverUrl && !videoUrl)}
+                  title={!coverUrl && !videoUrl && !uploading && !isSubmitting ? 'Add a photo or video to continue' : undefined}
+                  className={`flex items-center gap-2 px-7 py-2.5 rounded-full text-sm font-bold transition-all duration-200 ${
+                    isSubmitting || !token || uploading || (!coverUrl && !videoUrl)
+                      ? 'bg-[#fde3db] text-[#c4a39a] cursor-not-allowed'
+                      : 'bg-gradient-to-r from-[#FF6B35] to-[#ff9a72] text-white shadow-md hover:shadow-lg active:scale-95 hover:from-[#e55928] hover:to-[#FF6B35]'
+                  }`}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                      </svg>
+                      Posting...
+                    </>
+                  ) : uploading ? (
+                    <>
+                      <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                      </svg>
+                      Uploading... {uploadProgress}%
+                    </>
+                  ) : (
+                    <>
+                      Post Recipe
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.269 20.876L5.999 12zm0 0h7.5" />
+                      </svg>
+                    </>
+                  )}
+                </button>
+              </div>
             )}
           </div>
         </div>
